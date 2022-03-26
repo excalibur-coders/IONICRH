@@ -40,15 +40,16 @@
         {
           "ts": "never",
           "tsx": "never"
-        }
+        },
       ],
       "no-use-before-define": "off",
       "@typescript-eslint/no-use-before-define": [
         "error"
       ],
-      "prettier/prettier": "error"
+      "prettier/prettier": "error",
+      "react/react-in-jsx-scope": "off",
+      "import/prefer-default-export": "off"
     },
-    "react/react-in-jsx-scope": "off",
     "settings": {
       "import/resolver": {
         "typescript": {}
