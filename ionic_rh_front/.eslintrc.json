@@ -1,4 +1,5 @@
 {
+    "project": "IONIC_RH_FRONT/tsconfig.json",
     "env": {
         "browser": true,
         "es2021": true
@@ -7,7 +8,8 @@
         "plugin:react/recommended",
         "airbnb",
         "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "plugin:json/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
