@@ -1,6 +1,6 @@
 # Projeto IonicRH
 
-![Equipe ExcaliburCoders](./imagens/1.png)
+![Equipe ExcaliburCoders](./img/1.png)
 
 - Lucas Braz Dias (Scrum Master)
 
@@ -47,21 +47,21 @@
 
 ## _User Story_
 
-![Colaborador](./imagens/Colaborador.png)
+![Colaborador](./img/Colaborador.png)
 
-![Administrador](./imagens/Administrador.png)
+![Administrador](./img/Administrador.png)
 
 ## Backlog da Sprint
 
-![Backlog](./imagens/6.png)
+![Backlog](./img/6.png)
 
 ## Modelo de Banco de Dados
 
-![ModeloBD](./imagens/8.png)
+![ModeloBD](./img/8.png)
 
 ## Tecnologias Utilizadas
 
-![Tecnologias](./imagens/9.png)
+![Tecnologias](./img/9.png)
 
 ## Sistema Desenvolvido
 
