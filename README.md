@@ -55,7 +55,7 @@
 
 ![Backlog](./img/6.png)
 
-## Modelo de Banco de Dados
+## Modelagem do Banco de Dados
 
 ![ModeloBD](./img/8.png)
 
