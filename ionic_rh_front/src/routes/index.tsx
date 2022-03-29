@@ -6,6 +6,8 @@ function Routes() {
     <BrowserRouter>
       <RoutesWrapper>
         <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login />} />
       </RoutesWrapper>
     </BrowserRouter>
   )
