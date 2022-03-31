@@ -12,24 +12,18 @@ import Button from 'components/Button';
 
 // console.log(theme.colors.primary);
 
-function Login() {
+function ContaSucesso() {
   return (
     <S.Container>
       <div className='leftWrapper'>
         <img src={IonicLogo} />
 
         <div className='form'>
-          <h1>Login</h1>
-          <Input size='sm' width="auto" fontSize={15} labelText="E-mail" />
-          <Input size='sm' width="auto" fontSize={15} labelText="Senha" />
-          <div className="formFooter">
-            <a href="">Esqueceu sua senha?</a>
-            <Button text="Logar" color={theme.colors.primary} />
-          </div>
+          <h1>Conta Criada com sucesso!</h1>
+          <h2>Voltar ao Login</h2>
 
           <div className='registerWrapper'>
-            <span>Não tem uma conta?</span>
-            <span><Link to="/cadastro">Cadastrar-se</Link></span>
+          <Link to="/"><Button text="Voltar" color={theme.colors.primary} /></Link>
           </div>
         </div>
       </div>
@@ -42,4 +36,4 @@ function Login() {
   );
 };
 
-export default Login;
+export default ContaSucesso;
