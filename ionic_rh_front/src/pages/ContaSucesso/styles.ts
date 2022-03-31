@@ -12,7 +12,6 @@ export const Container = styled(Flex)`
     flex-direction: column;
 
     .form {
-      width: 20rem;
       margin: 0 auto;
       margin-top: 80px;
 
@@ -21,24 +20,22 @@ export const Container = styled(Flex)`
 
         text-align: center;
         font-weight: bold;
-        font-size: 20px;
+        font-size: 30px;
       }
 
-      .formFooter {
-        display: flex;
-        justify-content: space-between;
+      h2 {
+        margin: 50px;
 
-        margin-top: 10px;
-
-        a {
-          color: ${theme.colors.primary};
-        }
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
       }
     }
 
     .registerWrapper {
       display: flex;
       flex-direction: column;
+      align-items:center;
 
       margin-top: 50px;
 

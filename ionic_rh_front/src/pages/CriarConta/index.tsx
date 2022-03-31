@@ -1,6 +1,7 @@
 // import { Input, Stack } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
+import { Checkbox, CheckboxGroup } from '@chakra-ui/react'
 
 import Input from 'components/Input';
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
@@ -12,24 +13,32 @@ import Button from 'components/Button';
 
 // console.log(theme.colors.primary);
 
-function Login() {
+function CriarConta() {
   return (
     <S.Container>
       <div className='leftWrapper'>
         <img src={IonicLogo} />
 
         <div className='form'>
-          <h1>Login</h1>
+          <h1>Criar Conta</h1>
+          <Input size='sm' width="auto" fontSize={15} labelText="Nome" />
           <Input size='sm' width="auto" fontSize={15} labelText="E-mail" />
           <Input size='sm' width="auto" fontSize={15} labelText="Senha" />
+          <Input size='sm' width="auto" fontSize={15} labelText="Repetir a Senha" />
           <div className="formFooter">
-            <a href="">Esqueceu sua senha?</a>
-            <Button text="Logar" color={theme.colors.primary} />
+            <div className="formFooterLeft">
+              <Checkbox isInvalid>Eu li e concordo com os:</Checkbox>
+              <span>Termos e condições</span>
+            </div>
+            <div>
+              <Button text="Criar" color={theme.colors.primary} />
+            </div>
           </div>
 
           <div className='registerWrapper'>
-            <span>Não tem uma conta?</span>
-            <span><Link to="/cadastro">Cadastrar-se</Link></span>
+            <span>Já tem uma conta?</span>
+            <span><Link to="/">Entre aqui</Link></span>
+            
           </div>
         </div>
       </div>
@@ -42,4 +51,4 @@ function Login() {
   );
 };
 
-export default Login;
+export default CriarConta;

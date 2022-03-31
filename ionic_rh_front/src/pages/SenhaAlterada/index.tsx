@@ -12,24 +12,17 @@ import Button from 'components/Button';
 
 // console.log(theme.colors.primary);
 
-function Login() {
+function SenhaAlterada() {
   return (
     <S.Container>
       <div className='leftWrapper'>
         <img src={IonicLogo} />
 
         <div className='form'>
-          <h1>Login</h1>
-          <Input size='sm' width="auto" fontSize={15} labelText="E-mail" />
-          <Input size='sm' width="auto" fontSize={15} labelText="Senha" />
-          <div className="formFooter">
-            <a href="">Esqueceu sua senha?</a>
-            <Button text="Logar" color={theme.colors.primary} />
-          </div>
+          <h1>Senha Alterada com sucesso!</h1>
 
           <div className='registerWrapper'>
-            <span>Não tem uma conta?</span>
-            <span><Link to="/cadastro">Cadastrar-se</Link></span>
+            <span><Link to="/">Voltar ao Login</Link></span>
           </div>
         </div>
       </div>
@@ -42,4 +35,4 @@ function Login() {
   );
 };
 
-export default Login;
+export default SenhaAlterada;
