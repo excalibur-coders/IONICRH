@@ -7,7 +7,7 @@ function Routes() {
     <BrowserRouter>
       <RoutesWrapper>
         <Route path="/" element={<Login />} />
-        <Route path="/" element={<PerfilAdmin />} />
+        <Route path="/gerenciamento" element={<PerfilAdmin />} />
       </RoutesWrapper>
     </BrowserRouter>
   )
