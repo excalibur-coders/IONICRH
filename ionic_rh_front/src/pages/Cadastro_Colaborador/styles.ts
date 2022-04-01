@@ -70,7 +70,7 @@ height: 100vh;
         align-items: center;
         justify-content: top;
         flex-direction: column;
-        margin-bottom: 17rem;
+        margin-bottom: 13rem;
         
 
         .form {
@@ -78,6 +78,11 @@ height: 100vh;
             margin-left: 50px;
             margin-top: 80px;
             flex-direction: column;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: bold;
         }
     }
 

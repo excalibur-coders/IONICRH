@@ -2,8 +2,8 @@ import { ReactNode } from 'react';
 
 import Input from 'components/Input';
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
-import LogoGray from 'assets/svg/logo-gray.svg';
 import { theme } from 'theme';
+import { Checkbox, CheckboxGroup, Stack } from '@chakra-ui/react'
 
 import * as S from './styles';
 import Button from 'components/Button';
@@ -40,14 +40,22 @@ function Cadastro() {
                 </div>
 
                 <div className='rightWrapper'>
-                        <div className='form'>
-                            <Input size='sm' width="auto" fontSize={20} labelText="E-mail" />
-                            <Input size='sm' width="auto" fontSize={20} labelText="Telefone" />
-                            <Input size='sm' width="auto" fontSize={20} labelText="Formação" />
-                            <Input size='sm' width="auto" fontSize={20} labelText="Cursos Complementares" />
-                        </div>
+                    <div className='form'>
+                        <Input size='sm' width="auto" fontSize={20} labelText="E-mail" />
+                        <Input size='sm' width="auto" fontSize={20} labelText="Telefone" />
+                        <Input size='sm' width="auto" fontSize={20} labelText="Formação" />
+                        <Input size='sm' width="auto" fontSize={20} labelText="Cursos Complementares" />
+                        <h2>Idiomas</h2>
+                        <CheckboxGroup colorScheme='blue'>
+                            <Stack spacing={[1, 5]} direction={['column', 'row']}>
+                                <Checkbox value='ingles'>Inglês</Checkbox>
+                                <Checkbox value='espanhol'>Espanhol</Checkbox>
+                                <Checkbox value='outros'><Input size='sm' width="auto" fontSize={15} labelText="Outros:" /></Checkbox>
+                            </Stack>
+                        </CheckboxGroup>
+                    </div>
                 </div>
-                </div>
+            </div>
                  <div className='ButtonW'>
                  <Button text='Finalizar Cadastro' color={theme.colors.primary} />
                  </div>
