@@ -23,7 +23,7 @@ function Login() {
           <Input size='sm' width="auto" fontSize={15} labelText="E-mail" />
           <Input size='sm' width="auto" fontSize={15} labelText="Senha" />
           <div className="formFooter">
-            <a href="">Esqueceu sua senha?</a>
+            <a><Link to="/RecuperarSenha">Esqueceu sua senha?</Link></a>
             <Button text="Logar" color={theme.colors.primary} />
           </div>
 
