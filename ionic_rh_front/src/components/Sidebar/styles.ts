@@ -17,7 +17,7 @@ export const Container = styled(Box)`
 
   background: ${theme.colors.primary};
   listStyleType: "none";
-  width: 25%;
+  width: 378px;
   height: "100vh";
   display: flex;
   flex-direction: column;

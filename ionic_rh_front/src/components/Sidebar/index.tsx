@@ -3,8 +3,7 @@ import {Link} from 'react-router-dom';
 import { Container} from './styles';
 import {List, ListItem, ListIcon, Flex} from '@chakra-ui/react';
 import { Icon } from '@chakra-ui/react'
-import { MdList, MdOutlinePersonAddAlt1, MdPeopleAlt, MdOutlineComputer, MdOutlineListAlt, MdPeopleOutline } from 'react-icons/md'
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { MdList, MdOutlinePersonAddAlt1, MdPeopleAlt, MdOutlineComputer, MdOutlineListAlt, MdPeopleOutline } from 'react-icons/md';
 
 import * as S from './styles';
 
