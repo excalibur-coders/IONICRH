@@ -50,7 +50,8 @@ function Cadastro() {
                             <Stack spacing={[1, 5]} direction={['column', 'row']}>
                                 <Checkbox value='ingles'>Inglês</Checkbox>
                                 <Checkbox value='espanhol'>Espanhol</Checkbox>
-                                <Checkbox value='outros'><Input size='sm' width="auto" fontSize={15} labelText="Outros:" /></Checkbox>
+                                <Checkbox value='outros'>Outros:</Checkbox>
+                                <Input size='sm' width="auto" fontSize={15} labelText="" />
                             </Stack>
                         </CheckboxGroup>
                     </div>
