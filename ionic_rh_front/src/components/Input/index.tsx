@@ -1,15 +1,20 @@
+import { HTMLInputTypeAttribute, ForwardRefRenderFunction, InputHTMLAttributes } from 'react';
+import { FieldError } from 'react-hook-form/dist/types';
 import InputMask from 'react-input-mask';
 
 import * as S from './styles';
 
-interface InputProps {
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   size: 'lg' | 'md' | 'sm' | 'xs';
   width: string | number;
   fontSize: number;
-  labelText: string;
+  labelText?: string;
   placeholder?: string;
   mask?: string;
   maskChar?: string;
+  type?: HTMLInputTypeAttribute | undefined;
+  disabled?: boolean;
+  error?: string | undefined;
 }
 
 function Input({
@@ -19,10 +24,14 @@ function Input({
   labelText,
   placeholder,
   mask,
-  maskChar
+  maskChar,
+  type,
+  disabled,
+  error,
+  ...rest
 }: InputProps) {
   return (
-    <S.Container>
+    <S.Container disabled={disabled}>
       <S.Label fontSize={fontSize}>{labelText}</S.Label>
       <S.CustomInput
         size={size}
@@ -31,7 +40,10 @@ function Input({
         as={InputMask}
         mask={mask}
         maskChar={maskChar}
+        type={type}
+        {...rest}
       />
+      <span>{error}</span>
     </S.Container>
   );
 };
