@@ -1,51 +1,38 @@
-import { HTMLInputTypeAttribute, ForwardRefRenderFunction, InputHTMLAttributes } from 'react';
-import { FieldError } from 'react-hook-form/dist/types';
+import { ForwardRefRenderFunction, forwardRef,  } from 'react';
 import InputMask from 'react-input-mask';
+import { InputProps as ChakraInputProps } from "@chakra-ui/react";
 
 import * as S from './styles';
 
-interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
-  size: 'lg' | 'md' | 'sm' | 'xs';
-  width: string | number;
+interface InputProps extends ChakraInputProps {
   fontSize: number;
   labelText?: string;
-  placeholder?: string;
   mask?: string;
   maskChar?: string;
-  type?: HTMLInputTypeAttribute | undefined;
   disabled?: boolean;
   error?: string | undefined;
 }
 
-function Input({
-  size,
-  width,
-  fontSize,
-  labelText,
-  placeholder,
-  mask,
-  maskChar,
-  type,
-  disabled,
-  error,
-  ...rest
-}: InputProps) {
-  return (
-    <S.Container disabled={disabled}>
-      <S.Label fontSize={fontSize}>{labelText}</S.Label>
-      <S.CustomInput
-        size={size}
-        width={width}
-        placeholder={placeholder}
-        as={InputMask}
-        mask={mask}
-        maskChar={maskChar}
-        type={type}
-        {...rest}
-      />
-      <span>{error}</span>
-    </S.Container>
-  );
-};
+const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> =
+  ({
+    fontSize,
+    labelText,
+    disabled,
+    error,
+    ...rest
+  }, ref) => {
+    return (
+      <S.Container disabled={disabled}>
+        <S.Label fontSize={fontSize}>{labelText}</S.Label>
+        <S.CustomInput
+          id={rest.name}
+          ref={ref}
+          {...rest.mask && {as: InputMask}}
+          {...rest}
+        />
+        <span>{error}</span>
+      </S.Container>
+    );
+  }
 
-export default Input;
+export default forwardRef(Input);

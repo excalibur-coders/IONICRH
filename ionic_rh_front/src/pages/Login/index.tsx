@@ -1,9 +1,7 @@
-import { useCallback } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useCallback, useRef } from 'react';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-
-import { api } from 'api/api';
 import Input from 'components/Input';
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
 import LogoGray from 'assets/svg/logo-gray.svg';
@@ -20,7 +18,6 @@ interface InputsProps {
   password: string;
 }
 
-
 function Login() {
   const onSubmit = useCallback((data: InputsProps) => {
     console.log('data', data);
@@ -31,17 +28,14 @@ function Login() {
     password: yup.string().required('Senha obrigatória!'),
   }).required();
 
-
   const {
-    control,
     register,
-    unregister,
     handleSubmit,
     formState: { errors },
-  } = useForm<InputsProps>();
-  // useForm<InputsProps>({
-  //   resolver: yupResolver(schema),
-  // });
+  } = useForm<InputsProps>({
+    mode: 'onBlur',
+    resolver: yupResolver(schema),
+  });
 
   return (
     <S.Container>
