@@ -11,7 +11,7 @@ export const Container = styled(Flex)`
     display: flex;
     flex-direction: column;
 
-    .form {
+    form {
       width: 20rem;
       margin: 0 auto;
       margin-top: 80px;

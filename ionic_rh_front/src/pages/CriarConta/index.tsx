@@ -38,7 +38,7 @@ function CriarConta() {
           <div className='registerWrapper'>
             <span>Já tem uma conta?</span>
             <span><Link to="/">Entre aqui</Link></span>
-            
+
           </div>
         </div>
       </div>
