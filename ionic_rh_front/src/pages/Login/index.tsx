@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 
 import { api } from 'api/api';
@@ -79,7 +80,7 @@ function Login() {
 
           <div className='registerWrapper'>
             <span>Não tem uma conta?</span>
-            <span>Cadastrar-se</span>
+            <span><Link to="/cadastro">Cadastrar-se</Link></span>
           </div>
         </form>
       </div>

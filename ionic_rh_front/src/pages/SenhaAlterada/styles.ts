@@ -11,35 +11,20 @@ export const Container = styled(Flex)`
     display: flex;
     flex-direction: column;
 
-    form {
-      width: 20rem;
+    .form {
       margin: 0 auto;
       margin-top: 80px;
 
       h1 {
         margin: 50px;
-
-        text-align: center;
         font-weight: bold;
-        font-size: 20px;
-      }
-
-      .formFooter {
-        display: flex;
-        justify-content: space-between;
-
-        margin-top: 10px;
-
-        a {
-          color: ${theme.colors.primary};
-        }
+        font-size: 65px;
       }
     }
 
     .registerWrapper {
       display: flex;
       flex-direction: column;
-
       margin-top: 50px;
 
       span {
@@ -49,6 +34,8 @@ export const Container = styled(Flex)`
       span:last-child {
         text-align: center;
         color: ${theme.colors.primary};
+        font-weight: bold;
+        font-size: 25px;
       }
     }
   }
