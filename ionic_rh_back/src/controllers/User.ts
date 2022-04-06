@@ -1,7 +1,8 @@
 import { Response, Request } from "express";
-import { AppDataSource } from "../config/database";
-import { IUser } from "../interfaces/IUser";
-import { USER } from "../models/user"
+
+import { AppDataSource } from "config/database";
+import { IUser } from "interfaces/IUser";
+import { USER } from "models/user"
 
 const userReposiroty = AppDataSource.getRepository(USER);
 

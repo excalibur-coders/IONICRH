@@ -1,6 +1,7 @@
 import {
     Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne
 } from "typeorm";
+
 import { Acesso } from "./acesso_sistema"
 import { Contrato } from "./empresa";
 import { Documentos, Endereco, Escolaridade, Idiomas, Telefone } from "./user_details";

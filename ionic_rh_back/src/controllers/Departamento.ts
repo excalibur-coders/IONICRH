@@ -1,9 +1,11 @@
-import { AppDataSource } from "../config/database";
-import { Departamento } from "../models/empresa";
+import { Response, Request } from "express";
+
+import { AppDataSource } from "config/database";
+import { Departamento } from "models/empresa";
 
 const departamentoRepository = AppDataSource.getRepository(Departamento);
 
-export const getAllDepartamentos = async (req, res) => {
+export const getAllDepartamentos = async (req: Request, res: Response) => {
   try {
     const departamentos = await departamentoRepository.find({
       select: {
@@ -16,11 +18,11 @@ export const getAllDepartamentos = async (req, res) => {
   }
 }
 
-export const getDepartamentoById = async (req, res) => {
+export const getDepartamentoById = async (req: Request, res: Response) => {
     try {
       const departamento = await departamentoRepository.findOne({
         where: {
-          dep_id: req.params.id
+          dep_id: Number(req.params.id)
         }
       })
       res.json(departamento);
@@ -29,7 +31,7 @@ export const getDepartamentoById = async (req, res) => {
     }
   }
 
-  export const createDepartamento = async (req, res) => {
+  export const createDepartamento = async (req: Request, res: Response) => {
     try {
       const dep = req.body;
       const dep_name = dep.dep_name;
@@ -42,7 +44,7 @@ export const getDepartamentoById = async (req, res) => {
     }
   }
 
-  export const updateDepartamento = async (req, res) => {
+  export const updateDepartamento = async (req: Request, res: Response) => {
     try {
       await departamentoRepository
         .createQueryBuilder()
@@ -58,7 +60,7 @@ export const getDepartamentoById = async (req, res) => {
     }
   }
 
-  export const deleteDepartamento = async (req, res) => {
+  export const deleteDepartamento = async (req: Request, res: Response) => {
     try {
       await departamentoRepository
         .createQueryBuilder()

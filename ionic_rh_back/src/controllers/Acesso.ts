@@ -1,9 +1,11 @@
-import { AppDataSource } from "../config/database";
-import { Acesso } from "../models/acesso_sistema";
+import { Response, Request } from "express";
+
+import { AppDataSource } from "config/database";
+import { Acesso } from "models/acesso_sistema";
 
 const acesso_sistemaRepository = AppDataSource.getRepository(Acesso);
 
-export const getAllAcesso = async (req, res) => {
+export const getAllAcesso = async (req: Request, res: Response) => {
     try {
       const acesso = await acesso_sistemaRepository.find({
         select: {
@@ -15,7 +17,7 @@ export const getAllAcesso = async (req, res) => {
       res.json(error);
     }
   }
-export const getAcessoById = async (req, res) => {
+export const getAcessoById = async (req: Request, res: Response) => {
     try {
         const acesso = await acesso_sistemaRepository.findOne({
             where: {
@@ -27,7 +29,7 @@ export const getAcessoById = async (req, res) => {
         res.json(error);
     }
 }
-export const createAcesso = async (req, res) => {
+export const createAcesso = async (req: Request, res: Response) => {
     try {
         const acesso_sistema = req.body;
         const acesso_cargo = acesso_sistema.acesso_cargo;
@@ -39,7 +41,7 @@ export const createAcesso = async (req, res) => {
         res.json(error);
     }
 }
-export const updateAcesso = async (req, res) => {
+export const updateAcesso = async (req: Request, res: Response) => {
     try {
         await acesso_sistemaRepository
             .createQueryBuilder()
@@ -54,7 +56,7 @@ export const updateAcesso = async (req, res) => {
         res.json(error);
     }
 }
-export const deleteAcesso = async(req, res) => {
+export const deleteAcesso = async(req: Request, res: Response) => {
     try {
         await acesso_sistemaRepository
         .createQueryBuilder()
@@ -66,6 +68,6 @@ export const deleteAcesso = async(req, res) => {
             "message":"Acesso deletado com sucesso"
         })
     } catch (error) {
-        
+        res.json(error);
     }
 }
