@@ -3,7 +3,6 @@ import { Departamento } from "../models/empresa";
 
 const departamentoRepository = AppDataSource.getRepository(Departamento);
 
-
 export const getAllDepartamentos = async (req, res) => {
   try {
     const departamentos = await departamentoRepository.find({
@@ -11,7 +10,6 @@ export const getAllDepartamentos = async (req, res) => {
         dep_name: true,
       }
     });
-    console.log(departamentos);
     res.json(departamentos);
   } catch (error) {
     res.json(error);
@@ -19,17 +17,59 @@ export const getAllDepartamentos = async (req, res) => {
 }
 
 export const getDepartamentoById = async (req, res) => {
-  try {
-    console.log(req.params.id);
-
-    const departamento = await departamentoRepository.findOne({
-      where: {
-        dep_id: req.params.id
-      }
-    })
-    console.log(departamento);
-    res.json(departamento);
-  } catch (error) {
-    res.json(error);
+    try {
+      const departamento = await departamentoRepository.findOne({
+        where: {
+          dep_id: req.params.id
+        }
+      })
+      res.json(departamento);
+    } catch (error) {
+      res.json(error);
+    }
   }
-}
+
+  export const createDepartamento = async (req, res) => {
+    try {
+      const dep = req.body;
+      const dep_name = dep.dep_name;
+      const departamento = await departamentoRepository.save(req.body);
+      res.json({
+        "message": `Departamento ${dep_name} criado`
+      });
+    } catch (error) {
+      res.json(error);
+    }
+  }
+
+  export const updateDepartamento = async (req, res) => {
+    try {
+      await departamentoRepository
+        .createQueryBuilder()
+        .update(Departamento).
+        set({
+          "dep_name": req.body.dep_name
+        }).where("dep_id = :dep_id", { dep_id: req.params.id }).execute();
+      res.json({
+        "message": `Departamento foi atualizado com sucesso`
+      });
+    } catch (error) {
+      res.json(error);
+    }
+  }
+
+  export const deleteDepartamento = async (req, res) => {
+    try {
+      await departamentoRepository
+        .createQueryBuilder()
+        .delete()
+        .from(Departamento)
+        .where("dep_id = :dep_id", { dep_id: req.params.id })
+        .execute();
+      res.json({
+        "message": "Departamento deletado com sucesso"
+      })
+    } catch (error) {
+
+    }
+  }
