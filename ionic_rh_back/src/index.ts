@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
+
 import { AppDataSource } from "./config/database";
+
 import departamentoRoutes from "./routes/departamento";
 import acessoRoutes from './routes/acesso';
 import userRoutes from './routes/user';

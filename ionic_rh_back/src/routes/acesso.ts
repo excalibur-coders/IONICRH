@@ -1,5 +1,11 @@
 import express from "express";
-import { createAcesso, deleteAcesso, getAcessoById, getAllAcesso, updateAcesso } from "../controllers/Acesso";
+import { 
+  createAcesso, 
+  deleteAcesso, 
+  getAcessoById, 
+  getAllAcesso, 
+  updateAcesso 
+} from "controllers/Acesso";
 
 const router = express.Router();
 
