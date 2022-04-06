@@ -20,15 +20,34 @@ function PerfilAdmin(){
               <div >
                 <Sidebar/>
                 </div>
-                <div className="input">
-                 <div>Filtrar</div>
-                  <div className="filter">
-                   <Box as={MdFilterList}/><Box/>
+
+                <S.ContainerInput>
+                    <div>
+                  <Input size='xs' width="120px" fontSize={15} placeholder="Nome, cargo, departamento" labelText={""} />
                   </div>
-                <Input size='xs' width="120px" fontSize={15} placeholder="Nome" labelText={""} />
-                <Input size='xs' width="120px" fontSize={15} placeholder="Cargo" labelText={""} />
-                </div>
+
+
+
+
+                </S.ContainerInput>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </S.Container>
+
 
 
           </>

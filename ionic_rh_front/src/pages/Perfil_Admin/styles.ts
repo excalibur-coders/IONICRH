@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Flex } from '@chakra-ui/react';
+import { Flex, Box } from '@chakra-ui/react';
 import { theme } from 'theme';
 
 export const Container = styled(Flex)`
@@ -12,7 +12,7 @@ export const Container = styled(Flex)`
 
 `;
 
-export const ContainerDiv = styled.div`
+export const ContainerDiv = styled.div` // navbar provisória
 
 .sidebar{
   width: 100%;
@@ -24,5 +24,11 @@ export const ContainerDiv = styled.div`
 .filter{
   display: flex;
 }
+
+`;
+
+export const ContainerInput = styled.div`
+
+justify-content: allign;
 
 `;

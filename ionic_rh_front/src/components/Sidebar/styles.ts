@@ -2,16 +2,9 @@ import styled from '@emotion/styled';
 import { Box, List, ListIcon } from '@chakra-ui/react';
 import { theme } from 'theme';
 
-/*interface ListProps {
-  colorScheme: string;
-  size: string | number;
-  spacing: number;
-  stylePosition: number;
-  fontSize: number;
-}*/
 
 
-export const Container = styled(Box)`
+export const Container = styled.div`
 
 .CustomSidebar {
 
@@ -26,22 +19,15 @@ export const Container = styled(Box)`
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-.teste{
+`
+;
+
+export const ContainerList = styled.div`
+
+.font{
   fontSize='2xl';
   color='Black'
 }
 
-
-
-`
-;
-
-/*export const List = styled.list<ListProps>`
-font-size: ${(props) => ( props.fontSize )}px;
-font-weight: bold;
-color: ${theme.colors.font};
-
-`
-;*/
-
+`;
 

@@ -10,8 +10,8 @@ export const theme = extendTheme({
   },
 
   fonts: {
-    heading: 'Poppins',
-    body: 'Poppins',
+    heading: 'Coolvetica',
+    body: 'Coolvetica',
   },
 
   styles: {
