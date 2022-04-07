@@ -1,74 +1,74 @@
 # Projeto IonicRH
 
-![Equipe ExcaliburCoders]
+![Equipe ExcaliburCoders](./img/1.png)
 
-* Lucas Braz Dias (Scrum Master)
+- Lucas Braz Dias (Scrum Master)
+
 #### [Linked](https://www.linkedin.com/in/lucas-braz-dias/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/lucasbdias)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
 
+- Priscila Aparecida Silva (Produtc Owner)
 
-* Priscila Aparecida Silva (Produtc Owner)
 #### [Linked](https://www.linkedin.com/in/priscilasilva1801/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/prsilva)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
 
+- Tais Gomes Salomao (Dev Team)
 
-* Tais Gomes Salomao (Dev Team)
 #### [Linked](https://www.linkedin.com/in/tais-salomao)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/taissalomao)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
 
-* Rodrigo de Andrade Paula (Dev Team)
+- Rodrigo de Andrade Paula (Dev Team)
+
 #### [Linked](https://www.linkedin.com/in/rodrigo-de-andrade-a34605104)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/RodrigodeAndrade90)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
 
+- Kevin Ferreira Mirenda (Dev team)
 
-* Kevin Ferreira Mirenda (Dev team)
 #### [Linked](https://www.linkedin.com/in/kevin-mirenda-a54a64220)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/KevinFMfatec)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
 
+- Rafael Leonardo Lopes (Dev Team)
 
-* Rafael Leonardo Lopes (Dev Team)
 #### [Linked](https://www.linkedin.com/in/rafael-leonardo-lopes/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/Rafael-leonardo)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
 
+- Lucas Ferreira da Costa (Dev Team)
 
-* Lucas Ferreira da Costa (Dev Team)
 #### [Linked](https://www.linkedin.com/in/lucas-costa-a49a01219/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/ddaiwon)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
 
+- Gabriel Souza Bicho Nunes (Dev Team)
 
-* Gabriel Souza Bicho Nunes (Dev Team)
 #### [Linked](https://www.linkedin.com/in/gabriel-souza-bicho-nunes-429191185/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/ZeroPirata)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
 
+- Vinícius Andrade B. (Dev Team)
 
-* Vinícius Andrade B. (Dev Team)
 #### [Linked](https://www.linkedin.com/in/vin%C3%ADcius-barbosa-78111a206/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/ViniciusAndBar)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
-
 
 ## API 2º Semestre do Curso de Desenvolvimento de Software Multiplataforma
 
-* M2: Prof. José Walmir Gonçalves Duque
-* P2: Prof. Claudio Etelvino de Lima
-
+- M2: Prof. José Walmir Gonçalves Duque
+- P2: Prof. Claudio Etelvino de Lima
 
 ## Objetivo do Projeto
 
-## *User Story*
+## _User Story_
 
-| Quem | O que? | Para |
-|:--------------:  | :----------:|:---------------------------------------------------------|
-|    Colaborador   | Eu como Colaborador quero poder realizar minha conta no sistema de forma rápida e eficiente, cadastrar os dados que me são pertinentes para minha contratação e fazer upload dos meus documentos assim que o meu login for validado. Ter acesso a minha trilha de aprendizagem na empresa, e realizar os cursos que me são disponíveis. | Concluir meu ingresso na empresa.|
-|    Administrador | Eu como Administrador quero cadastrar os colaboradores de acordo com a sua função (Administrador, Gestor,Consultor, Colaborador) reaproveitando os dados do auto-cadastro. Ter acesso aos dados de todos os colaboradores da empresa podendo adicionar, editar e excluir os cadastros dos mesmos | Gerenciar os usuários do sistema. |
-|    Gestor   | Eu como Gestor quero poder acompanhar e monitorar o período dos colaboradores de cada setor e filial. | Visualizar as informações de modo seletivo.|
-|    Consultor   | Eu como Consultor poder ter o monitoramento, adicionar e deixar como concluido as trilhas de aprendizagem do recém colaborar. Trabalhar com processos seletivos, divulgação de vagas, triagem de curriculos.| Acompanhar o desenvoltimento do colaborador do inicio ao final. 
+![Colaborador](./img/Colaborador.png)
 
+![Administrador](./img/Administrador.png)
 
-![Backlog]
+## Backlog da Sprint
 
+![Backlog](./img/6.png)
 
-![Tecnologias]
+## Modelagem do Banco de Dados
 
+![ModeloBD](./img/8.png)
 
+## Tecnologias Utilizadas
+
+![Tecnologias](./img/9.png)
 
 ## Sistema Desenvolvido
 
-
 ## Cronograma de Entregas
 
-| Data | Links |
-| ------ | ------ |
-|    14/04/2022    |[Sprint 1]|
-|    15/05/2022    |[Sprint 2]|
-|    05/06/2021    |[Sprint 3]|
+| Data       | Links      |
+| ---------- | ---------- |
+| 14/04/2022 | [Sprint 1] |
+| 15/05/2022 | [Sprint 2] |
+| 05/06/2021 | [Sprint 3] |

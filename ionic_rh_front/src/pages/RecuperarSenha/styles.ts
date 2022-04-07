@@ -2,8 +2,6 @@ import styled from '@emotion/styled';
 import { Flex } from '@chakra-ui/react';
 import { theme } from 'theme';
 
-
-
 export const Container = styled(Flex)`
   height: 100vh;
 
@@ -13,7 +11,7 @@ export const Container = styled(Flex)`
     display: flex;
     flex-direction: column;
 
-    form {
+    .form {
       width: 20rem;
       margin: 0 auto;
       margin-top: 80px;
