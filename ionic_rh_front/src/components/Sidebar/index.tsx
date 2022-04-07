@@ -9,6 +9,7 @@ import * as S from './styles';
 
 
 function Sidebar(){
+
   return (
     <S.Container>
       <div>
