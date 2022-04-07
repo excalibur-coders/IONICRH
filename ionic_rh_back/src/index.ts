@@ -25,4 +25,5 @@ app.use('/acesso', acessoRoutes);
 app.use('/user', userRoutes);
 // app.use('/auth', authRoutes);
 
+
 app.listen(5000, () => console.log('Server rodandooo!'))

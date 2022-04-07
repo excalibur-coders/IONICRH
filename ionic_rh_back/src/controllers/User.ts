@@ -39,3 +39,26 @@ export const updateUser = async (req: Request, res: Response) => {
     res.json(req.body);
   }
 };
+
+// Route ADMIN
+export const readUser = async (req : Request, res:Response)=>{
+  try{
+    let userQuery = await userReposiroty.createQueryBuilder("USER").execute()
+    console.log(userQuery.user_id)
+    res.json(userQuery)
+  } catch(err) {
+    res.json(req.body)
+  }
+}
+
+export const loginUser = async (req: Request, res:Response)=>{
+  try{
+    let userQuery = await userReposiroty.createQueryBuilder("USER")
+    .where("user_email = :user_email", {user_email: req.body.user_email})
+    .andWhere("password = :password", {password: req.body.password})
+    .execute()
+    console.log(userQuery[0].USER_user_id)
+    res.json(userQuery)
+} catch(error){
+  res.json(error)
+}}

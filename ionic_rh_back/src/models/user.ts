@@ -7,6 +7,12 @@ import { Contrato } from "./empresa";
 import { Documentos, Endereco, Escolaridade, Idiomas, Telefone } from "./user_details";
 @Entity()
 export class USER {
+    static user_nome(user_nome: any) {
+      throw new Error("Method not implemented.");
+    }
+    static findOne(arg0: { user_email: any; user_type: number; }, arg1: (err: any, user: any) => void) {
+      throw new Error("Method not implemented.");
+    }
     @PrimaryGeneratedColumn({
         type: "int"
     })
