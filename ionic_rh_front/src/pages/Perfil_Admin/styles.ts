@@ -5,36 +5,34 @@ import { theme } from 'theme';
 export const Container = styled(Flex)`
 
 .input{
-  top: 52px
-  bottom: 800px;
-  left: 300px;
+margin-left: 50px;
 }
 
 .Table{
   width: 90%;
   display: flex;
-  justify-content: center ;
-  align-items: center;
-  margin-left: 80px;
+  align-items: left;
+  margin-left: 0px;
   margin-top: 100px;
 
 }
 
+
 .back{
-  margin-left: 170px;
+  margin-left: 800px;
+  display: flex;
+  top: 100px;
+}
+
+.breadcrumb{
+  margin-left: 200px;
 }
 
 
 `;
 
-export const ContainerDiv = styled.div` // navbar provisória
+export const ContainerDiv = styled.div`
 
-.sidebar{
-  width: 100%;
-  height: 50px;
-  display: fixed;
-  background: ${theme.colors.font};
-}
 
 .filter{
   display: flex;
@@ -46,16 +44,21 @@ export const ContainerDiv = styled.div` // navbar provisória
 
 export const ContainerInput = styled.div`
 
-
-justify-content: allign;
 margin-left: 30px;
+bottom: 90px;
 
 
 
 `;
 
-export const FilterContainer = styled.div`
+export const ContainerLinks = styled.div`
 
+.breadcrumb{
+
+  margin-left: 700px;
+
+
+}
 
 
 

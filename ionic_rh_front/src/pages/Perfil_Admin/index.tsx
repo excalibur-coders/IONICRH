@@ -4,17 +4,14 @@ import {SearchIcon, ArrowBackIcon} from '@chakra-ui/icons';
 import { theme } from 'theme';
 import Sidebar from 'components/Sidebar';
 import Input from 'components/Input';
+import Navbar from 'components/navbar';
 import { MdFilterList, MdList} from 'react-icons/md';
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tfoot,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-  TableContainer,
+  Table, Thead, Tbody,
+  Tr, Th, Td,TableContainer} from '@chakra-ui/react'
+import { Grid, GridItem } from '@chakra-ui/react'
+import {
+  Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator,
 } from '@chakra-ui/react'
 import * as S from './styles';
 
@@ -22,15 +19,15 @@ import * as S from './styles';
 
 function PerfilAdmin(){
         return(
-      <>
-          <S.ContainerDiv>
-          <div className="sidebar">navbar aqui</div>
-          </S.ContainerDiv>
+    <>
 
 
-            <S.Container>
+       <div><Navbar/></div>
+
+
+        <S.Container>
               <div >
-                <Sidebar/>
+                  <Sidebar/>
               </div>
 
               <div>
@@ -38,21 +35,19 @@ function PerfilAdmin(){
                         <Icon as={MdFilterList} w={5} h={5}/>
                         Filtrar
                       </Box>
-                  <Flex>
-                      <Box p='4'>
-                        <S.ContainerInput>
-                          <div>
-                            <Input size='xs' width="200px" fontSize={15} placeholder="Nome, cargo ou departamento" labelText={""} />
-                          </div>
-                        </S.ContainerInput>
-                      </Box>
+                      <div className='back'>
+                        <Box p='4'>
+                          <ArrowBackIcon w={4} h={4}/>
+                          Voltar
+                        </Box>
+                      </div>
 
-                      <Box p='4'>
+                      <div className='input' >
+                        <Grid templateColumns='repeat(5, 1fr)' gap={4}>
+                        <Input size='xs' width="200px" fontSize={20} placeholder="Nome, cargo ou departamento" labelText={""} />
                         <SearchIcon w={5} h={5}/>
-                      </Box>
-                      <Spacer/>
-
-                    </Flex>
+                        </Grid>
+                      </div>
                         <div className='Table'>
                               <TableContainer >
                                 <Table variant='simple'size='lg'>
@@ -61,8 +56,11 @@ function PerfilAdmin(){
                                       <Th fontSize='2xl' color='black' >Departamentos</Th>
                                         <Th fontSize='2xl' color='black'>Listar</Th>
                                     </Tr>
-                                    <Tr><Divider orientation="horizontal" color={theme.colors.font} /> </Tr>
                                 </Thead>
+                                </Table>
+                                <Divider w='100%' orientation="horizontal" borderColor={theme.colors.font} variant='solid' size='5rem' />
+
+                                <Table variant='simple'size='lg'>
                                   <Tbody>
                                     <Tr>
                                         <Td>TI</Td>
@@ -80,20 +78,17 @@ function PerfilAdmin(){
                                     </Tr>
                                   </Tbody>
                                 </Table>
+                                <Divider w='100%' orientation="horizontal" borderColor={theme.colors.font} variant='solid' size='5rem' />
+
                               </TableContainer>
-                      </div>
+                        </div>
               </div>
 
+        </S.Container>
 
 
 
-
-
-          </S.Container>
-
-
-
-      </>
+    </>
 )
 
 }
