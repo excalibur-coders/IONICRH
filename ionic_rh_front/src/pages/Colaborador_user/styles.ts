@@ -94,6 +94,7 @@ Wrapper{
 .rightWrapper{
     width: 75%;
     display: flex;
+    float:right;
     flex-direction: column;
 
     .linhaDados{
@@ -168,4 +169,17 @@ h5 {
     font-size: 20px;
     text-align: center;
   }
+
+
+    
+}
+
+@media(max-width: 768px){
+    .leftWrapper{
+        width:100%;
+    }
+
+    .rightWrapper{
+        width:100%;
+    }
 `
