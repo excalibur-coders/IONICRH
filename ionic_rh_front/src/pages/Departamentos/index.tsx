@@ -15,7 +15,7 @@ import * as S from './styles';
 
 
 
-function PerfilAdmin(){
+function Departamentos(){
         return(
     <>
 
@@ -37,7 +37,7 @@ function PerfilAdmin(){
                   </Box>
                   <Box w='100px' fontSize={20}>
                   <ArrowBackIcon w={7} h={7}/>
-                    Voltar
+                    <Link href='/'>Voltar</Link>
                   </Box>
                 </HStack>
                 <br></br>
@@ -97,5 +97,5 @@ function PerfilAdmin(){
 
 }
 
-export default PerfilAdmin
+export default Departamentos
 

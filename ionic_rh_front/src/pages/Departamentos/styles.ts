@@ -48,13 +48,4 @@ bottom: 90px;
 
 `;
 
-export const ContainerLinks = styled.div`
 
-
-
-.item { flex-grow: 1; }
-.item-wide { flex-grow: 3; }
-
-
-
-`;
