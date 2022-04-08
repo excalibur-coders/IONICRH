@@ -12,6 +12,13 @@ img {
 
 }
 
+a {
+  text-decoration: none;
+  color: #4D4E4F;
+  font-size: 25px;
+
+}
+
 `;
 
 export const ContainerButton = styled.div`

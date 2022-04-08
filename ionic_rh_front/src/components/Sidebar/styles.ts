@@ -16,7 +16,7 @@ export const Container = styled.div`
   flex-direction: column;
   padding-left: 20px;
   padding-bottom: 200px;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 2px 1px rgba(0.5, 0.7, 0.4, 0.2);
 }
 
 `

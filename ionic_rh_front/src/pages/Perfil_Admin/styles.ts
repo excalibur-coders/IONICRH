@@ -4,6 +4,9 @@ import { theme } from 'theme';
 
 export const Container = styled(Flex)`
 
+
+backgroud: #00000029;
+
 .input{
 margin-left: 50px;
 }
@@ -12,22 +15,16 @@ margin-left: 50px;
   width: 90%;
   display: flex;
   align-items: left;
-  margin-left: 0px;
   margin-top: 100px;
 
 }
 
-
-.back{
-  margin-left: 800px;
+.TableTwo{
+  width: 50%;
   display: flex;
-  top: 100px;
-}
+  margin-left: 60px;
 
-.breadcrumb{
-  margin-left: 200px;
 }
-
 
 `;
 
@@ -53,12 +50,10 @@ bottom: 90px;
 
 export const ContainerLinks = styled.div`
 
-.breadcrumb{
-
-  margin-left: 700px;
 
 
-}
+.item { flex-grow: 1; }
+.item-wide { flex-grow: 3; }
 
 
 

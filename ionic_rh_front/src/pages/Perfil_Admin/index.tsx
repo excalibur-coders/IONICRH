@@ -10,9 +10,7 @@ import {
   Table, Thead, Tbody,
   Tr, Th, Td,TableContainer} from '@chakra-ui/react'
 import { Grid, GridItem } from '@chakra-ui/react'
-import {
-  Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbSeparator,
-} from '@chakra-ui/react'
+import { Stack, HStack, VStack } from '@chakra-ui/react'
 import * as S from './styles';
 
 
@@ -30,24 +28,28 @@ function PerfilAdmin(){
                   <Sidebar/>
               </div>
 
-              <div>
-                      <Box p='4'>
-                        <Icon as={MdFilterList} w={5} h={5}/>
-                        Filtrar
-                      </Box>
-                      <div className='back'>
-                        <Box p='4'>
-                          <ArrowBackIcon w={4} h={4}/>
-                          Voltar
-                        </Box>
-                      </div>
+            <div className='input'>
+              <br></br>
+              <HStack spacing='800px'>
+                  <Box w='100px' fontSize={20}>
+                  <Icon as={MdFilterList} w={9} h={5}/>
+                          Filtrar
+                  </Box>
+                  <Box w='100px' fontSize={20}>
+                  <ArrowBackIcon w={7} h={7}/>
+                    Voltar
+                  </Box>
+                </HStack>
+                <br></br>
+                <HStack spacing='200px'>
+                  <Box w='10px' >
+                  <Input size='xs' width="200px" fontSize={20} placeholder="Nome, cargo ou departamento" labelText={""} />
+                  </Box>
+                  <Box w='100px'>
+                  <SearchIcon w={5} h={5}/>
+                  </Box>
+                </HStack>
 
-                      <div className='input' >
-                        <Grid templateColumns='repeat(5, 1fr)' gap={4}>
-                        <Input size='xs' width="200px" fontSize={20} placeholder="Nome, cargo ou departamento" labelText={""} />
-                        <SearchIcon w={5} h={5}/>
-                        </Grid>
-                      </div>
                         <div className='Table'>
                               <TableContainer >
                                 <Table variant='simple'size='lg'>
@@ -58,28 +60,30 @@ function PerfilAdmin(){
                                     </Tr>
                                 </Thead>
                                 </Table>
-                                <Divider w='100%' orientation="horizontal" borderColor={theme.colors.font} variant='solid' size='5rem' />
-
+                                <Divider orientation="horizontal" borderColor={theme.colors.font} variant='solid' size='10rem' />
                                 <Table variant='simple'size='lg'>
-                                  <Tbody>
-                                    <Tr>
-                                        <Td>TI</Td>
-                                        <Td>
-                                        <Icon w={5} h={5}as={MdList} color='#4D4E4F'/>
-                                        </Td>
+                                  <div className='TableTwo'>
+                                    <Tbody>
+                                      <Tr>
+                                          <Td  fontSize='2xl'>TI</Td>
+                                          <Td></Td>
+                                          <Td>
+                                          <Icon w={10} h={10} as={MdList} color='#4D4E4F'/>
+                                          </Td>
+                                        </Tr>
+                                      <Tr>
+                                          <Td fontSize='2xl'>RH</Td>
+                                          <Td></Td>
+                                          <Td><Icon w={10} h={10} as={MdList} color='#4D4E4F'/></Td>
                                       </Tr>
-                                    <Tr>
-                                        <Td>RH</Td>
-                                        <Td><Icon w={5} h={5} as={MdList}/></Td>
-                                    </Tr>
-                                    <Tr>
-                                        <Td>ADM</Td>
-                                        <Td><Icon w={5} h={5} as={MdList}/></Td>
-                                    </Tr>
-                                  </Tbody>
+                                      <Tr>
+                                          <Td fontSize='2xl'>ADM</Td>
+                                          <Td></Td>
+                                          <Td><Icon w={10} h={10} as={MdList} color='#4D4E4F'/></Td>
+                                      </Tr>
+                                    </Tbody>
+                                  </div>
                                 </Table>
-                                <Divider w='100%' orientation="horizontal" borderColor={theme.colors.font} variant='solid' size='5rem' />
-
                               </TableContainer>
                         </div>
               </div>
