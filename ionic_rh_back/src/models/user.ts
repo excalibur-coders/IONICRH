@@ -101,27 +101,26 @@ export class USER {
         length: 255,
     })
     password?: string
-    
     // Chave Estrangeira
     // Auto relacionamento
-    @ManyToOne(type => USER, (user) => user.user_manyone)
-    user_manyone!: USER
+    @ManyToOne(type => USER, (user) => user.id_)
+    id_!: USER 
     @OneToMany(type => USER, (user_one => user_one.user_reference_id))
     user_reference_id!: USER[]
     // One - Many [ Escolaridade, Documento, Telefone, Contrato]
-    @OneToMany(() => Escolaridade, (escolaridade) => escolaridade.user)
+    @OneToMany(() => Escolaridade, (escolaridade) => escolaridade._fk__user_)
     escolaridade!: Escolaridade
-    @OneToMany(() => Documentos, (docs) => docs.user)
+    @OneToMany(() => Documentos, (docs) => docs._fk__user_)
     docs!: Documentos
-    @OneToMany(() => Idiomas, (idioma) => idioma.user)
+    @OneToMany(() => Idiomas, (idioma) => idioma._fk__user_)
     idioma!: Idiomas
-    @OneToMany(() => Telefone, (telefone) => telefone.user)
+    @OneToMany(() => Telefone, (telefone) => telefone._fk__user_)
     telefone!: Telefone
+    @OneToMany(() => Endereco, (endereco) => endereco._fk__user_)
+    endereco!: Endereco
+    @OneToMany(() => Contrato, (contrato) => contrato._fk__user_)
+    contrato!: Contrato 
     // Many - One [ Endereco, Acesso ]
     @ManyToOne(() => Acesso, (acesso_cargo) => acesso_cargo.user)
-    acesso_cargo!: Acesso
-    @OneToMany(() => Endereco, (endereco) => endereco.user)
-    endereco!: Endereco
-    @OneToMany(() => Contrato, (contrato) => contrato.user)
-    contrato!: Contrato
+    _FK__acesso_cargo_!: Acesso 
 }

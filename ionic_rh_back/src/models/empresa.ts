@@ -85,13 +85,13 @@ export class Contrato {
 
     //Chave estrangeira
     @ManyToOne(() => USER, (user) => user.contrato)
-    user!: USER
+    _fk__user_!: USER
     @ManyToOne(() => Empresa_Contrante, (emp_contratante) => emp_contratante.contrato)
-    emp_contratante!: Empresa_Contrante
+    _fk__emp_contratante_!: Empresa_Contrante
     @ManyToOne(() => Empresa_PJ, (emp_pj) => emp_pj.contrato)
-    emp_pj!: Empresa_Contrante
+    _fk__emp_pj_!: Empresa_Contrante
     @ManyToOne(() => Cargo, (cargo) => cargo.contrato)
-    cargo!: Cargo
+    _fk__cargo_!: Cargo
 }
 
 @Entity()
@@ -119,7 +119,7 @@ export class Empresa_Contrante {
     })
     contratante_pesq_desligamento!: string;
 
-    @OneToMany(() => Contrato, (contrato) => contrato.emp_contratante)
+    @OneToMany(() => Contrato, (contrato) => contrato._fk__emp_contratante_)
     contrato!: Contrato
 }
 @Entity()
@@ -159,7 +159,7 @@ export class Empresa_PJ {
     pj_conduta_etica!: string;
 
     //Chave estrangeiras
-    @OneToMany(() => Contrato, (contrato) => contrato.emp_pj)
+    @OneToMany(() => Contrato, (contrato) => contrato._fk__emp_pj_)
     contrato!: Contrato
 }
 
@@ -189,10 +189,10 @@ export class Cargo {
     })
     cargo_area!: string;
 
-    @OneToMany(() => Contrato, (contrato) => contrato.cargo)
+    @OneToMany(() => Contrato, (contrato) => contrato._fk__cargo_)
     contrato!: Contrato
-    @ManyToOne(() => Departamento, (departamento) => departamento.cargo)
-    departamento!:Departamento
+    @ManyToOne(() => Departamento, (departamento) => departamento._fk__cargo_)
+    _fk__cargo_!:Departamento
 }
 
 @Entity()
@@ -208,6 +208,6 @@ export class Departamento{
     })
     dep_name!:string;
     
-    @OneToMany(()=> Cargo, (cargo) => cargo.departamento)
-    cargo!: Cargo
+    @OneToMany(()=> Cargo, (cargo) => cargo._fk__cargo_)
+    _fk__cargo_!: Cargo
 }

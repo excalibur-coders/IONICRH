@@ -21,6 +21,6 @@ export class Acesso {
     acesso_cargo!: Acesso_Sistema[];
     
     // Chave estrangeira
-    @OneToMany(() => USER, (user) => user.acesso_cargo)
+    @OneToMany(() => USER, (user) => user._FK__acesso_cargo_)
     user!: USER[]
 }

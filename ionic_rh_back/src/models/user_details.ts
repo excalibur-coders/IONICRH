@@ -35,7 +35,7 @@ export class Escolaridade {
 
     //Chave estrangeira
     @ManyToOne(() => USER, (user) => user.escolaridade)
-    user!: USER
+    _fk__user_!: USER
 }
 
 @Entity()
@@ -53,7 +53,7 @@ export class Idiomas {
 
     //Chave estrangeira
     @ManyToOne(() => USER, (user) => user.idioma)
-    user!: USER
+    _fk__user_!: USER
 }
 
 @Entity()
@@ -77,7 +77,7 @@ export class Documentos {
 
     //Chave estrangeira
     @ManyToOne(() => USER, (user) => user.docs)
-    user!: USER
+    _fk__user_!: USER
 }
 
 @Entity()
@@ -101,7 +101,7 @@ export class Telefone {
 
     //Chave estrangeira
     @ManyToOne(() => USER, (user) => user.telefone)
-    user!: USER
+    _fk__user_!: USER
 }
 
 @Entity()
@@ -140,7 +140,7 @@ export class Endereco {
         length: 255
     })
     endereco_numero!: string;
-    
+    // Chave estrangeira
     @ManyToOne(() => USER, (user) => user.endereco)
-    user!: USER
+    _fk__user_!: USER
 }
