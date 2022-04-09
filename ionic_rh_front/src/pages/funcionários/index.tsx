@@ -29,7 +29,7 @@ function Funcionarios(){
                   </Box>
                   <Box w='100px' fontSize={20}>
                   <ArrowBackIcon w={7} h={7}/>
-                    <Link href='/'>Voltar</Link>
+                    <Link href='/home'>Voltar</Link>
                   </Box>
                 </HStack>
                 <br></br>
@@ -66,7 +66,7 @@ function Funcionarios(){
                                           <Td></Td>
                                           <Td></Td>
                                           <Td>DevPleno</Td>
-                                          <Td><Icon as={MdOutlineAccountBox} w={5} h={5} color='#4D4E4F'/></Td>
+                                          <Td><Link href="/perfil" fontSize='4xl'><MdOutlineAccountBox color='#4D4E4F'/></Link></Td>
                                         </Tr>
                                       <Tr>
                                           <Td fontSize='xl'>Priscila Silva</Td>
@@ -75,7 +75,7 @@ function Funcionarios(){
                                           <Td></Td>
                                           <Td></Td>
                                           <Td>Product Owner</Td>
-                                          <Td><Icon as={MdOutlineAccountBox} w={5} h={5} color='#4D4E4F'/></Td>
+                                          <Td><Link href="/perfil" fontSize='4xl'><MdOutlineAccountBox color='#4D4E4F'/></Link></Td>
                                       </Tr>
                                     </Tbody>
                                   </div>

@@ -68,18 +68,18 @@ function Cargos(){
                                           <Td  fontSize='2xl'>DevSenior</Td>
                                           <Td></Td>
                                           <Td>
-                                          <Icon w={10} h={10} as={MdList} color='#4D4E4F'/>
+                                          <Link href="/funcionarios" fontSize='4xl'><MdList color='#4D4E4F'/></Link>
                                           </Td>
                                         </Tr>
                                       <Tr>
                                           <Td fontSize='2xl'>DevJunior</Td>
                                           <Td></Td>
-                                          <Td><Icon w={10} h={10} as={MdList} color='#4D4E4F'/></Td>
+                                          <Td><Link href="/funcionarios" fontSize='4xl'><MdList color='#4D4E4F'/></Link></Td>
                                       </Tr>
                                       <Tr>
                                           <Td fontSize='2xl'>DevPleno</Td>
                                           <Td></Td>
-                                          <Td><Icon w={10} h={10} as={MdList} color='#4D4E4F'/></Td>
+                                          <Td><Link href="/funcionarios" fontSize='4xl'><MdList color='#4D4E4F'/></Link></Td>
                                       </Tr>
                                     </Tbody>
                                   </div>

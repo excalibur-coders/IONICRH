@@ -35,7 +35,7 @@ function DeptoTI(){
                   </Box>
                   <Box w='100px' fontSize={20}>
                   <ArrowBackIcon w={7} h={7}/>
-                    <Link href='/'>Voltar</Link>
+                    <Link href='/home'>Voltar</Link>
                   </Box>
                 </HStack>
                 <br></br>

@@ -37,7 +37,7 @@ function Departamentos(){
                   </Box>
                   <Box w='100px' fontSize={20}>
                   <ArrowBackIcon w={7} h={7}/>
-                    <Link href='/'>Voltar</Link>
+                    <Link href='/home'>Voltar</Link>
                   </Box>
                 </HStack>
                 <br></br>
@@ -68,18 +68,18 @@ function Departamentos(){
                                           <Td  fontSize='2xl'>TI</Td>
                                           <Td></Td>
                                           <Td>
-                                          <Icon w={10} h={10} as={MdList} color='#4D4E4F'/>
+                                          <Link href="/funcionarios" fontSize='4xl'><MdList color='#4D4E4F'/></Link>
                                           </Td>
                                         </Tr>
                                       <Tr>
                                           <Td fontSize='2xl'>RH</Td>
                                           <Td></Td>
-                                          <Td><Icon w={10} h={10} as={MdList} color='#4D4E4F'/></Td>
+                                          <Td><Link href="/funcionarios" fontSize='4xl'><MdList color='#4D4E4F'/></Link></Td>
                                       </Tr>
                                       <Tr>
                                           <Td fontSize='2xl'>ADM</Td>
                                           <Td></Td>
-                                          <Td><Icon w={10} h={10} as={MdList} color='#4D4E4F'/></Td>
+                                          <Td><Link href="/funcionarios" fontSize='4xl'><MdList color='#4D4E4F'/></Link></Td>
                                       </Tr>
                                     </Tbody>
                                   </div>

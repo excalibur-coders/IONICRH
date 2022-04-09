@@ -28,25 +28,25 @@ function Sidebar(){
                     </ListItem>
                     <ListItem  fontSize='xl' color='#4D4E4F'>
                     <ListIcon as = {MdList} color='#4D4E4F' />
-                      <Link to="/listar">Listar</Link>
+                      <Link to="/funcionarios">Listar</Link>
                     </ListItem>
                 </List>
                 <List spacing={0}>
                     <ListItem fontSize='5xl' color='Black'>
-                      <Link to="/cadastrar">Departamentos</Link>
+                      <Link to="/departamentos">Departamentos</Link>
                     </ListItem>
                     <ListItem fontSize='xl' color='#4D4E4F'>
                     <ListIcon as = {MdList} color='#4D4E4F' />
-                      <Link to="/listar">Listar</Link>
+                      <Link to="/departamentos">Listar</Link>
                     </ListItem>
                 </List>
                 <List spacing={0}>
                     <ListItem fontSize='5xl' color='Black'>
-                      <Link to="/listagem">Cargos</Link>
+                      <Link to="/cargos">Cargos</Link>
                     </ListItem>
                     <ListItem fontSize='xl' color='#4D4E4F'>
                     <ListIcon as = {MdList} color='#4D4E4F' />
-                      <Link to="/listar">Listar</Link>
+                      <Link to="/cargos">Listar</Link>
                     </ListItem>
                 </List>
                 <List spacing={0}>
