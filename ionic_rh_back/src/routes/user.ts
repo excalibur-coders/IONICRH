@@ -1,12 +1,14 @@
 import express from "express";
 
-import { createUser, loginUser, readUser, updateUser } from "controllers/User";
+import { CadastroUser, loginUser, getAllUser, updateUser } from "controllers/User";
+import { auth } from 'Middleware/auth'
 
 const router = express.Router();
 
-router.post('/', createUser);
-router.put('/update', updateUser);
-router.get('/read', readUser);
-router.get('/login/', loginUser)
+router.post('/cadastro', CadastroUser);
+router.post('/login', loginUser)
+router.use(auth)
+router.put('/update',  updateUser);
+router.get('/allUser',  getAllUser);
 
 export default router; 

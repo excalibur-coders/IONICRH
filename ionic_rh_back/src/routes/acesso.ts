@@ -6,9 +6,11 @@ import {
   getAllAcesso, 
   updateAcesso 
 } from "controllers/Acesso";
+import { auth } from "Middleware/auth";
 
 const router = express.Router();
 
+router.use(auth)
 router.get('/', getAllAcesso);
 router.post('/',createAcesso)
 router.get('/:id', getAcessoById);

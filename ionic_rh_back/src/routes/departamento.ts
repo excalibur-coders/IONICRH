@@ -7,9 +7,11 @@ import {
   getDepartamentoById, 
   updateDepartamento 
 } from "controllers/Departamento";
+import { auth } from "Middleware/auth";
 
 const router = express.Router();
 
+router.use(auth)
 router.get('/', getAllDepartamentos);
 router.get('/:id', getDepartamentoById);
 router.post('/', createDepartamento);
