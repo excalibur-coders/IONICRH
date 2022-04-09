@@ -11,7 +11,7 @@ export const Container = styled.div`
   background: ${theme.colors.primary};
   listStyleType: "none";
   width: 378px;
-  height: "100vh";
+  height: 100vh;
   display: flex;
   flex-direction: column;
   padding-left: 20px;
