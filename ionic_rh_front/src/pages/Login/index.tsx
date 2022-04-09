@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
@@ -13,14 +13,18 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as S from './styles';
 import Button from 'components/Button';
 
+import { AuthContext } from "hooks/useAuth";
+
 interface InputsProps {
   email: string;
   password: string;
 }
 
 function Login() {
-  const onSubmit = useCallback((data: InputsProps) => {
-    console.log('data', data);
+  const { signIn } = useContext(AuthContext);
+
+  const onSubmit = useCallback(async (data: InputsProps) => {
+    await signIn(data);
   }, []);
 
   const schema = yup.object({
