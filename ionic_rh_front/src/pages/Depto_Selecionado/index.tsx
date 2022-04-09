@@ -5,17 +5,15 @@ import { theme } from 'theme';
 import Sidebar from 'components/Sidebar';
 import Input from 'components/Input';
 import Navbar from 'components/navbar';
-import { MdFilterList, MdList} from 'react-icons/md';
-import {
-  Table, Thead, Tbody,
-  Tr, Th, Td,TableContainer} from '@chakra-ui/react'
+import { MdFilterList, MdList, MdOutlineAccountBox} from 'react-icons/md';
+import {Table, Thead, Tbody, Tr, Th, Td,TableContainer} from '@chakra-ui/react'
 import { Grid, GridItem } from '@chakra-ui/react'
 import { Stack, HStack, VStack } from '@chakra-ui/react'
 import * as S from './styles';
 
 
 
-function Departamentos(){
+function DeptoTI(){
         return(
     <>
 
@@ -55,8 +53,10 @@ function Departamentos(){
                                 <Table variant='simple'size='lg'>
                                   <Thead>
                                     <Tr>
-                                      <Th fontSize='2xl' color='black' >Departamentos</Th>
-                                        <Th fontSize='2xl' color='black'>Listar</Th>
+                                      <Th fontSize='2xl' color='black' >#Nome</Th>
+                                        <Th fontSize='2xl' color='black'>Salário</Th>
+                                        <Th fontSize='2xl' color='black'>Cargo</Th>
+                                        <Th fontSize='2xl' color='black'>Perfil</Th>
                                     </Tr>
                                 </Thead>
                                 </Table>
@@ -65,21 +65,18 @@ function Departamentos(){
                                   <div className='TableTwo'>
                                     <Tbody>
                                       <Tr>
-                                          <Td  fontSize='2xl'>TI</Td>
-                                          <Td></Td>
+                                          <Td  fontSize='xl'>Lucas Costa</Td>
+                                          <Td>R$ 5000,00</Td>
                                           <Td>
-                                          <Icon w={10} h={10} as={MdList} color='#4D4E4F'/>
+                                          DevPleno
                                           </Td>
+                                          <Td><Icon as={MdOutlineAccountBox} w={5} h={5} color='#4D4E4F'/></Td>
                                         </Tr>
                                       <Tr>
-                                          <Td fontSize='2xl'>RH</Td>
-                                          <Td></Td>
-                                          <Td><Icon w={10} h={10} as={MdList} color='#4D4E4F'/></Td>
-                                      </Tr>
-                                      <Tr>
-                                          <Td fontSize='2xl'>ADM</Td>
-                                          <Td></Td>
-                                          <Td><Icon w={10} h={10} as={MdList} color='#4D4E4F'/></Td>
+                                          <Td fontSize='xl'>Priscila Silva</Td>
+                                          <Td>R$ 7000,00</Td>
+                                          <Td>Product Owner</Td>
+                                          <Td><Icon as={MdOutlineAccountBox} w={5} h={5} color='#4D4E4F'/></Td>
                                       </Tr>
                                     </Tbody>
                                   </div>
@@ -97,5 +94,5 @@ function Departamentos(){
 
 }
 
-export default Departamentos
+export default DeptoTI
 

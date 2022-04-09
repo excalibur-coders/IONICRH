@@ -7,6 +7,7 @@ import ResetarSenha from 'pages/ResetarSenha';
 import SenhaAlterada from 'pages/SenhaAlterada';
 import Funcionarios from 'pages/funcionários';
 import Cargos from 'pages/Cargos'
+import DeptoTI from 'pages/Depto_Selecionado';
 
 import { Route, BrowserRouter, Routes as RoutesWrapper } from 'react-router-dom';
 
@@ -23,6 +24,7 @@ function Routes() {
         <Route path="/Resetar" element={<ResetarSenha />} />
         <Route path="/SenhaAlterada" element={<SenhaAlterada />} />
         <Route path="/Cargos" element={<Cargos />} />
+        <Route path="/Ti" element={<DeptoTI />} />
       </RoutesWrapper>
     </BrowserRouter>
   )
