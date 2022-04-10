@@ -11,6 +11,10 @@ import SenhaAlterada from 'pages/SenhaAlterada';
 import Funcionarios from 'pages/funcionários';
 import Cargos from 'pages/Cargos'
 import DeptoTI from 'pages/Depto_Selecionado';
+import User from 'pages/User';
+import UserEdit from 'pages/UserEdit';
+import Administrador from 'pages/Administrador';
+import AdministradorEdit from 'pages/AdministradorEdit';
 
 
 function Routes() {
@@ -29,6 +33,10 @@ function Routes() {
         <Route path="/SenhaAlterada" element={<SenhaAlterada />} />
         <Route path="/Cargos" element={<Cargos />} />
         <Route path="/Ti" element={<DeptoTI />} />
+        <Route path="/User" element={<User />} />
+        <Route path="/UserEdit" element={<UserEdit />} />
+        <Route path="/Administrador" element={<Administrador />} />
+        <Route path="/AdministradorEdit" element={<AdministradorEdit />} />
       </RoutesWrapper>
     // </BrowserRouter>
   )
