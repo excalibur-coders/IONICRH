@@ -24,27 +24,17 @@ export const CadastroUser = async (req: Request, res: Response) => {
 
   const passwordHash = await bcrypt.hash(password, 8)
 
-  const userExist = await userReposiroty.findOne({
-    where: {
-      user_email
-    }
-  });
+  const user = await userReposiroty.create({
+    user_nome,
+    user_email,
+    password: passwordHash,
+  })
 
-  if (userExist) {
-    return res.status(400).json({ message: "Email em uso" })
-  } else {
-    const user = await userReposiroty.create({
-      user_nome,
-      user_email,
-      password: passwordHash,
-    })
+  await userReposiroty.save(user)
 
-    await userReposiroty.save(user)
-    
-    delete user.password
+  delete user.password
 
-    res.json(user);
-  }
+  res.json(user);
 
 };
 
@@ -73,10 +63,10 @@ export const loginUser = async (req: Request, res: Response) => {
       return res.json(data);
 
     } else {
-      return res.status(404).json({ message: "User not found" })
+      return res.status(404).json({ message: "Senha incorreta" })
     }
   } else {
-    return res.status(404).json({ message: "User not found" })
+    return res.status(404).json({ message: "E-mail incorreto" })
   }
 }
 
