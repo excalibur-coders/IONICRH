@@ -1,4 +1,4 @@
-//
+import Cadastro from 'pages/Cadastro_Colaborador';
 import Login from 'pages/Login';
 import { Route, BrowserRouter, Routes as RoutesWrapper } from 'react-router-dom';
 import Confirmacao from 'pages/Confirmacao';
@@ -15,6 +15,7 @@ function Routes() {
     // <BrowserRouter>
       <RoutesWrapper>
         <Route path="/" element={<Login />} />
+        <Route path="/Cadastro_colaborador" element={<Cadastro />} />
         <Route path="/Confirmacao_cadastro" element={<Confirmacao />} />
         <Route path="/Funcionarios" element={<Funcionarios />} />
         <Route path="/Cadastro" element={<CriarConta />} />
