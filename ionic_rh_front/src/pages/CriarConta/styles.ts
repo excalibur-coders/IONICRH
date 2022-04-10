@@ -11,7 +11,7 @@ export const Container = styled(Flex)`
     display: flex;
     flex-direction: column;
 
-    form {
+    .form {
       width: 20rem;
       margin: 0 auto;
       margin-top: 80px;
@@ -27,8 +27,15 @@ export const Container = styled(Flex)`
       .formFooter {
         display: flex;
         justify-content: space-between;
+
         margin-top: 10px;
-        a {
+
+        .formFooterLeft {
+          display: flex;
+          flex-direction: column;
+        }
+        
+        span {
           color: ${theme.colors.primary};
         }
       }
@@ -37,7 +44,9 @@ export const Container = styled(Flex)`
     .registerWrapper {
       display: flex;
       flex-direction: column;
+
       margin-top: 50px;
+
       span {
         text-align: center;
       }
@@ -68,21 +77,5 @@ export const Container = styled(Flex)`
     margin: 5px 5px;
     margin-top:10px;
   }
-
-  @media(max-width: 700px) {
-    .leftWrapper {
-      border:1px solid red;
-      width:100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .rightWrapper {
-      border:1px solid black;
-      flex-direction: column;
-      position: relative;
-    }
-  }
-
 
 `;

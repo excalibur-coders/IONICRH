@@ -1,14 +1,29 @@
 import styled from '@emotion/styled';
-import { Input } from '@chakra-ui/react';
+import { Input, Flex } from '@chakra-ui/react';
 import { theme } from 'theme';
 
 interface LabelProps {
   fontSize: number;
 }
 
-export const Container = styled.div`
-  display: flex;
+interface ContainerProps {
+  disabled?: boolean;
+}
+
+export const Container = styled(Flex)<ContainerProps>`
   flex-direction: column;
+
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+
+  span {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-right: 1rem;
+    margin-top: 0rem;
+
+    color: ${theme.colors.red};
+  }
 `;
 
 export const CustomInput = styled(Input)`
