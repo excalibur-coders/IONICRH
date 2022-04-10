@@ -15,20 +15,22 @@ import Button from 'components/Button';
 function SenhaAlterada() {
   return (
     <S.Container>
-      <div className='leftWrapper'>
-        <img src={IonicLogo} />
+      <div className='centerWrapper'>
+        <div className='leftWrapper'>
+          <img src={IonicLogo} />
 
-        <div className='form'>
-          <h1>Senha Alterada com sucesso!</h1>
+          <div className='form'>
+            <h1>Senha Alterada com sucesso!</h1>
 
-          <div className='registerWrapper'>
-            <span><Link to="/">Voltar ao Login</Link></span>
+            <div className='registerWrapper'>
+              <span><Link to="/">Voltar ao Login</Link></span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="rightWrapper">
-        <img src={LogoGray} />
+        <div className="rightWrapper">
+          <img src={LogoGray} />
+        </div>
       </div>
 
     </S.Container>
