@@ -100,8 +100,6 @@ export const updateUser = async (req: Request, res: Response) => {
 
     const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
 
-    console.log(decodedJwt);
-
     const requestBody: IUser = req.body;
 
     await userReposiroty
