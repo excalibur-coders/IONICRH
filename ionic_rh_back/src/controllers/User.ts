@@ -21,7 +21,7 @@ const userReposiroty = AppDataSource.getRepository(USER);
 // Register User
 export const CadastroUser = async (req: Request, res: Response) => {
 
-  const { user_email, password } = req.body
+  const { user_email, password, user_nome } = req.body
 
   const passwordHash = await bcrypt.hash(password, 8)
 
@@ -35,6 +35,7 @@ export const CadastroUser = async (req: Request, res: Response) => {
     return res.status(400).json({ message: "Email em uso" })
   } else {
     const user = await userReposiroty.create({
+      user_nome,
       user_email,
       password: passwordHash,
     })
