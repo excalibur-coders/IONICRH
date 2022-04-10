@@ -27,9 +27,7 @@ export const Container = styled(Flex)`
       .formFooter {
         display: flex;
         justify-content: space-between;
-
         margin-top: 10px;
-
         a {
           color: ${theme.colors.primary};
         }
@@ -39,9 +37,7 @@ export const Container = styled(Flex)`
     .registerWrapper {
       display: flex;
       flex-direction: column;
-
       margin-top: 50px;
-
       span {
         text-align: center;
       }
