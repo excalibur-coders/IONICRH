@@ -55,7 +55,8 @@ export class USER {
     user_naturalidade?: string
 
     @Column({
-        type: "date",
+        type: "varchar",
+        length: 11,
         nullable: true,
     })
     user_nascimento?: string
