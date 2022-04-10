@@ -1,3 +1,6 @@
+import { verify } from "jsonwebtoken";
+import jwtDecode from "jwt-decode";
+
 import { Response, Request, response } from "express";
 
 import { AppDataSource } from "config/database";
@@ -7,13 +10,18 @@ import * as bcrypt from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
 import 'config/dotenv';
 
-const userReposiroty = AppDataSource.getRepository(USER);
+interface IDecodedParams {
+  id: string;
+  exp: string,
+  iat: string
+}
 
+const userReposiroty = AppDataSource.getRepository(USER);
 
 // Register User
 export const CadastroUser = async (req: Request, res: Response) => {
 
-  const { user_email, password } = req.body
+  const { user_email, password, user_nome } = req.body
 
   const passwordHash = await bcrypt.hash(password, 8)
 
@@ -21,11 +29,13 @@ export const CadastroUser = async (req: Request, res: Response) => {
     where: {
       user_email
     }
-  })
+  });
+
   if (userExist) {
     return res.status(400).json({ message: "Email em uso" })
   } else {
     const user = await userReposiroty.create({
+      user_nome,
       user_email,
       password: passwordHash,
     })
@@ -42,7 +52,7 @@ export const CadastroUser = async (req: Request, res: Response) => {
 // Login User
 export const loginUser = async (req: Request, res: Response) => {
 
-  const { user_email, password, user_id } = req.body
+  const { user_email, password } = req.body
 
   const user = await userReposiroty.find({
     where: {
@@ -51,18 +61,17 @@ export const loginUser = async (req: Request, res: Response) => {
   })
 
   if (user.length == 1) {
-    if (await bcrypt.compare(password, user[0].password)) {
+    if (await bcrypt.compare(password, user[0].password as string)) {
       const token = jwt.sign({ id: user[0].user_id }, process.env.APP_SECRET, {
         expiresIn: '1D'
       })
  
       const data = {
-        id: user[0].user_id, // ID DO USER LOGIN
-        user_email: user[0].user_email,
+        ...user[0],
         token
       }
 
-      return res.json(data)
+      return res.json(data);
 
     } else {
       return res.status(404).json({ message: "User not found" })
@@ -72,15 +81,21 @@ export const loginUser = async (req: Request, res: Response) => {
   }
 }
 
-// Atualizar User
 export const updateUser = async (req: Request, res: Response) => {
   try {
+    const tokenHeader = req.headers.authorization;
+
+    const splitToken = tokenHeader?.split(' ')[1] as string;
+
+    const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
+
     const requestBody: IUser = req.body;
 
     await userReposiroty
       .createQueryBuilder()
       .update(USER)
       .set({
+        "user_id": requestBody.user_id,
         "user_nome": requestBody.user_nome,
         "user_cpf": requestBody.user_cpf,
         "user_naturalidade": requestBody.user_naturalidade,
@@ -88,13 +103,13 @@ export const updateUser = async (req: Request, res: Response) => {
         "user_genero": requestBody.user_genero,
         "user_estado_civil": requestBody.user_estado_civil,
       })
-      .where("user_id = :user_id", { user_id: requestBody.user_id })
+      .where("user_id = :user_id", { user_id: decodedJwt.id })
       .execute();
 
-    res.json(req.body);
+      res.json(req.body);
 
   } catch (error) {
-    res.json(req.body);
+    res.json(error);
   }
 };
 

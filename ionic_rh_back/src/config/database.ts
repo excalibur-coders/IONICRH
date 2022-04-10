@@ -3,7 +3,6 @@ import '../config/dotenv';
 
 import { DataSource } from "typeorm";
 
-import { Acesso } from "models/acesso_sistema";
 import { 
   Cargo, 
   Contrato, 
@@ -31,7 +30,6 @@ export const AppDataSource = new DataSource({
   logging: false,
   entities: [
     USER, 
-    Acesso, 
     Escolaridade, 
     Idiomas, 
     Documentos, 

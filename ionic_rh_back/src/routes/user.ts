@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post('/cadastro', CadastroUser);
 router.post('/login', loginUser)
-router.use(auth)
+router.use(auth);
 router.put('/update',  updateUser);
 router.get('/allUser',  getAllUser);
 
