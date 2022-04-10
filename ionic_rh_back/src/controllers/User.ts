@@ -1,7 +1,6 @@
-import { verify } from "jsonwebtoken";
 import jwtDecode from "jwt-decode";
 
-import { Response, Request, response } from "express";
+import { Response, Request } from "express";
 
 import { AppDataSource } from "config/database";
 import { IUser } from "interfaces/IUser";
@@ -62,7 +61,7 @@ export const loginUser = async (req: Request, res: Response) => {
 
   if (user.length == 1) {
     if (await bcrypt.compare(password, user[0].password as string)) {
-      const token = jwt.sign({ id: user[0].user_id }, process.env.APP_SECRET, {
+      const token = jwt.sign({ id: user[0].user_id }, process.env.APP_SECRET as string, {
         expiresIn: '1D'
       })
  
@@ -81,6 +80,28 @@ export const loginUser = async (req: Request, res: Response) => {
   }
 }
 
+export const getLoggedUserData = async (req: Request, res: Response) => {
+  try {
+    const tokenHeader = req.headers.authorization;
+
+    const splitToken = tokenHeader?.split(' ')[1] as string;
+
+    const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
+
+    const user = await userReposiroty.findOne({
+      where: {
+        user_id: Number(decodedJwt.id)
+      }
+    })
+
+    delete user?.password;
+
+    res.json(user);
+  } catch (error) {
+    res.json(error);
+  }
+};
+
 export const updateUser = async (req: Request, res: Response) => {
   try {
     const tokenHeader = req.headers.authorization;
@@ -89,13 +110,14 @@ export const updateUser = async (req: Request, res: Response) => {
 
     const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
 
+    console.log(decodedJwt);
+
     const requestBody: IUser = req.body;
 
     await userReposiroty
       .createQueryBuilder()
       .update(USER)
       .set({
-        "user_id": requestBody.user_id,
         "user_nome": requestBody.user_nome,
         "user_cpf": requestBody.user_cpf,
         "user_naturalidade": requestBody.user_naturalidade,
