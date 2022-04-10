@@ -1,8 +1,5 @@
-import { AppDataSource } from 'config/database';
 import { Request, Response, NextFunction } from 'express';
 import * as jwt from 'jsonwebtoken';
-import { Acesso } from 'models/acesso_sistema';
-import { USER } from 'models/user';
 import '../config/dotenv';
 
 export const auth = async (req: Request, res: Response, next: NextFunction) => {
@@ -14,7 +11,7 @@ export const auth = async (req: Request, res: Response, next: NextFunction) => {
     const [, token] = authHeader.split(' ')
 
     try {
-        await jwt.verify(token, process.env.APP_SECRET)
+        await jwt.verify(token, process.env.APP_SECRET as string)
         next()
     } catch (error) {
         return res.status(401).json({ message: 'Token is invalid!' })
