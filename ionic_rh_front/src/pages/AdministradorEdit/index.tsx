@@ -3,7 +3,7 @@ import {Box, Flex, Heading, Spacer, ListIcon} from '@chakra-ui/react';
 import {MdAccountCircle, MdOutlineLogout} from 'react-icons/md'
 import logo from 'assets/svg/ionicrh_logo_gray.svg';
 import { theme } from 'theme';
-import Navbar from 'components/navbar';
+import Nav from 'components/nav';
 import * as S from './styles';
 // import { Input, Stack } from '@chakra-ui/react';
 import { ReactNode } from 'react';
@@ -22,7 +22,7 @@ import Button from 'components/Button';
   function AdministradorEdit() {
     return (
       <>
-      <Navbar></Navbar>
+      <Nav></Nav>
       <S.Container>
         <div className="Wrapper">
             <div className="centerWrapper">
