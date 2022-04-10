@@ -12,6 +12,7 @@ margin-left: 50px;
 }
 
 .Table{
+  width: 90%;
   display: flex;
   align-items: left;
   margin-top: 100px;
@@ -20,6 +21,7 @@ margin-left: 50px;
 }
 
 .TableTwo{
+  width: 50%;
   display: flex;
   margin-left: 20px;
 
