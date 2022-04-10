@@ -11,4 +11,5 @@ export interface IUser {
   escolaridade?: number;
   idioma?: number;
   documentos?: number;
+  user_role:  ["Administrador" | "Colaborador" | "Consultor" | "Gestor"]
 }
