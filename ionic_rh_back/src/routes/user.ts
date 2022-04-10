@@ -7,14 +7,24 @@ import {
   updateUser,
   getLoggedUserData
 } from "controllers/User";
-import { auth } from 'Middleware/auth'
+import { auth } from 'middlewares/auth'
+import {
+  verifyUserExistsByEmail,
+  verifyLoginRequestValues, 
+  verifyRegisterRequestValues 
+} from "middlewares/user";
 
 const router = express.Router();
 
-router.post('/cadastro', CadastroUser);
-router.post('/login', loginUser)
+router.post(
+  '/cadastro',
+  verifyUserExistsByEmail,
+  verifyRegisterRequestValues, 
+  CadastroUser
+);
+router.post('/login', verifyLoginRequestValues, loginUser)
 router.use(auth);
-router.put('/update',  updateUser);
+router.put('/update', updateUser);
 router.get('/user-info', getLoggedUserData);
 router.get('/allUser',  getAllUser);
 
