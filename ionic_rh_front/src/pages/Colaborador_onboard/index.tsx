@@ -5,6 +5,7 @@ import { BsClipboardCheck } from "react-icons/bs";
 
 import * as S from './styles';
 import { Button } from '@chakra-ui/react';
+import Footer from 'components/Footer';
 //import * as S from './styles';
 
 
@@ -28,8 +29,8 @@ function Colab_onboard(){
           <small>Curso 3</small>
           </div>
       </div>
-      <footer>IonicRH - Documentação e política de privacidade</footer>
     </S.Container>
+    <Footer/>
     </>
   )
 }

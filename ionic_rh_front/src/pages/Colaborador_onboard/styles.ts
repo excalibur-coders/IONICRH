@@ -8,12 +8,13 @@ flex-direction: column;
 align-items: center;
 
 h1 {
-    margin-top: 2rem;
     margin: auto;
+    margin-top: 100px;
     text-align: center;
     font-weight: bold;
     font-size: 70px;
     height: 100px;
+
 }
 .buttons_onboard {
     margin-top: 5rem;
@@ -23,7 +24,7 @@ h1 {
       text-align: center;
       font-weight: bold;
       font-size: 20px;
-      display: block; 
+      display: block;
       text-align: center;
     }
 
@@ -33,12 +34,4 @@ h1 {
     }
 }
 
-footer {
-  margin-top: 13rem;
-  text-align: center;
-  font-weight: bold;
-  font-size: 20px;
-  text-align: center;
- 
-}
 `;

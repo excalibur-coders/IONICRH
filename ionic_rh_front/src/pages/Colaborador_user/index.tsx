@@ -7,6 +7,7 @@ import { MdArrowForward } from "react-icons/md";
 
 import * as S from './styles';
 import { Button } from '@chakra-ui/react';
+import Footer from 'components/Footer';
 //import * as S from './styles';
 
 
@@ -16,7 +17,7 @@ function Colab_user(){
     <Colab_Nav/>
     <S.Container>
         <div className='Wrapper'>
-            <div className='centerWrapper'>  
+            <div className='centerWrapper'>
                 <div className='leftWrapper'>
                     <div className='foto'>
                         <MdAccountCircle  size='100%'/>
@@ -28,33 +29,33 @@ function Colab_user(){
 
                     <div className='coluna'>
                         <div className='coluna1'>
-                            <span>Cargo:</span> 
-                            <span>RG:</span> 
-                            <span>CPF:</span> 
-                            <span>Matrícula:</span> 
-                            <span>Departamento:</span> 
+                            <span>Cargo:</span>
+                            <span>RG:</span>
+                            <span>CPF:</span>
+                            <span>Matrícula:</span>
+                            <span>Departamento:</span>
                         </div>
                     </div>
 
                     <div className='coluna'>
                         <div className='coluna2'>
                             <h2>Endereço</h2>
-                            <span>Rua/Av:</span> 
-                            <span>N:</span> 
-                            <span>Compl:</span> 
-                            <span>Matrícula:</span> 
-                            <span>Departamento:</span> 
+                            <span>Rua/Av:</span>
+                            <span>N:</span>
+                            <span>Compl:</span>
+                            <span>Matrícula:</span>
+                            <span>Departamento:</span>
                         </div>
                     </div>
                 </div>
                 <div className='rightWrapper'>
                     <div className='linhaDados'>
                         <div className='dadosUser1'>
-                            <span>E-mail:</span> 
-                            <span>Data de nascimento:</span> 
-                            <span>Telefone:</span> 
-                            <span>Tipo de contrato:</span> 
-                        </div>    
+                            <span>E-mail:</span>
+                            <span>Data de nascimento:</span>
+                            <span>Telefone:</span>
+                            <span>Tipo de contrato:</span>
+                        </div>
                         <div className='dadosUser2'>
                             <span>Estado civil:</span>
                             <span>Sexo:</span>
@@ -86,8 +87,8 @@ function Colab_user(){
                 </div>
             </div>
         </div>
-        <h5>IonicRH - Documentação e política de privacidade</h5>
     </S.Container>
+    <Footer/>
     </>
   )
 }

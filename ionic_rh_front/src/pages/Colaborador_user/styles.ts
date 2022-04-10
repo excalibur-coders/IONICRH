@@ -3,13 +3,13 @@ import {Flex} from '@chakra-ui/react';
 import styled from '@emotion/styled'
 
 export const Container = styled(Flex)`
-height:100vh;
+height: 100vh;
 display: flex;
-flex-direction:column;
+flex-direction: column;
 color: ${theme.colors.font};
 
+
 Wrapper{
-    position:relative;
     display: flex;
     justify-content: center;
     text-align: justify;
@@ -17,12 +17,12 @@ Wrapper{
 
 .centerWrapper{
     margin: 0 auto;
+    margin-top: 50px;
     display: flex;
     flex-wap: wap;
 }
 
 .leftWrapper{
-    position: relative;
     float: left;
     width: 25%;
     margin-top: 40px;
@@ -48,7 +48,7 @@ Wrapper{
      font-size: 30px;
      margin-bottom: 20px;
  }
- 
+
  .coluna{
      width:100%;
  }
@@ -72,7 +72,7 @@ Wrapper{
     flex-direction: column;
     text-align: left;
     padding: 0 50px;
-    
+
     h2{
         margin-top: 20px;
         display: flex;
@@ -92,7 +92,7 @@ Wrapper{
 }
 
 .rightWrapper{
-    width: 75%;
+    width: 76%;
     display: flex;
     float:right;
     flex-direction: column;
@@ -140,38 +140,24 @@ Wrapper{
     }
     .buttons_onboard {
         display: flex;
-    
+
         small {
           text-align: center;
           font-weight: bold;
           font-size: 20px;
-          display: block; 
+          display: block;
           text-align: center;
         }
-    
+
         .button {
           height: 120px;
           margin: 20px 50px;
         }
     }
-    footer {
-        margin-top: 13rem;
-        text-align: center;
-        font-weight: bold;
-        font-size: 20px;
-        text-align: center;
-    }
 }
-h5 {
-    margin-top: 5rem;
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-    text-align: center;
-  }
 
 
-    
+
 }
 
 @media(max-width: 768px){
