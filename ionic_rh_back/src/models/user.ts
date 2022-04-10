@@ -2,9 +2,11 @@ import {
     Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne
 } from "typeorm";
 
-import { Acesso } from "./acesso_sistema"
 import { Contrato } from "./empresa";
 import { Documentos, Endereco, Escolaridade, Idiomas, Telefone } from "./user_details";
+
+export type Acesso_Sistema = "Administrador" | "Colaborador" | "Gestor" | "Consultor";
+
 @Entity()
 export class USER {
     static user_nome(user_nome: any) {
@@ -102,6 +104,14 @@ export class USER {
         length: 255,
     })
     password?: string
+
+    @Column({
+        type: "set",
+        enum: ["Administrador", "Colaborador", "Consultor", "Gestor"],
+        default: ["Colaborador"]
+    })
+    user_role!: Acesso_Sistema[];
+
     // Chave Estrangeira
     // Auto relacionamento
     @ManyToOne(type => USER, (user) => user.id_)
@@ -122,6 +132,6 @@ export class USER {
     @OneToMany(() => Contrato, (contrato) => contrato._fk__user_)
     contrato!: Contrato 
     // Many - One [ Endereco, Acesso ]
-    @ManyToOne(() => Acesso, (acesso_cargo) => acesso_cargo.user)
-    _FK__acesso_cargo_!: Acesso 
+    // @ManyToOne(() => Acesso, (acesso_cargo) => acesso_cargo.user)
+    // _FK__acesso_cargo_!: Acesso 
 }

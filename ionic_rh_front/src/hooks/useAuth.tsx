@@ -71,9 +71,6 @@ export function AuthProvider ({ children }: AuthProviderProps) {
           password: password
         });
 
-      console.log(data);
-
-
       setCookie(null, 'ionicookie.token', data.token as string, {
         maxAge: 60 * 60 * 24,
         path: '/'

@@ -7,6 +7,8 @@ import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
 import LogoGray from 'assets/svg/logo-gray.svg';
 import { theme } from 'theme';
 
+import { parseCookies } from "nookies";
+
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 
@@ -14,6 +16,7 @@ import * as S from './styles';
 import Button from 'components/Button';
 
 import { AuthContext } from "hooks/useAuth";
+import { api } from 'services/api';
 
 interface InputsProps {
   email: string;
@@ -21,7 +24,21 @@ interface InputsProps {
 }
 
 function Login() {
+  const cookies = parseCookies();
+
   const { signIn } = useContext(AuthContext);
+
+  const authRoute = () => {
+    api.get('/departamentos', {
+      headers: {
+        Authorization: `Bearer ${cookies['ionicookie.token']}`,
+      }
+    }).then(({data}) => {
+      console.log(data);
+    }).catch(error => {
+      console.log(error);
+    })
+  }
 
   const onSubmit = useCallback(async (data: InputsProps) => {
     await signIn(data);
@@ -73,6 +90,11 @@ function Login() {
               text="Logar"
               color={theme.colors.primary}
               type="submit"
+            />
+            <Button
+              text="rota autenticação"
+              color={theme.colors.primary}
+              onClick={() => authRoute()}
             />
           </div>
 
