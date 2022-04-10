@@ -47,7 +47,7 @@ import Button from 'components/Button';
                     </div>
 
                       <div className='voltar'>
-                          <h2>Voltar</h2>   
+                       <Link to='/Administrador'><h2>Voltar</h2> </Link>
                       </div>
                   </div>
 
