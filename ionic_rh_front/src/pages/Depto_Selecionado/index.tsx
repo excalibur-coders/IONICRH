@@ -1,21 +1,27 @@
 import { ReactNode } from 'react';
-import { theme } from 'theme';
 import {Flex, Box, Spacer, Icon, Link, Divider} from '@chakra-ui/react';
 import {SearchIcon, ArrowBackIcon} from '@chakra-ui/icons';
+import { theme } from 'theme';
 import Sidebar from 'components/Sidebar';
 import Input from 'components/Input';
 import Navbar from 'components/navbar';
 import { MdFilterList, MdList, MdOutlineAccountBox} from 'react-icons/md';
-import {Table, Thead, Tbody, Tr, Th, Td,TableContainer} from '@chakra-ui/react';
-import { Stack, HStack, VStack } from '@chakra-ui/react';
-import * as S from './style';
+import {Table, Thead, Tbody, Tr, Th, Td,TableContainer} from '@chakra-ui/react'
+import { Grid, GridItem } from '@chakra-ui/react'
+import { Stack, HStack, VStack } from '@chakra-ui/react'
+import * as S from './styles';
 
-function Funcionarios(){
-  return (
+
+
+function DeptoTI(){
+        return(
     <>
-     <div><Navbar/></div>
 
-      <S.Container>
+
+       <div><Navbar/></div>
+
+
+        <S.Container>
               <div >
                   <Sidebar/>
               </div>
@@ -44,12 +50,11 @@ function Funcionarios(){
 
                         <div className='Table'>
                               <TableContainer >
-                                <Table variant='simple'size='md'>
+                                <Table variant='simple'size='lg'>
                                   <Thead>
                                     <Tr>
                                       <Th fontSize='2xl' color='black' >#Nome</Th>
                                         <Th fontSize='2xl' color='black'>Salário</Th>
-                                        <Th fontSize='2xl' color='black'>Departamento</Th>
                                         <Th fontSize='2xl' color='black'>Cargo</Th>
                                         <Th fontSize='2xl' color='black'>Perfil</Th>
                                     </Tr>
@@ -62,20 +67,16 @@ function Funcionarios(){
                                       <Tr>
                                           <Td  fontSize='xl'>Lucas Costa</Td>
                                           <Td>R$ 5000,00</Td>
-                                          <Td>TI</Td>
-                                          <Td></Td>
-                                          <Td></Td>
-                                          <Td>DevPleno</Td>
-                                          <Td><Link href="/perfil" fontSize='4xl'><MdOutlineAccountBox color='#4D4E4F'/></Link></Td>
+                                          <Td>
+                                          DevPleno
+                                          </Td>
+                                          <Td><Icon as={MdOutlineAccountBox} w={5} h={5} color='#4D4E4F'/></Td>
                                         </Tr>
                                       <Tr>
                                           <Td fontSize='xl'>Priscila Silva</Td>
                                           <Td>R$ 7000,00</Td>
-                                          <Td>TI</Td>
-                                          <Td></Td>
-                                          <Td></Td>
                                           <Td>Product Owner</Td>
-                                          <Td><Link href="/perfil" fontSize='4xl'><MdOutlineAccountBox color='#4D4E4F'/></Link></Td>
+                                          <Td><Icon as={MdOutlineAccountBox} w={5} h={5} color='#4D4E4F'/></Td>
                                       </Tr>
                                     </Tbody>
                                   </div>
@@ -88,9 +89,10 @@ function Funcionarios(){
 
 
 
-
     </>
-  )
+)
+
 }
 
-export default Funcionarios;
+export default DeptoTI
+

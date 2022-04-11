@@ -15,21 +15,23 @@ import Button from 'components/Button';
 function ContaSucesso() {
   return (
     <S.Container>
-      <div className='leftWrapper'>
-        <img src={IonicLogo} />
+      <div className='centerWrapper'>
+        <div className='leftWrapper'>
+          <img src={IonicLogo} />
 
-        <div className='form'>
-          <h1>Conta Criada com sucesso!</h1>
-          <h2>Voltar ao Login</h2>
+          <div className='form'>
+            <h1>Conta Criada com sucesso!</h1>
+            <h2>Voltar ao Login</h2>
 
-          <div className='registerWrapper'>
-          <Link to="/"><Button text="Voltar" color={theme.colors.primary} /></Link>
+            <div className='registerWrapper'>
+            <Link to="/"><Button text="Voltar" color={theme.colors.primary} /></Link>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="rightWrapper">
-        <img src={LogoGray} />
+        <div className="rightWrapper">
+          <img src={LogoGray} />
+        </div>
       </div>
 
     </S.Container>
