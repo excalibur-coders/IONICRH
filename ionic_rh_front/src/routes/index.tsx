@@ -13,6 +13,10 @@ import Cargos from 'pages/Cargos'
 import DeptoTI from 'pages/Depto_Selecionado';
 
 
+import Colab_home from 'pages/Colaborador_home';
+import Colab_onboard from 'pages/Colaborador_onboard';
+import Colab_user from 'pages/Colaborador_user';
+
 function Routes() {
   return (
     // <BrowserRouter>
@@ -27,6 +31,9 @@ function Routes() {
         <Route path="/RecuperarSenha" element={<RecuperarSenha />} />
         <Route path="/Resetar" element={<ResetarSenha />} />
         <Route path="/SenhaAlterada" element={<SenhaAlterada />} />
+        <Route path="/Colab_home" element={<Colab_home />} />
+        <Route path="/Colab_onboard" element={<Colab_onboard />} />
+        <Route path="/Colab_user" element={<Colab_user />} />
         <Route path="/Cargos" element={<Cargos />} />
         <Route path="/Ti" element={<DeptoTI />} />
       </RoutesWrapper>
