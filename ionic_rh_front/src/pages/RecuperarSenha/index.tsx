@@ -15,24 +15,26 @@ import Button from 'components/Button';
 function RecuperarSenha() {
   return (
     <S.Container>
-      <div className='leftWrapper'>
-        <img src={IonicLogo} />
+      <div className='centerWrapper'>
+        <div className='leftWrapper'>
+          <img src={IonicLogo} />
 
-        <div className='form'>
-          <h1>Recuperar Senha</h1>
-          <Input size='sm' width="auto" fontSize={15} labelText="E-mail" />
-          <div className="formFooter">
-            <Button text="Enviar E-mail" color={theme.colors.primary} />
-          </div>
+          <div className='form'>
+            <h1>Recuperar Senha</h1>
+            <Input size='sm' width="auto" fontSize={15} labelText="E-mail" />
+            <div className="formFooter">
+              <Button text="Enviar E-mail" color={theme.colors.primary} />
+            </div>
 
-          <div className='registerWrapper'>
-            <span><Link to="/">Voltar ao Login</Link></span>
+            <div className='registerWrapper'>
+              <span><Link to="/">Voltar ao Login</Link></span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="rightWrapper">
-        <img src={LogoGray} />
+        <div className="rightWrapper">
+          <img src={LogoGray} />
+        </div>
       </div>
 
     </S.Container>

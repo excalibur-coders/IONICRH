@@ -60,53 +60,57 @@ function Login() {
 
   return (
     <S.Container>
-      <div className='leftWrapper'>
-        <img src={IonicLogo} />
+      <div className='centerWrapper'>
+        <div className='leftWrapper'>
+          <img src={IonicLogo} />
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <h1>Login</h1>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <h1>Login</h1>
 
-          <Input
-            size='sm'
-            width="auto"
-            fontSize={15}
-            labelText="E-mail"
-            type="text"
-            error={errors.email?.message}
-            {...register('email')}
-          />
-          <Input
-            size='sm'
-            width="auto"
-            fontSize={15}
-            labelText="Senha"
-            type="password"
-            error={errors.password?.message}
-            {...register('password')}
-          />
-          <div className="formFooter">
-            <a href="">Esqueceu sua senha?</a>
-            <Button
-              text="Logar"
-              color={theme.colors.primary}
-              type="submit"
+            <Input
+              size='sm'
+              width="auto"
+              fontSize={15}
+              labelText="E-mail"
+              type="text"
+              error={errors.email?.message}
+              {...register('email')}
             />
-            <Button
-              text="rota autenticação"
-              color={theme.colors.primary}
-              onClick={() => authRoute()}
+
+            <Input
+              size='sm'
+              width="auto"
+              fontSize={15}
+              labelText="Senha"
+              type="password"
+              error={errors.password?.message}
+              {...register('password')}
             />
-          </div>
 
-          <div className='registerWrapper'>
-            <span>Não tem uma conta?</span>
-            <span><Link to="/cadastro">Cadastrar-se</Link></span>
-          </div>
-        </form>
-      </div>
+            <div className="formFooter">
+              <a href="">Esqueceu sua senha?</a>
+              <Button
+                text="Logar"
+                color={theme.colors.primary}
+                type="submit"
+              />
+              <Button
+                text="rota autenticação"
+                color={theme.colors.primary}
+                onClick={() => authRoute()}
+              />
+            </div>
 
-      <div className="rightWrapper">
-        <img src={LogoGray} />
+            <div className='registerWrapper'>
+              <span>Não tem uma conta?</span>
+              <span><Link to="/cadastro">Cadastrar-se</Link></span>
+            </div>
+          </form>
+        </div>
+
+        <div className='rightWrapper'>
+          <img src={LogoGray} />
+        </div>
       </div>
 
     </S.Container>
