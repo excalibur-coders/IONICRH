@@ -82,8 +82,11 @@ export const Container = styled(Flex)`
       border:1px solid black;
       flex-direction: column;
       position: relative;
+      img {
+      width: 20rem;
+      }
     }
   }
-
+  
 
 `;
