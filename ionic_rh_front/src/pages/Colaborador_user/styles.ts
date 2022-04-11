@@ -57,7 +57,7 @@ Wrapper{
      display:flex;
      flex-direction: column;
      text-align:left;
-     padding: 0 50px;
+    
  }
 
 .coluna1 span{
@@ -139,6 +139,7 @@ Wrapper{
         padding: 40px 50px;
     }
     .buttons_onboard {
+        z-index: -10;
         display: flex;
 
         small {
@@ -161,11 +162,35 @@ Wrapper{
 }
 
 @media(max-width: 768px){
-    .leftWrapper{
-        width:100%;
-    }
+    .Wrapper{
+        display: flex;
+        flex-direction: column;
+        
+        .centerWrapper{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
 
-    .rightWrapper{
-        width:100%;
+        .leftWrapper{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+
+            .coluna1 span{
+                text-align: center;
+            }
+        }
+
+        .rightWrapper{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            
+            .buttons_onboard{
+                display: flex;
+                flex-direction: column;
+            }
+        }
     }
 `

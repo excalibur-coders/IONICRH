@@ -4,6 +4,8 @@ import { Button } from '@chakra-ui/react';
 import { theme } from 'theme';
 
 export const Container = styled.div`
+z-index: 1000;
+
 img {
   width: 120px;
   margin-top: 10px;
@@ -18,6 +20,8 @@ export const ContainerFlex = styled(Flex)`
   .colab_routes{
     margin-left: 40rem;
     font-size: 25px;
+    font-family: coolvetica, sans-serif;
+    @import url("https://fonts.adobe.com/fonts/coolvetica");
 
     a{
       margin-left: 25px;

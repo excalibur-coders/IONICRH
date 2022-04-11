@@ -19,6 +19,7 @@ h1 {
 .buttons_onboard {
     margin-top: 5rem;
     display: flex;
+    z-index: -10;
 
     small {
       text-align: center;
@@ -33,5 +34,14 @@ h1 {
       margin: 50px 50px;
     }
 }
+
+@media(max-width: 768px) {
+  .buttons_onboard{
+
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 
 `;

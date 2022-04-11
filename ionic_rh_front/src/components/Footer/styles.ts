@@ -12,5 +12,6 @@ margin-bottom: 30px;
     margin: auto;
     font-weight: bold;
     color: ${theme.colors.font};
+    text-align: center;
   }
 `;
