@@ -84,12 +84,12 @@ export class USER {
     })
     user_estado_civil?: string
 
-    @Column({
-        type: "varchar",
-        length: 50,
-        nullable: true,
-    })
-    user_tipo_contrato?: string
+    //@Column({
+    //    type: "varchar",
+    //    length: 50,
+    //    nullable: true,
+    //})
+    //user_tipo_contrato?: string
 
     @Column({
         type: "varchar",
@@ -119,17 +119,17 @@ export class USER {
     @OneToMany(type => USER, (user_one => user_one.user_reference_id))
     user_reference_id!: USER[]
     // One - Many [ Escolaridade, Documento, Telefone, Contrato]
-    @OneToMany(() => Escolaridade, (escolaridade) => escolaridade._fk__user_)
+    @OneToMany(() => Escolaridade, (escolaridade) => escolaridade.user)
     escolaridade!: Escolaridade
     @OneToMany(() => Documentos, (docs) => docs._fk__user_)
     docs!: Documentos
-    @OneToMany(() => Idiomas, (idioma) => idioma._fk__user_)
+    @OneToMany(() => Idiomas, (idioma) => idioma.user)
     idioma!: Idiomas
     @OneToMany(() => Telefone, (telefone) => telefone._fk__user_)
     telefone!: Telefone
     @OneToMany(() => Endereco, (endereco) => endereco._fk__user_)
     endereco!: Endereco
-    @OneToMany(() => Contrato, (contrato) => contrato._fk__user_)
+    @OneToMany(() => Contrato, (contrato) => contrato.user)
     contrato!: Contrato
     // Many - One [ Endereco, Acesso ]
     // @ManyToOne(() => Acesso, (acesso_cargo) => acesso_cargo.user)
