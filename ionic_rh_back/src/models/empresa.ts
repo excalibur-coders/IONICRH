@@ -1,9 +1,9 @@
 import {
-    Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToMany, ManyToOne
+    Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToMany, ManyToOne, JoinColumn
 } from "typeorm";
 
 import { USER } from "./user";
-
+export type Contratacao_type = "Pessoa Juridica" | "CLT" | "Estagio" | "Temporario"
 @Entity()
 export class Contrato {
     @PrimaryGeneratedColumn({
@@ -21,7 +21,7 @@ export class Contrato {
         type: "char",
         length: 11
     })
-    contrato_Tempo_De_Casa!: string;
+    contrato_tempo_de_casa!: string;
 
     @Column({
         type: "varchar",
@@ -30,7 +30,8 @@ export class Contrato {
     contrato_termos!: string;
 
     @Column({
-        type: "date",
+        type: "varchar",
+        length: 11
     })
     contrato_tempo_formalizacao!: string;
 
@@ -41,12 +42,14 @@ export class Contrato {
     contrato_dominio!: string;
 
     @Column({
-        type: "date",
+        type: "varchar",
+        length: 11
     })
     contrato_data_desligamento!: string;
 
     @Column({
-        type: "date",
+        type: "varchar",
+        length: 11
     })
     contrato_distrato!: string;
 
@@ -63,35 +66,57 @@ export class Contrato {
     @Column({
         type: "float",
     })
-    contrato_Vale_Transporte!: number;
+    contrato_vale_transporte!: number;
 
     @Column({
         type: "float",
         nullable: true
     })
-    contrato_Vale_Refeicao!: number;
+    contrato_vale_refeicao!: number;
 
     @Column({
         type: "float",
         nullable: true
     })
-    contrato_Vale_Alimentacao!: number;
+    contrato_vale_alimentacao!: number;
 
     @Column({
         type: "float",
         nullable: true
     })
-    contrato_Auxilio_Creche!: number;
+    contrato_auxilio_creche!: number;
 
+    //@Column({
+    //    type: "set",
+    //    enum: ["Pessoa Juridica" ,"CLT" , "Estagio" , "Temporario"],
+    //    default: "Temporario"
+    //})
+    //contrato_type!: Contratacao_type[];
     //Chave estrangeira
     @ManyToOne(() => USER, (user) => user.contrato)
-    _fk__user_!: USER
+    @JoinColumn({
+        name: "userUserId"
+    })
+    user!: USER
+    @Column({
+        type: "int"
+    })
+    userUserId!: number
+    
     @ManyToOne(() => Empresa_Contrante, (emp_contratante) => emp_contratante.contrato)
     _fk__emp_contratante_!: Empresa_Contrante
     @ManyToOne(() => Empresa_PJ, (emp_pj) => emp_pj.contrato)
     _fk__emp_pj_!: Empresa_Contrante
+
     @ManyToOne(() => Cargo, (cargo) => cargo.contrato)
-    _fk__cargo_!: Cargo
+    @JoinColumn({
+        name: "cargoCargoId"
+    })
+    cargo!: Cargo
+    @Column({
+        type:"int"
+    })
+    cargoCargoId?: number
 }
 
 @Entity()
@@ -189,10 +214,17 @@ export class Cargo {
     })
     cargo_area!: string;
 
-    @OneToMany(() => Contrato, (contrato) => contrato._fk__cargo_)
+    @OneToMany(() => Contrato, (contrato) => contrato.cargo)
     contrato!: Contrato
-    @ManyToOne(() => Departamento, (departamento) => departamento._fk__cargo_)
-    _fk__cargo_!:Departamento
+    @ManyToOne(() => Departamento, (departamento) => departamento.cargo)
+    @JoinColumn({
+        name: "departamentoDepId"
+    })
+    departamento!:Departamento
+    @Column({
+        type:"int",
+    })
+    departamentoDepId!: number
 }
 
 @Entity()
@@ -208,6 +240,6 @@ export class Departamento{
     })
     dep_name!:string;
     
-    @OneToMany(()=> Cargo, (cargo) => cargo._fk__cargo_)
-    _fk__cargo_!: Cargo
+    @OneToMany(()=> Cargo, (cargo) => cargo.departamento)
+    cargo!: Cargo
 }
