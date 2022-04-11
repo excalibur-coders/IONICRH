@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-import Navbar from 'components/navbar';
 import styled from '@emotion/styled';
 import { Flex, Box } from '@chakra-ui/react';
 import { theme } from 'theme';
@@ -22,7 +20,7 @@ margin-left: 50px;
 
 .TableTwo{
   display: flex;
-  margin-left: 20px;
+  margin-left: 60px;
 
 }
 
@@ -47,3 +45,5 @@ bottom: 90px;
 
 
 `;
+
+
