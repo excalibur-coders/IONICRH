@@ -16,12 +16,13 @@ import {
 import {
   auth,
   verifyUserRole
-} from 'middlewares/auth'
-
+} from 'middlewares/auth';
 import {
   verifyUserExistsByEmail,
-  verifyLoginRequestValues,
-  verifyRegisterRequestValues
+  verifyLoginRequestValues, 
+  verifyRegisterRequestValues,
+  verifyUpdateRequestValues,
+  verifyUsedCpf
 } from "middlewares/user";
 
 const router = express.Router();
@@ -32,7 +33,11 @@ router.post(
   verifyRegisterRequestValues,
   CadastroUser
 );
-router.post('/login', verifyLoginRequestValues, loginUser)
+router.post(
+  '/login',
+  verifyLoginRequestValues, 
+  loginUser
+);
 router.use(auth);
 router.put(
   '/update',
@@ -42,6 +47,8 @@ router.put(
 );
 router.get('/logged-user-info', getLoggedUserData);
 router.get('/allUser', verifyUserRole(["Administrador"]), getAllUser);
+router.get('/user-info', getLoggedUserData);
+router.get('/allUser',  getAllUser);
 
 // Rotas de Contrato
 // Pegar o Contrato, iserir e retornar os valores
