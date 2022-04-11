@@ -138,14 +138,18 @@ export class Empresa_Contrante {
     })
     contratante_cnpj!: string;
 
-    @Column({
-        type: "varchar",
-        length: 255
-    })
-    contratante_pesq_desligamento!: string;
+    //@Column({
+    //    type: "varchar",
+    //    length: 255
+    //})
+    //contratante_pesq_desligamento!: string;
 
     @OneToMany(() => Contrato, (contrato) => contrato._fk__emp_contratante_)
     contrato!: Contrato
+
+    @OneToMany(()=> (Pesquisa_desligamento), (pesq_desligamento)=> pesq_desligamento.emp_contratante)
+    pesq_desligamento!: Empresa_Contrante
+
 }
 @Entity()
 export class Empresa_PJ {
@@ -242,4 +246,21 @@ export class Departamento{
     
     @OneToMany(()=> Cargo, (cargo) => cargo.departamento)
     cargo!: Cargo
+}
+
+@Entity()
+export class Pesquisa_desligamento{
+    @PrimaryGeneratedColumn({
+        type:"int"
+    })
+    pesq_id!: number
+
+    @Column({
+        type:"varchar",
+        length: 255
+    })
+    pesq_desligamento!: string
+
+    @ManyToOne(()=> Empresa_Contrante, (emp_contrato)=> emp_contrato.pesq_desligamento)
+    emp_contratante!: Empresa_Contrante
 }
