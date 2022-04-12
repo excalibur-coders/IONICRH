@@ -97,9 +97,9 @@ function Cargos(){
                                   <div className='TableTwo'>
                                     <Tbody>
                                     {!loading ? (
-                                      cargos.map(cargo => (
+                                      cargos.map(cargos => (
                                           <Tr>
-                                            <Td fontSize='2xl'>{cargo.cargo_area}</Td>
+                                            <Td fontSize='2xl'>{cargos.cargo_area}</Td>
                                             <Td></Td>
                                             <Td>
                                               <Link href="/funcionarios" fontSize='4xl'><MdList color='#4D4E4F' /></Link>
