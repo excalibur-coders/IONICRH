@@ -16,36 +16,39 @@ import Button from 'components/Button';
 function CriarConta() {
   return (
     <S.Container>
-      <div className='leftWrapper'>
-        <img src={IonicLogo} />
+      <div className='centerWrapper'>
+        <div className='leftWrapper'>
+          <img src={IonicLogo} />
 
-        <div className='form'>
-          <h1>Criar Conta</h1>
-          <Input size='sm' width="auto" fontSize={15} labelText="Nome" />
-          <Input size='sm' width="auto" fontSize={15} labelText="E-mail" />
-          <Input size='sm' width="auto" fontSize={15} labelText="Senha" />
-          <Input size='sm' width="auto" fontSize={15} labelText="Repetir a Senha" />
-          <div className="formFooter">
-            <div className="formFooterLeft">
-              <Checkbox isInvalid>Eu li e concordo com os:</Checkbox>
-              <span>Termos e condições</span>
+          <div className='form'>
+            <h1>Criar Conta</h1>
+            <Input size='sm' width="auto" fontSize={15} labelText="Nome" />
+            <Input size='sm' width="auto" fontSize={15} labelText="E-mail" />
+            <Input size='sm' width="auto" fontSize={15} labelText="Senha" />
+            <Input size='sm' width="auto" fontSize={15} labelText="Repetir a Senha" />
+            <div className="formFooter">
+              <div className="formFooterLeft">
+                <Checkbox isInvalid>Eu li e concordo com os:</Checkbox>
+                <span>Termos e condições</span>
+              </div>
+              <div>
+                <Button text="Criar" color={theme.colors.primary} />
+              </div>
             </div>
-            <div>
-              <Button text="Criar" color={theme.colors.primary} />
+
+            <div className='registerWrapper'>
+              <span>Já tem uma conta?</span>
+              <span><Link to="/">Entre aqui</Link></span>
+
             </div>
           </div>
+        </div>
 
-          <div className='registerWrapper'>
-            <span>Já tem uma conta?</span>
-            <span><Link to="/">Entre aqui</Link></span>
-
-          </div>
+        <div className="rightWrapper">
+          <img src={LogoGray} />
         </div>
       </div>
 
-      <div className="rightWrapper">
-        <img src={LogoGray} />
-      </div>
 
     </S.Container>
   );

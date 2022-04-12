@@ -7,7 +7,7 @@ import {
   getDepartamentoById, 
   updateDepartamento 
 } from "controllers/Departamento";
-import { auth } from "Middleware/auth";
+import { auth } from "middlewares/auth";
 
 const router = express.Router();
 
