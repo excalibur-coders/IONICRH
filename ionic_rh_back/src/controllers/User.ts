@@ -12,7 +12,7 @@ import { IUser } from "interfaces/IUser";
 
 import { AppDataSource } from "config/database";
 import { USER } from "models/user"
-import { Escolaridade, Idiomas, Telefone } from "models/user_details";
+import { Endereco, Escolaridade, Idiomas, Telefone } from "models/user_details";
 
 
 // Interface do JWT ( Jason Web Token )
@@ -27,6 +27,7 @@ const userReposiroty = AppDataSource.getRepository(USER);
 const idiomaRepository = AppDataSource.getRepository(Idiomas);
 const escolaridadeRepository = AppDataSource.getRepository(Escolaridade);
 const telefoneRepository = AppDataSource.getRepository(Telefone);
+const endRepository = AppDataSource.getRepository(Endereco)
 
 // Register User
 export const CadastroUser = async (req: Request, res: Response) => {
@@ -101,12 +102,14 @@ export const getLoggedUserData = async (req: Request, res: Response) => {
         'e.school_termino',
         'e.school_status',
         't.tell_ddd',
-        't.tell_numero'
+        't.tell_numero',
+        'end'
       ])
       .from(USER, 'u')
       .leftJoin('u.idioma', 'i')
       .leftJoin('u.escolaridade', 'e')
       .leftJoin('u.telefone', 't')
+      .leftJoin('u.endereco', 'end')
       .where(
         "u.user_id =:user_id", {
         user_id: Number(decodedJwt.id)
@@ -250,6 +253,39 @@ export const adicioanrEscolaridade = async (req: Request, res: Response, next: N
   }
 }
 
+// Adicionar Endereco
+
+export const adicionarEndereco = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const tokenHeader = req.headers.authorization;
+
+    const splitToken = tokenHeader?.split(' ')[1] as string;
+
+    const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
+
+    const {
+      endereco
+    } = req.body
+
+    const adicionarEndereco = endereco.map(endereco => {
+      return {
+        ...endereco,
+        userUserId: Number(decodedJwt.id)
+      }
+    })
+
+    await endRepository
+      .createQueryBuilder()
+      .insert()
+      .into(Endereco)
+      .values(adicionarEndereco)
+      .execute()
+    next()
+  } catch (error) {
+    res.json(error)
+  }
+}
+
 // Get Usuario Pelo id no parms com contrato
 export const getUserById = async (req: Request, res: Response) => {
   try {
@@ -267,6 +303,7 @@ export const getUserById = async (req: Request, res: Response) => {
         't.tell_ddd',
         't.tell_numero',
         'c',
+        'end',
         'cont.cargo_head',
         'cont.cargo_nivel',
         'cont.cargo_area',
@@ -276,6 +313,7 @@ export const getUserById = async (req: Request, res: Response) => {
       .leftJoin('u.idioma', 'i')
       .leftJoin('u.escolaridade', 'e')
       .leftJoin('u.telefone', 't')
+      .leftJoin('u.endereco','end')
       .leftJoin('u.contrato', 'c')
       .leftJoin('c.cargo', 'cont')
       .leftJoin('cont.departamento', 'd')
@@ -311,14 +349,16 @@ export const getAllUser = async (req: Request, res: Response) => {
         'e.school_termino',
         'e.school_status',
         't.tell_ddd',
-        't.tell_numero'
+        't.tell_numero',
+        'end',
       ])
       .from(USER, 'u')
       .leftJoin('u.idioma', 'i')
       .leftJoin('u.escolaridade', 'e')
       .leftJoin('u.telefone', 't')
+      .leftJoin('u.endereco','end')
       .getMany()
-    
+
     res.json(userQuery)
   } catch (err) {
     res.json(req.body)
