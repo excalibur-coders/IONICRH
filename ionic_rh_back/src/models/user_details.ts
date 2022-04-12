@@ -123,7 +123,15 @@ export class Telefone {
 
     //Chave estrangeira
     @ManyToOne(() => USER, (user) => user.telefone)
-    _fk__user_!: USER
+    @JoinColumn({
+        name: "userUserId"
+    })
+    user!: USER
+    @Column({
+        type: "int"
+    })
+    userUserId?: number
+    
 }
 
 @Entity()
