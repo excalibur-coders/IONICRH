@@ -5,6 +5,7 @@ import { AppDataSource } from "./config/database";
 
 import departamentoRoutes from "./routes/departamento";
 import userRoutes from './routes/user';
+import cargoRoutes from './routes/cargo'
 // import authRoutes from './routes/auth';
 
 const app = express();
@@ -21,6 +22,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/departamentos', departamentoRoutes);
 app.use('/user', userRoutes);
+app.use('/cargo', cargoRoutes);
 // app.use('/auth', authRoutes);
 
 

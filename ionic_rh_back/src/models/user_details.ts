@@ -1,5 +1,5 @@
 import {
-    Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, OneToOne, OneToMany, DataSource
+    Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, OneToOne, OneToMany, DataSource, JoinColumn
 } from "typeorm";
 
 import { USER } from "./user";
@@ -24,18 +24,33 @@ export class Escolaridade {
     school_status!: string;
 
     @Column({
-        type:"datetime"
+        type: "varchar",
+        length: 255
     })
-    school_inicio!:DataSource;
+    school_instituicao!: string;
 
     @Column({
-        type:"datetime"
+        type: "varchar",
+        length: 11
     })
-    school_termino!:DataSource;
+    school_inicio!: DataSource;
+
+    @Column({
+        type: "varchar",
+        length: 11
+    })
+    school_termino!: DataSource;
 
     //Chave estrangeira
     @ManyToOne(() => USER, (user) => user.escolaridade)
-    _fk__user_!: USER
+    @JoinColumn({
+        name: "userUserId"
+    })
+    user!: USER
+    @Column({
+        type: "int"
+    })
+    userUserId?: number
 }
 
 @Entity()
@@ -53,7 +68,14 @@ export class Idiomas {
 
     //Chave estrangeira
     @ManyToOne(() => USER, (user) => user.idioma)
-    _fk__user_!: USER
+    @JoinColumn({
+        name: "userUserId"
+    })
+    user!: USER
+    @Column({
+        type: "int"
+    })
+    userUserId?: number
 }
 
 @Entity()
