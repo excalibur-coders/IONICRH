@@ -132,7 +132,7 @@ export class USER {
     @OneToMany(() => Telefone, (telefone) => telefone.user)
     telefone!: Telefone
 
-    @OneToMany(() => Endereco, (endereco) => endereco._fk__user_)
+    @OneToMany(() => Endereco, (endereco) => endereco.user)
     endereco!: Endereco
     
     @OneToMany(() => Contrato, (contrato) => contrato.user)
