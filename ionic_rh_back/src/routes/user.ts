@@ -9,7 +9,8 @@ import {
   adicionarIdioma,
   adicioanrEscolaridade,
   getUserById,
-  adicionarTelefone
+  adicionarTelefone,
+  adicionarEndereco
 } from "controllers/User";
 
 import {
@@ -52,6 +53,7 @@ router.put(
   adicioanrEscolaridade,
   adicionarIdioma,
   adicionarTelefone,
+  adicionarEndereco,
   updateUser
 );
 
