@@ -160,6 +160,12 @@ export class Endereco {
     endereco_cidade!: string;
 
     @Column({
+        type:"varchar",
+        length: 10
+    })
+    endereco_cep!: string;
+
+    @Column({
         type: "varchar",
         length: 255
     })
