@@ -28,7 +28,7 @@ function Cargos(){
 
   const getAllCargos = useCallback(() => {
     setLoading(true);
-    api.get('/cargos', {
+    api.get('/cargo/cargo', {
       headers: {
         Authorization: `Bearer ${cookies['ionicookie.token']}`,
       }
