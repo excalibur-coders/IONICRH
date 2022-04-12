@@ -172,5 +172,12 @@ export class Endereco {
     endereco_numero!: string;
     // Chave estrangeira
     @ManyToOne(() => USER, (user) => user.endereco)
-    _fk__user_!: USER
+    @JoinColumn({
+        name: "userUserId"
+    })
+    user!: USER
+    @Column({
+        type: "int"
+    })
+    userUserId?: number
 }
