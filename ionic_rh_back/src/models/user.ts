@@ -107,7 +107,7 @@ export class USER {
 
     @Column({
         type: "set",
-        enum: ["Administrador" , "Colaborador" , "Consultor" , "Gestor"],
+        enum: ["Administrador", "Colaborador", "Consultor", "Gestor"],
         default: "Colaborador"
     })
     user_role!: Acesso_Sistema[];
@@ -116,22 +116,25 @@ export class USER {
     // Auto relacionamento
     @ManyToOne(type => USER, (user) => user.id_)
     id_!: USER
+
     @OneToMany(type => USER, (user_one => user_one.user_reference_id))
     user_reference_id!: USER[]
-    // One - Many [ Escolaridade, Documento, Telefone, Contrato]
+
     @OneToMany(() => Escolaridade, (escolaridade) => escolaridade.user)
     escolaridade!: Escolaridade
+
     @OneToMany(() => Documentos, (docs) => docs._fk__user_)
     docs!: Documentos
+
     @OneToMany(() => Idiomas, (idioma) => idioma.user)
     idioma!: Idiomas
-    @OneToMany(() => Telefone, (telefone) => telefone._fk__user_)
+
+    @OneToMany(() => Telefone, (telefone) => telefone.user)
     telefone!: Telefone
+
     @OneToMany(() => Endereco, (endereco) => endereco._fk__user_)
     endereco!: Endereco
+    
     @OneToMany(() => Contrato, (contrato) => contrato.user)
     contrato!: Contrato
-    // Many - One [ Endereco, Acesso ]
-    // @ManyToOne(() => Acesso, (acesso_cargo) => acesso_cargo.user)
-    // _FK__acesso_cargo_!: Acesso 
 }
