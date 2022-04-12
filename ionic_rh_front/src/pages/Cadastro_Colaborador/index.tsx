@@ -36,11 +36,24 @@ function Cadastro() {
                                 <Input size='sm' width="14rem" fontSize={20} labelText="RG" />
                             </div>
                             <Input size='sm' width="auto" fontSize={20} labelText="Estado Civil" />
+                            <Input size='sm' width="auto" fontSize={20} labelText="Rua" />
+                            <div className='form-row'>
+                                <Input size='sm' width="14rem" fontSize={20} labelText="CEP" />
+                                <Input size='sm' width="14rem" fontSize={20} labelText="Bairro" />
+                            </div>
                         </div>
                 </div>
 
                 <div className='rightWrapper'>
                     <div className='form'>
+                        <div className='form-row'>
+                            <Input size='sm' width="14rem" fontSize={20} labelText="Cidade" />
+                            <Input size='sm' width="14rem" fontSize={20} labelText="Estado" />
+                        </div>
+                        <div className='form-row'>
+                            <Input size='sm' width="14rem" fontSize={20} labelText="Número" />
+                            <Input size='sm' width="14rem" fontSize={20} labelText="Complemento" />
+                        </div>
                         <Input size='sm' width="auto" fontSize={20} labelText="E-mail" />
                         <Input size='sm' width="auto" fontSize={20} labelText="Telefone" />
                         <Input size='sm' width="auto" fontSize={20} labelText="Formação" />

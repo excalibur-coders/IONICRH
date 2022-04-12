@@ -53,7 +53,6 @@ height: 100vh;
     
         .form {
             width: 30rem;
-            margin-left: 50px;
             margin-top: 80px;
             flex-direction: column;
         }
@@ -78,6 +77,12 @@ height: 100vh;
             margin-left: 50px;
             margin-top: 80px;
             flex-direction: column;
+        }
+
+        .form-row {
+            flex-direction: row;
+            display: flex;
+            justify-content: space-between;
         }
 
         h2 {
