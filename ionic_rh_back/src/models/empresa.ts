@@ -86,12 +86,6 @@ export class Contrato {
     })
     contrato_auxilio_creche!: number;
 
-    //@Column({
-    //    type: "set",
-    //    enum: ["Pessoa Juridica" ,"CLT" , "Estagio" , "Temporario"],
-    //    default: "Temporario"
-    //})
-    //contrato_type!: Contratacao_type[];
     //Chave estrangeira
     @ManyToOne(() => USER, (user) => user.contrato)
     @JoinColumn({
@@ -102,11 +96,19 @@ export class Contrato {
         type: "int"
     })
     userUserId!: number
-    
+
     @ManyToOne(() => Empresa_Contrante, (emp_contratante) => emp_contratante.contrato)
-    _fk__emp_contratante_!: Empresa_Contrante
+    @JoinColumn({
+        name: "empContratanteContratanteId"
+    })
+    emp_contratante!: Empresa_Contrante
+    @Column({
+        type: "int"
+    })
+    empContratanteContratanteId?: number
+
     @ManyToOne(() => Empresa_PJ, (emp_pj) => emp_pj.contrato)
-    _fk__emp_pj_!: Empresa_Contrante
+    emp_pj!: Empresa_PJ
 
     @ManyToOne(() => Cargo, (cargo) => cargo.contrato)
     @JoinColumn({
@@ -114,7 +116,7 @@ export class Contrato {
     })
     cargo!: Cargo
     @Column({
-        type:"int"
+        type: "int"
     })
     cargoCargoId?: number
 }
@@ -138,14 +140,13 @@ export class Empresa_Contrante {
     })
     contratante_cnpj!: string;
 
-    @Column({
-        type: "varchar",
-        length: 255
-    })
-    contratante_pesq_desligamento!: string;
-
-    @OneToMany(() => Contrato, (contrato) => contrato._fk__emp_contratante_)
+    // Chave estrangeiras
+    @OneToMany(() => Contrato, (contrato) => contrato.emp_contratante)
     contrato!: Contrato
+
+    @OneToMany(() => (Pesquisa_desligamento), (pesq_desligamento) => pesq_desligamento.emp_contratante)
+    pesq_desligamento!: Empresa_Contrante
+
 }
 @Entity()
 export class Empresa_PJ {
@@ -184,7 +185,7 @@ export class Empresa_PJ {
     pj_conduta_etica!: string;
 
     //Chave estrangeiras
-    @OneToMany(() => Contrato, (contrato) => contrato._fk__emp_pj_)
+    @OneToMany(() => Contrato, (contrato) => contrato.emp_pj)
     contrato!: Contrato
 }
 
@@ -214,32 +215,60 @@ export class Cargo {
     })
     cargo_area!: string;
 
+    //Chave estrangeira
     @OneToMany(() => Contrato, (contrato) => contrato.cargo)
     contrato!: Contrato
+
     @ManyToOne(() => Departamento, (departamento) => departamento.cargo)
     @JoinColumn({
         name: "departamentoDepId"
     })
-    departamento!:Departamento
+    departamento!: Departamento
     @Column({
-        type:"int",
+        type: "int",
     })
     departamentoDepId!: number
 }
 
 @Entity()
-export class Departamento{
+export class Departamento {
     @PrimaryGeneratedColumn({
-        type:"int"
+        type: "int"
     })
     dep_id!: number;
 
     @Column({
-        type:"varchar",
-        length:255
+        type: "varchar",
+        length: 255
     })
-    dep_name!:string;
-    
-    @OneToMany(()=> Cargo, (cargo) => cargo.departamento)
+    dep_name!: string;
+
+    //Chave Estrangeira
+    @OneToMany(() => Cargo, (cargo) => cargo.departamento)
     cargo!: Cargo
+}
+
+@Entity()
+export class Pesquisa_desligamento {
+    @PrimaryGeneratedColumn({
+        type: "int"
+    })
+    pesq_id!: number
+
+    @Column({
+        type: "varchar",
+        length: 255
+    })
+    pesq_desligamento!: string
+
+    // Chave estrangeira
+    @ManyToOne(() => Empresa_Contrante, (emp_contrato) => emp_contrato.pesq_desligamento)
+    @JoinColumn({
+        name: "empContratanteContratanteId"
+    })
+    emp_contratante!: Empresa_Contrante
+    @Column({
+        type: "int"
+    })
+    empContratanteContratanteId?: number
 }
