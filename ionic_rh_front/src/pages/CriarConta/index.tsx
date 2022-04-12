@@ -47,8 +47,6 @@ function CriarConta() {
     else {
       setErrorMessage('Senhas Divergentes')
     }
-    
-
 
   }, []);
 
@@ -105,7 +103,6 @@ function CriarConta() {
           <img src={LogoGray} />
         </div>
       </div>
-
 
     </S.Container>
   );
