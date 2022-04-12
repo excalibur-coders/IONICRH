@@ -6,7 +6,7 @@ import { theme } from 'theme';
 import Nav from 'components/nav';
 import * as S from './styles';
 // import { Input, Stack } from '@chakra-ui/react';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import Input from 'components/Input';
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
@@ -16,10 +16,44 @@ import { Divider } from '@chakra-ui/react';
 import { FaArrowLeft} from "react-icons/fa";
 
 import Button from 'components/Button';
+import { api } from 'services/api';
+
+import  {parseCookies} from "nookies";
+import { AxiosError } from 'axios';
+ 
+
+
 
 // console.log(theme.colors.primary);
 
+interface IUser{
+  dep_name: string;
+}
+
   function User() {
+
+    const cookies = parseCookies();
+
+    const[user, setUser] = useState<IUser[]>([]);
+    const [loading, setLoading] = useState(false);
+
+    const getAllUser = useCallback(() => {
+      setLoading(true);
+      api.get("user", {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
+        }
+      }).then(({data}) => {
+        setUser(data);
+      }).catch((error: Error | AxiosError)  => {
+        console.log(error);
+      })
+      setLoading(false);
+    }, [setLoading]);
+
+    useEffect (() => {
+      getAllUser();
+    },[])
+
     return (
       <>
       <Nav></Nav>
