@@ -20,14 +20,27 @@ import { api } from 'services/api';
 
 import  {parseCookies} from "nookies";
 import { AxiosError } from 'axios';
- 
+
 
 
 
 // console.log(theme.colors.primary);
 
-interface IUser{
-  dep_name: string;
+interface IUser {
+
+  user_id: number;
+  user_nome?: string;
+  user_nacionalidade?: string;
+  user_naturalidade?: string;
+  user_nascimento?: string;
+  user_genero?: string;
+  user_cpf?: string;
+  user_estado_civil?: string;
+  telefone?: number;
+  escolaridade?: number;
+  idioma?: number;
+  documentos?: number;
+
 }
 
   function User() {
@@ -39,20 +52,27 @@ interface IUser{
 
     const getAllUser = useCallback(() => {
       setLoading(true);
-      api.get("user", {
+      api.get('/user', {
+         headers: {
           Authorization: `Bearer ${cookies['ionicookie.token']}`,
-        }
+         }
+
       }).then(({data}) => {
         setUser(data);
       }).catch((error: Error | AxiosError)  => {
         console.log(error);
       })
-      setLoading(false);
-    }, [setLoading]);
+      setTimeout(() => {
+          setLoading(false);
+      }, 5000);
+
+    //} [setLoading, setUser]); <--- IMPORTANT
+
 
     useEffect (() => {
       getAllUser();
     },[])
+
 
     return (
       <>
@@ -80,7 +100,7 @@ interface IUser{
                 <div className='rightWrapper'>
                   <div className='centerRightWrapper'>
 
-                    
+
                     <div className='dadosIniciais'>
                       <div className='dadosTexto'>
                         <h1>Dados Pessoais</h1>
@@ -90,9 +110,9 @@ interface IUser{
                         <FaArrowLeft className='seta' size='100%'/>
                         <h2>Voltar</h2>
                       </div>
-                      
+
                     </div>
-                  
+
 
                     <div className='Dados'>
                       <div className='centerDados'>
@@ -101,12 +121,14 @@ interface IUser{
                             <span>RG:</span>
                           </div>
                         </div>
-
-                        <div className='colunaDados'>
+                        {! loading ? ( user.map(user => (
+                          <div className='colunaDados'>
                           <div className='coluna2'>
-                            <span>CPF:</span>
+                            <span>CPF:{user.user_cpf}</span>
                           </div>
                         </div>
+                        ),
+
 
                         <div className='colunaDados'>
                           <div className='coluna3'>
@@ -114,7 +136,7 @@ interface IUser{
                           </div>
                         </div>
 
-                      </div>
+                    </div>
 
                       <div className='centerDados'>
 
@@ -151,11 +173,11 @@ interface IUser{
                             <span>Linguas:</span>
                           </div>
                         </div>
-                      
+
                       </div>
 
                     </div>
-                
+
                   </div>
 
                   <Divider orientation="horizontal" boxShadow=' 1px 1px 1px 1px rgba(0, 0, 0, 0.4)'  />
@@ -212,10 +234,10 @@ interface IUser{
 
                     </div>
                   </div>
-                  
-                </div> 
+
+                </div>
                 <Divider className='divider' orientation="horizontal"  boxShadow=' 1px 1px 1px 1px rgba(0, 0, 0, 0.4)' w='90%' />
-                
+
             </div>
         </div>
 
@@ -276,11 +298,10 @@ interface IUser{
           <span><Link to="/">Código de Conduto e Ética</Link></span>
           </div>
         </div>
-        
+
       </S.Container>
       </>
     );
   };
-  
-  export default User;
-  
+
+  export default User
