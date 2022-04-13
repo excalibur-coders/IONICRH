@@ -86,10 +86,15 @@ color: ${theme.colors.font};
           width: 100%;
       }
 
-      .rightWrapper{
-          width: 100%;
-          margin-top: 50px;
+    .rightWrapper {
+      border:1px solid black;
+      flex-direction: column;
+      position: relative;
+      img {
+      width: 20rem;
+      }
+    }
   }
-}
-    
+
+
 `;
