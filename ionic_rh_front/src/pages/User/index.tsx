@@ -51,7 +51,6 @@ interface IUser {
 function User(){
 
   const {user : jubileu} = useContext(AuthContext)
-  console.log(jubileu)
   const cookies = parseCookies();
   const [user, setUser] = useState<IUser>();
   const [loading, setLoading] = useState(false);
