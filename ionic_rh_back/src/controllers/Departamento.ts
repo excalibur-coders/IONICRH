@@ -12,9 +12,6 @@ export const getAllDepartamentos = async (req: Request, res: Response) => {
         dep_name: true,
       }
     });
-
-    //const departamento = await departamentoRepository
-    //.createQueryBuilder()
     res.json(departamentos);
   } catch (error) {
     res.json(error);
@@ -54,7 +51,12 @@ export const updateDepartamento = async (req: Request, res: Response) => {
       .update(Departamento).
       set({
         "dep_name": req.body.dep_name
-      }).where("dep_id = :dep_id", { dep_id: req.params.id }).execute();
+      })
+      .where(
+        "dep_id = :dep_id", {
+        dep_id: req.params.id
+      }).
+      execute();
     res.json({
       "message": `Departamento foi atualizado com sucesso`
     });
@@ -69,7 +71,10 @@ export const deleteDepartamento = async (req: Request, res: Response) => {
       .createQueryBuilder()
       .delete()
       .from(Departamento)
-      .where("dep_id = :dep_id", { dep_id: req.params.id })
+      .where(
+        "dep_id = :dep_id", {
+        dep_id: req.params.id
+      })
       .execute();
     res.json({
       "message": "Departamento deletado com sucesso"

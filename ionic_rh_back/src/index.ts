@@ -6,6 +6,7 @@ import { AppDataSource } from "./config/database";
 import departamentoRoutes from "./routes/departamento";
 import userRoutes from './routes/user';
 import cargoRoutes from './routes/cargo'
+import empresaRoutes from './routes/empresa_contratante'
 // import authRoutes from './routes/auth';
 
 const app = express();
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use('/departamentos', departamentoRoutes);
 app.use('/user', userRoutes);
 app.use('/cargo', cargoRoutes);
+app.use('/empresa', empresaRoutes);
 // app.use('/auth', authRoutes);
 
 

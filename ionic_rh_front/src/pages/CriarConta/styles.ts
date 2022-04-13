@@ -21,7 +21,7 @@ color: ${theme.colors.font};
       flex-direction: column;
 
       img {
-        width: 120px;
+        width: 160px;
         margin: 5px 5px;
         margin-top:10px;
       }
