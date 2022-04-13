@@ -1,16 +1,49 @@
-import { ReactNode } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { theme } from 'theme';
-import {Flex, Box, Spacer, Icon, Link, Divider} from '@chakra-ui/react';
+import {Box,Icon, Link, Divider, Spinner} from '@chakra-ui/react';
 import {SearchIcon, ArrowBackIcon} from '@chakra-ui/icons';
 import Sidebar from 'components/Sidebar';
 import Input from 'components/Input';
 import Navbar from 'components/navbar';
 import { MdFilterList, MdList, MdOutlineAccountBox} from 'react-icons/md';
 import {Table, Thead, Tbody, Tr, Th, Td,TableContainer} from '@chakra-ui/react';
-import { Stack, HStack, VStack } from '@chakra-ui/react';
+import {HStack} from '@chakra-ui/react';
 import * as S from './style';
+import { api } from 'sevices/api';
+
+import { parsedCookies } from "nookies";
+import { AxiosError } from 'axios';
+
+interface IFuncionarios {
+  func_name: string;
+}
 
 function Funcionarios(){
+  const cookies = parseCookies();
+  const [funcionarios, setFuncionarios] = useState<IFuncionarios[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const getAllFuncionarios = useCallback(() => {
+    setLoading(true);
+    api.get('/funcionarios', {
+      headers: {
+        Authorization: `Bearer ${cookies['ionicookie.token']}`,
+      }
+    }).then(({data}) => {
+      setFuncionarios(data);
+    }).catch(error: Error | AxiosError => {
+      console.log(error);
+    })
+    setTimeout (() => {
+      setLoading(false);
+    }, 5000);
+    setLoading(false);
+  },[setLoading, setFuncionarios]);
+
+  useEffect(() =>{
+    getAllFuncionarios();
+  }, []);
+
   return (
     <>
      <div><Navbar/></div>
@@ -41,10 +74,10 @@ function Funcionarios(){
                   <SearchIcon w={5} h={5}/>
                   </Box>
                 </HStack>
-
                         <div className='Table'>
                               <TableContainer >
-                                <Table variant='simple'size='md'>
+                                {funcionarios.map(funcionarios => (
+                                  <Table variant='simple'size='md'>
                                   <Thead>
                                     <Tr>
                                       <Th fontSize='2xl' color='black' >#Nome</Th>
@@ -53,41 +86,47 @@ function Funcionarios(){
                                         <Th fontSize='2xl' color='black'>Cargo</Th>
                                         <Th fontSize='2xl' color='black'>Perfil</Th>
                                     </Tr>
-                                </Thead>
-                                </Table>
-                                <Divider orientation="horizontal" borderColor={theme.colors.font} variant='solid' size='10rem' />
+
+                                    <Divider orientation="horizontal" borderColor={theme.colors.font} variant='solid' size='10rem' />
                                 <Table variant='simple'size='lg'>
                                   <div className='TableTwo'>
                                     <Tbody>
-                                      <Tr>
-                                          <Td  fontSize='xl'>Lucas Costa</Td>
-                                          <Td>R$ 5000,00</Td>
-                                          <Td>TI</Td>
-                                          <Td></Td>
-                                          <Td></Td>
-                                          <Td>DevPleno</Td>
-                                          <Td><Link href="/perfil" fontSize='4xl'><MdOutlineAccountBox color='#4D4E4F'/></Link></Td>
-                                        </Tr>
-                                      <Tr>
-                                          <Td fontSize='xl'>Priscila Silva</Td>
-                                          <Td>R$ 7000,00</Td>
-                                          <Td>TI</Td>
-                                          <Td></Td>
-                                          <Td></Td>
-                                          <Td>Product Owner</Td>
-                                          <Td><Link href="/perfil" fontSize='4xl'><MdOutlineAccountBox color='#4D4E4F'/></Link></Td>
-                                      </Tr>
-                                    </Tbody>
+                                      {!loading ? (
+                                        {funcionarios.map(funcionarios => (
+                                          <Tr>
+                                              <Td  fontSize='xl'>{funcionarios.dep_name}Lucas Costa</Td>
+                                              <Td>R$ 5000,00</Td>
+                                              <Td>TI</Td>
+                                              <Td></Td>
+                                              <Td></Td>
+                                              <Td>DevPleno</Td>
+                                              <Td><Link href="/perfil" fontSize='4xl'><MdOutlineAccountBox color='#4D4E4F'/></Link></Td>
+                                          </Tr>
+                                          <Tr>
+                                              <Td fontSize='xl'>{funcionarios.dep_name}Priscila Silva</Td>
+                                              <Td>R$ 7000,00</Td>
+                                              <Td>TI</Td>
+                                              <Td></Td>
+                                              <Td></Td>
+                                              <Td>Product Owner</Td>
+                                              <Td><Link href="/perfil" fontSize='4xl'><MdOutlineAccountBox color='#4D4E4F'/></Link></Td>
+                                          </Tr>
+                                        ))
+                                      ) : (
+                                        <div className='funcSpinnerWrapper'>
+                                          <Spinner size='md' />
+                                        </div>
+                                      )}
+                                   </Tbody>
                                   </div>
                                 </Table>
+                                </Thead>
+                                </Table>
+                                ))}
                               </TableContainer>
                         </div>
               </div>
-
         </S.Container>
-
-
-
 
     </>
   )
