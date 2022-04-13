@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 
 import { useCallback, useContext } from 'react';
 import { useForm } from 'react-hook-form';
@@ -21,6 +21,8 @@ import { tmpdir } from 'os';
 import { AuthContext } from "hooks/useAuth";
 import { api } from 'services/api';
 import internal from 'stream';
+import { IUser } from 'interfaces/IUser';
+import { AxiosError } from 'axios';
 
 interface CadastroProps {
   nomecompleto: string;
@@ -41,7 +43,6 @@ interface CadastroProps {
   complemento: string;
   email: string;
   telefone: string;
-  formacao: string;
   cursoscomp: string;
   school_instituicao: string;
   school_formacao: string;
@@ -54,41 +55,44 @@ interface CadastroProps {
 // console.log(theme.colors.primary);
 
 function Cadastro() {
+  const cookies = parseCookies();
 
   const onSubmit = useCallback(async (data: CadastroProps) => {
- console.log(data);
-    /*  await api.put<CadastroProps>("/user/update",{
-       user_email: data.email,
-       user_nome: data.nomecompleto,
-       user_cpf: data.cpf,
-       escolaridade:[{
-         school_instituicao: data.school_instituicao,
-         school_formacao: data.school_formacao,
-         school_inicio: data.school_inicio,
-         school_termino: data.school_termino,
-         school_status: data.school_status
-       }],
-       endereco:[{
-         endereco_pais: data.nacionalidade,
-         endereco_bairro: data.bairro,
-         endereco_cidade: data.cidade,
-         endereco_cep: data.cep,
-         endereco_estado: data.estado,
-         endereco_numero: data.numero
-       }],
-       idioma_falados: data.idiomas,
-       telefone:[{
-         tell_ddd: data.telefone,
-         tell_numero: data.telefone
-       }]
-
-
-     }, {
-     headers: {
-       Authorization: `Bearer ${cookies['ionicookie.token']}`,
-     },
-   }
-   ) */
+    console.log(data);
+    await api.put<CadastroProps>("/user/update", {
+      user_email: data.email,
+      user_nome: data.nomecompleto,
+      user_cpf: data.cpf,
+      escolaridade: [{
+        school_instituicao: data.school_instituicao,
+        school_formacao: data.school_formacao,
+        school_inicio: data.school_inicio,
+        school_termino: data.school_termino,
+        school_status: data.school_status
+      }],
+      endereco: [{
+        endereco_pais: data.nacionalidade,
+        endereco_bairro: data.bairro,
+        endereco_cidade: data.cidade,
+        endereco_cep: data.cep,
+        endereco_estado: data.estado,
+        endereco_numero: data.numero
+      }],
+      idioma_falados: data.idiomas,
+      telefone: [{
+        tell_ddd: data.telefone,
+        tell_numero: data.telefone
+      }]
+    }, {
+      headers: {
+        Authorization: `Bearer ${cookies['ionicookie.token']}`,
+      },
+    }
+    ).then(({data}) => {
+      console.log(data);
+    }).catch(error => {
+      console.log(error);
+    })
   }, []);
 
   const schema = yup.object({
@@ -103,13 +107,17 @@ function Cadastro() {
     numero: yup.string().required('Número obrigatório!'),
     complemento: yup.string().required('Complemento obrigatório!'),
     email: yup.string().required('E-mail obrigatório!'),
-    formacao: yup.string().required('Formação obrigatória!'),
     etnia: yup.string().required('Etnia obrigatória!'),
     nascimento: yup.string().required('Data de nascimento obrigatória!'),
     cpf: yup.string().required('CPF obrigatório!'),
     rg: yup.string().required('RG obrigatório!'),
     cep: yup.string().required('CEP obrigatório!'),
     telefone: yup.string().required('Telefone obrigatório!'),
+    school_instituicao: yup.string().required('Instituição obrigatória!'),
+    school_formacao: yup.string().required('Formação obrigatório!'),
+    school_inicio: yup.string().required('Início obrigatório!'),
+    school_termino: yup.string().required('Término obrigatório!'),
+    school_status: yup.string().required('Status obrigatório!'),
   }).required();
 
   const {
@@ -195,6 +203,7 @@ function Cadastro() {
                     width="14rem"
                     fontSize={20}
                     labelText="CPF"
+                    mask="999.999.999-99"
                     type="text"
                     error={errors.cpf?.message}
                     {...register('cpf')}
@@ -205,6 +214,7 @@ function Cadastro() {
                     width="14rem"
                     fontSize={20}
                     labelText="RG"
+                    mask="99.999.999-9"
                     type="text"
                     error={errors.rg?.message}
                     {...register('rg')}
@@ -248,6 +258,7 @@ function Cadastro() {
                     width="14rem"
                     fontSize={20}
                     labelText="CEP"
+                    mask="99999-999"
                     type="text"
                     error={errors.cep?.message}
                     {...register('cep')}
@@ -264,11 +275,7 @@ function Cadastro() {
                   />
 
                 </div>
-              </div>
-            </div>
 
-            <div className='rightWrapper'>
-              <div className='form'>
                 <div className='form-row'>
                   <Input
                     size='sm'
@@ -291,7 +298,11 @@ function Cadastro() {
                   />
 
                 </div>
+              </div>
+            </div>
 
+            <div className='rightWrapper'>
+              <div className='form'>
                 <div className='form-row'>
                   <Input
                     size='sm'
@@ -361,6 +372,7 @@ function Cadastro() {
                   width="auto"
                   fontSize={20}
                   labelText="Início"
+                  mask="99/99/9999"
                   type="text"
                   error={errors.school_inicio?.message}
                   {...register('school_inicio')}
@@ -371,6 +383,7 @@ function Cadastro() {
                   width="auto"
                   fontSize={20}
                   labelText="Termino"
+                  mask="99/99/9999"
                   type="text"
                   error={errors.school_termino?.message}
                   {...register('school_termino')}
@@ -414,9 +427,6 @@ function Cadastro() {
           </div>
         </form>
       </div>
-
-
-
     </S.Container >
   );
 };
