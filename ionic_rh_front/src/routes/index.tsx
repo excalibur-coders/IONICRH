@@ -33,7 +33,7 @@ function Routes() {
         <Route path="/SenhaAlterada" element={<SenhaAlterada />} />
         <Route path="/Cargos" element={<Cargos />} />
         <Route path="/Ti" element={<DeptoTI />} />
-        <Route path="/User" element={<User />} />
+        <Route path="/User/:id" element={<User />} />
         <Route path="/UserEdit" element={<UserEdit />} />
         <Route path="/Administrador" element={<Administrador />} />
         <Route path="/AdministradorEdit" element={<AdministradorEdit />} />

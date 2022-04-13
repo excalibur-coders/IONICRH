@@ -6,7 +6,7 @@ import { theme } from 'theme';
 import Nav from 'components/nav';
 import * as S from './styles';
 // import { Input, Stack } from '@chakra-ui/react';
-import { ReactNode, useEffect, useState, useCallback } from 'react';
+import { ReactNode, useEffect, useState, useCallback, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import Input from 'components/Input';
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
@@ -15,12 +15,17 @@ import { MdOutlinePictureAsPdf } from "react-icons/md";
 import { Divider } from '@chakra-ui/react';
 import { FaArrowLeft} from "react-icons/fa";
 
+
+import {useSearchParams, useParams} from 'react-router-dom';
+
+
 import Button from 'components/Button';
 import { api } from 'services/api';
 
 import  {parseCookies} from "nookies";
 import { AxiosError } from 'axios';
 
+import {AuthContext} from 'hooks/useAuth'
 
 
 
@@ -43,35 +48,37 @@ interface IUser {
 
 }
 
-  function User() {
+function User(){
 
-    const cookies = parseCookies();
+  const {user : jubileu} = useContext(AuthContext)
+  console.log(jubileu)
+  const cookies = parseCookies();
+  const [user, setUser] = useState<IUser>();
+  const [loading, setLoading] = useState(false);
+  const {id} = useParams()
+  const getAllUser = useCallback(() => {
+    setLoading(true);
 
-    const[user, setUser] = useState<IUser[]>([]);
-    const [loading, setLoading] = useState(false);
+      api.get(`/user/user-info/${id}`, {
+      headers: {
+        Authorization: `Bearer ${cookies['ionicookie.token']}`,
+      }
+    }).then(({data}) => {
+      console.log(data)
+      setUser(data);
+    }).catch((error: Error | AxiosError) => {
+      console.log(error);
+    })
+    console.log(id)
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
 
-    const getAllUser = useCallback(() => {
-      setLoading(true);
-      api.get('/user', {
-         headers: {
-          Authorization: `Bearer ${cookies['ionicookie.token']}`,
-         }
+  }, [setLoading, setUser]);
 
-      }).then(({data}) => {
-        setUser(data);
-      }).catch((error: Error | AxiosError)  => {
-        console.log(error);
-      })
-      setTimeout(() => {
-          setLoading(false);
-      }, 5000);
-
-    //} [setLoading, setUser]); <--- IMPORTANT
-
-
-    useEffect (() => {
-      getAllUser();
-    },[])
+  useEffect(() => {
+    getAllUser();
+  }, []);
 
 
     return (
@@ -121,13 +128,11 @@ interface IUser {
                             <span>RG:</span>
                           </div>
                         </div>
-                        {! loading ? ( user.map(user => (
                           <div className='colunaDados'>
                           <div className='coluna2'>
-                            <span>CPF:{user.user_cpf}</span>
+                            <span>CPF:{user?.user_cpf}</span>
                           </div>
                         </div>
-                        ),
 
 
                         <div className='colunaDados'>
@@ -136,7 +141,7 @@ interface IUser {
                           </div>
                         </div>
 
-                    </div>
+        </div>
 
                       <div className='centerDados'>
 
