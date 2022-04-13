@@ -140,6 +140,7 @@ export const updateUser = async (req: Request, res: Response) => {
       .set({
         "user_nome": requestBody.user_nome,
         "user_cpf": requestBody.user_cpf,
+        "user_rg": requestBody.user_rg,
         "user_naturalidade": requestBody.user_naturalidade,
         "user_nascimento": requestBody.user_nascimento,
         "user_genero": requestBody.user_genero,
