@@ -18,8 +18,6 @@ import * as S from './styles';
 function Cargos(){
         return(
     <>
-
-
        <div><Navbar/></div>
 
 
