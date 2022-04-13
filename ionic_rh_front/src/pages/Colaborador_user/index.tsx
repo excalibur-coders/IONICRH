@@ -1,4 +1,5 @@
 import Colab_Nav from 'components/Colab_Nav';
+import RespBar from 'components/RespBar';
 import { MdAccountCircle } from 'react-icons/md';
 import { ReactNode } from 'react';
 import { theme } from 'theme';
@@ -14,8 +15,9 @@ import Footer from 'components/Footer';
 function Colab_user(){
   return (
     <>
-    <Colab_Nav/>
     <S.Container>
+    <RespBar/>
+    <main>
         <div className='Wrapper'>
             <div className='centerWrapper'>
                 <div className='leftWrapper'>
@@ -87,8 +89,11 @@ function Colab_user(){
                 </div>
             </div>
         </div>
-    </S.Container>
+    </main>
+    <footer>
     <Footer/>
+    </footer>
+    </S.Container>
     </>
   )
 }

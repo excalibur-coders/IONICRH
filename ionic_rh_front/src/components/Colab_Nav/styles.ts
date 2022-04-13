@@ -43,3 +43,7 @@ export const ContainerButton = styled.div`
 }
 `;
 
+//color: #f4f4f5;
+//width: 100%;
+//boxShadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+//position: fixed;

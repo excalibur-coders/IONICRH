@@ -2,16 +2,23 @@ import styled from '@emotion/styled';
 import { theme } from 'theme';
 
 export const Container = styled.div`
+margin: auto;
+margin-top: 2rem;
+margin-bottom: 3rem;
 display: flex;
-align-items: center;
-margin-top: 5rem;
-margin-bottom: 30px;
 
   h1{
-    font-size: 20px;
     margin: auto;
+    font-size: 20px;
     font-weight: bold;
     color: ${theme.colors.font};
     text-align: center;
+  }
+
+  @media(max-width: 768px){
+
+    h1{
+      font-size: 15px;
+    }
   }
 `;
