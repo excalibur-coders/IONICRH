@@ -62,7 +62,7 @@ function Cadastro() {
 
   const onSubmit = useCallback(async (data: CadastroProps) => {
     const idiomasfalados: (string | boolean)[] = []
-    Object.values(data.idiomas[0]).forEach((value,index)=>{
+    Object.values(data.idiomas[0]).forEach((value, index) => {
       idiomasfalados.push(value)
     })
 
@@ -95,14 +95,14 @@ function Cadastro() {
       idioma_falados: idiomasfalados,
       telefone: [{
         tell_ddd: data.telefone.split(" ")[0].replace(/([()])/g, ''),
-        tell_numero: data.telefone.split(" ")[1].replace("-",'')
+        tell_numero: data.telefone.split(" ")[1].replace("-", '')
       }]
     }, {
       headers: {
         Authorization: `Bearer ${cookies['ionicookie.token']}`,
       },
     }
-    ).then(({data}) => {
+    ).then(({ data }) => {
       console.log(data);
     }).catch(error => {
       console.log(error);
@@ -152,8 +152,8 @@ function Cadastro() {
         <h1>Cadastro</h1>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-      <div className='main'>
-        
+        <div className='main'>
+
           <div className="mainWrapper">
 
             <div className='leftWrapper'>
@@ -317,7 +317,7 @@ function Cadastro() {
                   />
 
                 </div>
-                
+
                 <div className='form-row'>
                   <Input
                     size='sm'
@@ -345,7 +345,7 @@ function Cadastro() {
 
             <div className='rightWrapper'>
               <div className='form'>
-                
+
 
                 <Input
                   size='sm'
@@ -364,7 +364,7 @@ function Cadastro() {
                   labelText="Telefone"
                   type="text"
                   error={errors.telefone?.message}
-                  mask="(99) 99999-9999" 
+                  mask="(99) 99999-9999"
                   {...register('telefone')}
                 />
 
@@ -420,7 +420,7 @@ function Cadastro() {
                   {...register('school_status')}
                 />
 
-               {/*  <Input
+                {/*  <Input
                   size='sm'
                   width="auto"
                   fontSize={20}
@@ -435,14 +435,14 @@ function Cadastro() {
                   type="text"
                   error={errors.contrato?.message}
                   {...register('contrato')}
-                />    
+                />
 
                 <h2>Idiomas</h2>
                 <CheckboxGroup colorScheme='blue'>
                   <Stack spacing={[1, 5]} direction={['column', 'row']}>
                     <Checkbox value='ingles' {...register('idiomas.0.ingles')}>Inglês</Checkbox>
                     <Checkbox value='espanhol' {...register('idiomas.0.espanhol')}>Espanhol</Checkbox>
-                    <Input size='sm' width="auto" fontSize={15} labelText="Digite outro idioma..."  {...register('idiomas.0.outros')} />
+                    <Input size='sm' width="auto" fontSize={15} labelText="Digite outro idioma:"  {...register('idiomas.0.outros')} />
                   </Stack>
                 </CheckboxGroup>
               </div>
@@ -455,8 +455,8 @@ function Cadastro() {
               type="submit"
             />
           </div>
-        
-      </div>
+
+        </div>
       </form>
     </S.Container >
   );
