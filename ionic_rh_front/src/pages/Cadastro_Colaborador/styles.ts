@@ -20,7 +20,6 @@ height: 100vh;
         font-weight: bold;
         font-size: 30px;
         
-      }
 
         img {
             width: 20rem;
@@ -65,7 +64,7 @@ height: 100vh;
     }
 
     .rightWrapper {
-        display: flex
+        display: flex;
         align-items: center;
         justify-content: top;
         flex-direction: column;
