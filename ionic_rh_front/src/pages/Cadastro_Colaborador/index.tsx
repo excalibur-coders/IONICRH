@@ -56,7 +56,7 @@ interface CadastroProps {
 function Cadastro() {
 
   const onSubmit = useCallback(async (data: CadastroProps) => {
- console.log(data);
+    console.log(data);
     /*  await api.put<CadastroProps>("/user/update",{
        user_email: data.email,
        user_nome: data.nomecompleto,
@@ -103,7 +103,7 @@ function Cadastro() {
     numero: yup.string().required('Número obrigatório!'),
     complemento: yup.string().required('Complemento obrigatório!'),
     email: yup.string().required('E-mail obrigatório!'),
-    formacao: yup.string().required('Formação obrigatória!'),
+    // formacao: yup.string().required('Formação obrigatória!'),
     etnia: yup.string().required('Etnia obrigatória!'),
     nascimento: yup.string().required('Data de nascimento obrigatória!'),
     cpf: yup.string().required('CPF obrigatório!'),
@@ -414,9 +414,6 @@ function Cadastro() {
           </div>
         </form>
       </div>
-
-
-
     </S.Container >
   );
 };
