@@ -10,10 +10,10 @@ export type Acesso_Sistema = "Administrador" | "Colaborador" | "Gestor" | "Consu
 @Entity()
 export class USER {
     static user_nome(user_nome: any) {
-      throw new Error("Method not implemented.");
+        throw new Error("Method not implemented.");
     }
     static findOne(arg0: { user_email: any; user_type: number; }, arg1: (err: any, user: any) => void) {
-      throw new Error("Method not implemented.");
+        throw new Error("Method not implemented.");
     }
     @PrimaryGeneratedColumn({
         type: "int"
@@ -86,10 +86,11 @@ export class USER {
 
     @Column({
         type: "varchar",
-        length: 50,
+        length: 12,
         nullable: true,
+        unique:true
     })
-    user_tipo_contrato?: string
+    user_rg?: string
 
     @Column({
         type: "varchar",
@@ -98,7 +99,7 @@ export class USER {
         unique: true
     })
     user_cnpj?: string
-    
+
     @Column({
         type: "varchar",
         length: 255,
@@ -108,30 +109,33 @@ export class USER {
     @Column({
         type: "set",
         enum: ["Administrador", "Colaborador", "Consultor", "Gestor"],
-        default: ["Colaborador"]
+        default: "Colaborador"
     })
     user_role!: Acesso_Sistema[];
 
     // Chave Estrangeira
     // Auto relacionamento
     @ManyToOne(type => USER, (user) => user.id_)
-    id_!: USER 
+    id_!: USER
+
     @OneToMany(type => USER, (user_one => user_one.user_reference_id))
     user_reference_id!: USER[]
-    // One - Many [ Escolaridade, Documento, Telefone, Contrato]
-    @OneToMany(() => Escolaridade, (escolaridade) => escolaridade._fk__user_)
+
+    @OneToMany(() => Escolaridade, (escolaridade) => escolaridade.user)
     escolaridade!: Escolaridade
+
     @OneToMany(() => Documentos, (docs) => docs._fk__user_)
     docs!: Documentos
-    @OneToMany(() => Idiomas, (idioma) => idioma._fk__user_)
+
+    @OneToMany(() => Idiomas, (idioma) => idioma.user)
     idioma!: Idiomas
-    @OneToMany(() => Telefone, (telefone) => telefone._fk__user_)
+
+    @OneToMany(() => Telefone, (telefone) => telefone.user)
     telefone!: Telefone
-    @OneToMany(() => Endereco, (endereco) => endereco._fk__user_)
+
+    @OneToMany(() => Endereco, (endereco) => endereco.user)
     endereco!: Endereco
-    @OneToMany(() => Contrato, (contrato) => contrato._fk__user_)
-    contrato!: Contrato 
-    // Many - One [ Endereco, Acesso ]
-    // @ManyToOne(() => Acesso, (acesso_cargo) => acesso_cargo.user)
-    // _FK__acesso_cargo_!: Acesso 
+    
+    @OneToMany(() => Contrato, (contrato) => contrato.user)
+    contrato!: Contrato
 }
