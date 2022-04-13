@@ -84,12 +84,13 @@ export class USER {
     })
     user_estado_civil?: string
 
-    //@Column({
-    //    type: "varchar",
-    //    length: 50,
-    //    nullable: true,
-    //})
-    //user_tipo_contrato?: string
+    @Column({
+        type: "varchar",
+        length: 12,
+        nullable: true,
+        unique:true
+    })
+    user_rg?: string
 
     @Column({
         type: "varchar",
