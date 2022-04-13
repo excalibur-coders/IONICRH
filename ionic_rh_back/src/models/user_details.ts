@@ -123,7 +123,15 @@ export class Telefone {
 
     //Chave estrangeira
     @ManyToOne(() => USER, (user) => user.telefone)
-    _fk__user_!: USER
+    @JoinColumn({
+        name: "userUserId"
+    })
+    user!: USER
+    @Column({
+        type: "int"
+    })
+    userUserId?: number
+    
 }
 
 @Entity()
@@ -152,6 +160,12 @@ export class Endereco {
     endereco_cidade!: string;
 
     @Column({
+        type:"varchar",
+        length: 10
+    })
+    endereco_cep!: string;
+
+    @Column({
         type: "varchar",
         length: 255
     })
@@ -164,5 +178,12 @@ export class Endereco {
     endereco_numero!: string;
     // Chave estrangeira
     @ManyToOne(() => USER, (user) => user.endereco)
-    _fk__user_!: USER
+    @JoinColumn({
+        name: "userUserId"
+    })
+    user!: USER
+    @Column({
+        type: "int"
+    })
+    userUserId?: number
 }

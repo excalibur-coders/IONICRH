@@ -8,22 +8,28 @@ import {
   getLoggedUserData,
   adicionarIdioma,
   adicioanrEscolaridade,
-  getUserById
+  getUserById,
+  adicionarTelefone,
+  adicionarEndereco
 } from "controllers/User";
+
 import {
-  insertContratoUser
+  insertContratoUser, updateContratoUser
 } from 'controllers/contrato'
+
 import {
   auth,
   verifyUserRole
 } from 'middlewares/auth';
+
 import {
   verifyUserExistsByEmail,
-  verifyLoginRequestValues, 
+  verifyLoginRequestValues,
   verifyRegisterRequestValues,
   verifyUpdateRequestValues,
   verifyUsedCpf
 } from "middlewares/user";
+
 
 const router = express.Router();
 
@@ -33,26 +39,59 @@ router.post(
   verifyRegisterRequestValues,
   CadastroUser
 );
+
 router.post(
   '/login',
-  verifyLoginRequestValues, 
+  verifyLoginRequestValues,
   loginUser
 );
+
 router.use(auth);
+
 router.put(
   '/update',
   adicioanrEscolaridade,
   adicionarIdioma,
+  adicionarTelefone,
+  adicionarEndereco,
   updateUser
 );
-router.get('/logged-user-info', getLoggedUserData);
-router.get('/allUser', verifyUserRole(["Administrador"]), getAllUser);
-router.get('/user-info', getLoggedUserData);
-router.get('/allUser',  getAllUser);
+
+router.get(
+  '/logged-user-info',
+  getLoggedUserData);
+
+router.get(
+  '/allUser',
+  verifyUserRole(["Administrador"]),
+  getAllUser);
+
+router.get(
+  '/user-info',
+  getLoggedUserData);
+
+router.get(
+  '/allUser',
+  getAllUser);
 
 // Rotas de Contrato
-// Pegar o Contrato, iserir e retornar os valores
-router.get('/user-info/:id', verifyUserRole(["Administrador","Gestor"]), getUserById )
-router.post('/Inserir-contrato-user/:id', verifyUserRole(["Administrador","Gestor"]), insertContratoUser , getUserById )
-router.get('/Contrato-user', verifyUserRole(["Administrador","Gestor"]), getLoggedUserData)
+router.get(
+  '/user-info/:id',
+  verifyUserRole(["Administrador", "Gestor"]),
+  getUserById)
+router.post(
+  '/Inserir-contrato-user/:id',
+  verifyUserRole(["Administrador", "Gestor"]),
+  insertContratoUser,
+  getUserById)
+router.get(
+  '/Contrato-user',
+  verifyUserRole(["Administrador", "Gestor"]),
+  getLoggedUserData)
+router.put(
+  '/update-contrato-user/:id',
+  verifyUserRole(["Administrador", "Gestor"]),
+  updateContratoUser,
+  getUserById)
+  
 export default router; 

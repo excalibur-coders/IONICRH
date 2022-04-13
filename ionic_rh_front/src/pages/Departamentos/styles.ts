@@ -20,30 +20,16 @@ margin-left: 50px;
 
 .TableTwo{
   display: flex;
-  margin-left: 60px;
-
+  justify-content: center;
 }
 
-`;
-
-export const ContainerDiv = styled.div`
-
-
-.filter{
-  display: flex;
+.spinnerWrapper {
+  margin-top: 30px;
 }
-
-
 
 `;
 
 export const ContainerInput = styled.div`
-
-margin-left: 30px;
-bottom: 90px;
-
-
-
+  margin-left: 30px;
+  bottom: 90px;
 `;
-
-
