@@ -90,7 +90,8 @@ function Cadastro() {
         endereco_cidade: data.cidade,
         endereco_cep: data.cep,
         endereco_estado: data.estado,
-        endereco_numero: data.numero
+        endereco_numero: data.numero,
+        endereco_rua: data.rua
       }],
       idioma_falados: idiomasfalados,
       telefone: [{
