@@ -39,9 +39,11 @@ height: 100vh;
     height: 93vh;
     margin-top: 7vh;
     align-items: center;
+    position: absolute;
 
     .mainWrapper {
         width: 100%;
+        height: 110vh;
         display: flex;
         justify-content: space-evenly;
     }
@@ -90,12 +92,9 @@ height: 100vh;
         }
     }
 
-
-
     .ButtonW {
         display: flex;
         align-items: center;
-    }
-    
+    } 
 }
 `
