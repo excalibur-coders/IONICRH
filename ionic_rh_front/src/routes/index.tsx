@@ -11,6 +11,10 @@ import SenhaAlterada from 'pages/SenhaAlterada';
 import Funcionarios from 'pages/funcionários';
 import Cargos from 'pages/Cargos'
 import DeptoTI from 'pages/Depto_Selecionado';
+import User from 'pages/User';
+import UserEdit from 'pages/UserEdit';
+import Administrador from 'pages/Administrador';
+import AdministradorEdit from 'pages/AdministradorEdit';
 
 
 import Colab_home from 'pages/Colaborador_home';
@@ -36,6 +40,10 @@ function Routes() {
         <Route path="/Colab_user" element={<Colab_user />} />
         <Route path="/Cargos" element={<Cargos />} />
         <Route path="/Ti" element={<DeptoTI />} />
+        <Route path="/User/:id" element={<User />} />
+        <Route path="/UserEdit" element={<UserEdit />} />
+        <Route path="/Administrador" element={<Administrador />} />
+        <Route path="/AdministradorEdit" element={<AdministradorEdit />} />
       </RoutesWrapper>
     // </BrowserRouter>
   )
