@@ -8,7 +8,8 @@ import {
   Contrato, 
   Departamento, 
   Empresa_Contrante, 
-  Empresa_PJ 
+  Empresa_PJ,
+  Pesquisa_desligamento
 } from "models/empresa";
 import { USER } from "models/user";
 import { 
@@ -39,7 +40,8 @@ export const AppDataSource = new DataSource({
     Empresa_Contrante, 
     Empresa_PJ, 
     Cargo,
-    Departamento
+    Departamento,
+    Pesquisa_desligamento
   ],
   migrations: [],
   subscribers: []
