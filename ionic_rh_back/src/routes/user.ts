@@ -10,7 +10,8 @@ import {
   adicioanrEscolaridade,
   getUserById,
   adicionarTelefone,
-  adicionarEndereco
+  adicionarEndereco,
+  getAllUsers
 } from "controllers/User";
 
 import {
@@ -70,9 +71,14 @@ router.get(
   '/user-info',
   getLoggedUserData);
 
-router.get(
+/* router.get(
   '/allUser',
-  getAllUser);
+  getAllUser); */
+
+router.get(
+  '/Get-All-User',
+  verifyUserRole(["Administrador"]), 
+  getAllUsers )
 
 // Rotas de Contrato
 router.get(
