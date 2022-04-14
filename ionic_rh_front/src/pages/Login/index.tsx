@@ -88,7 +88,7 @@ function Login() {
             />
 
             <div className="formFooter">
-              <a href="">Esqueceu sua senha?</a>
+              <a href="/RecuperarSenha">Esqueceu sua senha?</a>
               <Button
                 text="Logar"
                 color={theme.colors.primary}

@@ -77,7 +77,7 @@ color: ${theme.colors.font};
     background: ${theme.colors.primary};
 
     img {
-      width: 20rem;
+      width: 30rem;
     }
   }
 }

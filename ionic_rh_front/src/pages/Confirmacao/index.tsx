@@ -1,5 +1,6 @@
 //
 import { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 import Input from 'components/Input';
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
@@ -19,7 +20,7 @@ function Confirmacao() {
         <div className='text'>
           <h1>Cadastro realizado com sucesso !</h1>
           <h2>Voltar para pagina de Login</h2><br></br>
-          <Button text="Voltar" color={theme.colors.primary}/>
+          <span><Link to="/">Voltar</Link></span>
         </div>
         
 

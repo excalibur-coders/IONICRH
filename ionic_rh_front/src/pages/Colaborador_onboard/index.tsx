@@ -6,14 +6,16 @@ import { BsClipboardCheck } from "react-icons/bs";
 import * as S from './styles';
 import { Button } from '@chakra-ui/react';
 import Footer from 'components/Footer';
+import RespBar from 'components/RespBar';
 //import * as S from './styles';
 
 
 function Colab_onboard(){
   return (
     <>
-    <Colab_Nav/>
     <S.Container>
+    <RespBar/>
+      <main>
       <h1>Cursos</h1>
       <div className='buttons_onboard'>
         <div>
@@ -29,8 +31,11 @@ function Colab_onboard(){
           <small>Curso 3</small>
           </div>
       </div>
-    </S.Container>
+      </main>
+      <footer>
     <Footer/>
+      </footer>
+    </S.Container>
     </>
   )
 }

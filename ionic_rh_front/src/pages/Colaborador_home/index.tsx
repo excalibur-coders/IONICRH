@@ -1,4 +1,5 @@
 import Colab_Nav from 'components/Colab_Nav';
+import RespBar from 'components/RespBar';
 import { ReactNode } from 'react';
 import { MdAccountCircle, MdOutlinePlayCircleOutline, MdArrowForward } from 'react-icons/md';
 import { theme } from 'theme';
@@ -10,15 +11,18 @@ import Footer from 'components/Footer';
 function Colab_home(){
   return (
     <>
-        <Colab_Nav/>
         <S.Container>
+          <RespBar/>
+          <main>
             <div className='welcome'>
               <h1>Olá, User</h1>
               <h2>É um prazer tê-lo em nossa plataforma <br/>
                 Continue sua trilha de aprendizado na empresa
               </h2>
             </div>
-              <div className='course'>
+
+           <div className='blocs'>
+            <div className='course'>
                   <div className='leftcourse'>
                     <h1>Low Code</h1>
                     <h2>Boas práticas de programação</h2>
@@ -30,14 +34,14 @@ function Colab_home(){
                   </div>
               </div>
                 <div className='inferior'>
-                  <div className='perfil'>
+                  <section className='perfil'>
                       <div className='perfil_s'>
                           <div className='foto'>
                               <MdAccountCircle size={100} color={theme.colors.font}/>
                           </div>
                           <div className='myperfil'>
                               <h1>Meu Perfil</h1>
-                              <Button text="Editar Perfil" color={theme.colors.font}></Button>
+                              <a href='/Colab_user'><Button text="Perfil" color={theme.colors.font}></Button></a>
                           </div>
                       </div>
                       <div className='perfil_i'>
@@ -50,21 +54,25 @@ function Colab_home(){
                           <RangeSliderThumb index={1} />
                         </RangeSlider>
                       </div>
-                  </div>
-                    <div className='projeto'>
+                  </section>
+                    <section className='projeto'>
                       <h1> Projetos Recentes</h1>
                       <h2>"Nome projeto"</h2>
                       <h3>"Descrição projeto"</h3>
                       <Button text='Acessar Projeto' color={theme.colors.font}></Button>
-                    </div>
-                    <div className='others'>
+                    </section>
+                    <section className='others'>
                     <h1>Outros Projetos</h1>
                     <h2>Saiba mais</h2>
                     <a href=''><MdArrowForward size={70} color={theme.colors.font} margin-top={50} /></a>
-                    </div>
+                    </section>
                 </div>
-        </S.Container>
+            </div>
+          </main>
+          <footer>
         <Footer/>
+          </footer>
+        </S.Container>
     </>
 
 
