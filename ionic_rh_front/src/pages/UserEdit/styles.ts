@@ -113,9 +113,12 @@ color: ${theme.colors.font};
                                 float:left;
 
                                 .coluna1, .coluna2, .coluna3{
-                                    display:flex;
-                                    flex-direction: column;
+                                    display:inline-flex;
                                     padding: 0 30px;
+
+                                    Input{
+                                        border: transparent;
+                                    }
                                 }
                             }
                             
@@ -125,9 +128,12 @@ color: ${theme.colors.font};
                                 float:left;
 
                                 .coluna1, .coluna2{
-                                    display:flex;
-                                    flex-direction: column;
+                                    display:inline-flex;
                                     padding: 0 30px;
+
+                                    Input{
+                                        border: transparent;
+                                    }
                                 }
                             }
                         }
@@ -156,9 +162,12 @@ color: ${theme.colors.font};
                                 float:left;
 
                                 .coluna1, .coluna2, .coluna3{
-                                    display:flex;
-                                    flex-direction: column;
+                                    display:inline-flex;
                                     padding: 0 30px;
+
+                                    Input{
+                                        border: transparent;
+                                    }
                                 }
                             }
                             
@@ -195,16 +204,27 @@ color: ${theme.colors.font};
                 width: 30%;
                 margin-right: 3%;
                 float:left;
+                display:inline-flex;
 
-                .coluna1, .coluna2, .coluna3{
-                    display:flex;
-                    flex-direction: column;
-                    padding: 0 30px;
-                }
-                
-                .coluna3 h1{
-                    font-weight: bold;
-                    font-size: 20px;
+                .colunaFuncionais{
+
+                    .coluna1, .coluna2, .coluna3{
+                        display:inline-flex;
+                        padding: 0 30px;
+
+                        Input{
+                            border: transparent;
+                        }
+
+                    }
+
+                    .coluna3 h1{
+                        font-weight: bold;
+                        font-size: 20px;
+                    }
+
+    
+
                 }
             }
         }
@@ -269,8 +289,11 @@ color: ${theme.colors.font};
         .Wrapper2{
             .centerWrapper2{
                 .coluna{
+                    width:100%; 
+                    .colunaFuncionais{
                     float:none;
-                    width:100%;   
+                    width:100%; 
+                    } 
                 }
             }
         }
