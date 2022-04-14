@@ -16,13 +16,12 @@ const app = express();
 
 try {
   AppDataSource.initialize().then(async () => {
-    console.log('Conectado Pora!');
+    console.log('Banco conectado com sucesso');
     const userRepository = AppDataSource.getRepository(USER)
     const depRepository = AppDataSource.getRepository(Departamento)
     const empcontRepository = AppDataSource.getRepository(Empresa_Contrante)
     const cargoRepository = AppDataSource.getRepository(Cargo)
     const contRepository = AppDataSource.getRepository(Contrato)
-    console.log('Conectado Pora!');
     let Administrador = await userRepository.findOne({
       where: {
         user_nome: "Administrador"
@@ -165,4 +164,4 @@ app.use('/empresa', empresaRoutes);
 // app.use('/auth', authRoutes);
 
 
-app.listen(5000, () => console.log('Server rodandooo!'))
+app.listen(5000, () => console.log('Serve conectado'))
