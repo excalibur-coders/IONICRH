@@ -83,14 +83,14 @@ function CriarConta() {
               <div className="formFooter">
               <div className="formFooterLeft">
                 <Checkbox isInvalid>Eu li e concordo com os:</Checkbox>
-                <span>Termos e condições</span>
+                <span><a href="./docs/Politica_e_Termos.pdf" target="blank">Termos e Condições</a></span>
               </div>
               <div>
                 <Button text="Criar" color={theme.colors.primary} type='submit' />
               </div>
             </div>
             </form>
-          
+
             <div className='registerWrapper'>
               <span>Já tem uma conta?</span>
               <span><Link to="/">Entre aqui</Link></span>
