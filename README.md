@@ -1,6 +1,6 @@
 # Projeto IonicRH
 
-![Equipe ExcaliburCoders](./img/1.png)
+![Equipe ExcaliburCoders](./docs/img/1.png)
 
 - Lucas Braz Dias (Scrum Master)
 
@@ -47,21 +47,78 @@
 
 ## _User Story_
 
-![Colaborador](./img/Colaborador.png)
+![Colaborador](./docs/img/Colaborador.png)
 
-![Administrador](./img/Administrador.png)
+![Administrador](./docs/img/Administrador.png)
 
 ## Backlog da Sprint
 
-![Backlog](./img/6.png)
+![Backlog](./docs/img/backlog.png)
 
 ## Modelagem do Banco de Dados
 
-![ModeloBD](./img/8.png)
+![ModeloBD](./docs/img/modelagem.png)
 
 ## Tecnologias Utilizadas
 
-![Tecnologias](./img/9.png)
+![Tecnologias](./docs/img/tecnologias.png)
+
+## Passo a passo da instalação do sistema
+
+```bash
+git clone https://github.com/excalibur-coders/IONICRH.git
+cd  /src
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+```bash
+
+```
+
+Executar aplicação:
+
+```bash
+
+```
+
+## Importar Banco de dados
+
+Importar o Banco de dados que está no em sua máquina.
+
+## Antes de rodar a aplicação, siga os passos abaixo:
+
+Renomear arquivo .env.exemplo para .env
+
+cp .env.exemplo .env
+
+Alterar dados de acordo com seu ambiente:
+
+```bash
+MYSQL_Host = [host MySQL ou localhost]
+```
+
+```bash
+MYSQL_USER = [nome usuário]
+```
+
+```bash
+MMYSQL_PASSWORD = [senha banco de dados]
+```
+
+```bash
+MYSQL_DB =
+```
 
 ## Sistema Desenvolvido
 

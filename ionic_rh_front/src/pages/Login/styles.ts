@@ -2,8 +2,6 @@ import styled from '@emotion/styled';
 import { Flex } from '@chakra-ui/react';
 import { theme } from 'theme';
 
-
-
 export const Container = styled(Flex)`
 height:100vh;
 display: flex;
@@ -75,7 +73,7 @@ color: ${theme.colors.font};
         background: ${theme.colors.primary};
 
         img {
-            width: 20rem;
+            width: 30rem;
         }
     }
 }

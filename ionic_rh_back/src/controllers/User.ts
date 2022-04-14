@@ -365,3 +365,34 @@ export const getAllUser = async (req: Request, res: Response) => {
     res.json(req.body)
   }
 }
+
+export const getAllUsers = async (req: Request, res: Response) => {
+  try {
+
+    const dadosContratoUser = await userReposiroty
+      .createQueryBuilder()
+      .select([
+        'u',
+        'i',
+        'e',
+        't',
+        'c',
+        'end',
+        'cont',
+        'd',
+        'en'])
+      .from(USER, 'u')
+      .leftJoin('u.idioma', 'i')
+      .leftJoin('u.escolaridade', 'e')
+      .leftJoin('u.telefone', 't')
+      .leftJoin('u.endereco', 'end')
+      .leftJoin('u.contrato', 'c')
+      .leftJoin('c.cargo', 'cont')
+      .leftJoin('cont.departamento', 'd')
+      .leftJoin('c.emp_contratante', 'en')
+      .getMany()
+    res.json(dadosContratoUser)
+  } catch (error) {
+    res.json(req.body)
+  }
+}
