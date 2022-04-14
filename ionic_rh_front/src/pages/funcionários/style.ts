@@ -29,16 +29,9 @@ margin-left: 50px;
   margin-top: 30px;
 }
 
-`;
-
-export const ContainerDiv = styled.div`
-
-
-.filter{
-  display: flex;
+.funcSpinnerWrapper {
+  margin-top: 30px;
 }
-
-
 
 `;
 
@@ -46,7 +39,5 @@ export const ContainerInput = styled.div`
 
 margin-left: 30px;
 bottom: 90px;
-
-
 
 `;

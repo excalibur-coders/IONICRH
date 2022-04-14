@@ -6,9 +6,7 @@ import Sidebar from 'components/Sidebar';
 import Input from 'components/Input';
 import Navbar from 'components/navbar';
 import { MdFilterList, MdList} from 'react-icons/md';
-import {
-  Table, Thead, Tbody,
-  Tr, Th, Td,TableContainer} from '@chakra-ui/react'
+import {Table, Thead, Tbody, Tr, Th, Td,TableContainer} from '@chakra-ui/react'
 import { HStack } from '@chakra-ui/react'
 import * as S from './styles';
 import { api } from 'services/api';
