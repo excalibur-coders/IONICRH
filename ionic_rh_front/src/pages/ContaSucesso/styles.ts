@@ -61,6 +61,8 @@ color: ${theme.colors.font};
       span:last-child {
         text-align: center;
         color: ${theme.colors.primary};
+        font-size: 1.5em;
+        }
       }
     }
   }
@@ -75,7 +77,7 @@ color: ${theme.colors.font};
     background: ${theme.colors.primary};
 
     img {
-      width: 20rem;
+      width: 30rem;
     }
   }
 }
@@ -86,10 +88,15 @@ color: ${theme.colors.font};
           width: 100%;
       }
 
-      .rightWrapper{
-          width: 100%;
-          margin-top: 50px;
+    .rightWrapper {
+      border:1px solid black;
+      flex-direction: column;
+      position: relative;
+      img {
+      width: 20rem;
+      }
+    }
   }
-}
-    
+
+
 `;

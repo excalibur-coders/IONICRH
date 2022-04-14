@@ -24,7 +24,7 @@ function ContaSucesso() {
             <h2>Voltar ao Login</h2>
 
             <div className='registerWrapper'>
-            <Link to="/"><Button text="Voltar" color={theme.colors.primary} /></Link>
+              <span><Link to="/">Voltar</Link></span>
             </div>
           </div>
         </div>

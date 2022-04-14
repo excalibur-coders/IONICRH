@@ -37,8 +37,8 @@ import Button from 'components/Button';
                   </div>
 
                   <div className='button'>
-                    <Button text="Salvar" color={theme.colors.primary} />
-                    <Button text="Cancelar" color={theme.colors.red} />
+                    <Link to='/UserEdit'><Button text="Salvar" color={theme.colors.primary} /></Link>
+                    <Link to='User/:id'><Button text="Cancelar" color={theme.colors.red} /></Link>
                   </div>
 
                   <div className='voltarSeta'>
@@ -47,7 +47,7 @@ import Button from 'components/Button';
                     </div>
 
                       <div className='voltar'>
-                          <Link to='/User'><h2>Voltar</h2> </Link>
+                          <Link to='User/:id'><h2>Voltar</h2> </Link>
                       </div>
                   </div>
 
@@ -65,18 +65,36 @@ import Button from 'components/Button';
                         <div className='colunaDados'>
                           <div className='coluna1'>
                             <span>RG:</span>
+                            <Input
+                              size='xs'
+                              placeholder=''
+                              width="auto"
+                              fontSize={15}
+                            />
                           </div>
                         </div>
 
                         <div className='colunaDados'>
                           <div className='coluna2'>
                             <span>CPF:</span>
+                              <Input
+                                size='xs'
+                                placeholder=''
+                                width="auto"
+                                fontSize={15}
+                              />
                           </div>
                         </div>
 
                         <div className='colunaDados'>
                           <div className='coluna3'>
                             <span>Telefone:</span>
+                            <Input
+                              size='xs'
+                              placeholder=''
+                              width="auto"
+                              fontSize={15}
+                            />
                           </div>
                         </div>
 
@@ -87,18 +105,36 @@ import Button from 'components/Button';
                         <div className='colunaDados'>
                           <div className='coluna1'>
                             <span>Data de Nascimento:</span>
+                            <Input
+                              size='xs'
+                              placeholder=''
+                              width="auto"
+                              fontSize={15}
+                            />
                           </div>
                         </div>
 
                         <div className='colunaDados'>
                           <div className='coluna2'>
                             <span>Sexo:</span>
+                            <Input
+                              size='xs'
+                              placeholder=''
+                              width="auto"
+                              fontSize={15}
+                            />
                           </div>
                         </div>
 
                         <div className='colunaDados'>
                           <div className='coluna3'>
                             <span>Estado Civil:</span>
+                            <Input
+                              size='xs'
+                              placeholder=''
+                              width="auto"
+                              fontSize={15}
+                            />
                           </div>
                         </div>
 
@@ -109,12 +145,24 @@ import Button from 'components/Button';
                         <div className='colunaDados2'>
                           <div className='coluna1'>
                             <span>Escolaridade:</span>
+                            <Input
+                              size='xs'
+                              placeholder=''
+                              width="auto"
+                              fontSize={15}
+                            />
                           </div>
                         </div>
 
                         <div className='colunaDados2'>
                           <div className='coluna2'>
                             <span>Linguas:</span>
+                            <Input
+                              size='xs'
+                              placeholder=''
+                              width="auto"
+                              fontSize={15}
+                            />
                           </div>
                         </div>
                       
@@ -137,18 +185,36 @@ import Button from 'components/Button';
                         <div className='colunaEndereco'>
                           <div className='coluna1'>
                             <span>Rua/Av:</span>
+                            <Input
+                              size='xs'
+                              placeholder=''
+                              width="auto"
+                              fontSize={15}
+                            />
                           </div>
                         </div>
 
                         <div className='colunaEndereco'>
                           <div className='coluna2'>
                             <span>N°:</span>
+                            <Input
+                              size='xs'
+                              placeholder=''
+                              width="auto"
+                              fontSize={15}
+                            />
                           </div>
                         </div>
 
                         <div className='colunaEndereco'>
                           <div className='coluna3'>
                             <span>Compl:</span>
+                            <Input
+                              size='xs'
+                              placeholder=''
+                              width="auto"
+                              fontSize={15}
+                            />
                           </div>
                         </div>
 
@@ -159,18 +225,36 @@ import Button from 'components/Button';
                         <div className='colunaEndereco'>
                           <div className='coluna1'>
                             <span>Cidade:</span>
+                            <Input
+                              size='xs'
+                              placeholder=''
+                              width="auto"
+                              fontSize={15}
+                            />
                           </div>
                         </div>
 
                         <div className='colunaEndereco'>
                           <div className='coluna2'>
                             <span>Estado:</span>
+                            <Input
+                              size='xs'
+                              placeholder=''
+                              width="auto"
+                              fontSize={15}
+                            />
                           </div>
                         </div>
 
                         <div className='colunaEndereco'>
                           <div className='coluna3'>
                             <span>CEP:</span>
+                            <Input
+                              size='xs'
+                              placeholder=''
+                              width="auto"
+                              fontSize={15}
+                            />
                           </div>
                         </div>
 
@@ -192,46 +276,299 @@ import Button from 'components/Button';
               </div>
 
               <div className='coluna'>
-                <div className='coluna1'>
-                  <span>Matricula:</span>
-                  <span>Departamento:</span>
-                  <span>Cargo:</span>
-                  <span>Turno:</span>
-                  <span>Status:</span>
-                  <span>Base:</span>
-                  <span>Head:</span>
-                  <span>Domínio:</span>
-                  <span>Nível:</span>
-                  <span>Curso:</span>
+                <div className='colunaFuncionais'>
+                  <div className='coluna1'>
+                    <span>Matricula:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna1'>
+                    <span>Departamento:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna1'>
+                    <span>Cargo:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna1'>
+                    <span>Turno::</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna1'>
+                    <span>Status:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna1'>
+                    <span>Base:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna1'>
+                    <span>Head:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna1'>
+                    <span>Domínio:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna1'>
+                    <span>Nível:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna1'>
+                    <span>Curso:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
                 </div>
               </div>
 
               <div className='coluna'>
-                <div className='coluna2'>
-                  <span>Tipo de Contrato:</span>
-                  <span>Natureza de contrato(PJ):</span>
-                  <span>Data de fundação(PJ):</span>
-                  <span>E-mail:</span>
-                  <span>Data de admissão:</span>
-                  <span>Empresa contratada:</span>
-                  <span>Tempo de formalização</span>
-                  <span>Tempo de casa:</span>
-                  <span>Faixa salarial:</span>
+              <div className='colunaFuncionais'>
+                  <div className='coluna2'>
+                    <span>Tipo de Contrato:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna2'>
+                    <span>Natureza de contrato(PJ):</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna2'>
+                    <span>Data de fundação(PJ):</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna2'>
+                    <span>E-mail:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna2'>
+                    <span>Data de admissão:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna2'>
+                    <span>Empresa contratada:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna2'>
+                    <span>Tempo de formalização:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna2'>
+                    <span>Tempo de casa:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna2'>
+                    <span>Faixa salarial:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
                 </div>
               </div>
 
               <div className='coluna'>
-                <div className='coluna3'>
-                  <span>Termo de PJ:</span>
-                  <span>Data de desligamento:</span>
-                  <span>Tipo de desligamento:</span>
-                  <span>Pesquisa de desligamento:</span>
-                  <span>Distrato:</span>
-                  <h1>Benefícios</h1>
-                  <span>Plano de saúde:</span>
-                  <span>Auxilio creche:</span>
-                  <span>Vale Transporte:</span>
-                  <span>Vale alimentação:</span>
+              <div className='colunaFuncionais'>
+                  <div className='coluna3'>
+                    <span>Termo de PJ:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna3'>
+                    <span>Data de desligamento:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna3'>
+                    <span>Tipo de desligamento:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna3'>
+                    <span>Pesquisa de desligamento:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna3'>
+                    <span>Distrato:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna3'>
+                    <h1>Benefícios</h1> 
+                  </div>
+
+
+                  <div className='coluna3'>
+                    <span>Plano de saúde:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna3'>
+                    <span>Auxilio creche:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna3'>
+                    <span>Vale Transporte:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
+
+                  <div className='coluna3'>
+                    <span>Vale alimentação:</span>
+                    <Input
+                      size='xs'
+                      placeholder=''
+                      width="auto"
+                      fontSize={15}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
