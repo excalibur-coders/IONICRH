@@ -8,7 +8,7 @@ import ContaSucesso from 'pages/ContaSucesso';
 import RecuperarSenha from 'pages/RecuperarSenha';
 import ResetarSenha from 'pages/ResetarSenha';
 import SenhaAlterada from 'pages/SenhaAlterada';
-import Funcionarios from 'pages/funcionários';
+import Funcionarios from 'pages/Funcionários';
 import Cargos from 'pages/Cargos'
 import DeptoTI from 'pages/Depto_Selecionado';
 import User from 'pages/User';
