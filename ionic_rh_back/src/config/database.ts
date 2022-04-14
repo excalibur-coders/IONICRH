@@ -15,7 +15,7 @@ import { USER } from "models/user";
 import { 
   Documentos, 
   Endereco, 
-  Escolaridade, 
+  escolaridade, 
   Idiomas, 
   Telefone 
 } from "models/user_details";
@@ -27,11 +27,11 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DATABASE,
-  synchronize: false,
+  synchronize: true,
   logging: false,
   entities: [
     USER, 
-    Escolaridade, 
+    escolaridade, 
     Idiomas, 
     Documentos, 
     Telefone, 
