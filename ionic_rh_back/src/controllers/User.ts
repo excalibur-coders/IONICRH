@@ -295,21 +295,14 @@ export const getUserById = async (req: Request, res: Response) => {
       .createQueryBuilder()
       .select([
         'u',
-        'i.idioma_falados',
-        'e.school_formacao',
-        'e.school_instituicao',
-        'e.school_inicio',
-        'e.school_termino',
-        'e.school_status',
-        't.tell_ddd',
-        't.tell_numero',
+        'i',
+        'e',
+        't',
         'c',
         'end',
-        'cont.cargo_head',
-        'cont.cargo_nivel',
-        'cont.cargo_area',
-        'd.dep_name',
-        'en.contratante_nome'])
+        'cont',
+        'd',
+        'en'])
       .from(USER, 'u')
       .leftJoin('u.idioma', 'i')
       .leftJoin('u.escolaridade', 'e')
@@ -318,7 +311,7 @@ export const getUserById = async (req: Request, res: Response) => {
       .leftJoin('u.contrato', 'c')
       .leftJoin('c.cargo', 'cont')
       .leftJoin('cont.departamento', 'd')
-      .innerJoin('c.emp_contratante', 'en')
+      .leftJoin('c.emp_contratante', 'en')
       .where(
         'u.user_id = :user_id', {
         user_id: id
@@ -343,14 +336,10 @@ export const getAllUser = async (req: Request, res: Response) => {
       .createQueryBuilder()
       .select([
         'u',
-        'i.idioma_falados',
-        'e.school_formacao',
-        'e.school_instituicao',
-        'e.school_inicio',
-        'e.school_termino',
-        'e.school_status',
-        't.tell_ddd',
-        't.tell_numero',
+        'i',
+        'e',
+        't',
+        'c',
         'end',
       ])
       .from(USER, 'u')

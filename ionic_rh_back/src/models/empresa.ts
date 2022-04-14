@@ -15,7 +15,26 @@ export class Contrato {
         type: "varchar",
         length: 255
     })
+    contrato_matricula!: string;
+    
+    @Column({
+        type: "varchar",
+        length: 255
+    })
+    contrato_data_adicao!: string;
+
+    @Column({
+        type: "varchar",
+        length: 255
+    })
     contrato_base!: string;
+
+    @Column({
+        type: "set",
+        enum: ["Pessoa Juridica", "CLT", "Estagio", "Temporario"],
+        default: "Temporario"
+    })
+    contrato_type!: Contratacao_type [];
 
     @Column({
         type: "char",
