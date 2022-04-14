@@ -3,7 +3,7 @@ import {
 } from "typeorm";
 
 import { Contrato } from "./empresa";
-import { Documentos, Endereco, Escolaridade, Idiomas, Telefone } from "./user_details";
+import { Documentos, Endereco, escolaridade, Idiomas, Telefone } from "./user_details";
 
 export type Acesso_Sistema = "Administrador" | "Colaborador" | "Gestor" | "Consultor";
 
@@ -121,8 +121,8 @@ export class USER {
     @OneToMany(type => USER, (user_one => user_one.user_reference_id))
     user_reference_id!: USER[]
 
-    @OneToMany(() => Escolaridade, (escolaridade) => escolaridade.user)
-    escolaridade!: Escolaridade
+    @OneToMany(() => escolaridade, (escolaridade) => escolaridade.user)
+    escolaridade!: escolaridade
 
     @OneToMany(() => Documentos, (docs) => docs._fk__user_)
     docs!: Documentos

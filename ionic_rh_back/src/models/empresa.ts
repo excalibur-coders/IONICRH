@@ -19,7 +19,7 @@ export class Contrato {
 
     @Column({
         type: "char",
-        length: 11
+        length: 12
     })
     contrato_tempo_de_casa!: string;
 
@@ -31,7 +31,8 @@ export class Contrato {
 
     @Column({
         type: "varchar",
-        length: 11
+        length: 12,
+        nullable:true
     })
     contrato_tempo_formalizacao!: string;
 
@@ -43,13 +44,15 @@ export class Contrato {
 
     @Column({
         type: "varchar",
-        length: 11
+        length: 12,
+        nullable:true
     })
     contrato_data_desligamento!: string;
 
     @Column({
         type: "varchar",
-        length: 11
+        length: 12,
+        nullable:true
     })
     contrato_distrato!: string;
 

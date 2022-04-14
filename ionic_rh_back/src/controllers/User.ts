@@ -12,7 +12,7 @@ import { IUser } from "interfaces/IUser";
 
 import { AppDataSource } from "config/database";
 import { USER } from "models/user"
-import { Endereco, Escolaridade, Idiomas, Telefone } from "models/user_details";
+import { Endereco, escolaridade, Idiomas, Telefone } from "models/user_details";
 
 
 // Interface do JWT ( Jason Web Token )
@@ -25,7 +25,7 @@ interface IDecodedParams {
 // Repositorios
 const userReposiroty = AppDataSource.getRepository(USER);
 const idiomaRepository = AppDataSource.getRepository(Idiomas);
-const escolaridadeRepository = AppDataSource.getRepository(Escolaridade);
+const escolaridadeRepository = AppDataSource.getRepository(escolaridade);
 const telefoneRepository = AppDataSource.getRepository(Telefone);
 const endRepository = AppDataSource.getRepository(Endereco)
 
@@ -244,7 +244,7 @@ export const adicioanrEscolaridade = async (req: Request, res: Response, next: N
     await escolaridadeRepository
       .createQueryBuilder()
       .insert()
-      .into(Escolaridade)
+      .into(escolaridade)
       .values(adcionarEscolaridade)
       .execute()
 
