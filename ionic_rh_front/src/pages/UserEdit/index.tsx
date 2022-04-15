@@ -327,7 +327,7 @@ function UserEdit() {
 
                   <div className="voltar">
                     <Link to="User/:id">
-                      <h2>Voltar</h2>{' '}
+                      <h2></h2>{' '}
                     </Link>
                   </div>
                 </div>
