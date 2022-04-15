@@ -27,7 +27,6 @@ h1 {
       font-weight: bold;
       font-size: 20px;
       display: block;
-      text-align: center;
     }
 
     .button {

@@ -12,7 +12,7 @@ import { IUser } from "interfaces/IUser";
 
 import { AppDataSource } from "config/database";
 import { USER } from "models/user"
-import { Endereco, Escolaridade, Idiomas, Telefone } from "models/user_details";
+import { Endereco, escolaridade, Idiomas, Telefone } from "models/user_details";
 
 
 // Interface do JWT ( Jason Web Token )
@@ -25,7 +25,7 @@ interface IDecodedParams {
 // Repositorios
 const userReposiroty = AppDataSource.getRepository(USER);
 const idiomaRepository = AppDataSource.getRepository(Idiomas);
-const escolaridadeRepository = AppDataSource.getRepository(Escolaridade);
+const escolaridadeRepository = AppDataSource.getRepository(escolaridade);
 const telefoneRepository = AppDataSource.getRepository(Telefone);
 const endRepository = AppDataSource.getRepository(Endereco)
 
@@ -244,7 +244,7 @@ export const adicioanrEscolaridade = async (req: Request, res: Response, next: N
     await escolaridadeRepository
       .createQueryBuilder()
       .insert()
-      .into(Escolaridade)
+      .into(escolaridade)
       .values(adcionarEscolaridade)
       .execute()
 
@@ -351,6 +351,37 @@ export const getAllUser = async (req: Request, res: Response) => {
 
     res.json(userQuery)
   } catch (err) {
+    res.json(req.body)
+  }
+}
+
+export const getAllUsers = async (req: Request, res: Response) => {
+  try {
+
+    const dadosContratoUser = await userReposiroty
+      .createQueryBuilder()
+      .select([
+        'u',
+        'i',
+        'e',
+        't',
+        'c',
+        'end',
+        'cont',
+        'd',
+        'en'])
+      .from(USER, 'u')
+      .leftJoin('u.idioma', 'i')
+      .leftJoin('u.escolaridade', 'e')
+      .leftJoin('u.telefone', 't')
+      .leftJoin('u.endereco', 'end')
+      .leftJoin('u.contrato', 'c')
+      .leftJoin('c.cargo', 'cont')
+      .leftJoin('cont.departamento', 'd')
+      .leftJoin('c.emp_contratante', 'en')
+      .getMany()
+    res.json(dadosContratoUser)
+  } catch (error) {
     res.json(req.body)
   }
 }

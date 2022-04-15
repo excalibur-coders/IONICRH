@@ -27,6 +27,13 @@ margin-left: 50px;
 
 }
 
+@media(max-width: 700px) {
+    border:1px solid red;
+    width:100%;
+    display: flex;
+    flex-direction: column;
+  }
+
 `;
 
 export const ContainerDiv = styled.div`

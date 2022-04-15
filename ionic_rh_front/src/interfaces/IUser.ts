@@ -3,6 +3,7 @@ export interface IUser {
   password: string;
   user_nome?: string;
   user_cpf?: string;
+  user_rg?: string;
   user_nacionalidade?: string;
   user_naturalidade?: string;
   user_nascimento?: string;

@@ -20,7 +20,6 @@ height: 100vh;
         font-weight: bold;
         font-size: 30px;
         
-      }
 
         img {
             width: 20rem;
@@ -37,62 +36,67 @@ height: 100vh;
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 93vh;
-    margin-top: 7vh;
+    height: 95vh;
+    margin-top: 5vh;
     align-items: center;
+    position: absolute;
 
     .mainWrapper {
         width: 100%;
+        height: 100vh;
         display: flex;
-        justify-content: space-evenly;
-    }
+        justify-content: center;
+   
 
-    .leftWrapper {
-        margin-bottom: 17rem;
+        .leftWrapper {
+            margin-bottom: 17rem;
     
     
-        .form {
-            width: 30rem;
-            margin-left: 50px;
-            margin-top: 80px;
-            flex-direction: column;
-        }
+            .form {
+                width: 30rem;
+                margin-top: 80px;
+                flex-direction: column;
+            }
         
-        .form-row {
-            flex-direction: row;
+            .form-row {
+                flex-direction: row;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        .rightWrapper {
             display: flex;
-            justify-content: space-between;
-        }
-    }
-
-    .rightWrapper {
-        display: flex
-        align-items: center;
-        justify-content: top;
-        flex-direction: column;
-        margin-bottom: 13rem;
+            align-items: center;
+            justify-content: top;
+            flex-direction: column;
+            margin-bottom: 13rem;
         
 
-        .form {
-            width: 30rem;
-            margin-left: 50px;
-            margin-top: 80px;
-            flex-direction: column;
-        }
+            .form {
+                width: 30rem;
+                margin-left: 50px;
+                margin-top: 80px;
+                flex-direction: column;
+            }
 
-        h2 {
-            font-size: 20px;
-            font-weight: bold;
+            .form-row {
+                flex-direction: row;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            h2 {
+                font-size: 20px;
+                font-weight: bold;
+            }
         }
     }
-
-
-
     .ButtonW {
         display: flex;
         align-items: center;
-    }
-    
+        padding-bottom: 50px;
+    } 
 }
 
 

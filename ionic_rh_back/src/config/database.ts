@@ -15,7 +15,7 @@ import { USER } from "models/user";
 import { 
   Documentos, 
   Endereco, 
-  Escolaridade, 
+  escolaridade, 
   Idiomas, 
   Telefone 
 } from "models/user_details";
@@ -31,7 +31,7 @@ export const AppDataSource = new DataSource({
   logging: false,
   entities: [
     USER, 
-    Escolaridade, 
+    escolaridade, 
     Idiomas, 
     Documentos, 
     Telefone, 

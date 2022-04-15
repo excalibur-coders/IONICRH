@@ -5,7 +5,7 @@ import {
 import { USER } from "./user";
 
 @Entity()
-export class Escolaridade {
+export class escolaridade {
     @PrimaryGeneratedColumn({
         type: "int",
     })
