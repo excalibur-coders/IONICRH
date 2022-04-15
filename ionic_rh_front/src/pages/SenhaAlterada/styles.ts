@@ -3,13 +3,29 @@ import { Flex } from '@chakra-ui/react';
 import { theme } from 'theme';
 
 export const Container = styled(Flex)`
-  height: 100vh;
+height:100vh;
+display: flex;
+flex-direction:column;
+color: ${theme.colors.font};
+
+.centerWrapper{
+  display: flex;
+  flex-wrap: wrap;
+  height:100%;
+
 
   .leftWrapper {
+    position: relative;
+    float: left;
     width: 60%;
-
     display: flex;
     flex-direction: column;
+
+    img {
+      width: 120px;
+      margin: 5px 5px;
+      margin-top:10px;
+    }
 
     .form {
       margin: 0 auto;
@@ -41,16 +57,16 @@ export const Container = styled(Flex)`
   }
 
   .rightWrapper {
+    position: relative;
+    width: 40%;
+    float: right;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    width: 40%;
-
     background: ${theme.colors.primary};
 
     img {
-      width: 20rem;
+      width: 30rem;
     }
   }
 
@@ -59,21 +75,18 @@ export const Container = styled(Flex)`
     margin: 5px 5px;
     margin-top:10px;
   }
+}
 
-  @media(max-width: 700px) {
-    .leftWrapper {
-      border:1px solid red;
-      width:100%;
-      display: flex;
-      flex-direction: column;
-    }
+@media(max-width: 768px) {
+  .centerWrapper{
+      .leftWrapper{
+          width: 100%;
+      }
 
-    .rightWrapper {
-      border:1px solid black;
-      flex-direction: column;
-      position: relative;
-    }
+      .rightWrapper{
+          width: 100%;
+          margin-top: 50px;
   }
-
+}
 
 `;

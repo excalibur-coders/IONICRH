@@ -1,6 +1,6 @@
 # Projeto IonicRH
 
-![Equipe ExcaliburCoders](./img/1.png)
+![Equipe ExcaliburCoders](./docs/img/1.png)
 
 - Lucas Braz Dias (Scrum Master)
 
@@ -47,21 +47,83 @@
 
 ## _User Story_
 
-![Colaborador](./img/Colaborador.png)
+![Colaborador](./docs/img/Colaborador.png)
 
-![Administrador](./img/Administrador.png)
+![Administrador](./docs/img/Administrador.png)
 
 ## Backlog da Sprint
 
-![Backlog](./img/6.png)
+![Backlog](./docs/img/backlog.png)
 
 ## Modelagem do Banco de Dados
 
-![ModeloBD](./img/8.png)
+![ModeloBD](./docs/img/modelagem.png)
 
 ## Tecnologias Utilizadas
 
-![Tecnologias](./img/9.png)
+![Tecnologias](./docs/img/tecnologias.png)
+
+## Passo a passo da instalação do sistema
+
+```bash
+git clone https://github.com/excalibur-coders/IONICRH.git
+```
+
+Instalar as dependências dentro de cada pastas:
+
+```bash
+cd ionic_rh_front e cd ionic_rh_back
+```
+
+Em cada uma rodar o comando:
+
+```bash
+npm install / yarn install
+```
+
+Na pasta backend mudar o nome do arquivo:
+
+```bash
+.envcopy para .env
+```
+
+## Dentro do env é necessário colocar as configurações do seu conector MySQL;
+
+## Importante criar a database que deseja armazenar, as tabelas e afins:
+
+```bash
+Create database [nome];
+```
+
+Alterar dados de acordo com seu ambiente:
+
+```bash
+HOST = [host MySQL ou localhost]
+```
+
+```bash
+PORT = 3306
+```
+
+```bash
+DB_USERNAME = [usuario que deseja conectar]
+```
+
+```bash
+DB_PASSWORD = [senha banco de dados]
+```
+
+```bash
+DATABASE = [database que deseja que seja armazenado as tabelas]
+```
+
+Salvar o arquivo .env;
+
+Após instalar as dependências, iniciar o serviço em cada uma das pasta
+
+```bash
+npm start dev ou  yarn dev
+```
 
 ## Sistema Desenvolvido
 
