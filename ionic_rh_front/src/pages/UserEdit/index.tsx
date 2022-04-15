@@ -156,7 +156,6 @@ interface IFormProps {
   contrato_plano_saude?: number;
   contrato_tempo_de_casa?: string;
   contrato_tempo_formalizacao?: string;
-  contrato_termos?: string;
   contrato_vale_alimentacao?: number;
   contrato_vale_refeicao?: number;
   contrato_vale_transporte?: number;
@@ -196,7 +195,24 @@ function UserEdit() {
       })
       .then(({ data }) => {
         setUser(data);
-        console.log(user);
+        console.log({
+          contrato_base: data.contrato_base ,
+          contrato_tempo_de_casa: data.contrato_tempo_de_casa ,
+          contrato_termos: data.contrato_termos,
+          contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
+          contrato_dominio: data.contrato_dominio,
+          contrato_data_desligamento: data.contrato_data_desligamento,
+          contrato_distrato: data.contrato_distrato ,
+          contrato_faixa_salarial: data.contrato_faixa_salarial ,
+          contrato_plano_saude: data.contrato_plano_saude,
+          contrato_vale_transporte: data.contrato_vale_transporte,
+          contrato_vale_refeicao: data.contrato_vale_refeicao,
+          contrato_vale_alimentacao: data.contrato_vale_alimentacao,
+          contrato_auxilio_creche: data.contrato_auxilio_creche,
+          contrato_type: data.contrato_type,
+          cargoCargoId: data.cargoCargoId,
+          empContratanteContratanteId: data.empContratanteContratanteId
+      });
       })
       .catch((error: Error | AxiosError) => {
         console.log(error);
@@ -224,7 +240,51 @@ function UserEdit() {
   }, [user]);
 
   const onSubmit = useCallback(async data => {
-    console.log(data);
+    console.log({
+      contrato_base: data.contrato_base,
+      contrato_tempo_de_casa: "inicio" ,
+      contrato_termos: "Criar varias pikas",
+      contrato_tempo_formalizacao: "24/24/2424",
+      contrato_dominio: "A pika dele",
+      contrato_data_desligamento: "Fez buceta",
+      contrato_distrato: "Team Pinto" ,
+      contrato_faixa_salarial: 6969.69 ,
+      contrato_plano_saude: 69.00,
+      contrato_vale_transporte: 69.69 ,
+      contrato_vale_refeicao: 69.69,
+      contrato_vale_alimentacao: 69.69,
+      contrato_auxilio_creche: 69.69,
+      contrato_type: data.contrato_type,
+      cargoCargoId:1,
+      empContratanteContratanteId: 1
+    });
+
+     await api.post(`user/Inserir-contrato-user/${id}`, {
+      contrato_base: data.contrato_base ,
+      contrato_tempo_de_casa: data.contrato_tempo_de_casa ,
+      contrato_termos: data.contrato_termos,
+      contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
+      contrato_dominio: data.contrato_dominio,
+      contrato_data_desligamento: data.contrato_data_desligamento,
+      contrato_distrato: data.contrato_distrato ,
+      contrato_faixa_salarial: data.contrato_faixa_salarial ,
+      contrato_plano_saude: data.contrato_plano_saude,
+      contrato_vale_transporte: data.contrato_vale_transporte,
+      contrato_vale_refeicao: data.contrato_vale_refeicao,
+      contrato_vale_alimentacao: data.contrato_vale_alimentacao,
+      contrato_auxilio_creche: data.contrato_auxilio_creche,
+      contrato_type: data.contrato_type,
+      cargoCargoId: data.cargoCargoId,
+      empContratanteContratanteId: data.empContratanteContratanteId
+  }, {
+    headers: {
+      Authorization: `Bearer ${cookies['ionicookie.token']}`,
+    },
+  } ).then(({data}) => {
+      console.log(data)
+    }).catch((error) => {
+      console.log(error)
+    })
   }, []);
 
   //console.log(getValues('//'))
