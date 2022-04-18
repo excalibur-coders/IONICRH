@@ -67,57 +67,62 @@
 
 ```bash
 git clone https://github.com/excalibur-coders/IONICRH.git
-cd  /src
 ```
+
+Instalar as dependências dentro de cada pastas:
 
 ```bash
-
+cd ionic_rh_front e cd ionic_rh_back
 ```
+
+Em cada uma rodar o comando:
 
 ```bash
-
+npm install / yarn install
 ```
+
+Na pasta backend mudar o nome do arquivo:
 
 ```bash
-
+.envcopy para .env
 ```
+
+## Dentro do env é necessário colocar as configurações do seu conector MySQL;
+
+## Importante criar a database que deseja armazenar, as tabelas e afins:
 
 ```bash
-
+Create database [nome];
 ```
-
-Executar aplicação:
-
-```bash
-
-```
-
-## Importar Banco de dados
-
-Importar o Banco de dados que está no em sua máquina.
-
-## Antes de rodar a aplicação, siga os passos abaixo:
-
-Renomear arquivo .env.exemplo para .env
-
-cp .env.exemplo .env
 
 Alterar dados de acordo com seu ambiente:
 
 ```bash
-MYSQL_Host = [host MySQL ou localhost]
+HOST = [host MySQL ou localhost]
 ```
 
 ```bash
-MYSQL_USER = [nome usuário]
+PORT = 3306
 ```
 
 ```bash
-MMYSQL_PASSWORD = [senha banco de dados]
+DB_USERNAME = [usuario que deseja conectar]
 ```
 
 ```bash
-MYSQL_DB =
+DB_PASSWORD = [senha banco de dados]
+```
+
+```bash
+DATABASE = [database que deseja que seja armazenado as tabelas]
+```
+
+Salvar o arquivo .env;
+
+Após instalar as dependências, iniciar o serviço em cada uma das pasta
+
+```bash
+npm start dev ou  yarn dev
 ```
 
 ## Sistema Desenvolvido
