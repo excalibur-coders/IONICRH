@@ -171,22 +171,25 @@ export const adicionarIdioma = async (req: Request, res: Response, next: NextFun
     const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
 
     const { idioma_falados } = req.body;
-
+    console.log("Token" , decodedJwt);
     const AdicionarIdiomas = idioma_falados.map(idioma => {
       return {
         idioma_falados: idioma,
         userUserId: Number(decodedJwt.id)
       }
     })
+    console.log("Adicionar" , AdicionarIdiomas)
     const idiomaAdicionado = await idiomaRepository
       .createQueryBuilder()
       .insert()
       .into(Idiomas)
       .values(AdicionarIdiomas)
       .execute()
+      console.log("oi", idiomaAdicionado)
     next()
 
   } catch (error) {
+    console.log("oi", error)
     res.json(error)
   }
 }
@@ -231,7 +234,6 @@ export const adicioanrEscolaridade = async (req: Request, res: Response, next: N
     const splitToken = tokenHeader?.split(' ')[1] as string;
 
     const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
-
     const {
       escolaridade
     } = req.body
@@ -241,13 +243,14 @@ export const adicioanrEscolaridade = async (req: Request, res: Response, next: N
         userUserId: Number(decodedJwt.id)
       }
     })
+    console.log("oi", "oi") // O erro está aqui pra baixo
     await escolaridadeRepository
       .createQueryBuilder()
       .insert()
       .into(escolaridade)
       .values(adcionarEscolaridade)
       .execute()
-
+    console.log("oi" , next)
     next()
   } catch (error) {
     res.json(error)

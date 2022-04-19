@@ -113,15 +113,17 @@ function Funcionarios() {
                 <div className='TableTwo'>
                   <Tbody>
                     {!loading ? (
-                      funcionarios.map(funcionario => (
+                      funcionarios.map(funcionario => {
+                        console.log("bom dia" , funcionario)
+                        return (
                         <><Tr>
                           <Td fontSize='xl'>{funcionario.user_nome}</Td>
-                          <Td>{funcionario.contrato[0].contrato_faixa_salarial}</Td>
-                          <Td>{funcionario.contrato[0].cargo.departamento.dep_name}</Td>
-                          <Td>{funcionario.contrato[0].cargo.cargo_area}</Td>
+                          <Td>{funcionario.contrato[0]?.contrato_faixa_salarial}</Td>
+                          <Td>{funcionario.contrato[0]?.cargo.departamento.dep_name}</Td>
+                          <Td>{funcionario.contrato[0]?.cargo.cargo_area}</Td>
                           <Td><Link href="/perfil" fontSize='4xl'><MdOutlineAccountBox color='#4D4E4F' /></Link></Td>
                         </Tr></>
-                      ))
+                      ) } )
                     ) : (
                       <div className='spinnerWrapper'>
                         <Spinner size='md' />
