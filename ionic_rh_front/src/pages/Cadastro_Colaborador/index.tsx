@@ -48,6 +48,7 @@ interface CadastroProps {
   school_inicio: string;
   school_termino: string;
   school_status: string;
+  school_curso: string;
   idiomas: [{
     ingles: boolean,
     espanhol: boolean,
@@ -67,7 +68,7 @@ function Cadastro() {
       idiomasfalados.push(value)
     })
 
-    await api.put<CadastroProps>("/user/update", {
+    await api.put<CadastroProps>("/user/auto-cadastro", {
       user_nome: data.nomecompleto,
       user_cpf: data.cpf,
       user_rg: data.rg,
@@ -78,14 +79,15 @@ function Cadastro() {
       user_raca: data.etnia,
       user_estado_civil: data.estadocivil,
       user_tipo_contrato: data.contrato,
-      escolaridade: [{
+      escolaridades: [{
         school_instituicao: data.school_instituicao,
         school_formacao: data.school_formacao,
         school_inicio: data.school_inicio,
         school_termino: data.school_termino,
-        school_status: data.school_status
+        school_status: data.school_status,
+        school_curso: data.school_curso
       }],
-      endereco: [{
+      enderecos: [{
         endereco_pais: data.nacionalidade,
         endereco_bairro: data.bairro,
         endereco_cidade: data.cidade,
@@ -95,7 +97,7 @@ function Cadastro() {
         endereco_rua: data.rua
       }],
       idioma_falados: idiomasfalados,
-      telefone: [{
+      telefones: [{
         tell_ddd: data.telefone.split(" ")[0].replace(/([()])/g, ''),
         tell_numero: data.telefone.split(" ")[1].replace("-", '')
       }]
@@ -357,7 +359,6 @@ function Cadastro() {
                   labelText="E-mail"
                   type="text"
                   defaultValue={user?.user_email}
-                  disabled
                   error={errors.email?.message}
                   {...register('email')}
                 />
@@ -425,12 +426,13 @@ function Cadastro() {
                   {...register('school_status')}
                 />
 
-                {/*  <Input
+                 <Input
                   size='sm'
                   width="auto"
                   fontSize={20}
                   labelText="Cursos Complementares"
-                /> */}
+                  {...register('school_curso')}
+                />
 
                 <Input
                   size='sm'
