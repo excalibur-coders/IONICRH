@@ -13,5 +13,6 @@ export interface IUser {
   user_tipo_contrato?: string;
   user_cnpj?: null,
   id?: number,
+  user_id?: number,
   token?: string;
 }

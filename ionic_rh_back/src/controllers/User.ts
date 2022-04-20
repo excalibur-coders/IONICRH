@@ -67,7 +67,7 @@ export const getColaboradorContratoID = async (req: Request, res: Response) => {
       .leftJoin('u.contrato', 'c')
       .leftJoin('c.cargo', 'cont')
       .leftJoin('cont.departamento', 'd')
-      .innerJoin('c.emp_contratante', 'en')
+      .leftJoin('c.emp_contratante', 'en')
       .where(
         'u.user_id = :user_id', {
         user_id: id

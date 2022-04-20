@@ -29,20 +29,20 @@ color: ${theme.colors.font};
                     margin-top: 40px;
                     box-shadow: 0 0 1em black;
                 }
-        
+
                 .User{
                     margin: 0 auto;
                     margin-top:20px;
-        
+
                     h1 {
                         text-align:center;
                         font-weight: bold;
                         font-size: 30px;
                         margin-bottom: 20px;
                     }
-    
+
                 }
-        
+
                 .button {
                     box-sizing: border-box;
                     padding: 1rem;
@@ -69,7 +69,7 @@ color: ${theme.colors.font};
                             font-weight: bold;
                             font-size: 20px;
                             cursor: pointer;
-                            
+
                         }
 
                         h2:hover{
@@ -77,7 +77,7 @@ color: ${theme.colors.font};
                         }
                     }
                 }
-                
+
             }
 
             .rightWrapper{
@@ -121,7 +121,7 @@ color: ${theme.colors.font};
                                     }
                                 }
                             }
-                            
+
                             .colunaDados2{
                                 width: 45%;
                                 margin-right: 3%;
@@ -170,10 +170,10 @@ color: ${theme.colors.font};
                                     }
                                 }
                             }
-                            
+
                         }
                     }
-                    
+
                 }
             }
 
@@ -223,7 +223,7 @@ color: ${theme.colors.font};
                         font-size: 20px;
                     }
 
-    
+
 
                 }
             }
@@ -249,7 +249,7 @@ color: ${theme.colors.font};
                 .leftWrapper{
                     width: 100%;
                 }
-            
+
                 .rightWrapper{
                     width: 100%;
 
@@ -289,14 +289,14 @@ color: ${theme.colors.font};
         .Wrapper2{
             .centerWrapper2{
                 .coluna{
-                    width:100%; 
+                    width:100%;
                     .colunaFuncionais{
                     float:none;
-                    width:100%; 
-                    } 
+                    width:100%;
+                    }
                 }
             }
         }
-        
+
     }
 `;

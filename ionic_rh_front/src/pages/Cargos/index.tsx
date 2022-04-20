@@ -50,8 +50,6 @@ function Cargos(){
 
         return(
     <>
-
-
        <div><Navbar/></div>
 
 
