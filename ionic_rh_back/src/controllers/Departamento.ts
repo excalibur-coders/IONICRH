@@ -1,9 +1,9 @@
 import { Response, Request } from "express";
 
 import { AppDataSource } from "config/database";
-import { Departamento } from "models/empresa";
+import { departamento } from "models/departamento";
 
-const departamentoRepository = AppDataSource.getRepository(Departamento);
+const departamentoRepository = AppDataSource.getRepository(departamento);
 
 export const getAllDepartamentos = async (req: Request, res: Response) => {
   try {
@@ -48,7 +48,7 @@ export const updateDepartamento = async (req: Request, res: Response) => {
   try {
     await departamentoRepository
       .createQueryBuilder()
-      .update(Departamento).
+      .update(departamento).
       set({
         "dep_name": req.body.dep_name
       })
@@ -70,7 +70,7 @@ export const deleteDepartamento = async (req: Request, res: Response) => {
     await departamentoRepository
       .createQueryBuilder()
       .delete()
-      .from(Departamento)
+      .from(departamento)
       .where(
         "dep_id = :dep_id", {
         dep_id: req.params.id

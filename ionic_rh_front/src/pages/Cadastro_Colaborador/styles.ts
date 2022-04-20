@@ -96,13 +96,6 @@ height: 100vh;
         display: flex;
         align-items: center;
         padding-bottom: 50px;
-
-        Button {
-            width: 200px;
-            height: 60px;
-            font-size: 20px;
-            border-width: 3px;
-        }
     } 
 }
 

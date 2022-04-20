@@ -82,15 +82,15 @@ function CriarConta() {
               <Input size='sm' width="auto" fontSize={15} labelText="Repetir a Senha" type='password' error={errors.passwordConfirmation?.message} {...register('passwordConfirmation')} />
               <div className="formFooter">
               <div className="formFooterLeft">
-                <Checkbox isInvalid>Eu li e concordo com os:</Checkbox>
-                <span>Termos e condições</span>
+                <Checkbox isInvalid isRequired>Eu li e concordo com os:</Checkbox>
+                <span><a href="https://drive.google.com/file/d/1O0X_nWpQNx6Ka04z5zO-e996vMypEFMI/view" target="_blank">Termos e Condições</a></span>
               </div>
               <div>
                 <Button text="Criar" color={theme.colors.primary} type='submit' />
               </div>
             </div>
             </form>
-          
+
             <div className='registerWrapper'>
               <span>Já tem uma conta?</span>
               <span><Link to="/">Entre aqui</Link></span>
