@@ -7,8 +7,7 @@ import { parseCookies } from "nookies";
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 
-import { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Checkbox, CheckboxGroup } from '@chakra-ui/react'
 
 import Input from 'components/Input';
@@ -32,18 +31,23 @@ interface InputsProps {
 }
 
 function CriarConta() {
+  const navigate = useNavigate();
+
   const [errorMessage, setErrorMessage]=useState('')
 
   const onSubmit = useCallback(async (data: InputsProps) => {
     console.log(data)
     if(data.password===data.passwordConfirmation){
       await api.post<InputsProps>('/user/cadastro', {
-      user_nome: data.nome,
-      user_email: data.email,
-      password: data.password,
-    }).then(({data}) => {console.log(data);}).catch(error => {
-      console.log(error)
-    });}
+        user_nome: data.nome,
+        user_email: data.email,
+        password: data.password,
+      }).then(({ data }) => {
+        navigate('/ContaSucesso');
+      }).catch(error => {
+        console.log(error)
+      });
+    }
     else {
       setErrorMessage('Senhas Divergentes')
     }

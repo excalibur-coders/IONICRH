@@ -26,7 +26,9 @@ interface InputsProps {
 function Login() {
   const cookies = parseCookies();
 
-  const { signIn } = useContext(AuthContext);
+  const { signIn, user } = useContext(AuthContext);
+
+  console.log(user)
 
   const authRoute = () => {
     api.get('/departamentos', {
@@ -93,11 +95,6 @@ function Login() {
                 text="Logar"
                 color={theme.colors.primary}
                 type="submit"
-              />
-              <Button
-                text="rota autenticação"
-                color={theme.colors.primary}
-                onClick={() => authRoute()}
               />
             </div>
 

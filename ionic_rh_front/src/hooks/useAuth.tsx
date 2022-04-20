@@ -9,7 +9,7 @@ import {
 } from "react";
 import Cookies from "js-cookie";
 
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { api } from "services/api";
 
@@ -48,15 +48,23 @@ export function AuthProvider ({ children }: AuthProviderProps) {
 
   const isAuthenticated = !!user;
 
-  // useEffect(() => {
-  //   const isAuthenticated = !!user;
+  useEffect(() => {
+    const isAuthenticated = !!user;
 
-  //   const { 'ionicookie.token': token, 'ionicookie.user_id': user_id } = parseCookies();
+    const { 'ionicookie.token': token, 'ionicookie.user_id': user_id } = parseCookies();
 
-  //   if (token) {
-
-  //   }
-  // }, [])
+    if (token) {
+      api.get('user/logged-user-info', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      }).then(({ data }) => {
+        setUser(data);
+      }).catch((error) => {
+        console.log(error);
+      })
+    }
+  }, [])
 
   interface ISession {
     token: string;
