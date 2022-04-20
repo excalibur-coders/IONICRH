@@ -76,14 +76,14 @@ export function AuthProvider ({ children }: AuthProviderProps) {
         path: '/'
       })
 
-      setCookie(null, 'ionicookie.user_id', String(data.id), {
+      setCookie(null, 'ionicookie.user_id', String(data.user_id), {
         maxAge: 60 * 60 * 24,
         path: '/'
       })
 
       setUser(data);
 
-      navigate('/ContaSucesso');
+      navigate('/Cadastro_colaborador');
     } catch (error) {
       alert('Parece que o usuário ou senha está incorreta.');
       console.log(error);

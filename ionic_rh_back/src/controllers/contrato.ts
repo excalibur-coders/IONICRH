@@ -8,6 +8,7 @@ const contratoRepository = AppDataSource.getRepository(contrato)
 export const insertContratoUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const {
+            contrato_matricula,
             contrato_base,
             contrato_tempo_de_casa,
             contrato_termos,
@@ -52,6 +53,7 @@ export const updateContratoUser = async (req: Request, res: Response, next: Next
             .update(contrato)
             .set({
                 "contrato_id": requestBody.contrato_id,
+                "contrato_matricula": requestBody.contrato_matricula,
                 "contrato_base": requestBody.contrato_base,
                 "contrato_tempo_de_casa": requestBody.contrato_tempo_de_casa,
                 "contrato_termos": requestBody.contrato_termos,

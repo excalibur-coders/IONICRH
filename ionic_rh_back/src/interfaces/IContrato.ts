@@ -1,5 +1,6 @@
 export interface IContrato {
     contrato_id: number,
+    contrato_matricula?: string,
     contrato_base?: string,
     contrato_tempo_de_casa?: string,
     contrato_termos?: string,
