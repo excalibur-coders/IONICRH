@@ -29,6 +29,7 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> =
           ref={ref}
           {...rest.mask && {as: InputMask}}
           {...rest}
+          disabled={disabled}
         />
         <span>{error}</span>
       </S.Container>

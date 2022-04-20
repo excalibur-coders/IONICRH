@@ -20,7 +20,6 @@ import { tmpdir } from 'os';
 
 import { AuthContext } from "hooks/useAuth";
 import { api } from 'services/api';
-import internal from 'stream';
 import { IUser } from 'interfaces/IUser';
 import { AxiosError } from 'axios';
 
@@ -59,6 +58,8 @@ interface CadastroProps {
 
 function Cadastro() {
   const cookies = parseCookies();
+
+  const { user } = useContext(AuthContext);
 
   const onSubmit = useCallback(async (data: CadastroProps) => {
     const idiomasfalados: (string | boolean)[] = []
@@ -121,7 +122,7 @@ function Cadastro() {
     estado: yup.string().required('Estado obrigatório!'),
     numero: yup.string().required('Número obrigatório!'),
     complemento: yup.string().required('Complemento obrigatório!'),
-    email: yup.string().required('E-mail obrigatório!'),
+    email: yup.string(),
     etnia: yup.string().required('Etnia obrigatória!'),
     nascimento: yup.string().required('Data de nascimento obrigatória!'),
     cpf: yup.string().required('CPF obrigatório!'),
@@ -165,6 +166,7 @@ function Cadastro() {
                   fontSize={20}
                   labelText="Nome Completo"
                   type="text"
+                  defaultValue={user?.user_nome}
                   error={errors.nomecompleto?.message}
                   {...register('nomecompleto')}
                 />
@@ -256,20 +258,20 @@ function Cadastro() {
                   size='sm'
                   width="auto"
                   fontSize={20}
-                  labelText="Rua"
+                  labelText="Etnia"
                   type="text"
-                  error={errors.rua?.message}
-                  {...register('rua')}
+                  error={errors.etnia?.message}
+                  {...register('etnia')}
                 />
 
                 <Input
                   size='sm'
                   width="auto"
                   fontSize={20}
-                  labelText="Raça"
+                  labelText="Rua"
                   type="text"
-                  error={errors.etnia?.message}
-                  {...register('etnia')}
+                  error={errors.rua?.message}
+                  {...register('rua')}
                 />
 
                 <div className='form-row'>
@@ -354,6 +356,8 @@ function Cadastro() {
                   fontSize={20}
                   labelText="E-mail"
                   type="text"
+                  defaultValue={user?.user_email}
+                  disabled
                   error={errors.email?.message}
                   {...register('email')}
                 />
