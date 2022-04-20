@@ -1,9 +1,9 @@
 import { AppDataSource } from "config/database";
-import { Contrato } from "models/empresa";
+import { contrato } from "models/contrato";
 import { Request, Response, NextFunction } from "express";
 import { IContrato } from "interfaces/IContrato";
 
-const contratoRepository = AppDataSource.getRepository(Contrato)
+const contratoRepository = AppDataSource.getRepository(contrato)
 // Contrato do Usuario
 export const insertContratoUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -20,7 +20,8 @@ export const insertContratoUser = async (req: Request, res: Response, next: Next
             contrato_vale_transporte,
             contrato_vale_refeicao,
             contrato_vale_alimentacao,
-            contrato_auxilio_creche
+            contrato_auxilio_creche,
+            contrato_tipo
         } = req.body
         const {
             id
@@ -29,7 +30,7 @@ export const insertContratoUser = async (req: Request, res: Response, next: Next
         await contratoRepository
             .createQueryBuilder()
             .insert()
-            .into(Contrato)
+            .into(contrato)
             .values(req.body)
             .execute()
         next()
@@ -48,7 +49,7 @@ export const updateContratoUser = async (req: Request, res: Response, next: Next
 
         await contratoRepository
             .createQueryBuilder()
-            .update(Contrato)
+            .update(contrato)
             .set({
                 "contrato_id": requestBody.contrato_id,
                 "contrato_base": requestBody.contrato_base,
@@ -64,6 +65,7 @@ export const updateContratoUser = async (req: Request, res: Response, next: Next
                 "contrato_vale_refeicao": requestBody.contrato_vale_refeicao,
                 "contrato_vale_alimentacao": requestBody.contrato_vale_alimentacao,
                 "contrato_auxilio_creche": requestBody.contrato_auxilio_creche,
+                "contrato_tipo": requestBody.contrato_tipo
             })
             .where(
                 "contrato_id = :contrato_id", {
