@@ -167,7 +167,7 @@ function User(){
 
                   <div className='User'>
                       <h1>{user?.user_nome}</h1>
-                      <Link to='/UserEdit'><Button text="Editar Usuário" color={theme.colors.primary} /></Link>
+                      <Link to='/UserEdit/'><Button text="Editar Usuário" color={theme.colors.primary} /></Link>
                   </div>
 
                   <div className='pdf'>
