@@ -7,6 +7,6 @@ import {
 
 const router = express.Router()
 
-router.post('/', createCargo)
-router.get('/cargo', getAllCargos)
+router.post('/criar-cargo', createCargo)
+router.get('/cargos', getAllCargos)
 export default router

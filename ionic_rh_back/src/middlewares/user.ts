@@ -1,7 +1,7 @@
 import { Response, Request, NextFunction } from "express";
 import { TypedRequestBody } from "interfaces/IRequest";
 import { AppDataSource } from "config/database";
-import { USER } from "models/user"
+import { user } from "models/user"
 import { IUser } from "interfaces/IUser";
 
 interface ILoginData {
@@ -9,7 +9,7 @@ interface ILoginData {
   password: string;
 }
 
-const userReposiroty = AppDataSource.getRepository(USER);
+const userReposiroty = AppDataSource.getRepository(user);
 
 export const verifyRegisterRequestValues = (
   req: TypedRequestBody<ILoginData & { user_nome: string }>, 

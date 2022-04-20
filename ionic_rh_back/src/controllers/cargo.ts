@@ -1,8 +1,8 @@
 import { Response, Request } from "express";
 import { AppDataSource } from 'config/database'
-import { Cargo } from 'models/empresa'
+import { cargo } from 'models/cargo'
 
-const cargoRepository = AppDataSource.getRepository(Cargo)
+const cargoRepository = AppDataSource.getRepository(cargo)
 
 export const createCargo = async (req: Request, res: Response) => {
     try {
@@ -15,7 +15,7 @@ export const createCargo = async (req: Request, res: Response) => {
         await cargoRepository
             .createQueryBuilder()
             .insert()
-            .into(Cargo)
+            .into(cargo)
             .values(req.body)
             .execute()
         res.json(req.body)
