@@ -16,6 +16,7 @@ export const insertContratoUser = async (req: Request, res: Response, next: Next
             contrato_dominio,
             contrato_data_desligamento,
             contrato_distrato,
+            contrato_adimissao,
             contrato_faixa_salarial,
             contrato_plano_saude,
             contrato_vale_transporte,
@@ -53,6 +54,7 @@ export const updateContratoUser = async (req: Request, res: Response, next: Next
             .update(contrato)
             .set({
                 "contrato_id": requestBody.contrato_id,
+                "contrato_adimissao": requestBody.contrato_adimissao,
                 "contrato_matricula": requestBody.contrato_matricula,
                 "contrato_base": requestBody.contrato_base,
                 "contrato_tempo_de_casa": requestBody.contrato_tempo_de_casa,

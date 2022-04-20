@@ -16,6 +16,16 @@ export class contrato {
         type: "varchar",
     })
     contrato_base!: string;
+
+    @Column({
+        type: "varchar",
+    })
+    contrato_adimissao!: string;
+
+    @Column({
+        type: "varchar",
+    })
+    contrato_matricula!: string;
     
     @Column({
         type: "varchar",

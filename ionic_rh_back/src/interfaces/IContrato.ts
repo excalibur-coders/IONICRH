@@ -15,6 +15,7 @@ export interface IContrato {
     contrato_vale_transporte?: number,
     contrato_vale_refeicao?: number,
     contrato_vale_alimentacao?: number,
+    contrato_adimissao?: string,
     contrato_auxilio_creche?: number,
     userUserId?: number
     empContratanteContratanteId?: number,

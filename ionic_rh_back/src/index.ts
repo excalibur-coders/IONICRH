@@ -134,6 +134,8 @@ try {
         .insert()
         .into(contrato)
         .values({
+          contrato_matricula: "7002-255",
+          contrato_adimissao: "01/04/2022",
           contrato_base: "São José dos Campos",
           contrato_tempo_de_casa: "08/04/2022",
           contrato_termos: "Política para Propriedade Intelectual da IONIC - válida a partir de 25/02/2022",
