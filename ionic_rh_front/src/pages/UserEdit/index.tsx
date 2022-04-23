@@ -69,7 +69,8 @@ interface IContrato {
   contrato_data_adicao?: string;
   emp_contratante: IEmpContratante;
   contrato_turno?: string;
-  empContratanteContratanteId: number;
+  empContratanteContratanteId?: number;
+  cargoCargoId?: number;
 }
 
 interface IEmpContratante {
@@ -168,6 +169,7 @@ interface IFormProps {
   user_rg?: string;
   contrato_turno?: string;
   contrato_termos?: string;
+  empContratanteContratanteId?: number;
 }
 
 function UserEdit() {
@@ -183,10 +185,10 @@ function UserEdit() {
     getValues,
     setValue,
   } = useForm<IFormProps>({
-    mode: 'onBlur',
+    mode: 'onBlur'/* ,
     defaultValues: {
       user_rg: user?.user_rg,
-    },
+    }, */
     //resolver: yupResolver(schema),
   });
 
@@ -232,20 +234,41 @@ function UserEdit() {
         },
       })
       .then(({ data }) => {
+        console.log("ola" , data)
         setUser(data);
+        setUserValues(data)
       })
       .catch((error: Error | AxiosError) => {
         console.log(error);
       });
   }, []);
 
+  const setUserValues = (data: IUser) => {
+    setValue('contrato_faixa_salarial', data.contrato[0].contrato_faixa_salarial)
+    setValue('contrato_base' ,  data.contrato[0].contrato_base)
+    setValue('contrato_tempo_de_casa' ,  data.contrato[0].contrato_tempo_de_casa)
+    setValue('contrato_tempo_formalizacao' ,  data.contrato[0].contrato_tempo_formalizacao)
+    setValue('contrato_dominio' , data.contrato[0].contrato_dominio)
+    setValue('contrato_data_desligamento' , data.contrato[0].contrato_data_desligamento)
+    setValue('contrato_distrato' ,  data.contrato[0].contrato_distrato)
+    setValue('contrato_faixa_salarial',  data.contrato[0].contrato_faixa_salarial)
+    setValue('contrato_plano_saude',  data.contrato[0].contrato_plano_saude)
+    setValue('contrato_vale_transporte',  data.contrato[0].contrato_vale_transporte)
+    setValue('contrato_vale_refeicao' ,  data.contrato[0].contrato_vale_refeicao)
+    setValue('contrato_vale_alimentacao' ,  data.contrato[0].contrato_vale_alimentacao)
+    setValue('contrato_auxilio_creche' ,  data.contrato[0].contrato_auxilio_creche)
+    setValue('contrato_type',  data.contrato[0].contrato_type)
+    setValue('cargo_area' ,  data.contrato[0].cargo.cargo_area)
+    setValue('contrato_turno' ,  data.contrato[0].contrato_turno)
+    setValue('empContratanteContratanteId' ,  data.contrato[0].empContratanteContratanteId)
+  }
+
   useEffect(() => {
     console.log(user?.user_rg);
   }, [user]);
 
   const onSubmit = useCallback(async data => {
-    console.log({
-    });
+    console.log("boa noite" , user);
 
      await api.post(`/user/usuario-perfil/${id}`, {
       contrato_base: data.contrato_base ,
@@ -262,7 +285,7 @@ function UserEdit() {
       contrato_vale_alimentacao: data.contrato_vale_alimentacao,
       contrato_auxilio_creche: data.contrato_auxilio_creche,
       contrato_type: data.contrato_type,
-      cargoCargoId: data.cargoCargoId,
+      cargoCargoId: user?.contrato[0]?.cargoCargoId,
       contrato_turno: data.contrato_turno,
       empContratanteContratanteId: data.empContratanteContratanteId
   }, {
