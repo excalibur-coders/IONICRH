@@ -37,7 +37,7 @@ function Routes() {
         <Route path="/SenhaAlterada" element={<SenhaAlterada />} />
         <Route path="/Colab_home" element={<Colab_home />} />
         <Route path="/Colab_onboard" element={<Colab_onboard />} />
-        <Route path="/Colab_user" element={<Colab_user />} />
+        <Route path="/Colab_user/:id" element={<Colab_user />} />
         <Route path="/Cargos" element={<Cargos />} />
         <Route path="/Ti" element={<DeptoTI />} />
         <Route path="/User/:id" element={<User />} />
