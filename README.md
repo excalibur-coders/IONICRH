@@ -131,6 +131,6 @@ npm start dev ou  yarn dev
 
 | Data       | Links      |
 | ---------- | ---------- |
-| 14/04/2022 | [Sprint 1] |
+| 14/04/2022 | [Sprint 1](https://github.com/excalibur-coders/IONICRH/releases/tag/1.0) |
 | 15/05/2022 | [Sprint 2] |
 | 05/06/2021 | [Sprint 3] |
