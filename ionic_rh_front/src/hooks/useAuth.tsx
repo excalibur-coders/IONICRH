@@ -36,8 +36,11 @@ type AuthProviderProps = {
 export const AuthContext = createContext({} as AuthContextData);
 
 export function signOut() {
+  //const navigate = useNavigate();
+
   Cookies.remove('ionicookie.token');
   Cookies.remove('ionicookie.user_id');
+  //navigate('/Colab_home');
 }
 
 export function AuthProvider ({ children }: AuthProviderProps) {
@@ -91,7 +94,24 @@ export function AuthProvider ({ children }: AuthProviderProps) {
 
       setUser(data);
 
-      navigate('/Cadastro_colaborador');
+      // console.log(data?.user_role?.[0])
+      if (data?.user_role?.[0] === 'Administrador') navigate('/funcionarios');
+      else if (
+        data?.user_nome,
+        data?.user_cpf,
+        data?.user_rg,
+        data?.user_nacionalidade,
+        data?.user_nascimento,
+        data?.user_naturalidade,
+        data?.user_genero,
+        data?.user_raca,
+        data?.user_estado_civil
+      ) {
+        navigate('/Colab_home');
+      }
+      else navigate('/Cadastro_colaborador');
+
+
     } catch (error) {
       alert('Parece que o usuário ou senha está incorreta.');
       console.log(error);

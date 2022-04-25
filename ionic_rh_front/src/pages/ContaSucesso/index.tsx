@@ -21,10 +21,9 @@ function ContaSucesso() {
 
           <div className='form'>
             <h1>Conta Criada com sucesso!</h1>
-            <h2>Voltar ao Login</h2>
 
             <div className='registerWrapper'>
-              <span><Link to="/">Voltar</Link></span>
+              <span><Link to="/">Voltar ao Login</Link></span>
             </div>
           </div>
         </div>

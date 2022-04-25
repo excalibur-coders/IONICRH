@@ -22,7 +22,6 @@ margin-left: 50px;
 .TableTwo{
   display: flex;
   justify-content: center;
-  border: 1px solid red;
 }
 
 .spinnerWrapper {

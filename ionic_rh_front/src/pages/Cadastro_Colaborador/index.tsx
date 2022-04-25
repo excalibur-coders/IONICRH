@@ -62,6 +62,7 @@ function Cadastro() {
 
   const { user } = useContext(AuthContext);
 
+
   const onSubmit = useCallback(async (data: CadastroProps) => {
     const idiomasfalados: (string | boolean)[] = []
     Object.values(data.idiomas[0]).forEach((value, index) => {
