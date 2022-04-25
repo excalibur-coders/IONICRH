@@ -54,7 +54,7 @@ export function AuthProvider ({ children }: AuthProviderProps) {
     const { 'ionicookie.token': token, 'ionicookie.user_id': user_id } = parseCookies();
 
     if (token) {
-      api.get('user/logged-user-info', {
+      api.get('user/usuario-perfil', {
         headers: {
           Authorization: `Bearer ${token}`,
         }

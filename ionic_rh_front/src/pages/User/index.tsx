@@ -123,33 +123,46 @@ interface IEscolaridade{
 
 function User(){
 
-  //const {user : jubileu} = useContext(AuthContext)
+  // const {user} = useContext(AuthContext)
   const cookies = parseCookies();
   const [user, setUser] = useState<IUser>();
   const [loading, setLoading] = useState(false);
   const {id} = useParams()
-  const getAllUser = useCallback(() => {
-    setLoading(true);
+  // const getAllUser = useCallback(() => {
+  //   setLoading(true);
 
-      api.get(`/user/user-info/${id}`, {
-      headers: {
-        Authorization: `Bearer ${cookies['ionicookie.token']}`,
-      }
-    }).then(({data}) => {
-      console.log(data.contrato[0].cargo.departamento.dep_name)
-      setUser(data);
-    }).catch((error: Error | AxiosError) => {
-      console.log(error);
-    })
-    console.log(id)
-    setTimeout(() => {
-      setLoading(false);
-    }, 5000);
+  //     api.get(`/user/usuario-perfil/1`, {
+  //     headers: {
+  //       Authorization: `Bearer ${cookies['ionicookie.token']}`,
+  //     }
+  //   }).then(({data}) => {
+  //     console.log(data)
+  //     setUser(data);
+  //   }).catch((error: Error | AxiosError) => {
+  //     console.log(error);
+  //   })
+  //   console.log(id)
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 5000);
 
-  }, [setLoading, setUser]);
+  // }, [setLoading, setUser]);
 
   useEffect(() => {
-    getAllUser();
+    // getUserInfo()
+    api
+      .get(`/user/usuario-perfil/${id}`, {
+        headers: {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
+        },
+      })
+      .then(({ data }) => {
+        console.log("ola" , data)
+        setUser(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
 
@@ -209,7 +222,7 @@ function User(){
 
                         <div className='colunaDados'>
                           <div className='coluna3'>
-                            <span>Telefone: ({user?.telefone[0].tell_ddd}) {user?.telefone[0].tell_numero} </span>
+                            <span>Telefone: ({user?.telefone?.[0]?.tell_ddd}) {user?.telefone?.[0]?.tell_numero} </span>
                           </div>
                         </div>
 
@@ -247,7 +260,7 @@ function User(){
 
                         <div className='colunaDados2'>
                           <div className='coluna2'>
-                            <span>Idiomas: {user?.idioma[0].idioma_falados} </span>
+                             <span>Idiomas: {user?.idioma?.[0]?.idioma_falados} </span>
                           </div>
                         </div>
 
@@ -269,19 +282,19 @@ function User(){
                       <div className='centerEndereco'>
                         <div className='colunaEndereco'>
                           <div className='coluna1'>
-                            <span>Rua/Av: {user?.endereco[0].endereco_rua} </span>
+                               <span>Rua/Av: {user?.endereco?.[0]?.endereco_rua} </span>
                           </div>
                         </div>
 
                         <div className='colunaEndereco'>
                           <div className='coluna2'>
-                            <span>N°: {user?.endereco[0].endereco_numero} </span>
+                            <span>N°: {user?.endereco?.[0]?.endereco_numero} </span>
                           </div>
                         </div>
 
                         <div className='colunaEndereco'>
                           <div className='coluna3'>
-                            <span>Compl: {user?.endereco[0].endereco_compl} </span>
+                            <span>Compl: {user?.endereco?.[0]?.endereco_compl} </span>
                           </div>
                         </div>
 
@@ -291,19 +304,19 @@ function User(){
 
                         <div className='colunaEndereco'>
                           <div className='coluna1'>
-                            <span>Cidade: {user?.endereco[0].endereco_cidade} </span>
+                            <span>Cidade: {user?.endereco?.[0]?.endereco_cidade} </span>
                           </div>
                         </div>
 
                         <div className='colunaEndereco'>
                           <div className='coluna2'>
-                            <span>Estado: {user?.endereco[0].endereco_estado} </span>
+                            <span>Estado: {user?.endereco?.[0]?.endereco_estado} </span>
                           </div>
                         </div>
 
                         <div className='colunaEndereco'>
                           <div className='coluna3'>
-                            <span>CEP: {user?.endereco[0].endereco_cep} </span>
+                            <span>CEP: {user?.endereco?.[0]?.endereco_cep} </span>
                           </div>
                         </div>
 
@@ -326,30 +339,30 @@ function User(){
 
               <div className='coluna'>
                 <div className='coluna1'>
-                  <span>Matricula: {user?.contrato[0].contrato_matricula} </span>
-                 <span>Departamento: {user?.contrato[0].cargo.departamento.dep_name} </span>
-                  <span>Cargo: {user?.contrato[0].contrato_base}</span>
+                  <span>Matricula: {user?.contrato?.[0]?.contrato_matricula} </span>
+                 <span>Departamento: {user?.contrato?.[0]?.cargo.departamento?.dep_name} </span>
+                  <span>Cargo: {user?.contrato?.[0]?.contrato_base}</span>
                   <span>Turno: </span>
                   <span>Status: </span>
                   <span>Base: </span>
-                  <span>Head: {user?.contrato[0].cargo.cargo_head} </span>
+                  <span>Head: {user?.contrato?.[0]?.cargo.cargo_head} </span>
                   <span>Domínio: </span>
-                  <span>Nível: {user?.contrato[0].cargo.cargo_nivel} </span>
+                  <span>Nível: {user?.contrato?.[0]?.cargo.cargo_nivel} </span>
                   <span>Curso: </span>
                 </div>
               </div>
 
               <div className='coluna'>
                 <div className='coluna2'>
-                  <span>Tipo de Contrato: {user?.contrato[0].contrato_type} </span>
+                  <span>Tipo de Contrato: {user?.contrato?.[0]?.contrato_type} </span>
                   <span>Natureza de contrato(PJ): </span>
                   <span>Data de fundação(PJ): </span>
                   <span>E-mail: {user?.user_email}</span>
-                  <span>Data de admissão: {user?.contrato[0].contrato_data_adicao} </span>
-                  <span>Empresa contratada: {user?.contrato[0].emp_contratante.contratante_nome}</span>
+                  <span>Data de admissão: {user?.contrato?.[0]?.contrato_data_adicao} </span>
+                  <span>Empresa contratada: {user?.contrato?.[0]?.emp_contratante.contratante_nome}</span>
                   <span>Tempo de formalização </span>
-                  <span>Tempo de casa: {user?.contrato[0].contrato_tempo_de_casa} anos </span>
-                  <span>Faixa salarial: R$ {user?.contrato[0].contrato_faixa_salarial?.toLocaleString('pt-BR')},00</span>
+                  <span>Tempo de casa: {user?.contrato?.[0]?.contrato_tempo_de_casa} anos </span>
+                  <span>Faixa salarial: R$ {user?.contrato?.[0]?.contrato_faixa_salarial?.toLocaleString('pt-BR')},00</span>
                 </div>
               </div>
 
@@ -361,11 +374,11 @@ function User(){
                   <span>Pesquisa de desligamento: </span>
                   <span>Distrato: </span>
                   <h1>Benefícios</h1>
-                  <span>Plano de saúde: R$ {user?.contrato[0].contrato_plano_saude?.toLocaleString('pt-BR')},00</span>
-                  <span>Auxilio creche: R$ {user?.contrato[0].contrato_auxilio_creche},00</span>
-                  <span>Vale Transporte: R$ {user?.contrato[0].contrato_vale_transporte},00 </span>
-                  <span>Vale alimentação: R$ {user?.contrato[0].contrato_vale_alimentacao},00</span>
-                  <span>Vale refeição: R$ {user?.contrato[0].contrato_vale_refeicao},00 </span>
+                  <span>Plano de saúde: R$ {user?.contrato?.[0]?.contrato_plano_saude?.toLocaleString('pt-BR')},00</span>
+                  <span>Auxilio creche: R$ {user?.contrato?.[0]?.contrato_auxilio_creche},00</span>
+                  <span>Vale Transporte: R$ {user?.contrato?.[0]?.contrato_vale_transporte},00 </span>
+                  <span>Vale alimentação: R$ {user?.contrato?.[0]?.contrato_vale_alimentacao},00</span>
+                  <span>Vale refeição: R$ {user?.contrato?.[0]?.contrato_vale_refeicao},00 </span>
                 </div>
               </div>
             </div>

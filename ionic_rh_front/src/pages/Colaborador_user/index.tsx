@@ -107,33 +107,33 @@ interface IEndereco {
 
 
 function Colab_user(){
-
+  const {user} = useContext(AuthContext)
   const cookies = parseCookies();
-  const [user, setUser] = useState<IUser>();
+  // const [user, setUser] = useState<IUser>();
   const [loading, setLoading] = useState(false);
   const {id} = useParams()
-  const getAllUser = useCallback(() => {
-    setLoading(true);
+  // const getAllUser = useCallback(() => {
+  //   setLoading(true);
 
-      api.get(`user/usuario-perfil/${id}`, {
-      headers: {
-        Authorization: `Bearer ${cookies['ionicookie.token']}`,
-      }
-    }).then(({data}) => {
-      console.log(data.user.user_name)
-      setUser(data);
-    }).catch((error: Error | AxiosError) => {
-      console.log(error);
-    })
-    console.log(id)
-    setTimeout(() => {
-      setLoading(false);
-    }, 5000);
+  //     api.get(`user/usuario-perfil/${id}`, {
+  //     headers: {
+  //       Authorization: `Bearer ${cookies['ionicookie.token']}`,
+  //     }
+  //   }).then(({data}) => {
+  //     console.log(data.user.user_name)
+  //     setUser(data);
+  //   }).catch((error: Error | AxiosError) => {
+  //     console.log(error);
+  //   })
+  //   console.log(id)
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 5000);
 
-  }, [setLoading, setUser]);
+  // }, [setLoading, setUser]);
 
   useEffect(() => {
-    getAllUser();
+    // getAllUser();
   }, []);
 
   return (
@@ -154,24 +154,24 @@ function Colab_user(){
 
                     <div className='coluna'>
                         <div className='coluna1'>
-                            <span>Cargo: {user?.contrato[0].cargo.cargo_area}</span>
+                            <span>Cargo: {user?.contrato?.[0]?.cargo.cargo_area}</span>
                             <span>RG:{user?.user_rg}</span>
                             <span>CPF:{user?.user_cpf} </span>
-                            <span>Matrícula: {user?.contrato[0].contrato_matricula}</span>
-                            <span>Departamento:{user?.contrato[0].cargo.departamento}</span>
+                            <span>Matrícula: {user?.contrato?.[0]?.contrato_matricula}</span>
+                            <span>Departamento:{user?.contrato?.[0]?.cargo.departamento}</span>
                         </div>
                     </div>
 
                     <div className='coluna'>
                         <div className='coluna2'>
                             <h2>Endereço</h2>
-                            <span>Rua/Av:{user?.endereco[0].endereco_rua}</span>
-                            <span>N:{user?.endereco[0].endereco_rua}</span>
-                            <span>Compl: {user?.endereco[0].endereco_rua}</span>
-                            <span>CEP: {user?.endereco[0].endereco_cep}</span>
-                            <span>Bairro: {user?.endereco[0].endereco_bairro}</span>
-                            <span>Estado: {user?.endereco[0].endereco_estado}</span>
-                            <span>Cidade: {user?.endereco[0].endereco_cidade}</span>
+                            <span>Rua/Av:{user?.endereco?.[0]?.endereco_rua}</span>
+                            <span>N:{user?.endereco?.[0]?.endereco_rua}</span>
+                            <span>Compl: {user?.endereco?.[0]?.endereco_rua}</span>
+                            <span>CEP: {user?.endereco?.[0]?.endereco_cep}</span>
+                            <span>Bairro: {user?.endereco?.[0]?.endereco_bairro}</span>
+                            <span>Estado: {user?.endereco?.[0]?.endereco_estado}</span>
+                            <span>Cidade: {user?.endereco?.[0]?.endereco_cidade}</span>
                         </div>
                     </div>
                 </div>
@@ -181,13 +181,13 @@ function Colab_user(){
                             <span>E-mail: {user?.user_email}</span>
                             <span>Data de nascimento: {user?.user_nascimento}</span>
                             <span>Telefone: 12 98813-6322</span>
-                            <span>Tipo de contrato:{user?.contrato[0].contrato_type}</span>
+                            <span>Tipo de contrato:{user?.contrato?.[0]?.contrato_type}</span>
                         </div>
                         <div className='dadosUser2'>
                             <span>Estado civil: {user?.user_estado_civil}</span>
                             <span>Sexo: {user?.user_genero}</span>
-                            <span>Escolaridade: {user?.escolaridade.school_status}</span>
-                            <span>Turno:{user?.contrato[0].contrato_turno}</span>
+                            <span>Escolaridade: {user?.escolaridade?.school_status}</span>
+                            <span>Turno:{user?.contrato?.[0].contrato_turno}</span>
                         </div>
                     </div>
                     <div className='cargo'>
