@@ -103,6 +103,8 @@ export const getAllColaborador = async (req: Request, res: Response) => {
       .leftJoin('u.endereco', 'end')
       .getMany()
 
+      console.log(userQuery);
+
     res.json(userQuery)
   } catch (err) {
     res.json(req.body)

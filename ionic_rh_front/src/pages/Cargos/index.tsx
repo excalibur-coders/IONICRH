@@ -28,12 +28,13 @@ function Cargos(){
 
   const getAllCargos = useCallback(() => {
     setLoading(true);
-    api.get('/cargo/cargo', {
+    api.get('/cargo/cargos', {
       headers: {
         Authorization: `Bearer ${cookies['ionicookie.token']}`,
       }
     }).then(({data}) => {
       setCargos(data);
+      console.log(data)
     }).catch((error: Error | AxiosError) => {
       console.log(error);
     })

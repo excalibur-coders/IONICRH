@@ -26,7 +26,7 @@ function Departamentos(){
 
   const getAllDepartamentos = useCallback(() => {
     setLoading(true);
-    api.get('/departamentos', {
+    api.get('/departamentos/departamentos', {
       headers: {
         Authorization: `Bearer ${cookies['ionicookie.token']}`,
       }
