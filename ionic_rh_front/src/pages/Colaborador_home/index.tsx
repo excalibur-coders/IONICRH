@@ -1,6 +1,6 @@
 import Colab_Nav from 'components/Colab_Nav';
 import RespBar from 'components/RespBar';
-import { ReactNode } from 'react';
+import { ReactNode, useContext } from 'react';
 import { MdAccountCircle, MdOutlinePlayCircleOutline, MdArrowForward } from 'react-icons/md';
 import { theme } from 'theme';
 import * as S from './styles';
@@ -8,14 +8,18 @@ import { RangeSlider, RangeSliderTrack, RangeSliderFilledTrack, RangeSliderThumb
 import Button from 'components/Button';
 import Footer from 'components/Footer';
 
+import { AuthContext } from 'hooks/useAuth';
+
 function Colab_home(){
+  const {user} = useContext(AuthContext)
+
   return (
     <>
         <S.Container>
           <RespBar/>
           <main>
             <div className='welcome'>
-              <h1>Olá, User</h1>
+              <h1>Olá, {user?.user_nome}</h1>
               <h2>É um prazer tê-lo em nossa plataforma <br/>
                 Continue sua trilha de aprendizado na empresa
               </h2>

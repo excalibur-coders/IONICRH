@@ -94,14 +94,24 @@ export const getAllColaborador = async (req: Request, res: Response) => {
         'i',
         'e',
         't',
+        'c',
         'end',
+        'cont',
+        'd',
+        'en'
       ])
       .from(user, 'u')
       .leftJoin('u.idioma', 'i')
       .leftJoin('u.escolaridade', 'e')
       .leftJoin('u.telefone', 't')
       .leftJoin('u.endereco', 'end')
+      .leftJoin('u.contrato', 'c')
+      .leftJoin('c.cargo', 'cont')
+      .leftJoin('cont.departamento', 'd')
+      .leftJoin('c.emp_contratante', 'en')
       .getMany()
+
+      console.log(userQuery);
 
     res.json(userQuery)
   } catch (err) {

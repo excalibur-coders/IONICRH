@@ -5,10 +5,16 @@ import { Stack, HStack, VStack } from '@chakra-ui/react'
 import {MdAccountCircle, MdOutlineLogout} from 'react-icons/md';
 import logo from 'assets/svg/ionicrh_logo_gray.svg';
 import { theme } from 'theme';
+import {AuthContext} from 'hooks/useAuth'
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function navbar() {
+  const { signOut } = useContext(AuthContext)
+  const navigate = useNavigate();
+
   return (
     <Box bg='#F4F4F5' boxShadow=' 2px 2px 2px 1px rgba(0, 0, 0, 0.2)'>
       <S.Container>
@@ -30,10 +36,26 @@ function navbar() {
                     </Box>
                     <Spacer></Spacer>
                     <Box w='50px'>
-                                  <Link href="../"><MdOutlineLogout/></Link>
+                      <Button
+                        className='button'
+                        as={MdOutlineLogout}
+                        color={ theme.colors.font}
+                        onClick={() => {
+                          signOut();
+                          navigate('/');
+                        }}
+                      />
                     </Box>
                     <Box w='50px'>
-                                  <Link href="../"><MdAccountCircle/></Link>
+                    <Button
+                      className='button'
+                      href="Colab_user"
+                      as={MdAccountCircle}
+                      color={theme.colors.font}
+                      onClick={() => {
+                        navigate('/Colab_user');
+                      }}
+                    />
                     </Box>
                 </HStack>
               </HStack>

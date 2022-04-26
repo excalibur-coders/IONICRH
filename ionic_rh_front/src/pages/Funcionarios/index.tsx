@@ -44,7 +44,7 @@ function Funcionarios() {
 
   const getAllFuncionarios = useCallback(() => {
     setLoading(true);
-    api.get('/user/Get-All-User', {
+    api.get('/user/listagen-user', {
       headers: {
         Authorization: `Bearer ${cookies['ionicookie.token']}`,
       }
@@ -118,9 +118,12 @@ function Funcionarios() {
                         return (
                         <><Tr>
                           <Td fontSize='xl'>{funcionario.user_nome}</Td>
-                          <Td>{funcionario.contrato[0]?.contrato_faixa_salarial}</Td>
-                          <Td>{funcionario.contrato[0]?.cargo.departamento.dep_name}</Td>
-                          <Td>{funcionario.contrato[0]?.cargo.cargo_area}</Td>
+                          {/* <Td fontSize='xl'>R$ 2000,00</Td>
+                          <Td fontSize='xl'>T.I</Td>
+                          <Td fontSize='xl'>Desenvolvedor</Td> */}
+                          <Td>{funcionario.contrato?.[0]?.contrato_faixa_salarial ? funcionario.contrato?.[0]?.contrato_faixa_salarial : '-'}</Td>
+                          <Td>{funcionario.contrato?.[0]?.cargo.departamento.dep_name ? funcionario.contrato?.[0]?.cargo.departamento.dep_name : '-'}</Td>
+                          <Td>{funcionario.contrato?.[0]?.cargo.cargo_area ? funcionario.contrato?.[0]?.cargo.cargo_area : '-'}</Td>
                           <Td><Link href="/perfil" fontSize='4xl'><MdOutlineAccountBox color='#4D4E4F' /></Link></Td>
                         </Tr></>
                       ) } )

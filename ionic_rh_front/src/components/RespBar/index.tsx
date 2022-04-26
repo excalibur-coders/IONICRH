@@ -4,10 +4,14 @@ import {Box, Flex, Heading, Spacer, Button, ListIcon} from '@chakra-ui/react';
 import {MdAccountCircle, MdOutlineLogout} from 'react-icons/md'
 import logo from 'assets/svg/ionicrh_logo_gray.svg';
 import { theme } from 'theme';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import {AuthContext} from 'hooks/useAuth'
+import { useNavigate } from 'react-router-dom';
 
 function RespBar() {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const { signOut } = useContext(AuthContext)
   return (
     <S.Navbar>
         <a href="/Colab_home"><img src={logo}/></a>
@@ -24,8 +28,24 @@ function RespBar() {
       </S.Navlist>
       <S.Navbutton>
         <div className=''>
-          <a href=''><Button className='button' as={MdOutlineLogout} color={ theme.colors.font}/></a>
-          <a href='/Colab_user'><Button className='button' as={MdAccountCircle} color={theme.colors.font}/></a>
+          <Button
+            className='button'
+            as={MdOutlineLogout}
+            color={ theme.colors.font}
+            onClick={() => {
+              signOut();
+              navigate('/');
+            }}
+          />
+          <Button
+            className='button'
+            href="Colab_user"
+            as={MdAccountCircle}
+            color={theme.colors.font}
+            onClick={() => {
+              navigate('/Colab_user');
+            }}
+          />
         </div>
       </S.Navbutton>
     </S.Navbar>
