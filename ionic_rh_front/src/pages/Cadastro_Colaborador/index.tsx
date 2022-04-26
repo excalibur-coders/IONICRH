@@ -22,6 +22,7 @@ import { AuthContext } from "hooks/useAuth";
 import { api } from 'services/api';
 import { IUser } from 'interfaces/IUser';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface CadastroProps {
   nomecompleto: string;
@@ -59,7 +60,7 @@ interface CadastroProps {
 
 function Cadastro() {
   const cookies = parseCookies();
-
+  const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
 
@@ -109,6 +110,7 @@ function Cadastro() {
     }
     ).then(({ data }) => {
       console.log(data);
+      navigate('/Colab_home')
     }).catch(error => {
       console.log(error);
     })
