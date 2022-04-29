@@ -74,7 +74,7 @@ function Cargos(){
                 <br></br>
                 <HStack spacing='200px'>
                   <Box w='10px' >
-                  <Input size='xs' width="200px" fontSize={20} placeholder="Nome, cargo ou departamento" labelText={""} />
+                  <Input size='xs' width="700px" fontSize={20} placeholder="Nome, cargo ou departamento" labelText={""} />
                   </Box>
                   <Box w='100px'>
                   <SearchIcon w={5} h={5}/>
@@ -83,18 +83,21 @@ function Cargos(){
 
                         <div className='Table'>
                               <TableContainer >
-                                <Table variant='simple'size='lg'>
-                                  <Thead>
+                                <Table variant='striped'size='lg' colorScheme='black'>
+{/*                                   <Thead>
                                     <Tr>
                                       <Th fontSize='2xl' color='black' >Cargos</Th>
                                         <Th fontSize='2xl' color='black'>Listar</Th>
                                     </Tr>
-                                </Thead>
+                                </Thead> */}
                                 </Table>
                                 <Divider orientation="horizontal" borderColor={theme.colors.font} variant='solid' size='10rem' />
-                                <Table variant='simple'size='lg'>
+                                <Table variant='striped'size='lg' colorScheme="gray">
                                   <div className='TableTwo'>
                                     <Tbody>
+                                    <Td>Cargo</Td>
+                                    <Td>Departamento</Td>
+                                    <Td>Perfil</Td>
                                     {!loading ? (
                                       cargos.map(cargos => (
                                           <Tr>
