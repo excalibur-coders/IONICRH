@@ -7,7 +7,8 @@ import { theme } from 'theme';
 export const Container = styled(Flex)`
 
 
-background: #00000029;
+
+background: #f4f4f5;
 
 .input{
 margin-left: 50px;

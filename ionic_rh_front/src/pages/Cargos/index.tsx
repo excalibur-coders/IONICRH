@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { useEffect, useState, useCallback } from 'react';
 import {Box, Icon, Link, Divider, Spinner} from '@chakra-ui/react';
-import {SearchIcon, ArrowBackIcon} from '@chakra-ui/icons';
+import {SearchIcon, ArrowBackIcon, ArrowForwardIcon} from '@chakra-ui/icons';
 import { theme } from 'theme';
 import Sidebar from 'components/Sidebar';
 import Input from 'components/Input';
@@ -16,14 +16,25 @@ import { parseCookies } from "nookies";
 import { AxiosError } from 'axios';
 
 
-interface ICargos {
-  cargo_area: string;
+
+
+interface ICargo{
+  departamento: IDepartamento
+  cargo_head?: string;
+  cargo_nivel?: string;
+  cargo_area?: string;
 }
+
+
+interface IDepartamento{
+  dep_name?: string;
+}
+
 
 function Cargos(){
   const cookies = parseCookies();
 
-  const [cargos, setCargos] = useState<ICargos[]>([]);
+  const [cargos, setCargos] = useState<ICargo[]>([]);
   const [loading, setLoading] = useState(false);
 
   const getAllCargos = useCallback(() => {
@@ -74,7 +85,7 @@ function Cargos(){
                 <br></br>
                 <HStack spacing='200px'>
                   <Box w='10px' >
-                  <Input size='xs' width="700px" fontSize={20} placeholder="Nome, cargo ou departamento" labelText={""} />
+                  <Input size='2xs' width="940px" fontSize={20} placeholder="Nome, cargo ou departamento" labelText={""} />
                   </Box>
                   <Box w='100px'>
                   <SearchIcon w={5} h={5}/>
@@ -91,28 +102,22 @@ function Cargos(){
                                     </Tr>
                                 </Thead> */}
                                 </Table>
-                                <Divider orientation="horizontal" borderColor={theme.colors.font} variant='solid' size='10rem' />
+                                <Divider orientation="horizontal" borderColor={theme.colors.font} variant='solid' w='90%' />
                                 <Table variant='striped'size='lg' colorScheme="gray">
                                   <div className='TableTwo'>
                                     <Tbody>
-                                    <Td>Cargo</Td>
-                                    <Td>Departamento</Td>
-                                    <Td>Perfil</Td>
-                                    {!loading ? (
+                                    <Td fontSize='2xl'>Cargo</Td>
+                                    <Td fontSize='2xl'>Departamento</Td>
+                                    {
                                       cargos.map(cargos => (
                                           <Tr>
-                                            <Td fontSize='2xl'>{cargos.cargo_area}</Td>
-                                            <Td></Td>
+                                            <Td >{cargos.cargo_area}</Td>
                                             <Td>
-                                              <Link href="/funcionarios" fontSize='4xl'><MdList color='#4D4E4F' /></Link>
+                                            {cargos.cargo_area}
                                             </Td>
                                           </Tr>
                                         ))
-                                      ) : (
-                                        <div className='spinnerWrapper'>
-                                          <Spinner size='md' />
-                                        </div>
-                                      )}
+                                      }
                               </Tbody>
                                   </div>
                             </Table>

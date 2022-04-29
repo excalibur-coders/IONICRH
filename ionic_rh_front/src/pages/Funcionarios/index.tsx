@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { ReactNode } from 'react';
 import { theme } from 'theme';
 import { Flex, Box, Spacer, Icon, Link, Divider, Spinner } from '@chakra-ui/react';
-import { SearchIcon, ArrowBackIcon } from '@chakra-ui/icons';
+import { SearchIcon, ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import Sidebar from 'components/Sidebar';
 import Input from 'components/Input';
 import Navbar from 'components/navbar';
@@ -98,24 +98,17 @@ function Funcionarios() {
           <div className='Table'>
             <TableContainer >
               <Table variant='simple' size='md'>
-                <Thead>
-                  <Tr>
-                    <Th fontSize='2xl' color='black' >#Nome</Th>
-                    <Th fontSize='2xl' color='black'>Salário</Th>
-                    <Th fontSize='2xl' color='black'>Departamento</Th>
-                    <Th fontSize='2xl' color='black'>Cargo</Th>
-                    <Th fontSize='2xl' color='black'>Perfil</Th>
-                  </Tr>
-                </Thead>
               </Table>
               <Divider orientation="horizontal" borderColor={theme.colors.font} variant='solid' size='10rem' />
-              <Table variant='simple' size='lg'>
+              <Table variant='striped' size='lg'>
                 <div className='TableTwo'>
                   <Tbody>
-                    {!loading ? (
-                      funcionarios.map(funcionario => {
-                        console.log("bom dia" , funcionario)
-                        return (
+                  <Td fontSize='4xl' color='black' >Nome</Td>
+                  <Td fontSize='4xl' color='black' >Salário</Td>
+                  <Td fontSize='4xl' color='black' >Departamento</Td>
+                  <Td fontSize='4xl' color='black' >Cargo</Td>
+                  <Td fontSize='4xl' color='black' >Perfil</Td>
+                    { funcionarios.map(funcionario => (
                         <><Tr>
                           <Td fontSize='xl'>{funcionario.user_nome}</Td>
                           {/* <Td fontSize='xl'>R$ 2000,00</Td>
@@ -124,14 +117,9 @@ function Funcionarios() {
                           <Td>{funcionario.contrato?.[0]?.contrato_faixa_salarial ? funcionario.contrato?.[0]?.contrato_faixa_salarial : '-'}</Td>
                           <Td>{funcionario.contrato?.[0]?.cargo.departamento.dep_name ? funcionario.contrato?.[0]?.cargo.departamento.dep_name : '-'}</Td>
                           <Td>{funcionario.contrato?.[0]?.cargo.cargo_area ? funcionario.contrato?.[0]?.cargo.cargo_area : '-'}</Td>
-                          <Td><Link href="/perfil" fontSize='4xl'><MdOutlineAccountBox color='#4D4E4F' /></Link></Td>
+                          <Td><Link href="/perfil" fontSize='xl' color={theme.colors.primary} >Ver<ArrowForwardIcon color={theme.colors.primary}  /></Link></Td>
                         </Tr></>
-                      ) } )
-                    ) : (
-                      <div className='spinnerWrapper'>
-                        <Spinner size='md' />
-                      </div>
-                    )}
+                      ))}
                   </Tbody>
                 </div>
               </Table>

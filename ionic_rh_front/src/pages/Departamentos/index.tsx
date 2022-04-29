@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
-import { Box, Icon, Link, Divider, Spinner} from '@chakra-ui/react';
-import {SearchIcon, ArrowBackIcon} from '@chakra-ui/icons';
+import { Box, Icon, Link, Divider, Stack, InputLeftElement, InputGroup} from '@chakra-ui/react';
+import {SearchIcon, ArrowBackIcon, ArrowForwardIcon} from '@chakra-ui/icons';
 import { theme } from 'theme';
 import Sidebar from 'components/Sidebar';
 import Input from 'components/Input';
@@ -54,62 +54,59 @@ function Departamentos(){
           <Sidebar />
         </div>
 
-        <div className='input'>
+        <div className='input' >
           <br></br>
           <HStack spacing='600px'>
-            <Box w='100px' fontSize={20}>
-              <Icon as={MdFilterList} w={9} h={5} />
-              Filtrar
-            </Box>
             <Box w='100px' fontSize={20}>
               <ArrowBackIcon w={7} h={7} />
               <Link href='/home'>Voltar</Link>
             </Box>
           </HStack>
           <br></br>
-          <HStack spacing='200px'>
-            <Box w='10px' >
-              <Input size='xs' width="200px" fontSize={20} placeholder="Nome, cargo ou departamento" labelText={""} />
+            <Box w='300px' fontSize={30}>
+              Departamentos
             </Box>
-            <Box w='100px'>
-              <SearchIcon w={5} h={5} />
+            <Box w='900px'>
+                <InputGroup >
+                    <InputLeftElement fontSize={20} pointerEvents='none' children={<SearchIcon color='gray.300' />}/>
+                    <Input width="70vw" size='lg' placeholder="       Pesquisar"  fontSize={10}/>
+                </InputGroup>
             </Box>
-          </HStack>
-
-          <div className='Table'>
+            <br></br><br></br>
+            <Box w='300px'  fontSize='4xl'>
+              Nome
+            </Box>
+            <Divider orientation="horizontal" borderColor={theme.colors.font} variant='solid' size='10rem' width="70vw" />
+            <br></br>
             <TableContainer >
-              <Table variant='simple' size='lg'>
-                <Thead>
-                  <Tr>
-                    <Th fontSize='2xl' color='black' >Departamentos</Th>
-                    <Th fontSize='2xl' color='black'>Listar</Th>
-                  </Tr>
-                </Thead>
-              </Table>
-              <Divider orientation="horizontal" borderColor={theme.colors.font} variant='solid' size='10rem' />
-              <Table variant='simple' size='lg'>
-                <div className='TableTwo'>
-                  <Tbody>
-                    {!loading ? (
-                      departamentos.map(departamento => (
-                        <Tr>
-                          <Td fontSize='2xl'>{departamento.dep_name}</Td>
-                          <Td></Td>
-                          <Td>
-                            <Link href="/funcionarios" fontSize='4xl'><MdList color='#4D4E4F' /></Link>
-                          </Td>
-                        </Tr>
-                      ))
-                    ) : (
-                      <div className='spinnerWrapper'>
-                        <Spinner size='md' />
-                      </div>
-                    )}
-                  </Tbody>
-                </div>
-              </Table>
+                <Table variant='striped'size='lg'>
+                  <div className='TableTwo'>
+                    <Tbody>
+                          {departamentos.map(departamento => (
+                            <Tr>
+                              <Td fontSize='2xl'>{departamento.dep_name}</Td>
+                              <Td></Td>
+                              <Td></Td>
+                              <Td></Td>
+                              <Td></Td>
+                              <Td></Td>
+                              <Td></Td>
+                              <Td></Td>
+                              <Td></Td>
+                              <Td></Td>
+                              <Td></Td>
+                              <Td></Td>
+                              <Td></Td>
+                              <Td></Td>
+                              <Td>
+                              <Link href="/funcionarios" fontSize='xl' color={theme.colors.primary}>Ver<ArrowForwardIcon color={theme.colors.primary}  /></Link>
+                              </Td>
+                            </Tr>
+                        ))}
+                      </Tbody>
+                  </div>
+                </Table>
             </TableContainer>
-          </div>
         </div>
       </S.Container>
     </>

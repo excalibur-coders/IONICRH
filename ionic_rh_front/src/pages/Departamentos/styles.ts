@@ -15,7 +15,6 @@ margin-left: 50px;
   display: flex;
   align-items: left;
   margin-top: 100px;
-
 }
 
 .TableTwo{
