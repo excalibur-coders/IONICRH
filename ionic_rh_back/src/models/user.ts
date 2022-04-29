@@ -109,7 +109,7 @@ export class user {
     @OneToMany(() => escolaridade, (escolaridade) => escolaridade.user)
     escolaridade!: escolaridade
 
-    @OneToMany(() => documentos, (docs) => docs._fk__user_)
+    @OneToMany(() => documentos, (docs) => docs.user)
     docs!: documentos
 
     @OneToMany(() => idiomas, (idioma) => idioma.user)
