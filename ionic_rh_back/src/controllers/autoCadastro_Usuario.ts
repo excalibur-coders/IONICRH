@@ -10,6 +10,7 @@ import { endereco } from "models/user_endereco";
 import { escolaridade } from "models/user_escola";
 import { idiomas } from "models/user_idioma";
 import { telefone } from "models/user_telefone";
+import { documentos } from "models/user_docs";
 
 interface IDecodedParams {
     id: string;
@@ -22,6 +23,7 @@ const idiomaRepository = AppDataSource.getRepository(idiomas);
 const escolaridadeRepository = AppDataSource.getRepository(escolaridade);
 const telefoneRepository = AppDataSource.getRepository(telefone);
 const endRepository = AppDataSource.getRepository(endereco)
+const docsRepository = AppDataSource.getRepository(documentos)
 
 export const updateUser = async (req: Request, res: Response) => {
     try {
@@ -149,6 +151,29 @@ export const adicionarEndereco = async (req: Request, res: Response, next: NextF
             .values(adicionarEndereco)
             .execute()
         next()
+    } catch (error) {
+        res.json(error)
+    }
+}
+export const adicionarDocumento = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const tokenHeader = req.headers.authorization;
+        const splitToken = tokenHeader?.split(' ')[1] as string;
+        const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
+        /* const {} = req.file */
+        await docsRepository
+            .createQueryBuilder()
+            .insert()
+            .into(documentos)
+            .values({
+                docs_nome: req.file?.originalname,
+                docs_size: req.file?.size,
+                docs_type: req.file?.mimetype,
+                docs_url: req.file?.location,
+                userUserId: Number(decodedJwt.id)
+            })
+            .execute()
+            next()
     } catch (error) {
         res.json(error)
     }

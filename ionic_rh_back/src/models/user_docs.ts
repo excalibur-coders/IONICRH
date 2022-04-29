@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
 import { user } from "./user";
 
 @Entity()
@@ -9,14 +9,30 @@ export class documentos {
     @Column({
         type: "varchar",
     })
-    docs_path!: string;
-
+    docs_nome!: string;
+    @Column({
+        type: "varchar",
+    })
+    docs_url!: string;
+    @Column({
+        type: "float",
+    })
+    docs_size!: number;
     @Column({
         type: "varchar",
     })
     docs_type!: string;
 
+
+
     //Chave estrangeira
     @ManyToOne(() => user, (user) => user.docs)
-    _fk__user_!: user
+    @JoinColumn({
+        name: "userUserId"
+    })
+    user!: user
+    @Column({
+        type: "int"
+    })
+    userUserId?: number
 }
