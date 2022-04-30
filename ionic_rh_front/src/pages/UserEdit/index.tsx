@@ -1,19 +1,15 @@
 import { chakra } from '@chakra-ui/react';
-import { Box, Flex, Heading, Spacer, ListIcon } from '@chakra-ui/react';
 import { MdAccountCircle} from 'react-icons/md';
 import logo from 'assets/svg/ionicrh_logo_gray.svg';
 import { theme } from 'theme';
 import Nav from 'components/nav';
 import * as S from './styles';
-// import { Input, Stack } from '@chakra-ui/react';
 import React, { ReactNode, useEffect, useState, useCallback, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Input from 'components/Input';
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
 import LogoGray from 'assets/svg/logo-gray.svg';
-//import { MdOutlinePictureAsPdf } from 'react-icons/md';
-import { Divider } from '@chakra-ui/react';
-import { FaArrowLeft } from 'react-icons/fa';
+import { Divider, Select } from '@chakra-ui/react';
 import Button from 'components/Button';
 import { useForm } from 'react-hook-form';
 
@@ -25,8 +21,6 @@ import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
 
 import { AuthContext } from 'hooks/useAuth';
-
-// console.log(theme.colors.primary);
 
 interface IUser {
   user_id: number;
@@ -604,14 +598,19 @@ function UserEdit() {
 
                   <div className="coluna1">
                     <span>Departamento: </span>
-                    <Input
+                    <Select placeholder='Selecione uma opção' size='xs'>
+                      <option value='option1'>RH</option>
+                      <option value='option2'>Marketing</option>
+                      <option value='option3'>TI</option>
+                    </Select>
+{/*                     <Input
                       size="xs"
                       width="auto"
                       fontSize={15}
                       defaultValue={user?.contrato?.[0]?.cargo.departamento.dep_name
                       }
                       {...register('dep_name')}
-                    />
+                    /> */}
                   </div>
 
                   <div className="coluna1">
@@ -626,7 +625,7 @@ function UserEdit() {
                     />
                   </div>
 
-                                                  <div className='coluna1'>
+                                <div className='coluna1'>
                                   <span>Turno:</span>
                                   <Input
                                     size='xs'
@@ -714,14 +713,19 @@ function UserEdit() {
                 <div className="colunaFuncionais">
                   <div className="coluna2">
                     <span>Tipo de Contrato:</span>
-                    <Input
+                    <Select placeholder='Selecione uma opção' size='xs'>
+                      <option value='option1'>PJ</option>
+                      <option value='option2'>CLT</option>
+                      <option value='option3'>Estágio</option>
+                    </Select>
+{/*                     <Input
                       size="xs"
                       placeholder=""
                       width="auto"
                       fontSize={15}
                       {...register('contrato_type')}
                       defaultValue={user?.contrato?.[0]?.contrato_type}
-                    />
+                    /> */}
                   </div>
 
                   {/*                                 <div className='coluna2'>
@@ -770,14 +774,19 @@ function UserEdit() {
 
                   <div className="coluna2">
                     <span>Empresa contratada:</span>
-                    <Input
+                    <Select placeholder='Selecione uma opção' size='xs'>
+                      <option value='option1'>IONIC</option>
+                      <option value='option2'>NESS</option>
+                      <option value='option3'>n sei</option>
+                    </Select>
+{/*                     <Input
                       size="xs"
                       placeholder=""
                       width="auto"
                       fontSize={15}
                       {...register('contratante_nome')}
                       defaultValue={user?.contrato?.[0]?.emp_contratante.contratante_nome}
-                    />
+                    /> */}
                   </div>
 
                   <div className="coluna2">
