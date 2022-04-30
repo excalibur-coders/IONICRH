@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { useEffect, useState, useCallback } from 'react';
-import {Box, Icon, Link, Divider, Spinner} from '@chakra-ui/react';
+import {Box, Icon, Link, Divider, InputGroup, InputLeftElement} from '@chakra-ui/react';
 import {SearchIcon, ArrowBackIcon, ArrowForwardIcon} from '@chakra-ui/icons';
 import { theme } from 'theme';
 import Sidebar from 'components/Sidebar';
@@ -74,58 +74,65 @@ function Cargos(){
               <br></br>
               <HStack spacing='800px'>
                   <Box w='100px' fontSize={20}>
-                  <Icon as={MdFilterList} w={9} h={5}/>
-                          Filtrar
-                  </Box>
-                  <Box w='100px' fontSize={20}>
                   <ArrowBackIcon w={7} h={7}/>
                     <Link href='/'>Voltar</Link>
                   </Box>
                 </HStack>
                 <br></br>
                 <HStack spacing='200px'>
-                  <Box w='10px' >
-                  <Input size='2xs' width="940px" fontSize={20} placeholder="Nome, cargo ou departamento" labelText={""} />
-                  </Box>
-                  <Box w='100px'>
-                  <SearchIcon w={5} h={5}/>
-                  </Box>
                 </HStack>
-
-                        <div className='Table'>
-                              <TableContainer >
-                                <Table variant='striped'size='lg' colorScheme='black'>
-{/*                                   <Thead>
-                                    <Tr>
-                                      <Th fontSize='2xl' color='black' >Cargos</Th>
-                                        <Th fontSize='2xl' color='black'>Listar</Th>
-                                    </Tr>
-                                </Thead> */}
-                                </Table>
-                                <Divider orientation="horizontal" borderColor={theme.colors.font} variant='solid' w='90%' />
-                                <Table variant='striped'size='lg' colorScheme="gray">
+                <br></br>
+            <Box w='300px' fontSize={30}>
+              Cargos
+            </Box>
+            <Box w='900px'>
+                <InputGroup >
+                    <InputLeftElement fontSize={20} pointerEvents='none' children={<SearchIcon color='gray.300' />}/>
+                    <Input width="70vw" size='lg' placeholder="       Pesquisar"  fontSize={10}/>
+                </InputGroup>
+            </Box>
+            <br></br><br></br>
+            <HStack spacing='150px'>
+              <Box w='300px'  fontSize='4xl'>
+                Cargo
+              </Box>
+              <Box w='400px'  fontSize='4xl'>
+                Departamento
+              </Box>
+            </HStack>
+            <Divider orientation="horizontal" borderColor={theme.colors.font} variant='solid' size='10rem' width="70vw" />
+            <br></br>
+                          <TableContainer >
+                              <Table variant='striped'size='lg' colorScheme="gray">
                                   <div className='TableTwo'>
                                     <Tbody>
-                                    <Td fontSize='2xl'>Cargo</Td>
-                                    <Td fontSize='2xl'>Departamento</Td>
                                     {
                                       cargos.map(cargos => (
                                           <Tr>
                                             <Td >{cargos.cargo_area}</Td>
+                                            <Td></Td>
+                                            <Td></Td>
+                                            <Td></Td>
                                             <Td>
                                             {cargos.cargo_area}
                                             </Td>
+                                            <Td></Td>
+                                            <Td></Td>
+                                            <Td></Td>
+                                            <Td></Td>
+                                            <Td></Td>
+                                            <Td></Td>
+                                            <Td></Td>
                                           </Tr>
                                         ))
                                       }
-                              </Tbody>
+                                </Tbody>
                                   </div>
                             </Table>
                           </TableContainer>
-                        </div>
                           </div>
 
-                    </S.Container>
+        </S.Container>
 
 
 
