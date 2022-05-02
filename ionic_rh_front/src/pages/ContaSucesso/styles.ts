@@ -3,100 +3,102 @@ import { Flex } from '@chakra-ui/react';
 import { theme } from 'theme';
 
 export const Container = styled(Flex)`
-height:100vh;
-display: flex;
-flex-direction:column;
-color: ${theme.colors.font};
-
-.centerWrapper{
+height: 100vh;
+.leftWrapper {
+  width: 60%;
+  margin-bottom:25px;
   display: flex;
-  flex-wrap: wrap;
-  height:100%;
-
-  .leftWrapper {
-    position: relative;
-    float: left;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-
-    img {
-      width: 120px;
-      margin: 5px 5px;
-      margin-top:10px;
+  flex-direction: column;
+  .text {
+    display: block;
+    margin: auto;
+    text-align: center;
+    h1{
+      font-size: 50px;
+      font-family: coolvetica, sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      color: ${theme.colors.font}
     }
-
-    .form {
-      margin: 0 auto;
-      margin-top: 80px;
-
-      h1 {
-        margin: 50px;
-
-        text-align: center;
-        font-weight: bold;
-        font-size: 30px;
-      }
-
-      h2 {
-        margin: 50px;
-
-        text-align: center;
-        font-weight: bold;
-        font-size: 20px;
-      }
+    h2{
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 30px;
+      font-family: coolvetica, sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      color: ${theme.colors.font}
     }
-
-    .registerWrapper {
-      display: flex;
-      flex-direction: column;
-      align-items:center;
-
-      margin-top: 50px;
-
-      span {
-        text-align: center;
-      }
-
-      span:last-child {
-        text-align: center;
-        color: ${theme.colors.primary};
-        font-size: 1.5em;
-        }
-      }
+    span {
+      text-align: center;
+      color: ${theme.colors.primary};
+      font-size: 2.0em;
     }
   }
-
-  .rightWrapper {
-    position: relative;
-    width: 40%;
-    float: right;
+.registerWrapper {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background: ${theme.colors.primary};
+    flex-direction: column;
+    margin-top: 50px;
+  }
+}
+.rightWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  background: ${theme.colors.primary};
+  img {
+    width: 30rem;
+  }
+  .no{
+    display: none;
+  }
+}
+img {
+  width: 120px;
+  margin: 5px 5px;
+}
 
-    img {
-      width: 30rem;
+@media(max-width: 700px) {
+diplay: flex;
+flex-direction: column;
+.leftWrapper {
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+  .text {
+    display: block;
+    margin: auto;
+    margin-top: 200px;
+    text-align: center;
+    margin-bottom: 25px;
+    h1{
+    font-size: 28px;
+    }
+   h2{
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+    }
+    span {
+      text-align: center;
+      color: ${theme.colors.primary};
+      font-size: 1.8em;
     }
   }
 }
-
-@media(max-width: 768px) {
-  .centerWrapper{
-      .leftWrapper{
-          width: 100%;
-      }
-
-    .rightWrapper {
-      border:1px solid black;
-      flex-direction: column;
-      position: relative;
-      img {
-      width: 20rem;
-      }
-    }
+.rightWrapper{
+  background: none;
+  width: 100%;
+  margin-top: 0px;
+  img{
+    display: none;
   }
-
-
-`;
+  .no{
+    display: flex;
+    width: 100%;
+  }
+}
+}
+`

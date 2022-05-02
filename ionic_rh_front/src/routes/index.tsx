@@ -15,11 +15,10 @@ import User from 'pages/User';
 import UserEdit from 'pages/UserEdit';
 import Administrador from 'pages/Administrador';
 import AdministradorEdit from 'pages/AdministradorEdit';
-
-
 import Colab_home from 'pages/Colaborador_home';
 import Colab_onboard from 'pages/Colaborador_onboard';
 import Colab_user from 'pages/Colaborador_user';
+import Consultor from 'pages/Consultor_Tela';
 
 function Routes() {
   return (
@@ -44,6 +43,7 @@ function Routes() {
         <Route path="/UserEdit/:id" element={<UserEdit />} />
         <Route path="/Administrador" element={<Administrador />} />
         <Route path="/AdministradorEdit" element={<AdministradorEdit />} />
+        <Route path="/Consultor" element={<Consultor />} />
       </RoutesWrapper>
     // </BrowserRouter>
   )
