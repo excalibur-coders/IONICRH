@@ -56,6 +56,27 @@ height: 100vh;
         width: 30rem;
         margin-top: 80px;
         flex-direction: column;
+
+        .dropdown {
+          display: flex;
+          flex-direction: column;
+
+        .dropdowntext {
+          display: flex;
+          align-items: left;
+          font-size: 20px;
+          font-weight: bold;
+}
+
+          .genero {
+            height: 33px;
+            width: 222px;
+            border: 1px solid black;
+            border-radius: 10px;
+            background-color: #f4f4f5;
+          }
+        }
+
       }
 
       .form-row {

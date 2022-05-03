@@ -212,15 +212,17 @@ function Cadastro() {
                     {...register('nascimento')}
                   />
 
-                  <Input
-                    size='sm'
-                    width="14rem"
-                    fontSize={20}
-                    labelText="Gênero"
-                    type="text"
-                    {...register('genero')}
 
-                  />
+<div className='dropdown'>
+<label htmlFor="lang" className='dropdowntext'>Gênero</label>
+      <select className='genero' id="lang" {...register('genero')}>
+        <option>Selecione seu Gênero</option>
+        <option value="masculino">Masculino</option>
+        <option value="feminino">Feminino</option>
+        <option value="outro">Outro</option>
+      </select>
+      </div>  
+                    
 
                 </div>
 
