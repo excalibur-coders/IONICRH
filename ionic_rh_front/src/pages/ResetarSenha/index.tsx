@@ -1,5 +1,4 @@
 // import { Input, Stack } from '@chakra-ui/react';
-import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
 import Input from 'components/Input';
@@ -15,31 +14,45 @@ import Button from 'components/Button';
 function ResetarSenha() {
   return (
     <S.Container>
-      <div className='centerWrapper'>
-        <div className='leftWrapper'>
+      <div className="centerWrapper">
+        <div className="leftWrapper">
           <img src={IonicLogo} />
 
-          <div className='form'>
+          <div className="form">
             <h1>Resetar Senha</h1>
-            <Input size='sm' width="auto" fontSize={15} labelText="Nova Senha" />
-            <Input size='sm' width="auto" fontSize={15} labelText="Repetir Senha" />
+            <Input
+              size="sm"
+              width="auto"
+              fontSize={15}
+              labelText="Nova Senha"
+            />
+            <Input
+              size="sm"
+              width="auto"
+              fontSize={15}
+              labelText="Repetir Senha"
+            />
             <div className="formFooter">
-              <Button text="Resetar a Senha" color={theme.colors.primary}></Button>
+              <Button
+                text="Resetar a Senha"
+                color={theme.colors.primary}
+              ></Button>
             </div>
 
-            <div className='registerWrapper'>
-              <span><Link to="/">Voltar ao Login</Link></span>
+            <div className="registerWrapper">
+              <span>
+                <Link to="/">Voltar ao Login</Link>
+              </span>
             </div>
           </div>
         </div>
 
         <div className="rightWrapper">
-        <img src={LogoGray} />
+          <img src={LogoGray} />
+        </div>
       </div>
-      </div>
-
     </S.Container>
   );
-};
+}
 
 export default ResetarSenha;

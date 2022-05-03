@@ -1,60 +1,40 @@
 {
-    "project": "IONIC_RH_FRONT/tsconfig.json",
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended",
-        "plugin:json/recommended"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "react-hooks",
-        "@typescript-eslint",
-        "prettier"
-    ],
-    "rules": {
-      "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn",
-      "react/jsx-filename-extension": [
-	      1,
-	      {
-	        "extensions": [
-	          ".tsx"
-	        ]
-	      }
-	    ],
-      "import/extensions": [
-        "error",
-        "ignorePackages",
-        {
-          "ts": "never",
-          "tsx": "never"
-        },
-      ],
-      "no-use-before-define": "off",
-      "@typescript-eslint/no-use-before-define": [
-        "error"
-      ],
-      "prettier/prettier": "error",
-      "react/react-in-jsx-scope": "off",
-      "import/prefer-default-export": "off"
-    },
-    "settings": {
-      "import/resolver": {
-        "typescript": {}
-      }
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
     }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 13,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "off",
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "no-case-declarations": "off"
+  }
 }
