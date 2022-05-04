@@ -30,17 +30,18 @@
 
  > **Requisitos**
 
- - <img src = "./readme/feito.jpeg" /> Cadastro de voluntários;
- - <img src = "./readme/feito.jpeg" /> Cadastro de projetos;
- - <img src = "./readme/feito.jpeg" /> Cadastro de doadores;
- - <img src = "./readme/feito.jpeg" /> Cadastro de participantes;
- - <img src = "./readme/feito.jpeg" /> Painel adminitrativo para alterações no site.<br><br>
+ - <img src = "./readme/feito.jpeg" /> Cadastro de Colaboradores;
+ - <img src = "./readme/feito.jpeg" /> Repositório para documentos dos colaboradores;
+ - <img src = "./readme/feito.jpeg" /> Cadastros de Trilha de Aprendizado e Status de Realização;
+ - <img src = "./readme/feito.jpeg" /> Organogramas da Empresa;
+ - <img src = "./readme/feito.jpeg" /> Repositório de documentos da empresa (políticas, normas, regras, etc);
+ - <img src = "./readme/feito.jpeg" /> Dossiê gerado em PDF por colaborador para consulta do administrador e gestor.<br><br>
 
  > **Funcionalidades extras**
 
- - <img src = "./readme/feito.jpeg" />  Link de compartilhamento do site nas redes sociais do visitante;
- - <img src = "./readme/feito.jpeg" />  Adaptação do site para versão mobile;
- - <img src = "./readme/feito.jpeg" />  Pesquisa de origem de tráfego.<br><br>
+ - <img src = "./readme/feito.jpeg" />  ;
+ - <img src = "./readme/feito.jpeg" />  ;
+ - <img src = "./readme/feito.jpeg" />  <br><br>
 
 <br>
 
