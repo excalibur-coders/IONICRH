@@ -1,27 +1,21 @@
-import { ReactNode, useState } from 'react';
-
 import { useCallback, useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
 
 import Input from 'components/Input';
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
 import { theme } from 'theme';
-import { Checkbox, CheckboxGroup, Stack } from '@chakra-ui/react'
+import { Checkbox, CheckboxGroup, Stack } from '@chakra-ui/react';
 
-import { parseCookies } from "nookies";
+import { parseCookies } from 'nookies';
 
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 
 import * as S from './styles';
 import Button from 'components/Button';
-import { tmpdir } from 'os';
 
-import { AuthContext } from "hooks/useAuth";
+import { AuthContext } from 'hooks/useAuth';
 import { api } from 'services/api';
-import { IUser } from 'interfaces/IUser';
-import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 interface CadastroProps {
@@ -50,12 +44,14 @@ interface CadastroProps {
   school_termino: string;
   school_status: string;
   school_curso: string;
-  idiomas: [{
-    ingles: boolean,
-    espanhol: boolean,
-    outros: string,
-  }];
-  contrato: string
+  idiomas: [
+    {
+      ingles: boolean;
+      espanhol: boolean;
+      outros: string;
+    },
+  ];
+  contrato: string;
 }
 
 function Cadastro() {
@@ -63,84 +59,97 @@ function Cadastro() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
-
   const onSubmit = useCallback(async (data: CadastroProps) => {
-    const idiomasfalados: (string | boolean)[] = []
+    const idiomasfalados: (string | boolean)[] = [];
     Object.values(data.idiomas[0]).forEach((value, index) => {
-      idiomasfalados.push(value)
-    })
+      idiomasfalados.push(value);
+    });
 
-    await api.put<CadastroProps>("/user/auto-cadastro", {
-      user_nome: data.nomecompleto,
-      user_cpf: data.cpf,
-      user_rg: data.rg,
-      user_nacionalidade: data.nacionalidade,
-      user_nascimento: data.nascimento,
-      user_naturalidade: data.naturalidade,
-      user_genero: data.genero,
-      user_raca: data.etnia,
-      user_estado_civil: data.estadocivil,
-      user_tipo_contrato: data.contrato,
-      escolaridades: [{
-        school_instituicao: data.school_instituicao,
-        school_formacao: data.school_formacao,
-        school_inicio: data.school_inicio,
-        school_termino: data.school_termino,
-        school_status: data.school_status,
-        school_curso: data.school_curso
-      }],
-      enderecos: [{
-        endereco_pais: data.nacionalidade,
-        endereco_bairro: data.bairro,
-        endereco_cidade: data.cidade,
-        endereco_cep: data.cep,
-        endereco_estado: data.estado,
-        endereco_numero: data.numero,
-        endereco_rua: data.rua
-      }],
-      idioma_falados: idiomasfalados,
-      telefones: [{
-        tell_ddd: data.telefone.split(" ")[0].replace(/([()])/g, ''),
-        tell_numero: data.telefone.split(" ")[1].replace("-", '')
-      }]
-    }, {
-      headers: {
-        Authorization: `Bearer ${cookies['ionicookie.token']}`,
-      },
-    }
-    ).then(({ data }) => {
-      console.log(data);
-      navigate('/Colab_home')
-    }).catch(error => {
-      console.log(error);
-    })
+    await api
+      .put<CadastroProps>(
+        '/user/auto-cadastro',
+        {
+          user_nome: data.nomecompleto,
+          user_cpf: data.cpf,
+          user_rg: data.rg,
+          user_nacionalidade: data.nacionalidade,
+          user_nascimento: data.nascimento,
+          user_naturalidade: data.naturalidade,
+          user_genero: data.genero,
+          user_raca: data.etnia,
+          user_estado_civil: data.estadocivil,
+          user_tipo_contrato: data.contrato,
+          escolaridades: [
+            {
+              school_instituicao: data.school_instituicao,
+              school_formacao: data.school_formacao,
+              school_inicio: data.school_inicio,
+              school_termino: data.school_termino,
+              school_status: data.school_status,
+              school_curso: data.school_curso,
+            },
+          ],
+          enderecos: [
+            {
+              endereco_pais: data.nacionalidade,
+              endereco_bairro: data.bairro,
+              endereco_cidade: data.cidade,
+              endereco_cep: data.cep,
+              endereco_estado: data.estado,
+              endereco_numero: data.numero,
+              endereco_rua: data.rua,
+            },
+          ],
+          idioma_falados: idiomasfalados,
+          telefones: [
+            {
+              tell_ddd: data.telefone.split(' ')[0].replace(/([()])/g, ''),
+              tell_numero: data.telefone.split(' ')[1].replace('-', ''),
+            },
+          ],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${cookies['ionicookie.token']}`,
+          },
+        },
+      )
+      .then(({ data }) => {
+        console.log(data);
+        navigate('/Colab_home');
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }, []);
 
-  const schema = yup.object({
-    nomecompleto: yup.string().required('Nome completo obrigatório!'),
-    nacionalidade: yup.string().required('Nacionalidade obrigatória!'),
-    naturalidade: yup.string().required('Naturalidade obrigatória!'),
-    estadocivil: yup.string().required('Estado civil obrigatório!'),
-    rua: yup.string().required('Rua obrigatória!'),
-    bairro: yup.string().required('Bairro obrigatório!'),
-    cidade: yup.string().required('Cidade obrigatória!'),
-    estado: yup.string().required('Estado obrigatório!'),
-    numero: yup.string().required('Número obrigatório!'),
-    complemento: yup.string().required('Complemento obrigatório!'),
-    email: yup.string(),
-    etnia: yup.string().required('Etnia obrigatória!'),
-    nascimento: yup.string().required('Data de nascimento obrigatória!'),
-    cpf: yup.string().required('CPF obrigatório!'),
-    rg: yup.string().required('RG obrigatório!'),
-    cep: yup.string().required('CEP obrigatório!'),
-    telefone: yup.string().required('Telefone obrigatório!'),
-    school_instituicao: yup.string().required('Instituição obrigatória!'),
-    school_formacao: yup.string().required('Formação obrigatório!'),
-    school_inicio: yup.string().required('Início obrigatório!'),
-    school_termino: yup.string().required('Término obrigatório!'),
-    school_status: yup.string().required('Status obrigatório!'),
-    contrato: yup.string().required('Tipo contrato obrigatório!'),
-  }).required();
+  const schema = yup
+    .object({
+      nomecompleto: yup.string().required('Nome completo obrigatório!'),
+      nacionalidade: yup.string().required('Nacionalidade obrigatória!'),
+      naturalidade: yup.string().required('Naturalidade obrigatória!'),
+      estadocivil: yup.string().required('Estado civil obrigatório!'),
+      rua: yup.string().required('Rua obrigatória!'),
+      bairro: yup.string().required('Bairro obrigatório!'),
+      cidade: yup.string().required('Cidade obrigatória!'),
+      estado: yup.string().required('Estado obrigatório!'),
+      numero: yup.string().required('Número obrigatório!'),
+      complemento: yup.string().required('Complemento obrigatório!'),
+      email: yup.string(),
+      etnia: yup.string().required('Etnia obrigatória!'),
+      nascimento: yup.string().required('Data de nascimento obrigatória!'),
+      cpf: yup.string().required('CPF obrigatório!'),
+      rg: yup.string().required('RG obrigatório!'),
+      cep: yup.string().required('CEP obrigatório!'),
+      telefone: yup.string().required('Telefone obrigatório!'),
+      school_instituicao: yup.string().required('Instituição obrigatória!'),
+      school_formacao: yup.string().required('Formação obrigatório!'),
+      school_inicio: yup.string().required('Início obrigatório!'),
+      school_termino: yup.string().required('Término obrigatório!'),
+      school_status: yup.string().required('Status obrigatório!'),
+      contrato: yup.string().required('Tipo contrato obrigatório!'),
+    })
+    .required();
 
   const {
     register,
@@ -153,20 +162,17 @@ function Cadastro() {
 
   return (
     <S.Container>
-
-      <div className='header'>
+      <div className="header">
         <img src={IonicLogo} />
         <h1>Cadastro</h1>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className='main'>
-
+        <div className="main">
           <div className="mainWrapper">
-
-            <div className='leftWrapper'>
-              <div className='form'>
+            <div className="leftWrapper">
+              <div className="form">
                 <Input
-                  size='sm'
+                  size="sm"
                   width="auto"
                   fontSize={20}
                   labelText="Nome Completo"
@@ -176,9 +182,9 @@ function Cadastro() {
                   {...register('nomecompleto')}
                 />
 
-                <div className='form-row'>
+                <div className="form-row">
                   <Input
-                    size='sm'
+                    size="sm"
                     width="14rem"
                     fontSize={20}
                     labelText="Nacionalidade"
@@ -188,7 +194,7 @@ function Cadastro() {
                   />
 
                   <Input
-                    size='sm'
+                    size="sm"
                     width="14rem"
                     fontSize={20}
                     labelText="Naturalidade"
@@ -196,13 +202,11 @@ function Cadastro() {
                     error={errors.naturalidade?.message}
                     {...register('naturalidade')}
                   />
-
                 </div>
 
-                <div className='form-row'>
-
+                <div className="form-row">
                   <Input
-                    size='sm'
+                    size="sm"
                     width="14rem"
                     fontSize={20}
                     labelText="Nascimento"
@@ -213,20 +217,18 @@ function Cadastro() {
                   />
 
                   <Input
-                    size='sm'
+                    size="sm"
                     width="14rem"
                     fontSize={20}
                     labelText="Gênero"
                     type="text"
                     {...register('genero')}
-
                   />
-
                 </div>
 
-                <div className='form-row'>
+                <div className="form-row">
                   <Input
-                    size='sm'
+                    size="sm"
                     width="14rem"
                     fontSize={20}
                     labelText="CPF"
@@ -237,7 +239,7 @@ function Cadastro() {
                   />
 
                   <Input
-                    size='sm'
+                    size="sm"
                     width="14rem"
                     fontSize={20}
                     labelText="RG"
@@ -246,11 +248,10 @@ function Cadastro() {
                     error={errors.rg?.message}
                     {...register('rg')}
                   />
-
                 </div>
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="auto"
                   fontSize={20}
                   labelText="Estado Civil"
@@ -260,7 +261,7 @@ function Cadastro() {
                 />
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="auto"
                   fontSize={20}
                   labelText="Etnia"
@@ -270,7 +271,7 @@ function Cadastro() {
                 />
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="auto"
                   fontSize={20}
                   labelText="Rua"
@@ -279,9 +280,9 @@ function Cadastro() {
                   {...register('rua')}
                 />
 
-                <div className='form-row'>
+                <div className="form-row">
                   <Input
-                    size='sm'
+                    size="sm"
                     width="14rem"
                     fontSize={20}
                     labelText="CEP"
@@ -292,7 +293,7 @@ function Cadastro() {
                   />
 
                   <Input
-                    size='sm'
+                    size="sm"
                     width="14rem"
                     fontSize={20}
                     labelText="Bairro"
@@ -300,12 +301,11 @@ function Cadastro() {
                     error={errors.bairro?.message}
                     {...register('bairro')}
                   />
-
                 </div>
 
-                <div className='form-row'>
+                <div className="form-row">
                   <Input
-                    size='sm'
+                    size="sm"
                     width="14rem"
                     fontSize={20}
                     labelText="Cidade"
@@ -315,7 +315,7 @@ function Cadastro() {
                   />
 
                   <Input
-                    size='sm'
+                    size="sm"
                     width="14rem"
                     fontSize={20}
                     labelText="Estado"
@@ -323,12 +323,11 @@ function Cadastro() {
                     error={errors.estado?.message}
                     {...register('estado')}
                   />
-
                 </div>
 
-                <div className='form-row'>
+                <div className="form-row">
                   <Input
-                    size='sm'
+                    size="sm"
                     width="14rem"
                     fontSize={20}
                     labelText="Número"
@@ -338,7 +337,7 @@ function Cadastro() {
                   />
 
                   <Input
-                    size='sm'
+                    size="sm"
                     width="14rem"
                     fontSize={20}
                     labelText="Complemento"
@@ -346,17 +345,14 @@ function Cadastro() {
                     error={errors.complemento?.message}
                     {...register('complemento')}
                   />
-
                 </div>
               </div>
             </div>
 
-            <div className='rightWrapper'>
-              <div className='form'>
-
-
+            <div className="rightWrapper">
+              <div className="form">
                 <Input
-                  size='sm'
+                  size="sm"
                   width="auto"
                   fontSize={20}
                   labelText="E-mail"
@@ -367,7 +363,7 @@ function Cadastro() {
                 />
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="auto"
                   fontSize={20}
                   labelText="Telefone"
@@ -378,7 +374,7 @@ function Cadastro() {
                 />
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="auto"
                   fontSize={20}
                   labelText="Instituição"
@@ -388,7 +384,7 @@ function Cadastro() {
                 />
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="auto"
                   fontSize={20}
                   labelText="Formação"
@@ -398,7 +394,7 @@ function Cadastro() {
                 />
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="auto"
                   fontSize={20}
                   labelText="Início"
@@ -409,7 +405,7 @@ function Cadastro() {
                 />
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="auto"
                   fontSize={20}
                   labelText="Termino"
@@ -420,7 +416,7 @@ function Cadastro() {
                 />
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="auto"
                   fontSize={20}
                   labelText="Status"
@@ -429,8 +425,8 @@ function Cadastro() {
                   {...register('school_status')}
                 />
 
-                 <Input
-                  size='sm'
+                <Input
+                  size="sm"
                   width="auto"
                   fontSize={20}
                   labelText="Cursos Complementares"
@@ -438,7 +434,7 @@ function Cadastro() {
                 />
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="auto"
                   fontSize={20}
                   labelText="Tipo de Contratação"
@@ -448,28 +444,40 @@ function Cadastro() {
                 />
 
                 <h2>Idiomas</h2>
-                <CheckboxGroup colorScheme='blue'>
+                <CheckboxGroup colorScheme="blue">
                   <Stack spacing={[1, 5]} direction={['column', 'row']}>
-                    <Checkbox value='ingles' {...register('idiomas.0.ingles')}>Inglês</Checkbox>
-                    <Checkbox value='espanhol' {...register('idiomas.0.espanhol')}>Espanhol</Checkbox>
-                    <Input size='sm' width="auto" fontSize={15} labelText="Digite outro idioma:"  {...register('idiomas.0.outros')} />
+                    <Checkbox value="ingles" {...register('idiomas.0.ingles')}>
+                      Inglês
+                    </Checkbox>
+                    <Checkbox
+                      value="espanhol"
+                      {...register('idiomas.0.espanhol')}
+                    >
+                      Espanhol
+                    </Checkbox>
+                    <Input
+                      size="sm"
+                      width="auto"
+                      fontSize={15}
+                      labelText="Digite outro idioma:"
+                      {...register('idiomas.0.outros')}
+                    />
                   </Stack>
                 </CheckboxGroup>
               </div>
             </div>
           </div>
-          <div className='ButtonW'>
+          <div className="ButtonW">
             <Button
-              text='Finalizar Cadastro'
+              text="Finalizar Cadastro"
               color={theme.colors.primary}
               type="submit"
             />
           </div>
-
         </div>
       </form>
-    </S.Container >
+    </S.Container>
   );
-};
+}
 
 export default Cadastro;

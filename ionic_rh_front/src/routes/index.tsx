@@ -1,7 +1,7 @@
 import Cadastro from 'pages/Cadastro_Colaborador';
 import Login from 'pages/Login';
 import Departamentos from 'pages/Departamentos';
-import { Route, BrowserRouter, Routes as RoutesWrapper } from 'react-router-dom';
+import { Route, Routes as RoutesWrapper } from 'react-router-dom';
 import Confirmacao from 'pages/Confirmacao';
 import CriarConta from 'pages/CriarConta';
 import ContaSucesso from 'pages/ContaSucesso';
@@ -9,7 +9,7 @@ import RecuperarSenha from 'pages/RecuperarSenha';
 import ResetarSenha from 'pages/ResetarSenha';
 import SenhaAlterada from 'pages/SenhaAlterada';
 import Funcionarios from 'pages/Funcionarios';
-import Cargos from 'pages/Cargos'
+import Cargos from 'pages/Cargos';
 import DeptoTI from 'pages/Depto_Selecionado';
 import User from 'pages/User';
 import UserEdit from 'pages/UserEdit';
@@ -46,7 +46,7 @@ function Routes() {
         <Route path="/Consultor" element={<Consultor />} />
       </RoutesWrapper>
     // </BrowserRouter>
-  )
+  );
 }
 
 export default Routes;

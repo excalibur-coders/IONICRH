@@ -5,38 +5,33 @@ import { Flex, Box } from '@chakra-ui/react';
 import { theme } from 'theme';
 
 export const Container = styled(Flex)`
+  background: #00000029;
 
+  .input {
+    margin-left: 50px;
+  }
 
-background: #00000029;
+  .Table {
+    display: flex;
+    align-items: left;
+    margin-top: 100px;
+  }
 
-.input{
-margin-left: 50px;
-}
+  .TableTwo {
+    display: flex;
+    justify-content: center;
+  }
 
-.Table{
-  display: flex;
-  align-items: left;
-  margin-top: 100px;
-}
+  .spinnerWrapper {
+    margin-top: 30px;
+  }
 
-.TableTwo{
-  display: flex;
-  justify-content: center;
-}
-
-.spinnerWrapper {
-  margin-top: 30px;
-}
-
-.funcSpinnerWrapper {
-  margin-top: 30px;
-}
-
+  .funcSpinnerWrapper {
+    margin-top: 30px;
+  }
 `;
 
 export const ContainerInput = styled.div`
-
-margin-left: 30px;
-bottom: 90px;
-
+  margin-left: 30px;
+  bottom: 90px;
 `;

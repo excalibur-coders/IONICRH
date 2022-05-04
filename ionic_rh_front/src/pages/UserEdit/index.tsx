@@ -1,30 +1,22 @@
-import { chakra } from '@chakra-ui/react';
-import { Box, Flex, Heading, Spacer, ListIcon } from '@chakra-ui/react';
-import { MdAccountCircle} from 'react-icons/md';
-import logo from 'assets/svg/ionicrh_logo_gray.svg';
+import { MdAccountCircle } from 'react-icons/md';
 import { theme } from 'theme';
 import Nav from 'components/nav';
 import * as S from './styles';
 // import { Input, Stack } from '@chakra-ui/react';
-import React, { ReactNode, useEffect, useState, useCallback, useContext } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import Input from 'components/Input';
-import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
-import LogoGray from 'assets/svg/logo-gray.svg';
 //import { MdOutlinePictureAsPdf } from 'react-icons/md';
 import { Divider } from '@chakra-ui/react';
-import { FaArrowLeft } from 'react-icons/fa';
 import Button from 'components/Button';
 import { useForm } from 'react-hook-form';
 
-import { useSearchParams, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { api } from 'services/api';
 
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
-
-import { AuthContext } from 'hooks/useAuth';
 
 // console.log(theme.colors.primary);
 
@@ -185,10 +177,10 @@ function UserEdit() {
     getValues,
     setValue,
   } = useForm<IFormProps>({
-    mode: 'onBlur'/* ,
+    mode: 'onBlur' /* ,
     defaultValues: {
       user_rg: user?.user_rg,
-    }, */
+    }, */,
     //resolver: yupResolver(schema),
   });
 
@@ -202,14 +194,14 @@ function UserEdit() {
       .then(({ data }) => {
         setUser(data);
         console.log({
-          contrato_base: data.contrato_base ,
-          contrato_tempo_de_casa: data.contrato_tempo_de_casa ,
+          contrato_base: data.contrato_base,
+          contrato_tempo_de_casa: data.contrato_tempo_de_casa,
           contrato_termos: data.contrato_termos,
           contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
           contrato_dominio: data.contrato_dominio,
           contrato_data_desligamento: data.contrato_data_desligamento,
-          contrato_distrato: data.contrato_distrato ,
-          contrato_faixa_salarial: data.contrato_faixa_salarial ,
+          contrato_distrato: data.contrato_distrato,
+          contrato_faixa_salarial: data.contrato_faixa_salarial,
           contrato_plano_saude: data.contrato_plano_saude,
           contrato_vale_transporte: data.contrato_vale_transporte,
           contrato_vale_refeicao: data.contrato_vale_refeicao,
@@ -217,8 +209,8 @@ function UserEdit() {
           contrato_auxilio_creche: data.contrato_auxilio_creche,
           contrato_type: data.contrato_type,
           cargoCargoId: data.cargoCargoId,
-          empContratanteContratanteId: data.empContratanteContratanteId
-      });
+          empContratanteContratanteId: data.empContratanteContratanteId,
+        });
       })
       .catch((error: Error | AxiosError) => {
         console.log(error);
@@ -234,9 +226,9 @@ function UserEdit() {
         },
       })
       .then(({ data }) => {
-        console.log("ola" , data)
+        console.log('ola', data);
         setUser(data);
-        setUserValues(data)
+        setUserValues(data);
       })
       .catch((error: Error | AxiosError) => {
         console.log(error);
@@ -244,59 +236,90 @@ function UserEdit() {
   }, []);
 
   const setUserValues = (data: IUser) => {
-    setValue('contrato_faixa_salarial', data.contrato[0].contrato_faixa_salarial)
-    setValue('contrato_base' ,  data.contrato[0].contrato_base)
-    setValue('contrato_tempo_de_casa' ,  data.contrato[0].contrato_tempo_de_casa)
-    setValue('contrato_tempo_formalizacao' ,  data.contrato[0].contrato_tempo_formalizacao)
-    setValue('contrato_dominio' , data.contrato[0].contrato_dominio)
-    setValue('contrato_data_desligamento' , data.contrato[0].contrato_data_desligamento)
-    setValue('contrato_distrato' ,  data.contrato[0].contrato_distrato)
-    setValue('contrato_faixa_salarial',  data.contrato[0].contrato_faixa_salarial)
-    setValue('contrato_plano_saude',  data.contrato[0].contrato_plano_saude)
-    setValue('contrato_vale_transporte',  data.contrato[0].contrato_vale_transporte)
-    setValue('contrato_vale_refeicao' ,  data.contrato[0].contrato_vale_refeicao)
-    setValue('contrato_vale_alimentacao' ,  data.contrato[0].contrato_vale_alimentacao)
-    setValue('contrato_auxilio_creche' ,  data.contrato[0].contrato_auxilio_creche)
-    setValue('contrato_type',  data.contrato[0].contrato_type)
-    setValue('cargo_area' ,  data.contrato[0].cargo.cargo_area)
-    setValue('contrato_turno' ,  data.contrato[0].contrato_turno)
-    setValue('empContratanteContratanteId' ,  data.contrato[0].empContratanteContratanteId)
-  }
+    setValue(
+      'contrato_faixa_salarial',
+      data.contrato[0].contrato_faixa_salarial,
+    );
+    setValue('contrato_base', data.contrato[0].contrato_base);
+    setValue('contrato_tempo_de_casa', data.contrato[0].contrato_tempo_de_casa);
+    setValue(
+      'contrato_tempo_formalizacao',
+      data.contrato[0].contrato_tempo_formalizacao,
+    );
+    setValue('contrato_dominio', data.contrato[0].contrato_dominio);
+    setValue(
+      'contrato_data_desligamento',
+      data.contrato[0].contrato_data_desligamento,
+    );
+    setValue('contrato_distrato', data.contrato[0].contrato_distrato);
+    setValue(
+      'contrato_faixa_salarial',
+      data.contrato[0].contrato_faixa_salarial,
+    );
+    setValue('contrato_plano_saude', data.contrato[0].contrato_plano_saude);
+    setValue(
+      'contrato_vale_transporte',
+      data.contrato[0].contrato_vale_transporte,
+    );
+    setValue('contrato_vale_refeicao', data.contrato[0].contrato_vale_refeicao);
+    setValue(
+      'contrato_vale_alimentacao',
+      data.contrato[0].contrato_vale_alimentacao,
+    );
+    setValue(
+      'contrato_auxilio_creche',
+      data.contrato[0].contrato_auxilio_creche,
+    );
+    setValue('contrato_type', data.contrato[0].contrato_type);
+    setValue('cargo_area', data.contrato[0].cargo.cargo_area);
+    setValue('contrato_turno', data.contrato[0].contrato_turno);
+    setValue(
+      'empContratanteContratanteId',
+      data.contrato[0].empContratanteContratanteId,
+    );
+  };
 
   useEffect(() => {
     console.log(user?.user_rg);
   }, [user]);
 
   const onSubmit = useCallback(async data => {
-    console.log("boa noite" , user);
+    console.log('boa noite', user);
 
-     await api.post(`/user/usuario-perfil/${id}`, {
-      contrato_base: data.contrato_base ,
-      contrato_tempo_de_casa: data.contrato_tempo_de_casa ,
-      contrato_termos: data.contrato_termos,
-      contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
-      contrato_dominio: data.contrato_dominio,
-      contrato_data_desligamento: data.contrato_data_desligamento,
-      contrato_distrato: data.contrato_distrato ,
-      contrato_faixa_salarial: data.contrato_faixa_salarial ,
-      contrato_plano_saude: data.contrato_plano_saude,
-      contrato_vale_transporte: data.contrato_vale_transporte,
-      contrato_vale_refeicao: data.contrato_vale_refeicao,
-      contrato_vale_alimentacao: data.contrato_vale_alimentacao,
-      contrato_auxilio_creche: data.contrato_auxilio_creche,
-      contrato_type: data.contrato_type,
-      cargoCargoId: user?.contrato[0]?.cargoCargoId,
-      contrato_turno: data.contrato_turno,
-      empContratanteContratanteId: data.empContratanteContratanteId
-  }, {
-    headers: {
-      Authorization: `Bearer ${cookies['ionicookie.token']}`,
-    },
-  } ).then(({data}) => {
-      console.log(data)
-    }).catch((error) => {
-      console.log(error)
-    })
+    await api
+      .post(
+        `/user/usuario-perfil/${id}`,
+        {
+          contrato_base: data.contrato_base,
+          contrato_tempo_de_casa: data.contrato_tempo_de_casa,
+          contrato_termos: data.contrato_termos,
+          contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
+          contrato_dominio: data.contrato_dominio,
+          contrato_data_desligamento: data.contrato_data_desligamento,
+          contrato_distrato: data.contrato_distrato,
+          contrato_faixa_salarial: data.contrato_faixa_salarial,
+          contrato_plano_saude: data.contrato_plano_saude,
+          contrato_vale_transporte: data.contrato_vale_transporte,
+          contrato_vale_refeicao: data.contrato_vale_refeicao,
+          contrato_vale_alimentacao: data.contrato_vale_alimentacao,
+          contrato_auxilio_creche: data.contrato_auxilio_creche,
+          contrato_type: data.contrato_type,
+          cargoCargoId: user?.contrato[0]?.cargoCargoId,
+          contrato_turno: data.contrato_turno,
+          empContratanteContratanteId: data.empContratanteContratanteId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${cookies['ionicookie.token']}`,
+          },
+        },
+      )
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }, []);
 
   //console.log(getValues('//'))
@@ -608,7 +631,8 @@ function UserEdit() {
                       size="xs"
                       width="auto"
                       fontSize={15}
-                      defaultValue={user?.contrato?.[0]?.cargo.departamento.dep_name
+                      defaultValue={
+                        user?.contrato?.[0]?.cargo.departamento.dep_name
                       }
                       {...register('dep_name')}
                     />
@@ -626,17 +650,17 @@ function UserEdit() {
                     />
                   </div>
 
-                                                  <div className='coluna1'>
-                                  <span>Turno:</span>
-                                  <Input
-                                    size='xs'
-                                    placeholder=''
-                                    width="auto"
-                                    fontSize={15}
-                                    defaultValue='manhã'
-                                    {...register('contrato_turno')}
-                                  />
-                                </div>
+                  <div className="coluna1">
+                    <span>Turno:</span>
+                    <Input
+                      size="xs"
+                      placeholder=""
+                      width="auto"
+                      fontSize={15}
+                      defaultValue="manhã"
+                      {...register('contrato_turno')}
+                    />
+                  </div>
 
                   {/*                                 <div className='coluna1'>
                                   <span>Status:</span>
@@ -776,7 +800,9 @@ function UserEdit() {
                       width="auto"
                       fontSize={15}
                       {...register('contratante_nome')}
-                      defaultValue={user?.contrato?.[0]?.emp_contratante.contratante_nome}
+                      defaultValue={
+                        user?.contrato?.[0]?.emp_contratante.contratante_nome
+                      }
                     />
                   </div>
 
@@ -814,7 +840,9 @@ function UserEdit() {
                       width="auto"
                       fontSize={15}
                       {...register('contrato_faixa_salarial')}
-                      defaultValue={user?.contrato?.[0]?.contrato_faixa_salarial}
+                      defaultValue={
+                        user?.contrato?.[0]?.contrato_faixa_salarial
+                      }
                     />
                   </div>
                 </div>
@@ -822,7 +850,6 @@ function UserEdit() {
 
               <div className="coluna">
                 <div className="colunaFuncionais">
-
                   <div className="coluna3">
                     <span>Termo de PJ:</span>
                     <Input
@@ -833,7 +860,6 @@ function UserEdit() {
                       {...register('contrato_termos')}
                     />
                   </div>
-
 
                   <div className="coluna3">
                     <span>Data de desligamento:</span>
@@ -905,7 +931,9 @@ function UserEdit() {
                       width="auto"
                       fontSize={15}
                       {...register('contrato_auxilio_creche')}
-                      defaultValue={user?.contrato?.[0]?.contrato_auxilio_creche}
+                      defaultValue={
+                        user?.contrato?.[0]?.contrato_auxilio_creche
+                      }
                     />
                   </div>
 
@@ -917,7 +945,9 @@ function UserEdit() {
                       width="auto"
                       fontSize={15}
                       {...register('contrato_vale_transporte')}
-                      defaultValue={user?.contrato?.[0]?.contrato_vale_transporte}
+                      defaultValue={
+                        user?.contrato?.[0]?.contrato_vale_transporte
+                      }
                     />
                   </div>
 
@@ -929,7 +959,9 @@ function UserEdit() {
                       width="auto"
                       fontSize={15}
                       {...register('contrato_vale_alimentacao')}
-                      defaultValue={user?.contrato?.[0]?.contrato_vale_alimentacao}
+                      defaultValue={
+                        user?.contrato?.[0]?.contrato_vale_alimentacao
+                      }
                     />
                   </div>
                 </div>
