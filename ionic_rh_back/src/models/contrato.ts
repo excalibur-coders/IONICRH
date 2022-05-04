@@ -1,11 +1,12 @@
 import {
-    Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn
+    Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany
 } from "typeorm";
 import { cargo } from "./cargo";
 import { empresa_contratante } from "./emp_contratante";
 import { empresa_PJ } from "./emp_pj";
 
 import { user } from "./user";
+import { dependente } from "./userDependente";
 export type Contratacao_type = "Pessoa Juridica" | "CLT" | "Estagio" | "Temporario"
 @Entity()
 export class contrato {
@@ -119,6 +120,7 @@ export class contrato {
     })
     userUserId!: number
 
+
     @ManyToOne(() => empresa_contratante, (emp_contratante) => emp_contratante.contrato)
     @JoinColumn({
         name: "empContratanteContratanteId"
@@ -141,4 +143,7 @@ export class contrato {
         type: "int"
     })
     cargoCargoId?: number
+
+    @OneToMany(() => cargo, (cargoHead) => cargoHead.cargoID)
+    cargoHead?: cargo
 }
