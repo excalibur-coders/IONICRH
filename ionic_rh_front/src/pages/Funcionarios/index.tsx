@@ -14,8 +14,10 @@ import { api } from 'services/api';
 
 import { parseCookies } from "nookies";
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface IFuncionarios {
+  user_id: string;
   user_nome: string;
   contrato: IContrato[];
   dep_name: IDepartamento;
@@ -38,6 +40,7 @@ interface ICargo {
 
 function Funcionarios() {
   const cookies = parseCookies();
+  const navigate = useNavigate();
 
   const [funcionarios, setFuncionarios] = useState<IFuncionarios[]>([]);
   const [loading, setLoading] = useState(false);
@@ -117,7 +120,12 @@ function Funcionarios() {
                           <Td>{funcionario.contrato?.[0]?.contrato_faixa_salarial ? funcionario.contrato?.[0]?.contrato_faixa_salarial : '-'}</Td>
                           <Td>{funcionario.contrato?.[0]?.cargo.departamento.dep_name ? funcionario.contrato?.[0]?.cargo.departamento.dep_name : '-'}</Td>
                           <Td>{funcionario.contrato?.[0]?.cargo.cargo_area ? funcionario.contrato?.[0]?.cargo.cargo_area : '-'}</Td>
-                          <Td><Link href="/perfil" fontSize='xl' color={theme.colors.primary} >Ver<ArrowForwardIcon color={theme.colors.primary}  /></Link></Td>
+                          <Td
+                            fontSize='xl'
+                            color={theme.colors.primary}
+                            onClick={() => navigate(`/User/${funcionario.user_id}`)}
+                            cursor='pointer'
+                          >Ver<ArrowForwardIcon color={theme.colors.primary}  /></Td>
                         </Tr></>
                       ))}
                   </Tbody>

@@ -17,13 +17,9 @@ export const theme = extendTheme({
 
   styles: {
     global: {
-      // '*': {
-      //   transition: '0.4s',
-      // },
-
-      // html: {
-      //   fontSize: '62.5%',
-      // },
+      '*': {
+        fontFamily: 'Arial',
+      },
 
       body: {
         bg: '#f4f4f5',

@@ -1,26 +1,20 @@
-import { chakra } from '@chakra-ui/react';
 import { MdAccountCircle} from 'react-icons/md';
-import logo from 'assets/svg/ionicrh_logo_gray.svg';
 import { theme } from 'theme';
 import Nav from 'components/nav';
 import * as S from './styles';
-import React, { ReactNode, useEffect, useState, useCallback, useContext } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import Input from 'components/Input';
-import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
-import LogoGray from 'assets/svg/logo-gray.svg';
 import { Divider, Select } from '@chakra-ui/react';
 import Button from 'components/Button';
 import { useForm } from 'react-hook-form';
 
-import { useSearchParams, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { api } from 'services/api';
 
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
-
-import { AuthContext } from 'hooks/useAuth';
 
 interface IUser {
   user_id: number;
@@ -169,7 +163,6 @@ interface IFormProps {
 function UserEdit() {
   const cookies = parseCookies();
   const [user, setUser] = useState<IUser>();
-  const [loading, setLoading] = useState(false);
   const { id } = useParams();
 
   const {
@@ -179,48 +172,11 @@ function UserEdit() {
     getValues,
     setValue,
   } = useForm<IFormProps>({
-    mode: 'onBlur'/* ,
-    defaultValues: {
-      user_rg: user?.user_rg,
-    }, */
+    mode: 'onBlur',
     //resolver: yupResolver(schema),
   });
 
   const getUserInfo = () => {
-    api
-      .get(`/user/user-info/${id}`, {
-        headers: {
-          Authorization: `Bearer ${cookies['ionicookie.token']}`,
-        },
-      })
-      .then(({ data }) => {
-        setUser(data);
-        console.log({
-          contrato_base: data.contrato_base ,
-          contrato_tempo_de_casa: data.contrato_tempo_de_casa ,
-          contrato_termos: data.contrato_termos,
-          contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
-          contrato_dominio: data.contrato_dominio,
-          contrato_data_desligamento: data.contrato_data_desligamento,
-          contrato_distrato: data.contrato_distrato ,
-          contrato_faixa_salarial: data.contrato_faixa_salarial ,
-          contrato_plano_saude: data.contrato_plano_saude,
-          contrato_vale_transporte: data.contrato_vale_transporte,
-          contrato_vale_refeicao: data.contrato_vale_refeicao,
-          contrato_vale_alimentacao: data.contrato_vale_alimentacao,
-          contrato_auxilio_creche: data.contrato_auxilio_creche,
-          contrato_type: data.contrato_type,
-          cargoCargoId: data.cargoCargoId,
-          empContratanteContratanteId: data.empContratanteContratanteId
-      });
-      })
-      .catch((error: Error | AxiosError) => {
-        console.log(error);
-      });
-  };
-
-  useEffect(() => {
-    //getUserInfo()
     api
       .get(`/user/usuario-perfil/${id}`, {
         headers: {
@@ -228,13 +184,16 @@ function UserEdit() {
         },
       })
       .then(({ data }) => {
-        console.log("ola" , data)
         setUser(data);
         setUserValues(data)
       })
       .catch((error: Error | AxiosError) => {
         console.log(error);
       });
+  };
+
+  useEffect(() => {
+    getUserInfo()
   }, []);
 
   const setUserValues = (data: IUser) => {
@@ -257,31 +216,31 @@ function UserEdit() {
     setValue('empContratanteContratanteId' ,  data.contrato[0].empContratanteContratanteId)
   }
 
-  useEffect(() => {
-    console.log(user?.user_rg);
-  }, [user]);
-
   const onSubmit = useCallback(async data => {
-    console.log("boa noite" , user);
+    console.log('user id', id)
+    console.log('contrato id', data)
 
-     await api.post(`/user/usuario-perfil/${id}`, {
-      contrato_base: data.contrato_base ,
-      contrato_tempo_de_casa: data.contrato_tempo_de_casa ,
+     await api.put(`/user/update-contrato-user/${id}`, {
+      contrato_id: data.contrato_id,
+      contrato_base: data.contrato_base,
+      contrato_tempo_de_casa: data.contrato_tempo_de_casa,
       contrato_termos: data.contrato_termos,
       contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
       contrato_dominio: data.contrato_dominio,
       contrato_data_desligamento: data.contrato_data_desligamento,
-      contrato_distrato: data.contrato_distrato ,
-      contrato_faixa_salarial: data.contrato_faixa_salarial ,
+      contrato_distrato: data.contrato_distrato,
+      contrato_faixa_salarial: data.contrato_faixa_salarial,
       contrato_plano_saude: data.contrato_plano_saude,
       contrato_vale_transporte: data.contrato_vale_transporte,
       contrato_vale_refeicao: data.contrato_vale_refeicao,
       contrato_vale_alimentacao: data.contrato_vale_alimentacao,
       contrato_auxilio_creche: data.contrato_auxilio_creche,
       contrato_type: data.contrato_type,
-      cargoCargoId: user?.contrato[0]?.cargoCargoId,
+      cargoCargoId: data.cargo_area,
       contrato_turno: data.contrato_turno,
-      empContratanteContratanteId: data.empContratanteContratanteId
+      empContratanteContratanteId: data.empContratanteContratanteId,
+      contrato_adimissao: data?.contrato_data_adicao,
+      contrato_matricula: data?.contrato_matricula
   }, {
     headers: {
       Authorization: `Bearer ${cookies['ionicookie.token']}`,
@@ -598,7 +557,11 @@ function UserEdit() {
 
                   <div className="coluna1">
                     <span>Departamento: </span>
-                    <Select placeholder='Selecione uma opção' size='xs'>
+                    <Select
+                      placeholder='Selecione uma opção'
+                      size='xs'
+                      {...register('dep_name')}
+                    >
                       <option value='option1'>RH</option>
                       <option value='option2'>Marketing</option>
                       <option value='option3'>TI</option>
@@ -713,7 +676,7 @@ function UserEdit() {
                 <div className="colunaFuncionais">
                   <div className="coluna2">
                     <span>Tipo de Contrato:</span>
-                    <Select placeholder='Selecione uma opção' size='xs'>
+                    <Select placeholder='Selecione uma opção' size='xs' {...register('contrato_type')} >
                       <option value='option1'>PJ</option>
                       <option value='option2'>CLT</option>
                       <option value='option3'>Estágio</option>
@@ -774,7 +737,7 @@ function UserEdit() {
 
                   <div className="coluna2">
                     <span>Empresa contratada:</span>
-                    <Select placeholder='Selecione uma opção' size='xs'>
+                    <Select placeholder='Selecione uma opção' size='xs' {...register('contratante_nome')} >
                       <option value='option1'>IONIC</option>
                       <option value='option2'>NESS</option>
                       <option value='option3'>n sei</option>
