@@ -4,6 +4,7 @@ import { cadastro } from 'controllers/Cadastro_Usuario';
 import { loginUser } from 'controllers/Login_Usuario';
 import {
   adicioanrEscolaridade,
+  adicionarDependente,
   adicionarDocumento,
   adicionarEndereco,
   adicionarIdioma, adicionarTelefone,
@@ -52,12 +53,13 @@ router.use(auth);
 // Auto Cadastro do usario
 router.put(
   '/auto-cadastro',
-  multer(multerConfig).single('file'),  
+  /* multer(multerConfig).single('file'),   */
   adicioanrEscolaridade,
   adicionarIdioma,
   adicionarTelefone,
   adicionarEndereco,
-  adicionarDocumento,
+  adicionarDependente,
+  /* adicionarDocumento, */
   updateUser
 );
 
@@ -99,11 +101,12 @@ router.post(
   insertContratoUser,
   getColaboradorContratoID)
 
-/* router.post(
+router.post(
   '/teste',
-  multer(multerConfig).single('file'),
-  adicionarDocumento
-) */
+ /*  multer(multerConfig).single('file'),
+  adicionarDocumento */
+  adicionarDependente
+)
 /* 
 router.get(
   '/Contrato-user',
