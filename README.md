@@ -2,66 +2,89 @@
 
 ![Equipe ExcaliburCoders](./docs/img/1.png)
 
-- Lucas Braz Dias (Scrum Master)
+<p align="center">
+  <a href ="#o-projeto"> Projeto </a>  • 
+  <a href ="#dart-proposta"> Proposta </a>  • 
+  <a href ="#calendar-cronograma-das-sprints"> Sprints </a>  • 
+  <a href ="#computer-tecnologias-utilizadas"> Tecnologias </a>  • 
+  <a href ="#bulb-metodologia-utilizada"> Metodologia </a>  • 
+  <a href ="#product-backlog">Product Backlog </a>  •
+    <a href ="#sprints-backlog">Sprints Backlog </a>  •
+  <a href ="#equipe"> Equipe </a> 
+</p>
 
-#### [Linked](https://www.linkedin.com/in/lucas-braz-dias/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/lucasbdias)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
 
-- Priscila Aparecida Silva (Produtc Owner)
+## O Projeto
+![Equipe Xtreme](/readme/objetivo.png "Objetivo Equipe Xtreme")
 
-#### [Linked](https://www.linkedin.com/in/priscilasilva1801/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/prsilva)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
+<br>
 
-- Tais Gomes Salomao (Dev Team)
+> Status do Projeto: Em andamento <img src = "./readme/Works-in-progress-icon.png" />
 
-#### [Linked](https://www.linkedin.com/in/tais-salomao)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/taissalomao)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
+<br>
 
-- Rodrigo de Andrade Paula (Dev Team)
+## :dart: Proposta
 
-#### [Linked](https://www.linkedin.com/in/rodrigo-de-andrade-a34605104)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/RodrigodeAndrade90)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
+**Desenvolver um site institucional com os seguintes requisitos:**<br><br>
 
-- Kevin Ferreira Mirenda (Dev team)
+ > **Requisitos**
 
-#### [Linked](https://www.linkedin.com/in/kevin-mirenda-a54a64220)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/KevinFMfatec)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
+ - <img src = "./readme/feito.jpeg" /> Cadastro de voluntários;
+ - <img src = "./readme/feito.jpeg" /> Cadastro de projetos;
+ - <img src = "./readme/feito.jpeg" /> Cadastro de doadores;
+ - <img src = "./readme/feito.jpeg" /> Cadastro de participantes;
+ - <img src = "./readme/feito.jpeg" /> Painel adminitrativo para alterações no site.<br><br>
 
-- Rafael Leonardo Lopes (Dev Team)
+ > **Funcionalidades extras**
 
-#### [Linked](https://www.linkedin.com/in/rafael-leonardo-lopes/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/Rafael-leonardo)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
+ - <img src = "./readme/feito.jpeg" />  Link de compartilhamento do site nas redes sociais do visitante;
+ - <img src = "./readme/feito.jpeg" />  Adaptação do site para versão mobile;
+ - <img src = "./readme/feito.jpeg" />  Pesquisa de origem de tráfego.<br><br>
 
-- Lucas Ferreira da Costa (Dev Team)
+<br>
 
-#### [Linked](https://www.linkedin.com/in/lucas-costa-a49a01219/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/ddaiwon)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
 
-- Gabriel Souza Bicho Nunes (Dev Team)
+## :calendar: Cronograma das Entregas
 
-#### [Linked](https://www.linkedin.com/in/gabriel-souza-bicho-nunes-429191185/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/ZeroPirata)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
+- <img src = "./readme/feito.jpeg" /> [SPRINT 0](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint0) - 18/03/2022 a 24/03/2022
+- <img src = "./readme/feito.jpeg" /> [SPRINT 0](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint1) - 25/03/2022 a 14/04/2022
+- <img src = "./readme/feito.jpeg" /> [SPRINT 0](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint2) - 25/04/2022 a 15/05/2022
+- <img src = "./readme/feito.jpeg" /> [SPRINT 0](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint3) - 16/05/2022 a 05/06/2022
 
-- Vinícius Andrade B. (Dev Team)
+<h1 align="center"> <img src = "./readme/cronograma_sprints.png"/></h1>
 
-#### [Linked](https://www.linkedin.com/in/vin%C3%ADcius-barbosa-78111a206/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/ViniciusAndBar)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
-
-## API 2º Semestre do Curso de Desenvolvimento de Software Multiplataforma
-
-- M2: Prof. José Walmir Gonçalves Duque
-- P2: Prof. Claudio Etelvino de Lima
-
-## Objetivo do Projeto
-
-## _User Story_
-
-![Colaborador](./docs/img/Colaborador.png)
-
-![Administrador](./docs/img/Administrador.png)
-
-## Backlog da Sprint
-
-![Backlog](./docs/img/backlog.png)
-
-## Modelagem do Banco de Dados
-
-![ModeloBD](./docs/img/modelagem.png)
+<br>
 
 ## Tecnologias Utilizadas
 
 ![Tecnologias](./docs/img/tecnologias.png)
+* **Banco de Dados:** MySQL;
+* **Back-end:** PhP, Apache;
+* **Front-end:** HTML, CSS, JavaScript;
+* **Ferramentas:** Visual Studio Code, phpMyAdmin, Miro, Canva, Trello, CkEditor, Git e Github;
+
+<br>
+
+## :bulb: Metodologia Utilizada
+
+* **Metodologia Ágil: SCRUM** 
+![StoryTelling]
+
+
+<br>
+
+## <img src = "./readme/back_log.png"/>Product Backlog
+
+<h1 align="center"> <img src = "./readme/product_backlog.png" /></h1> 
+
+<br>
+
+## <img src = "./readme/back_log.png"/>Sprints Backlog 
+
+<h1 align="center"> <img src = "./readme/sprintbacklog.png" /></h1> 
+
+<br>
+
 
 ## Passo a passo da instalação do sistema
 
@@ -92,7 +115,7 @@ Na pasta backend mudar o nome do arquivo:
 ## Importante criar a database que deseja armazenar, as tabelas e afins:
 
 ```bash
-Create database [nome];
+Create database [nome]
 ```
 
 Alterar dados de acordo com seu ambiente:
@@ -125,12 +148,22 @@ Após instalar as dependências, iniciar o serviço em cada uma das pasta
 npm start dev ou  yarn dev
 ```
 
-## Sistema Desenvolvido
+<br>
 
-## Cronograma de Entregas
+## <img src = "./readme/equipe_icon.png"/>Equipe 
 
-| Data       | Links      |
-| ---------- | ---------- |
-| 14/04/2022 | [Sprint 1](https://github.com/excalibur-coders/IONICRH/releases/tag/1.0) |
-| 15/05/2022 | [Sprint 2] |
-| 05/06/2021 | [Sprint 3] |
+<br>
+
+|Nome|Função|Linkedin|GitHub|Avatar|
+| -------- |-------- |-------- |-------- |-------- |
+|**Lucas Braz Dias**|Scrum Master|[@LinkedIn](https://www.linkedin.com/in/lucas-braz-dias/)|[@GitHub](https://github.com/lucasbdias)|<img src = "./readme/tais.jpeg">|
+|**Priscila Silva**|Product Owner|[@LinkedIn](https://www.linkedin.com/in/priscilasilva1801/)|[@GitHub](https://github.com/prsilva)|<img src = "./readme/tais.jpeg">|
+|**Taís Salomão**|Desenvolvedora|[@LinkedIn](https://www.linkedin.com/in/tais-salomao/)|[@GitHub](https://github.com/taissalomao)|<img src = "./readme/tais.jpeg">|
+|**Kevin Mirenda**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/kevin-mirenda-a54a64220)|[@GitHub](https://github.com/KevinFMfatec)|<img src = "./readme/tais.jpeg">|
+|**Rafael Lopes**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/rafael-leonardo-lopes/)|[@GitHub](https://github.com/Rafael-leonardo)|<img src = "./readme/tais.jpeg">|
+|**Lucas Costa**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/lucas-costa-a49a01219/)|[@GitHub](https://github.com/ddaiwon)|<img src = "./readme/tais.jpeg">|
+|**Gabriel Souza**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/gabriel-souza-bicho-nunes-429191185/)|[@GitHub](https://github.com/ZeroPirata)|<img src = "./readme/tais.jpeg">|
+|**Vinicius Andrade**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/vin%C3%ADcius-barbosa-78111a206/)|[@GitHub](https://github.com/ViniciusAndBar)|<img src = "./readme/tais.jpeg">|
+
+<br>
+
