@@ -1,4 +1,4 @@
-import { MdAccountCircle} from 'react-icons/md';
+import { MdAccountCircle } from 'react-icons/md';
 import { theme } from 'theme';
 import Nav from 'components/nav';
 import * as S from './styles';
@@ -185,7 +185,25 @@ function UserEdit() {
       })
       .then(({ data }) => {
         setUser(data);
-        setUserValues(data)
+        // setUserValues(data)
+        console.log({
+          contrato_base: data.contrato_base,
+          contrato_tempo_de_casa: data.contrato_tempo_de_casa,
+          contrato_termos: data.contrato_termos,
+          contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
+          contrato_dominio: data.contrato_dominio,
+          contrato_data_desligamento: data.contrato_data_desligamento,
+          contrato_distrato: data.contrato_distrato,
+          contrato_faixa_salarial: data.contrato_faixa_salarial,
+          contrato_plano_saude: data.contrato_plano_saude,
+          contrato_vale_transporte: data.contrato_vale_transporte,
+          contrato_vale_refeicao: data.contrato_vale_refeicao,
+          contrato_vale_alimentacao: data.contrato_vale_alimentacao,
+          contrato_auxilio_creche: data.contrato_auxilio_creche,
+          contrato_type: data.contrato_type,
+          cargoCargoId: data.cargoCargoId,
+          empContratanteContratanteId: data.empContratanteContratanteId,
+        });
       })
       .catch((error: Error | AxiosError) => {
         console.log(error);
@@ -193,67 +211,95 @@ function UserEdit() {
   };
 
   useEffect(() => {
-    getUserInfo()
+    getUserInfo();
   }, []);
 
   const setUserValues = (data: IUser) => {
-    setValue('contrato_faixa_salarial', data.contrato[0].contrato_faixa_salarial)
-    setValue('contrato_base' ,  data.contrato[0].contrato_base)
-    setValue('contrato_tempo_de_casa' ,  data.contrato[0].contrato_tempo_de_casa)
-    setValue('contrato_tempo_formalizacao' ,  data.contrato[0].contrato_tempo_formalizacao)
-    setValue('contrato_dominio' , data.contrato[0].contrato_dominio)
-    setValue('contrato_data_desligamento' , data.contrato[0].contrato_data_desligamento)
-    setValue('contrato_distrato' ,  data.contrato[0].contrato_distrato)
-    setValue('contrato_faixa_salarial',  data.contrato[0].contrato_faixa_salarial)
-    setValue('contrato_plano_saude',  data.contrato[0].contrato_plano_saude)
-    setValue('contrato_vale_transporte',  data.contrato[0].contrato_vale_transporte)
-    setValue('contrato_vale_refeicao' ,  data.contrato[0].contrato_vale_refeicao)
-    setValue('contrato_vale_alimentacao' ,  data.contrato[0].contrato_vale_alimentacao)
-    setValue('contrato_auxilio_creche' ,  data.contrato[0].contrato_auxilio_creche)
-    setValue('contrato_type',  data.contrato[0].contrato_type)
-    setValue('cargo_area' ,  data.contrato[0].cargo.cargo_area)
-    setValue('contrato_turno' ,  data.contrato[0].contrato_turno)
-    setValue('empContratanteContratanteId' ,  data.contrato[0].empContratanteContratanteId)
-  }
+    setValue(
+      'contrato_faixa_salarial',
+      data.contrato[0].contrato_faixa_salarial,
+    );
+    setValue('contrato_base', data.contrato[0].contrato_base);
+    setValue('contrato_tempo_de_casa', data.contrato[0].contrato_tempo_de_casa);
+    setValue(
+      'contrato_tempo_formalizacao',
+      data.contrato[0].contrato_tempo_formalizacao,
+    );
+    setValue('contrato_dominio', data.contrato[0].contrato_dominio);
+    setValue(
+      'contrato_data_desligamento',
+      data.contrato[0].contrato_data_desligamento,
+    );
+    setValue('contrato_distrato', data.contrato[0].contrato_distrato);
+    setValue(
+      'contrato_faixa_salarial',
+      data.contrato[0].contrato_faixa_salarial,
+    );
+    setValue('contrato_plano_saude', data.contrato[0].contrato_plano_saude);
+    setValue(
+      'contrato_vale_transporte',
+      data.contrato[0].contrato_vale_transporte,
+    );
+    setValue('contrato_vale_refeicao', data.contrato[0].contrato_vale_refeicao);
+    setValue(
+      'contrato_vale_alimentacao',
+      data.contrato[0].contrato_vale_alimentacao,
+    );
+    setValue(
+      'contrato_auxilio_creche',
+      data.contrato[0].contrato_auxilio_creche,
+    );
+    setValue('contrato_type', data.contrato[0].contrato_type);
+    setValue('cargo_area', data.contrato[0].cargo.cargo_area);
+    setValue('contrato_turno', data.contrato[0].contrato_turno);
+    setValue(
+      'empContratanteContratanteId',
+      data.contrato[0].empContratanteContratanteId,
+    );
+  };
 
   const onSubmit = useCallback(async data => {
-    console.log('user id', id)
-    console.log('contrato id', data)
+    console.log('user id', id);
+    console.log('contrato id', data);
 
-     await api.put(`/user/update-contrato-user/${id}`, {
-      contrato_id: data.contrato_id,
-      contrato_base: data.contrato_base,
-      contrato_tempo_de_casa: data.contrato_tempo_de_casa,
-      contrato_termos: data.contrato_termos,
-      contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
-      contrato_dominio: data.contrato_dominio,
-      contrato_data_desligamento: data.contrato_data_desligamento,
-      contrato_distrato: data.contrato_distrato,
-      contrato_faixa_salarial: data.contrato_faixa_salarial,
-      contrato_plano_saude: data.contrato_plano_saude,
-      contrato_vale_transporte: data.contrato_vale_transporte,
-      contrato_vale_refeicao: data.contrato_vale_refeicao,
-      contrato_vale_alimentacao: data.contrato_vale_alimentacao,
-      contrato_auxilio_creche: data.contrato_auxilio_creche,
-      contrato_type: data.contrato_type,
-      cargoCargoId: data.cargo_area,
-      contrato_turno: data.contrato_turno,
-      empContratanteContratanteId: data.empContratanteContratanteId,
-      contrato_adimissao: data?.contrato_data_adicao,
-      contrato_matricula: data?.contrato_matricula
-  }, {
-    headers: {
-      Authorization: `Bearer ${cookies['ionicookie.token']}`,
-    },
-  } ).then(({data}) => {
-      console.log(data)
-    }).catch((error) => {
-      console.log(error)
-    })
+    await api
+      .put(
+        `/user/update-contrato-user/${id}`,
+        {
+          contrato_id: data.contrato_id,
+          contrato_base: data.contrato_base,
+          contrato_tempo_de_casa: data.contrato_tempo_de_casa,
+          contrato_termos: data.contrato_termos,
+          contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
+          contrato_dominio: data.contrato_dominio,
+          contrato_data_desligamento: data.contrato_data_desligamento,
+          contrato_distrato: data.contrato_distrato,
+          contrato_faixa_salarial: data.contrato_faixa_salarial,
+          contrato_plano_saude: data.contrato_plano_saude,
+          contrato_vale_transporte: data.contrato_vale_transporte,
+          contrato_vale_refeicao: data.contrato_vale_refeicao,
+          contrato_vale_alimentacao: data.contrato_vale_alimentacao,
+          contrato_auxilio_creche: data.contrato_auxilio_creche,
+          contrato_type: data.contrato_type,
+          cargoCargoId: data.cargo_area,
+          contrato_turno: data.contrato_turno,
+          empContratanteContratanteId: data.empContratanteContratanteId,
+          contrato_adimissao: data?.contrato_data_adicao,
+          contrato_matricula: data?.contrato_matricula,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${cookies['ionicookie.token']}`,
+          },
+        },
+      )
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }, []);
-
-  //console.log(getValues('//'))
-  //setValue('user_rg' , 'olá, mundo!')
 
   return (
     <>
@@ -558,19 +604,20 @@ function UserEdit() {
                   <div className="coluna1">
                     <span>Departamento: </span>
                     <Select
-                      placeholder='Selecione uma opção'
-                      size='xs'
+                      placeholder="Selecione uma opção"
+                      size="xs"
                       {...register('dep_name')}
                     >
-                      <option value='option1'>RH</option>
-                      <option value='option2'>Marketing</option>
-                      <option value='option3'>TI</option>
+                      <option value="option1">RH</option>
+                      <option value="option2">Marketing</option>
+                      <option value="option3">TI</option>
                     </Select>
-{/*                     <Input
+                    {/*                     <Input
                       size="xs"
                       width="auto"
                       fontSize={15}
-                      defaultValue={user?.contrato?.[0]?.cargo.departamento.dep_name
+                      defaultValue={
+                        user?.contrato?.[0]?.cargo.departamento.dep_name
                       }
                       {...register('dep_name')}
                     /> */}
@@ -588,17 +635,17 @@ function UserEdit() {
                     />
                   </div>
 
-                                <div className='coluna1'>
-                                  <span>Turno:</span>
-                                  <Input
-                                    size='xs'
-                                    placeholder=''
-                                    width="auto"
-                                    fontSize={15}
-                                    defaultValue='manhã'
-                                    {...register('contrato_turno')}
-                                  />
-                                </div>
+                  <div className="coluna1">
+                    <span>Turno:</span>
+                    <Input
+                      size="xs"
+                      placeholder=""
+                      width="auto"
+                      fontSize={15}
+                      defaultValue="manhã"
+                      {...register('contrato_turno')}
+                    />
+                  </div>
 
                   {/*                                 <div className='coluna1'>
                                   <span>Status:</span>
@@ -676,12 +723,16 @@ function UserEdit() {
                 <div className="colunaFuncionais">
                   <div className="coluna2">
                     <span>Tipo de Contrato:</span>
-                    <Select placeholder='Selecione uma opção' size='xs' {...register('contrato_type')} >
-                      <option value='option1'>PJ</option>
-                      <option value='option2'>CLT</option>
-                      <option value='option3'>Estágio</option>
+                    <Select
+                      placeholder="Selecione uma opção"
+                      size="xs"
+                      {...register('contrato_type')}
+                    >
+                      <option value="option1">PJ</option>
+                      <option value="option2">CLT</option>
+                      <option value="option3">Estágio</option>
                     </Select>
-{/*                     <Input
+                    {/*                     <Input
                       size="xs"
                       placeholder=""
                       width="auto"
@@ -737,12 +788,16 @@ function UserEdit() {
 
                   <div className="coluna2">
                     <span>Empresa contratada:</span>
-                    <Select placeholder='Selecione uma opção' size='xs' {...register('contratante_nome')} >
-                      <option value='option1'>IONIC</option>
-                      <option value='option2'>NESS</option>
-                      <option value='option3'>n sei</option>
+                    <Select
+                      placeholder="Selecione uma opção"
+                      size="xs"
+                      {...register('contratante_nome')}
+                    >
+                      <option value="option1">IONIC</option>
+                      <option value="option2">NESS</option>
+                      <option value="option3">n sei</option>
                     </Select>
-{/*                     <Input
+                    {/*                     <Input
                       size="xs"
                       placeholder=""
                       width="auto"
@@ -786,7 +841,9 @@ function UserEdit() {
                       width="auto"
                       fontSize={15}
                       {...register('contrato_faixa_salarial')}
-                      defaultValue={user?.contrato?.[0]?.contrato_faixa_salarial}
+                      defaultValue={
+                        user?.contrato?.[0]?.contrato_faixa_salarial
+                      }
                     />
                   </div>
                 </div>
@@ -794,7 +851,6 @@ function UserEdit() {
 
               <div className="coluna">
                 <div className="colunaFuncionais">
-
                   <div className="coluna3">
                     <span>Termo de PJ:</span>
                     <Input
@@ -805,7 +861,6 @@ function UserEdit() {
                       {...register('contrato_termos')}
                     />
                   </div>
-
 
                   <div className="coluna3">
                     <span>Data de desligamento:</span>
@@ -877,7 +932,9 @@ function UserEdit() {
                       width="auto"
                       fontSize={15}
                       {...register('contrato_auxilio_creche')}
-                      defaultValue={user?.contrato?.[0]?.contrato_auxilio_creche}
+                      defaultValue={
+                        user?.contrato?.[0]?.contrato_auxilio_creche
+                      }
                     />
                   </div>
 
@@ -889,7 +946,9 @@ function UserEdit() {
                       width="auto"
                       fontSize={15}
                       {...register('contrato_vale_transporte')}
-                      defaultValue={user?.contrato?.[0]?.contrato_vale_transporte}
+                      defaultValue={
+                        user?.contrato?.[0]?.contrato_vale_transporte
+                      }
                     />
                   </div>
 
@@ -901,7 +960,9 @@ function UserEdit() {
                       width="auto"
                       fontSize={15}
                       {...register('contrato_vale_alimentacao')}
-                      defaultValue={user?.contrato?.[0]?.contrato_vale_alimentacao}
+                      defaultValue={
+                        user?.contrato?.[0]?.contrato_vale_alimentacao
+                      }
                     />
                   </div>
                 </div>

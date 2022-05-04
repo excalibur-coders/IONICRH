@@ -1,31 +1,27 @@
 import styled from '@emotion/styled';
-import { Flex, Box } from '@chakra-ui/react';
-import { theme } from 'theme';
+import { Flex } from '@chakra-ui/react';
 
 export const Container = styled(Flex)`
+  backgroud: #00000029;
 
+  .input {
+    margin-left: 50px;
+  }
 
-backgroud: #00000029;
+  .Table {
+    display: flex;
+    align-items: left;
+    margin-top: 100px;
+  }
 
-.input{
-margin-left: 50px;
-}
+  .TableTwo {
+    display: flex;
+    justify-content: center;
+  }
 
-.Table{
-  display: flex;
-  align-items: left;
-  margin-top: 100px;
-}
-
-.TableTwo{
-  display: flex;
-  justify-content: center;
-}
-
-.spinnerWrapper {
-  margin-top: 30px;
-}
-
+  .spinnerWrapper {
+    margin-top: 30px;
+  }
 `;
 
 export const ContainerInput = styled.div`

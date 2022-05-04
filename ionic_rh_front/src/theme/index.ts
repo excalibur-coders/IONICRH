@@ -7,7 +7,7 @@ export const theme = extendTheme({
     font: '#4D4E4F',
     border: '#050006',
     logo: '#00000094',
-    red: '#ed5555'
+    red: '#ed5555',
   },
 
   fonts: {
