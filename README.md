@@ -9,13 +9,14 @@
   <a href ="#computer-tecnologias-utilizadas"> Tecnologias </a>  • 
   <a href ="#bulb-metodologia-utilizada"> Metodologia </a>  • 
   <a href ="#product-backlog">Product Backlog </a>  •
-    <a href ="#sprints-backlog">Sprints Backlog </a>  •
+  <a href ="#sprints-backlog">Sprints Backlog </a>  •
+  <a href ="#instalacao">Passo a Passo Instalação</a>  •
   <a href ="#equipe"> Equipe </a> 
 </p>
 
 
 ## O Projeto
-![Equipe Xtreme](/readme/objetivo.png "Objetivo Equipe Xtreme")
+![Equipe Excalibur](/readme/objetivo.png "Objetivo Equipe Excalibur")
 
 <br>
 
@@ -47,9 +48,9 @@
 ## :calendar: Cronograma das Entregas
 
 - <img src = "./readme/feito.jpeg" /> [SPRINT 0](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint0) - 18/03/2022 a 24/03/2022
-- <img src = "./readme/feito.jpeg" /> [SPRINT 0](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint1) - 25/03/2022 a 14/04/2022
-- <img src = "./readme/feito.jpeg" /> [SPRINT 0](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint2) - 25/04/2022 a 15/05/2022
-- <img src = "./readme/feito.jpeg" /> [SPRINT 0](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint3) - 16/05/2022 a 05/06/2022
+- <img src = "./readme/feito.jpeg" /> [SPRINT 1](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint1) - 25/03/2022 a 14/04/2022
+- <img src = "./readme/feito.jpeg" /> [SPRINT 2](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint2) - 25/04/2022 a 15/05/2022
+- <img src = "./readme/feito.jpeg" /> [SPRINT 3](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint3) - 16/05/2022 a 05/06/2022
 
 <h1 align="center"> <img src = "./readme/cronograma_sprints.png"/></h1>
 
