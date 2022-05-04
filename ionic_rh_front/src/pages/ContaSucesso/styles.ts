@@ -4,18 +4,15 @@ import { theme } from 'theme';
 
 export const Container = styled(Flex)`
   height: 100vh;
-
   .leftWrapper {
     width: 60%;
     margin-bottom: 25px;
     display: flex;
     flex-direction: column;
-
     .text {
       display: block;
       margin: auto;
       text-align: center;
-
       h1 {
         font-size: 50px;
         font-family: coolvetica, sans-serif;
@@ -23,7 +20,6 @@ export const Container = styled(Flex)`
         font-weight: 500;
         color: ${theme.colors.font};
       }
-
       h2 {
         margin-left: auto;
         margin-right: auto;
@@ -39,14 +35,12 @@ export const Container = styled(Flex)`
         font-size: 2em;
       }
     }
-
     .registerWrapper {
       display: flex;
       flex-direction: column;
       margin-top: 50px;
     }
   }
-
   .rightWrapper {
     display: flex;
     align-items: center;
@@ -56,12 +50,10 @@ export const Container = styled(Flex)`
     img {
       width: 30rem;
     }
-
     .no {
       display: none;
     }
   }
-
   img {
     width: 120px;
     margin: 5px 5px;
@@ -70,30 +62,25 @@ export const Container = styled(Flex)`
   @media (max-width: 700px) {
     diplay: flex;
     flex-direction: column;
-
     .leftWrapper {
       width: 100%;
       display: flex;
       flex-direction: column;
       margin-bottom: 100px;
-
       .text {
         display: block;
         margin: auto;
         margin-top: 200px;
         text-align: center;
         margin-bottom: 25px;
-
         h1 {
           font-size: 28px;
         }
-
         h2 {
           margin-left: auto;
           margin-right: auto;
           font-size: 18px;
         }
-
         span {
           text-align: center;
           color: ${theme.colors.primary};
@@ -101,16 +88,13 @@ export const Container = styled(Flex)`
         }
       }
     }
-
     .rightWrapper {
       background: none;
       width: 100%;
       margin-top: 0px;
-
       img {
         display: none;
       }
-
       .no {
         display: flex;
         width: 100%;

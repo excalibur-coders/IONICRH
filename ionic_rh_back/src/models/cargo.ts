@@ -8,11 +8,11 @@ export class cargo {
     cargo_id!: number;
 
     // Provavelmente auto relação com a tabela USER onde é "gerente" ou não
-    @Column({
+    /* @Column({
         type: "varchar",
         nullable: true,
     })
-    cargo_head!: string;
+    cargo_head!: string; */
 
     // Pleno, Junior e Senior
     @Column({
@@ -28,6 +28,17 @@ export class cargo {
     //Chave estrangeira
     @OneToMany(() => contrato, (contrato) => contrato.cargo)
     contrato!: contrato
+
+    @ManyToOne(() => contrato, (cargoID) => cargoID.cargoHead)
+    @JoinColumn({
+        name: "headID"
+    })
+    cargoID?: cargo
+    @Column({
+        type:"int",
+        nullable: true
+    })
+    headID?: number
 
     @ManyToOne(() => departamento, (departamento) => departamento.cargo)
     @JoinColumn({
