@@ -7,10 +7,9 @@
   <a href ="#dart-proposta"> Proposta </a>  • 
   <a href ="#calendar-cronograma-das-sprints"> Sprints </a>  • 
   <a href ="#computer-tecnologias-utilizadas"> Tecnologias </a>  • 
-  <a href ="#bulb-metodologia-utilizada"> Metodologia </a>  • 
-  <a href ="#product-backlog">Product Backlog </a>  •
-  <a href ="#sprints-backlog">Sprints Backlog </a>  •
-  <a href ="#instalacao">Passo a Passo Instalação</a>  •
+  <a href ="#product-backlog">Backlog do Produto </a>  •
+  <a href ="#sprints-backlog">Backlog das Sprints </a>  •
+  <a href ="#instalacao">Passo a Passo da Instalação</a>  •
   <a href ="#equipe"> Equipe </a> 
 </p>
 
