@@ -61,17 +61,10 @@
 
 ![Tecnologias](./docs/img/tecnologias.png)
 * **Banco de Dados:** MySQL;
-* **Back-end:** PhP, Apache;
-* **Front-end:** HTML, CSS, JavaScript;
-* **Ferramentas:** Visual Studio Code, phpMyAdmin, Miro, Canva, Trello, CkEditor, Git e Github;
-
-<br>
-
-## :bulb: Metodologia Utilizada
-
-* **Metodologia Ágil: SCRUM** 
-![StoryTelling]
-
+* **Back-end:** NodeJS;
+* **Front-end:** HTML, CSS, JavaScript, ChackaUi, React, Typescript ;
+* **Ferramentas:** Visual Studio Code, Jira, Miro, Canva, Trello, Git e Github;
+* **Metodologia Utilizada: Metodologia Ágil: SCRUM
 
 <br>
 
