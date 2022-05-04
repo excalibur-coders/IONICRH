@@ -37,23 +37,29 @@ height: 100vh;
   flex-direction: column;
   width: 100%;
   height: 95vh;
-  margin-top: 5vh;
+  margin-top: 1vh;
   align-items: center;
   position: absolute;
+    }
+}
 
   .mainWrapper {
     width: 100%;
-    height: 100vh;
+    height: 90vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
 
 
     .leftWrapper {
       margin-bottom: 17rem;
 
+      h3 {
+        font-size:30px;
+        font-weight: bold;
+      }
 
       .form {
-        width: 30rem;
+        width: 22rem;
         margin-top: 80px;
         flex-direction: column;
 
@@ -70,13 +76,37 @@ height: 100vh;
 
           .genero {
             height: 33px;
-            width: 222px;
+            width: 10rem;
             border: 1px solid black;
             border-radius: 10px;
             background-color: #f4f4f5;
           }
         }
 
+      }
+
+      .form-row {
+        flex-direction: row;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+    .centerWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      margin-bottom: 13rem;
+
+      h4 {
+        font-size:30px;
+        font-weight: bold;
+      }
+
+      .form {
+        margin-top: 80px;
+        width: 22rem;
+        flex-direction: column;
       }
 
       .form-row {
@@ -93,11 +123,14 @@ height: 100vh;
       flex-direction: column;
       margin-bottom: 13rem;
 
+      h5 {
+        font-size:30px;
+        font-weight: bold;
+      }
 
       .form {
-        width: 30rem;
-        margin-left: 50px;
         margin-top: 80px;
+        width: 22rem;
         flex-direction: column;
       }
 
@@ -116,7 +149,7 @@ height: 100vh;
   .ButtonW {
     display: flex;
     align-items: center;
-    margin-top: 200px;
+    margin-top: 43rem;
   }
 }
 
