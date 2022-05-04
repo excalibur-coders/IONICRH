@@ -8,7 +8,7 @@ export const Container = styled(Flex)`
 
   .leftWrapper {
     width: 60%;
-
+    margin-bottom: 25px;
     display: flex;
     flex-direction: column;
 
@@ -22,6 +22,7 @@ export const Container = styled(Flex)`
         font-family: coolvetica, sans-serif;
         font-style: normal;
         font-weight: 500;
+        color: ${theme.colors.font};
       }
 
       h2 {
@@ -31,6 +32,7 @@ export const Container = styled(Flex)`
         font-family: coolvetica, sans-serif;
         font-style: normal;
         font-weight: 500;
+        color: ${theme.colors.font};
       }
       span {
         text-align: center;
@@ -54,6 +56,10 @@ export const Container = styled(Flex)`
     background: ${theme.colors.primary};
     img {
       width: 30rem;
+    }
+
+    .no {
+      display: none;
     }
   }
 
@@ -98,9 +104,19 @@ export const Container = styled(Flex)`
     }
 
     .rightWrapper {
-      flex-direction: column;
-      position: relative;
+      background: none;
       width: 100%;
+      margin-top: 0px;
+
+      img {
+        display: none;
+      }
+
+      .no {
+        margin-bottom: 100px;
+        display: flex;
+        width: 100%;
+      }
     }
   }
 `;

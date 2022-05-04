@@ -3,15 +3,15 @@ import { Flex } from '@chakra-ui/react';
 import { theme } from 'theme';
 
 export const Container = styled(Flex)`
-height:100vh;
-display: flex;
-flex-direction:column;
-color: ${theme.colors.font};
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: ${theme.colors.font};
 
-  .centerWrapper{
+  .centerWrapper {
     display: flex;
     flex-wrap: wrap;
-    height:100%;
+    height: 100%;
 
     .leftWrapper {
       width: 60%;
@@ -23,7 +23,7 @@ color: ${theme.colors.font};
       img {
         width: 160px;
         margin: 5px 5px;
-        margin-top:10px;
+        margin-top: 10px;
       }
 
       .form {
@@ -49,7 +49,7 @@ color: ${theme.colors.font};
             display: flex;
             flex-direction: column;
           }
-          
+
           span {
             color: ${theme.colors.primary};
           }
@@ -82,21 +82,35 @@ color: ${theme.colors.font};
       background: ${theme.colors.primary};
 
       img {
-        width: 30rem;
+        width: 20rem;
+      }
+
+      .no {
+        display: none;
       }
     }
   }
 
-  @media(max-width: 768px) {
-    .centerWrapper{
-        .leftWrapper{
-            width: 100%;
+  @media (max-width: 768px) {
+    .centerWrapper {
+      .leftWrapper {
+        width: 100%;
+      }
+
+      .rightWrapper {
+        background: none;
+        width: 100%;
+        margin-top: 0px;
+
+        img {
+          display: none;
         }
 
-        .rightWrapper{
-            width: 100%;
-            margin-top: 50px;
+        .no {
+          display: flex;
+          width: 100%;
+        }
+      }
     }
   }
-
 `;
