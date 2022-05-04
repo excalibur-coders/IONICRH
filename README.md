@@ -155,7 +155,7 @@ npm start dev ou  yarn dev
 |**Taís Salomão**|Desenvolvedora|[@LinkedIn](https://www.linkedin.com/in/tais-salomao/)|[@GitHub](https://github.com/taissalomao)|<img src = "./readme/tais.jpeg">|
 |**Kevin Mirenda**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/kevin-mirenda-a54a64220)|[@GitHub](https://github.com/KevinFMfatec)|<img src = "./readme/tais.jpeg">|
 |**Rafael Lopes**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/rafael-leonardo-lopes/)|[@GitHub](https://github.com/Rafael-leonardo)|<img src = "./readme/tais.jpeg">|
-|**Lucas Costa**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/lucas-costa-a49a01219/)|[@GitHub](https://github.com/ddaiwon)|<img src = "./readme/tais.jpeg">|
+|**Lucas Costa**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/lucas-costa-a49a01219/)|[@GitHub](https://github.com/lucasdwn)|<img src = "./readme/tais.jpeg">|
 |**Gabriel Souza**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/gabriel-souza-bicho-nunes-429191185/)|[@GitHub](https://github.com/ZeroPirata)|<img src = "./readme/tais.jpeg">|
 |**Vinicius Andrade**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/vin%C3%ADcius-barbosa-78111a206/)|[@GitHub](https://github.com/ViniciusAndBar)|<img src = "./readme/tais.jpeg">|
 
