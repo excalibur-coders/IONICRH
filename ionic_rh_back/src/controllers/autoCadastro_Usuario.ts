@@ -1,6 +1,5 @@
 import { Response, Request, NextFunction } from "express";
 
-
 import 'config/dotenv';
 import jwtDecode from "jwt-decode";
 import { IUser } from "interfaces/IUser";
@@ -54,6 +53,8 @@ export const updateUser = async (req: Request, res: Response) => {
         res.json(error);
     }
 };
+
+
 export const adicionarIdioma = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const tokenHeader = req.headers.authorization;
@@ -104,7 +105,7 @@ export const adicionarTelefone = async (req: Request, res: Response, next: NextF
     }
 }
 
-export const adicioanrEscolaridade = async (req: Request, res: Response, next: NextFunction) => {
+export const adicionarEscolaridade = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const tokenHeader = req.headers.authorization;
         const splitToken = tokenHeader?.split(' ')[1] as string;
@@ -155,6 +156,7 @@ export const adicionarEndereco = async (req: Request, res: Response, next: NextF
         res.json(error)
     }
 }
+
 export const adicionarDocumento = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const tokenHeader = req.headers.authorization;

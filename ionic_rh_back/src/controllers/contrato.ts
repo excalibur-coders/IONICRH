@@ -4,6 +4,7 @@ import { Request, Response, NextFunction } from "express";
 import { IContrato } from "interfaces/IContrato";
 
 const contratoRepository = AppDataSource.getRepository(contrato)
+
 // Contrato do Usuario
 export const insertContratoUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -52,8 +53,7 @@ export const updateContratoUser = async (req: Request, res: Response, next: Next
         await contratoRepository
             .createQueryBuilder()
             .update(contrato)
-            .set({
-                "contrato_id": requestBody.contrato_id,
+            .set ({
                 "contrato_adimissao": requestBody.contrato_adimissao,
                 "contrato_matricula": requestBody.contrato_matricula,
                 "contrato_base": requestBody.contrato_base,
@@ -72,9 +72,11 @@ export const updateContratoUser = async (req: Request, res: Response, next: Next
                 "contrato_tipo": requestBody.contrato_tipo
             })
             .where(
-                "contrato_id = :contrato_id", {
-                contrato_id: requestBody.contrato_id
-            })
+                "userUserId = :userUserId", 
+                {
+                    userUserId: id
+                }
+            )
             .execute()
         next()
     } catch (error) {
