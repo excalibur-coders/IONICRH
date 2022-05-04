@@ -9,6 +9,7 @@ export const Container = styled.div`
   height: 18vh;
   border-radius: 20px;
   margin: auto;
+  align-items: center;
   display: flex;
 
   .texto {
@@ -16,7 +17,7 @@ export const Container = styled.div`
 
     .tittle {
       h1 {
-        font-size: 30px;
+        font-size: 25px;
       }
 
       .desc {
@@ -30,5 +31,31 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    width: 80vw;
+    height: 100%;
+    flex-direction: column;
+
+    .texto {
+      width: 100%;
+
+      .tittle {
+        h1 {
+          font-size: 20px;
+        }
+
+        .desc {
+          font-size: 5vw;
+        }
+      }
+
+      .test {
+        width: 100%;
+      }
+
+    }
+
   }
 `;

@@ -18,9 +18,12 @@ export const Container = styled(Flex)`
       gap: 10px;
 
       .porcent_obrigatorio {
+        margin: auto;
+        border: 1px solid grey;
+        border-radius: 20px;
         background-color: white;
-        width: 50vw;
-        padding-top: 20px;
+        width: 90vw;
+        padding-top: 10px;
 
         h1 {
           text-align: center;
@@ -32,10 +35,14 @@ export const Container = styled(Flex)`
           margin: 15px auto;
         }
       }
+
       .porcent_geral {
+        border: 1px solid grey;
+        border-radius: 20px;
+        margin: auto;
         background-color: white;
-        width: 50vw;
-        padding-top: 20px;
+        width: 90vw;
+        padding-top: 10px;
 
         h1 {
           text-align: center;
@@ -51,75 +58,52 @@ export const Container = styled(Flex)`
 
     .cards {
       background-color: white;
-      margin-top: 20px;
+      margin-top: 40px;
       width: 90vw;
       display: flex;
       flex-direction: column;
       gap: 50px;
       padding: 15px;
+      text-align: center;
+      border: 1px solid grey;
+      border-radius: 20px;
 
       h2 {
         margin: 0 auto;
         font-size: 50px;
       }
     }
-  }
 
-  @media (max-width: 1260px) {
-    display: flex;
-    flex-direction: column;
-    .linha {
-      display: flex;
-      flex-direction: column;
-      height: 18vh;
-      width: 90vw;
-      gap: 10px;
+    @media (max-width: 768px) {
+      align-items: center;
+      justify-content: center;
 
-      .porcent_obrigatorio {
-        background-color: white;
-        width: 50vw;
-        padding-top: 20px;
+      .linha {
+        margin: auto;
+        flex-direction: column;
+        height: 50vh;
+        width: 90vw;
 
-        h1 {
-          text-align: center;
-          font-size: 20px;
-        }
+        .porcent_obrigatorio, .porcent_geral {
 
-        .test {
-          width: 50%;
-          margin: 15px auto;
+
+          h1{
+            font-size: 20px;
+          }
+
         }
       }
-      .porcent_geral {
-        background-color: white;
-        width: 50vw;
-        padding-top: 20px;
 
-        h1 {
-          text-align: center;
-          font-size: 20px;
-        }
+      .cards {
 
-        .test {
-          width: 50%;
-          margin: 15px auto;
+        h2{
+          font-size: 10vw;
         }
       }
+
     }
 
-    .cards {
-      background-color: white;
-      margin-top: 20px;
-      width: 90vw;
-      display: flex;
-      flex-direction: column;
-      gap: 50px;
-      padding: 15px;
-
-      h2 {
-        margin: 0 auto;
-        font-size: 35px;
-      }
     }
-  }
+
+
 `;

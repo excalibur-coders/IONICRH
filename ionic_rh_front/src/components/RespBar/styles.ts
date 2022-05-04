@@ -121,7 +121,7 @@ export const Navlist = styled.div`
       }
 
       .bar::before {
-        width: 23px;
+        width: 32px;
         transform: translateY(-8px);
         right: 0;
       }
