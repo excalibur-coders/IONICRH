@@ -1,8 +1,5 @@
-import { ReactNode } from 'react';
-import { theme } from 'theme';
 import * as S from './styles';
 import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react';
-import { Stack, HStack, VStack, Box, Heading, Text } from '@chakra-ui/react';
 
 interface featureProps {
   title?: string;
