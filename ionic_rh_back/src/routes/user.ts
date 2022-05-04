@@ -53,13 +53,13 @@ router.use(auth);
 // Auto Cadastro do usario
 router.put(
   '/auto-cadastro',
-  /* multer(multerConfig).single('file'),   */
+  multer(multerConfig).single('file'),  
   adicioanrEscolaridade,
   adicionarIdioma,
   adicionarTelefone,
   adicionarEndereco,
   adicionarDependente,
-  /* adicionarDocumento, */
+  adicionarDocumento,
   updateUser
 );
 
