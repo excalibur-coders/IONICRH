@@ -57,7 +57,7 @@
 
 <br>
 
-## :💻: Tecnologias Utilizadas
+## 💻 Tecnologias Utilizadas
 
 ![Tecnologias](./docs/img/tecnologias.png)
 * **Banco de Dados:** MySQL;
