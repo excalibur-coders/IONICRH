@@ -1,5 +1,6 @@
+import { chakra } from '@chakra-ui/react';
 import * as S from './styles';
-import { Button } from '@chakra-ui/react';
+import { Box, Flex, Heading, Spacer, Button, ListIcon } from '@chakra-ui/react';
 import { MdAccountCircle, MdOutlineLogout } from 'react-icons/md';
 import logo from 'assets/svg/ionicrh_logo_gray.svg';
 import { theme } from 'theme';
@@ -7,7 +8,7 @@ import { useContext, useState } from 'react';
 import { AuthContext } from 'hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
-function RespBar() {
+function Consultor_nav() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const { signOut } = useContext(AuthContext);
@@ -20,9 +21,6 @@ function RespBar() {
         <ul className={`nav_menu ${isOpen && 'open'}`}>
           <li className="nav_item">
             <a href="/Colab_home">Home</a>
-          </li>
-          <li className="nav_item">
-            <a href="/Colab_Onboard">Onboard</a>
           </li>
           <li className="nav_item0">
             <a href="/Colab_user">Perfil</a>
@@ -42,20 +40,20 @@ function RespBar() {
         <div className="">
           <Button
             className="button"
-            as={MdOutlineLogout}
-            color={theme.colors.font}
-            onClick={() => {
-              signOut();
-              navigate('/');
-            }}
-          />
-          <Button
-            className="button"
             href="Colab_user"
             as={MdAccountCircle}
             color={theme.colors.font}
             onClick={() => {
               navigate('/Colab_user');
+            }}
+          />
+          <Button
+            className="button"
+            as={MdOutlineLogout}
+            color={theme.colors.font}
+            onClick={() => {
+              signOut();
+              navigate('/');
             }}
           />
         </div>
@@ -64,4 +62,4 @@ function RespBar() {
   );
 }
 
-export default RespBar;
+export default Consultor_nav;

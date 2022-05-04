@@ -77,31 +77,26 @@ try {
         .into(cargo)
         .values([
           {
-            cargo_head: "Rodrigo Cavalcanti",
             cargo_area: "Recursos Humanos",
             cargo_nivel: "Júnior",
-            departamentoDepId: 1
+            departamentoDepId: 1,
           },
           {
-            cargo_head: "Camile Fernande",
             cargo_area: "Operações de infraestrutura de TI",
             cargo_nivel: "Pleno",
-            departamentoDepId: 2
+            departamentoDepId: 2,
           },
           {
-            cargo_head: "Flavia Nogueira",
             cargo_area: "Marketing Instintucional",
             cargo_nivel: "Sênior",
             departamentoDepId: 3
           },
           {
-            cargo_head: "Pablo Juan",
             cargo_area: "Lider de Projeto delivers RJ",
             cargo_nivel: "Pleno",
             departamentoDepId: 4
           },
           {
-            cargo_head: "Rodrigo Cavalcanti",
             cargo_area: "Administrativo & Financeiro",
             cargo_nivel: "Sênior",
             departamentoDepId: 5
@@ -140,7 +135,7 @@ try {
           contrato_tempo_de_casa: "08/04/2022",
           contrato_termos: "Política para Propriedade Intelectual da IONIC - válida a partir de 25/02/2022",
           contrato_dominio: "www.BichoCorporações.com.br",
-          contrato_turno:"Noturno",
+          contrato_turno: "Noturno",
           contrato_faixa_salarial: 3751.52,
           contrato_plano_saude: 675.25,
           contrato_vale_transporte: 289.27,
@@ -155,6 +150,19 @@ try {
           cargoCargoId: 4,
           empContratanteContratanteId: 2,
         })
+        .execute()
+
+      cargoRepository
+        .createQueryBuilder()
+        .update(cargo)
+        .set({
+          "headID": 1
+        })
+        .where(
+          "cargo_id = :cargo_id", {
+            cargo_id: 1
+        }
+        )
         .execute()
     }
   });

@@ -3,26 +3,30 @@ import { Flex } from '@chakra-ui/react';
 import { theme } from 'theme';
 
 export const Container = styled(Flex)`
+  height: 100vh;
 
-height: 100vh;
+  .header {
+    width: 100%;
+    height: 7vh;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    border: 1px solid black;
 
-.header {
-  width: 100%;
-  height: 7vh;
-  display: flex;
-  flex-direction: row;
-  position: absolute;
-  border: 1px solid black;
+    h1 {
+      margin-left: 30px;
+      margin-top: 5px;
+      font-weight: bold;
+      font-size: 30px;
 
-  h1 {
-    margin-left: 30px;
-    margin-top: 5px;
-    font-weight: bold;
-    font-size: 30px;
-
+      img {
+        width: 20rem;
+      }
+    }
 
     img {
-      width: 20rem;
+      width: 160px;
+      margin: 5px 15px;
     }
   }
 
@@ -40,8 +44,8 @@ height: 100vh;
   margin-top: 1vh;
   align-items: center;
   position: absolute;
-    }
-}
+    
+
 
   .mainWrapper {
     width: 100%;
@@ -49,9 +53,14 @@ height: 100vh;
     display: flex;
     justify-content: space-around;
 
+    .mainWrapper {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
 
-    .leftWrapper {
-      margin-bottom: 17rem;
+      .leftWrapper {
+        margin-bottom: 17rem;
 
       h3 {
         font-size:30px;
@@ -109,14 +118,33 @@ height: 100vh;
         flex-direction: column;
       }
 
-      .form-row {
-        flex-direction: row;
+      .rightWrapper {
         display: flex;
-        justify-content: space-between;
+        align-items: center;
+        justify-content: top;
+        flex-direction: column;
+        margin-bottom: 13rem;
+
+        .form {
+          width: 30rem;
+          margin-left: 50px;
+          margin-top: 80px;
+          flex-direction: column;
+        }
+
+        .form-row {
+          flex-direction: row;
+          display: flex;
+          justify-content: space-between;
+        }
+
+        h2 {
+          font-size: 20px;
+          font-weight: bold;
+        }
       }
     }
-
-    .rightWrapper {
+    .ButtonW {
       display: flex;
       align-items: center;
       justify-content: top;

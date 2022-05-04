@@ -1,40 +1,43 @@
 // import { Input, Stack } from '@chakra-ui/react';
-import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
-import Input from 'components/Input';
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
 import LogoGray from 'assets/svg/logo-gray.svg';
+import logoresponsive from 'assets/svg/logoresponsive.png';
 import { theme } from 'theme';
 
 import * as S from './styles';
-import Button from 'components/Button';
 
 // console.log(theme.colors.primary);
 
 function ContaSucesso() {
   return (
     <S.Container>
-      <div className='centerWrapper'>
-        <div className='leftWrapper'>
+      <div className="centerWrapper">
+        <div className="leftWrapper">
           <img src={IonicLogo} />
 
-          <div className='form'>
+          <div className="form">
             <h1>Conta Criada com sucesso!</h1>
 
-            <div className='registerWrapper'>
-              <span><Link to="/">Voltar ao Login</Link></span>
+            <div className="registerWrapper">
+              <span>
+                <Link to="/">Voltar ao Login</Link>
+              </span>
             </div>
           </div>
         </div>
-
-        <div className="rightWrapper">
-          <img src={LogoGray} />
-        </div>
       </div>
-
+      <div className="rightWrapper">
+        <img src={LogoGray} />
+        <img className="no" src={logoresponsive} />
+      </div>
+      <div className="rightWrapper">
+        <img src={LogoGray} />
+        <img className="no" src={logoresponsive} />
+      </div>
     </S.Container>
   );
-};
+}
 
 export default ContaSucesso;
