@@ -23,28 +23,28 @@ import Consultor from 'pages/Consultor_Tela';
 function Routes() {
   return (
     // <BrowserRouter>
-      <RoutesWrapper>
-        <Route path="/" element={<Login />} />
-        <Route path="/Departamentos" element={<Departamentos />} />
-        <Route path="/Cadastro_colaborador" element={<Cadastro />} />
-        <Route path="/Confirmacao_cadastro" element={<Confirmacao />} />
-        <Route path="/Funcionarios" element={<Funcionarios />} />
-        <Route path="/Cadastro" element={<CriarConta />} />
-        <Route path="/ContaSucesso" element={<ContaSucesso />} />
-        <Route path="/RecuperarSenha" element={<RecuperarSenha />} />
-        <Route path="/Resetar" element={<ResetarSenha />} />
-        <Route path="/SenhaAlterada" element={<SenhaAlterada />} />
-        <Route path="/Colab_home" element={<Colab_home />} />
-        <Route path="/Colab_onboard" element={<Colab_onboard />} />
-        <Route path="/Colab_user" element={<Colab_user />} />
-        <Route path="/Cargos" element={<Cargos />} />
-        <Route path="/Ti" element={<DeptoTI />} />
-        <Route path="/User/:id" element={<User />} />
-        <Route path="/UserEdit/:id" element={<UserEdit />} />
-        <Route path="/Administrador" element={<Administrador />} />
-        <Route path="/AdministradorEdit" element={<AdministradorEdit />} />
-        <Route path="/Consultor" element={<Consultor />} />
-      </RoutesWrapper>
+    <RoutesWrapper>
+      <Route path="/" element={<Login />} />
+      <Route path="/Departamentos" element={<Departamentos />} />
+      <Route path="/Cadastro_colaborador" element={<Cadastro />} />
+      <Route path="/Confirmacao_cadastro" element={<Confirmacao />} />
+      <Route path="/Funcionarios" element={<Funcionarios />} />
+      <Route path="/Cadastro" element={<CriarConta />} />
+      <Route path="/ContaSucesso" element={<ContaSucesso />} />
+      <Route path="/RecuperarSenha" element={<RecuperarSenha />} />
+      <Route path="/Resetar" element={<ResetarSenha />} />
+      <Route path="/SenhaAlterada" element={<SenhaAlterada />} />
+      <Route path="/Colab_home" element={<Colab_home />} />
+      <Route path="/Colab_onboard" element={<Colab_onboard />} />
+      <Route path="/Colab_user" element={<Colab_user />} />
+      <Route path="/Cargos" element={<Cargos />} />
+      <Route path="/Ti" element={<DeptoTI />} />
+      <Route path="/User/:id" element={<User />} />
+      <Route path="/UserEdit/:id" element={<UserEdit />} />
+      <Route path="/Administrador" element={<Administrador />} />
+      <Route path="/AdministradorEdit" element={<AdministradorEdit />} />
+      <Route path="/Consultor" element={<Consultor />} />
+    </RoutesWrapper>
     // </BrowserRouter>
   );
 }

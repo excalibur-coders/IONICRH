@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
 import LogoGray from 'assets/svg/logo-gray.svg';
-import logoresponsive from 'assets/svg/logoresponsive.png'
+import logoresponsive from 'assets/svg/logoresponsive.png';
 import { theme } from 'theme';
 
 import * as S from './styles';
@@ -27,10 +27,10 @@ function ContaSucesso() {
             </div>
           </div>
         </div>
-
+      </div>
       <div className="rightWrapper">
         <img src={LogoGray} />
-        <img className='no' src={logoresponsive} />
+        <img className="no" src={logoresponsive} />
       </div>
     </S.Container>
   );
