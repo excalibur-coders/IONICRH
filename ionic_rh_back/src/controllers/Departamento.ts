@@ -83,3 +83,34 @@ export const deleteDepartamento = async (req: Request, res: Response) => {
 
   }
 }
+
+export const getDepFilter = async (req: Request, res: Response) => {
+  try {
+      const {
+          id
+      } = req.params
+      const result = await departamentoRepository
+          .createQueryBuilder()
+          .select([
+              "d.dep_name",
+              "c.cargo_area",
+              "cont.contrato_faixa_salarial",
+              "u.user_nome"
+          ])
+          .from(departamento, "d")
+          .leftJoin("d.cargo", "c")
+          .leftJoin('c.contrato','cont')
+          .leftJoin('cont.user','u')
+          .where("d.dep_id = :dep_id", {
+              dep_id: id
+          })
+          .andWhere("d.dep_id = departamentoDepId", {
+          })
+          .andWhere("c.cargo_id = cargoCargoId")
+          .andWhere("cont.userUserId = user_id")
+          .getOne()
+      res.json(result)
+  } catch (error) {
+      res.json(error)
+  }
+}
