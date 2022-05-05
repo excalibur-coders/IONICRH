@@ -26,7 +26,7 @@
 
 ## :dart: Proposta
 
-**Desenvolver um site institucional com os seguintes requisitos:**<br><br>
+**Desenvolver um sistema de apoio a Gestão de Departamento Pessoal com os seguintes requisitos:**<br><br>
 
 > **Requisitos**
 
@@ -149,6 +149,7 @@ npm start dev ou  yarn dev
 
 <br>
 
+<<<<<<< HEAD
 | Nome                 | Função         | Linkedin                                                                      | GitHub                                        | Avatar                                         |
 | -------------------- | -------------- | ----------------------------------------------------------------------------- | --------------------------------------------- | ---------------------------------------------- |
 | **Lucas Braz Dias**  | Scrum Master   | [@LinkedIn](https://www.linkedin.com/in/lucas-braz-dias/)                     | [@GitHub](https://github.com/lucasbdias)      | ![Lucasbd](./docs/readme/equipe/lucasbd.jpg)   |
@@ -159,5 +160,17 @@ npm start dev ou  yarn dev
 | **Lucas Costa**      | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/lucas-costa-a49a01219/)               | [@GitHub](https://github.com/ddaiwon)         | ![Lucasc](./docs/readme/equipe/lucasc.jpg)     |
 | **Gabriel Souza**    | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/gabriel-souza-bicho-nunes-429191185/) | [@GitHub](https://github.com/ZeroPirata)      | ![Gabriel](./docs/readme/equipe/gabriel.jpg)   |
 | **Vinicius Andrade** | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/vin%C3%ADcius-barbosa-78111a206/)     | [@GitHub](https://github.com/ViniciusAndBar)  | ![Vinicius](./docs/readme/equipe/vinicius.jpg) |
+=======
+|Nome|Função|Linkedin|GitHub|Avatar|
+| -------- |-------- |-------- |-------- |-------- |
+|**Lucas Braz Dias**|Scrum Master|[@LinkedIn](https://www.linkedin.com/in/lucas-braz-dias/)|[@GitHub](https://github.com/lucasbdias)|<img src = "./readme/tais.jpeg">|
+|**Priscila Silva**|Product Owner|[@LinkedIn](https://www.linkedin.com/in/priscilasilva1801/)|[@GitHub](https://github.com/prsilva)|<img src = "./readme/tais.jpeg">|
+|**Taís Salomão**|Desenvolvedora|[@LinkedIn](https://www.linkedin.com/in/tais-salomao/)|[@GitHub](https://github.com/taissalomao)|<img src = "./readme/tais.jpeg">|
+|**Kevin Mirenda**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/kevin-mirenda-a54a64220)|[@GitHub](https://github.com/KevinFMfatec)|<img src = "./readme/tais.jpeg">|
+|**Rafael Lopes**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/rafael-leonardo-lopes/)|[@GitHub](https://github.com/Rafael-leonardo)|<img src = "./readme/tais.jpeg">|
+|**Lucas Costa**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/lucas-costa-a49a01219/)|[@GitHub](https://github.com/lucasdwn)|<img src = "./readme/tais.jpeg">|
+|**Gabriel Souza**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/gabriel-souza-bicho-nunes-429191185/)|[@GitHub](https://github.com/ZeroPirata)|<img src = "./readme/tais.jpeg">|
+|**Vinicius Andrade**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/vin%C3%ADcius-barbosa-78111a206/)|[@GitHub](https://github.com/ViniciusAndBar)|<img src = "./readme/tais.jpeg">|
+>>>>>>> 5ecaeca271c73c9ceeb01bc0b983f90b5e63df63
 
 <br>
