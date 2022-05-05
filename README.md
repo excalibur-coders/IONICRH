@@ -25,7 +25,7 @@
 
 ## :dart: Proposta
 
-**Desenvolver um site institucional com os seguintes requisitos:**<br><br>
+**Desenvolver um sistema de apoio a Gestão de Departamento Pessoal com os seguintes requisitos:**<br><br>
 
  > **Requisitos**
 
