@@ -1,25 +1,26 @@
 # Projeto IonicRH
 
-![Equipe ExcaliburCoders](./docs/img/1.png)
+![Equipe ExcaliburCoders](./docs/readme/apresentação.png)
 
 <p align="center">
   <a href ="#o-projeto"> Projeto </a>  • 
   <a href ="#dart-proposta"> Proposta </a>  • 
-  <a href ="#calendar-cronograma-das-sprints"> Sprints </a>  • 
-  <a href ="#computer-tecnologias-utilizadas"> Tecnologias </a>  • 
+  <a href ="#mapa-mental"> Mapa Mental </a>  • 
+  <a href ="#calendar-cronograma-das-sprints"> Cronograma das Entregas </a>  • 
+  <a href ="#computer-tecnologias-utilizadas"> Tecnologias Utilizadas </a>  • 
   <a href ="#product-backlog">Backlog do Produto </a>  •
   <a href ="#sprints-backlog">Backlog das Sprints </a>  •
-  <a href ="#instalacao">Passo a Passo da Instalação</a>  •
+  <a href ="#instalacao">Passo a Passo da Instalação do Sistema </a>  •
   <a href ="#equipe"> Equipe </a> 
 </p>
 
-
 ## O Projeto
-![Equipe Excalibur](/readme/objetivo.png "Objetivo Equipe Excalibur")
+
+![Objetivo](./docs/readme/objetivo.png)
 
 <br>
 
-> Status do Projeto: Em andamento <img src = "./readme/Works-in-progress-icon.png" />
+> Status do Projeto: Em andamento
 
 <br>
 
@@ -27,23 +28,23 @@
 
 **Desenvolver um site institucional com os seguintes requisitos:**<br><br>
 
- > **Requisitos**
+> **Requisitos**
 
- - <img src = "./readme/feito.jpeg" /> Cadastro de Colaboradores;
- - <img src = "./readme/feito.jpeg" /> Repositório para documentos dos colaboradores;
- - <img src = "./readme/feito.jpeg" /> Cadastros de Trilha de Aprendizado e Status de Realização;
- - <img src = "./readme/feito.jpeg" /> Organogramas da Empresa;
- - <img src = "./readme/feito.jpeg" /> Repositório de documentos da empresa (políticas, normas, regras, etc);
- - <img src = "./readme/feito.jpeg" /> Dossiê gerado em PDF por colaborador para consulta do administrador e gestor.<br><br>
+- ![feito](./docs/readme/check.png) Cadastro de Colaboradores;
+- ![em andamento] Repositório para documentos dos Colaboradores;
+- ![em andamento] Trilha de Aprendizagem e Status de Realização;
+- ![em andamento] Organogramas da Empresa;
+- ![feito](./docs/readme/check.png) Repositório de documentos da empresa (políticas, normas, regras, etc);
+- ![em andamento] Dossiê gerado em PDF por colaborador para consulta do Administrador e Gestor.
+  <br>
 
- > **Funcionalidades extras**
-
- - <img src = "./readme/feito.jpeg" />  ;
- - <img src = "./readme/feito.jpeg" />  ;
- - <img src = "./readme/feito.jpeg" />  <br><br>
+> **Funcionalidades extras**
 
 <br>
 
+## Mapa Mental do Produto
+
+![Mapa Mental](./docs/readme/mapa.png)
 
 ## :calendar: Cronograma das Entregas
 
@@ -52,35 +53,35 @@
 - <img src = "./readme/feito.jpeg" /> [SPRINT 2](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint2) - 25/04/2022 a 15/05/2022
 - <img src = "./readme/feito.jpeg" /> [SPRINT 3](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint3) - 16/05/2022 a 05/06/2022
 
-<h1 align="center"> <img src = "./readme/cronograma_sprints.png"/></h1>
+![Cronograma](./docs/readme/cronograma.png)
 
 <br>
 
 ## 💻 Tecnologias Utilizadas
 
-![Tecnologias](./docs/img/tecnologias.png)
-* **Banco de Dados:** MySQL;
-* **Back-end:** NodeJS;
-* **Front-end:** HTML, CSS, JavaScript, ChackaUi, React, Typescript ;
-* **Ferramentas:** Visual Studio Code, Jira, Miro, Canva, Trello, Git e Github;
-* **Metodologia Utilizada: Metodologia Ágil: SCRUM
+![Tecnologias](./docs/readme/tecnologias.png)
+
+- **Banco de Dados:** MySQL;
+- **Back-end:** NodeJS;
+- **Front-end:** HTML, CSS, JavaScript, ChackaUi, React, Typescript ;
+- **Ferramentas:** Visual Studio Code, Jira, Miro, Canva, Trello, Git e Github;
+- **Metodologia Utilizada:** Metodologia Ágil | SCRUM
 
 <br>
 
-## <img src = "./readme/back_log.png"/>Product Backlog
+## Backlog do Produto
 
-<h1 align="center"> <img src = "./readme/product_backlog.png" /></h1> 
-
-<br>
-
-## <img src = "./readme/back_log.png"/>Sprints Backlog 
-
-<h1 align="center"> <img src = "./readme/sprintbacklog.png" /></h1> 
+![Backlog Produto](./docs/readme/backlogp.png)
 
 <br>
 
+## Backlog das Sprints
 
-## Passo a passo da instalação do sistema
+![Backlog Sprints](./docs/readme/backlogs.png)
+
+<br>
+
+## Passo a Passo da Instalação do Sistema
 
 ```bash
 git clone https://github.com/excalibur-coders/IONICRH.git
@@ -104,9 +105,9 @@ Na pasta backend mudar o nome do arquivo:
 .envcopy para .env
 ```
 
-## Dentro do env é necessário colocar as configurações do seu conector MySQL;
+### Dentro do env é necessário colocar as configurações do seu conector MySQL;
 
-## Importante criar a database que deseja armazenar, as tabelas e afins:
+### Importante criar a database que deseja armazenar, as tabelas e afins:
 
 ```bash
 Create database [nome]
@@ -144,20 +145,19 @@ npm start dev ou  yarn dev
 
 <br>
 
-## <img src = "./readme/equipe_icon.png"/>Equipe 
+## Equipe
 
 <br>
 
-|Nome|Função|Linkedin|GitHub|Avatar|
-| -------- |-------- |-------- |-------- |-------- |
-|**Lucas Braz Dias**|Scrum Master|[@LinkedIn](https://www.linkedin.com/in/lucas-braz-dias/)|[@GitHub](https://github.com/lucasbdias)|<img src = "./readme/tais.jpeg">|
-|**Priscila Silva**|Product Owner|[@LinkedIn](https://www.linkedin.com/in/priscilasilva1801/)|[@GitHub](https://github.com/prsilva)|<img src = "./readme/tais.jpeg">|
-|**Taís Salomão**|Desenvolvedora|[@LinkedIn](https://www.linkedin.com/in/tais-salomao/)|[@GitHub](https://github.com/taissalomao)|<img src = "./readme/tais.jpeg">|
-|**Kevin Mirenda**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/kevin-mirenda-a54a64220)|[@GitHub](https://github.com/KevinFMfatec)|<img src = "./readme/tais.jpeg">|
-|**Rafael Lopes**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/rafael-leonardo-lopes/)|[@GitHub](https://github.com/Rafael-leonardo)|<img src = "./readme/tais.jpeg">|
-|**Lucas Costa**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/lucas-costa-a49a01219/)|[@GitHub](https://github.com/ddaiwon)|<img src = "./readme/tais.jpeg">|
-|**Gabriel Souza**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/gabriel-souza-bicho-nunes-429191185/)|[@GitHub](https://github.com/ZeroPirata)|<img src = "./readme/tais.jpeg">|
-|**Vinicius Andrade**|Desenvolvedor|[@LinkedIn](https://www.linkedin.com/in/vin%C3%ADcius-barbosa-78111a206/)|[@GitHub](https://github.com/ViniciusAndBar)|<img src = "./readme/tais.jpeg">|
+| Nome                 | Função         | Linkedin                                                                      | GitHub                                        | Avatar                                         |
+| -------------------- | -------------- | ----------------------------------------------------------------------------- | --------------------------------------------- | ---------------------------------------------- |
+| **Lucas Braz Dias**  | Scrum Master   | [@LinkedIn](https://www.linkedin.com/in/lucas-braz-dias/)                     | [@GitHub](https://github.com/lucasbdias)      | ![Lucasbd](./docs/readme/equipe/lucasbd.jpg)   |
+| **Priscila Silva**   | Product Owner  | [@LinkedIn](https://www.linkedin.com/in/priscilasilva1801/)                   | [@GitHub](https://github.com/prsilva)         | ![Priscila](./docs/readme/equipe/priscila.jpg) |
+| **Taís Salomão**     | Desenvolvedora | [@LinkedIn](https://www.linkedin.com/in/tais-salomao/)                        | [@GitHub](https://github.com/taissalomao)     | ![Tais](./docs/readme/equipe/tais.jpg)         |
+| **Kevin Mirenda**    | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/kevin-mirenda-a54a64220)              | [@GitHub](https://github.com/KevinFMfatec)    | ![Kevin](./docs/readme/equipe/kevin.jpg)       |
+| **Rafael Lopes**     | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/rafael-leonardo-lopes/)               | [@GitHub](https://github.com/Rafael-leonardo) | ![Rafael](./docs/readme/equipe/rafael.jpg)     |
+| **Lucas Costa**      | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/lucas-costa-a49a01219/)               | [@GitHub](https://github.com/ddaiwon)         | ![Lucasc](./docs/readme/equipe/lucasc.jpg)     |
+| **Gabriel Souza**    | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/gabriel-souza-bicho-nunes-429191185/) | [@GitHub](https://github.com/ZeroPirata)      | ![Gabriel](./docs/readme/equipe/gabriel.jpg)   |
+| **Vinicius Andrade** | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/vin%C3%ADcius-barbosa-78111a206/)     | [@GitHub](https://github.com/ViniciusAndBar)  | ![Vinicius](./docs/readme/equipe/vinicius.jpg) |
 
 <br>
-
