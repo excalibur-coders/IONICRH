@@ -3,39 +3,28 @@ import { Flex } from '@chakra-ui/react';
 import { theme } from 'theme';
 
 export const Container = styled(Flex)`
-  height: 100vh;
-
-  .header {
-    width: 100%;
-    height: 7vh;
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    border: 1px solid black;
-
-    h1 {
-      margin-left: 30px;
-      margin-top: 5px;
-      font-weight: bold;
-      font-size: 30px;
-
-      img {
-        width: 20rem;
-      }
-    }
-
+height: 100vh;
+.header {
+  width: 100%;
+  height: 7vh;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  border: 1px solid black;
+  h1 {
+    margin-left: 30px;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 30px;
     img {
-      width: 160px;
-      margin: 5px 15px;
+      width: 20rem;
     }
   }
-
   img {
     width: 160px;
     margin: 5px 15px;
   }
 }
-
 .main {
   display: flex;
   flex-direction: column;
@@ -44,45 +33,32 @@ export const Container = styled(Flex)`
   margin-top: 1vh;
   align-items: center;
   position: absolute;
-    
-
-
+    }
+}
   .mainWrapper {
     width: 100%;
     height: 90vh;
     display: flex;
     justify-content: space-around;
-
-    .mainWrapper {
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-
-      .leftWrapper {
-        margin-bottom: 17rem;
-
+    .leftWrapper {
+      margin-bottom: 17rem;
       h3 {
         font-size:30px;
         font-weight: bold;
       }
-
       .form {
         width: 22rem;
         margin-top: 80px;
         flex-direction: column;
-
         .dropdown {
           display: flex;
           flex-direction: column;
-
         .dropdowntext {
           display: flex;
           align-items: left;
           font-size: 20px;
           font-weight: bold;
 }
-
           .genero {
             height: 33px;
             width: 10rem;
@@ -91,9 +67,7 @@ export const Container = styled(Flex)`
             background-color: #f4f4f5;
           }
         }
-
       }
-
       .form-row {
         flex-direction: row;
         display: flex;
@@ -106,68 +80,41 @@ export const Container = styled(Flex)`
       justify-content: space-between;
       flex-direction: column;
       margin-bottom: 13rem;
-
       h4 {
         font-size:30px;
         font-weight: bold;
       }
-
       .form {
         margin-top: 80px;
         width: 22rem;
         flex-direction: column;
       }
-
-      .rightWrapper {
-        display: flex;
-        align-items: center;
-        justify-content: top;
-        flex-direction: column;
-        margin-bottom: 13rem;
-
-        .form {
-          width: 30rem;
-          margin-left: 50px;
-          margin-top: 80px;
-          flex-direction: column;
-        }
-
-        .form-row {
-          flex-direction: row;
-          display: flex;
-          justify-content: space-between;
-        }
-
-        h2 {
-          font-size: 20px;
-          font-weight: bold;
-        }
-      }
-    }
-    .ButtonW {
-      display: flex;
-      align-items: center;
-      justify-content: top;
-      flex-direction: column;
-      margin-bottom: 13rem;
-
-      h5 {
-        font-size:30px;
-        font-weight: bold;
-      }
-
-      .form {
-        margin-top: 80px;
-        width: 22rem;
-        flex-direction: column;
-      }
-
       .form-row {
         flex-direction: row;
         display: flex;
         justify-content: space-between;
       }
-
+    }
+    .rightWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: top;
+      flex-direction: column;
+      margin-bottom: 13rem;
+      h5 {
+        font-size:30px;
+        font-weight: bold;
+      }
+      .form {
+        margin-top: 80px;
+        width: 22rem;
+        flex-direction: column;
+      }
+      .form-row {
+        flex-direction: row;
+        display: flex;
+        justify-content: space-between;
+      }
       h2 {
         font-size: 20px;
         font-weight: bold;
@@ -177,9 +124,7 @@ export const Container = styled(Flex)`
   .ButtonW {
     display: flex;
     align-items: center;
-    margin-top: 43rem;
+    margin-top: 1rem;
   }
 }
-
-
-`
+`;

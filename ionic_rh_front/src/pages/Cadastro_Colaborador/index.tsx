@@ -1,5 +1,8 @@
+import { ReactNode, useState } from 'react';
+
 import { useCallback, useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 import Input from 'components/Input';
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
@@ -14,9 +17,12 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 
 import * as S from './styles';
 import Button from 'components/Button';
+import { tmpdir } from 'os';
 
 import { AuthContext } from 'hooks/useAuth';
 import { api } from 'services/api';
+import { IUser } from 'interfaces/IUser';
+import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 interface CadastroProps {
@@ -170,14 +176,12 @@ function Cadastro() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="main">
           <div className="mainWrapper">
-
-            <div className='leftWrapper'>
-              <div className='form'>
-
+            <div className="leftWrapper">
+              <div className="form">
                 <h3>Informações Pessoais</h3>
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="22rem"
                   fontSize={20}
                   labelText="Nome Completo"
@@ -189,7 +193,7 @@ function Cadastro() {
 
                 <div className="form-row">
                   <Input
-                    size='sm'
+                    size="sm"
                     width="10rem"
                     fontSize={20}
                     labelText="Nacionalidade"
@@ -199,7 +203,7 @@ function Cadastro() {
                   />
 
                   <Input
-                    size='sm'
+                    size="sm"
                     width="10rem"
                     fontSize={20}
                     labelText="Naturalidade"
@@ -211,33 +215,35 @@ function Cadastro() {
 
                 <div className="form-row">
                   <Input
-                    size='sm'
+                    size="sm"
                     width="10rem"
                     fontSize={20}
                     labelText="Nascimento"
-                    mask="99/99/9999"
-                    type="text"
+                    type="date"
                     error={errors.nascimento?.message}
                     {...register('nascimento')}
                   />
 
-
-                    <div className='dropdown'>
-                    <label htmlFor="lang" className='dropdowntext'>Gênero</label>
-                          <select className='genero' id="lang" {...register('genero')}>
-                            <option>Selecione seu Gênero</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="feminino">Feminino</option>
-                            <option value="outro">Outro</option>
-                          </select>
-                          </div>  
-                    
-
+                  <div className="dropdown">
+                    <label htmlFor="lang" className="dropdowntext">
+                      Gênero
+                    </label>
+                    <select
+                      className="genero"
+                      id="lang"
+                      {...register('genero')}
+                    >
+                      <option>Selecione seu Gênero</option>
+                      <option value="masculino">Masculino</option>
+                      <option value="feminino">Feminino</option>
+                      <option value="outro">Outro</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div className="form-row">
                   <Input
-                    size='sm'
+                    size="sm"
                     width="10rem"
                     fontSize={20}
                     labelText="CPF"
@@ -248,7 +254,7 @@ function Cadastro() {
                   />
 
                   <Input
-                    size='sm'
+                    size="sm"
                     width="10rem"
                     fontSize={20}
                     labelText="RG"
@@ -260,7 +266,7 @@ function Cadastro() {
                 </div>
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="22rem"
                   fontSize={20}
                   labelText="Estado Civil"
@@ -270,7 +276,7 @@ function Cadastro() {
                 />
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="22rem"
                   fontSize={20}
                   labelText="Etnia"
@@ -278,9 +284,9 @@ function Cadastro() {
                   error={errors.etnia?.message}
                   {...register('etnia')}
                 />
-                
+
                 <Input
-                  size='sm'
+                  size="sm"
                   width="22rem"
                   fontSize={20}
                   labelText="E-mail"
@@ -291,7 +297,7 @@ function Cadastro() {
                 />
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="22rem"
                   fontSize={20}
                   labelText="Telefone"
@@ -300,17 +306,15 @@ function Cadastro() {
                   mask="(99) 99999-9999"
                   {...register('telefone')}
                 />
-                
-            </div> 
+              </div>
             </div>
 
-              <div className='centerWrapper'>
-              <div className='form'>
-
+            <div className="centerWrapper">
+              <div className="form">
                 <h4>Endereço</h4>
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="22rem"
                   fontSize={20}
                   labelText="Rua"
@@ -321,7 +325,7 @@ function Cadastro() {
 
                 <div className="form-row">
                   <Input
-                    size='sm'
+                    size="sm"
                     width="10rem"
                     fontSize={20}
                     labelText="CEP"
@@ -332,7 +336,7 @@ function Cadastro() {
                   />
 
                   <Input
-                    size='sm'
+                    size="sm"
                     width="10rem"
                     fontSize={20}
                     labelText="Bairro"
@@ -344,7 +348,7 @@ function Cadastro() {
 
                 <div className="form-row">
                   <Input
-                    size='sm'
+                    size="sm"
                     width="10rem"
                     fontSize={20}
                     labelText="Cidade"
@@ -354,7 +358,7 @@ function Cadastro() {
                   />
 
                   <Input
-                    size='sm'
+                    size="sm"
                     width="10rem"
                     fontSize={20}
                     labelText="Estado"
@@ -366,7 +370,7 @@ function Cadastro() {
 
                 <div className="form-row">
                   <Input
-                    size='sm'
+                    size="sm"
                     width="10rem"
                     fontSize={20}
                     labelText="Número"
@@ -376,7 +380,7 @@ function Cadastro() {
                   />
 
                   <Input
-                    size='sm'
+                    size="sm"
                     width="10rem"
                     fontSize={20}
                     labelText="Complemento"
@@ -384,19 +388,16 @@ function Cadastro() {
                     error={errors.complemento?.message}
                     {...register('complemento')}
                   />
-
-                
                 </div>
               </div>
             </div>
 
-            <div className='rightWrapper'>
-              <div className='form'>
-
+            <div className="rightWrapper">
+              <div className="form">
                 <h5>Escolaridade</h5>
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="22rem"
                   fontSize={20}
                   labelText="Instituição"
@@ -406,7 +407,7 @@ function Cadastro() {
                 />
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="22rem"
                   fontSize={20}
                   labelText="Formação"
@@ -416,29 +417,27 @@ function Cadastro() {
                 />
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="22rem"
                   fontSize={20}
                   labelText="Início"
-                  mask="99/99/9999"
-                  type="text"
+                  type="date"
                   error={errors.school_inicio?.message}
                   {...register('school_inicio')}
                 />
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="22rem"
                   fontSize={20}
                   labelText="Termino"
-                  mask="99/99/9999"
-                  type="text"
+                  type="date"
                   error={errors.school_termino?.message}
                   {...register('school_termino')}
                 />
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="22rem"
                   fontSize={20}
                   labelText="Status"
@@ -447,8 +446,8 @@ function Cadastro() {
                   {...register('school_status')}
                 />
 
-                 <Input
-                  size='sm'
+                <Input
+                  size="sm"
                   width="22rem"
                   fontSize={20}
                   labelText="Cursos Complementares"
@@ -456,7 +455,7 @@ function Cadastro() {
                 />
 
                 <Input
-                  size='sm'
+                  size="sm"
                   width="22rem"
                   fontSize={20}
                   labelText="Tipo de Contratação"
@@ -468,9 +467,22 @@ function Cadastro() {
                 <h2>Idiomas</h2>
                 <CheckboxGroup colorScheme="blue">
                   <Stack spacing={[1, 5]} direction={['column', 'row']}>
-                    <Checkbox value='ingles' {...register('idiomas.0.ingles')}>Inglês</Checkbox>
-                    <Checkbox value='espanhol' {...register('idiomas.0.espanhol')}>Espanhol</Checkbox>
-                    <Input size='sm' width="10rem" fontSize={15} labelText="Digite outro idioma:"  {...register('idiomas.0.outros')} />
+                    <Checkbox value="ingles" {...register('idiomas.0.ingles')}>
+                      Inglês
+                    </Checkbox>
+                    <Checkbox
+                      value="espanhol"
+                      {...register('idiomas.0.espanhol')}
+                    >
+                      Espanhol
+                    </Checkbox>
+                    <Input
+                      size="sm"
+                      width="10rem"
+                      fontSize={15}
+                      labelText="Digite outro idioma:"
+                      {...register('idiomas.0.outros')}
+                    />
                   </Stack>
                 </CheckboxGroup>
               </div>
