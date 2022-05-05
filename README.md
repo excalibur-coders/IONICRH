@@ -5,12 +5,12 @@
 <p align="center">
   <a href ="#o-projeto"> Projeto </a>  • 
   <a href ="#dart-proposta"> Proposta </a>  • 
-  <a href ="#mapa-mental"> Mapa Mental </a>  • 
-  <a href ="#calendar-cronograma-das-sprints"> Cronograma das Entregas </a>  • 
-  <a href ="#computer-tecnologias-utilizadas"> Tecnologias Utilizadas </a>  • 
-  <a href ="#product-backlog">Backlog do Produto </a>  •
-  <a href ="#sprints-backlog">Backlog das Sprints </a>  •
-  <a href ="#instalacao">Passo a Passo da Instalação do Sistema </a>  •
+  <a href ="#mapa-mental-do-produto"> Mapa Mental do Produto </a>  • 
+  <a href ="#calendar-cronograma-das-entregas"> Cronograma das Entregas </a>  • 
+  <a href ="#-tecnologias-utilizadas"> Tecnologias Utilizadas </a>  • 
+  <a href ="#backlog-do-produto">Backlog do Produto </a>  •
+  <a href ="#backlog-das-sprints">Backlog das Sprints </a>  •
+  <a href ="#passo-a-passo-da-instalação-do-sistema">Passo a Passo da Instalação do Sistema </a>  •
   <a href ="#equipe"> Equipe </a> 
 </p>
 
