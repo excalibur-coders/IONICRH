@@ -77,27 +77,6 @@ height: 100vh;
     .centerWrapper {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      flex-direction: column;
-      margin-bottom: 13rem;
-      h4 {
-        font-size:30px;
-        font-weight: bold;
-      }
-      .form {
-        margin-top: 80px;
-        width: 22rem;
-        flex-direction: column;
-      }
-      .form-row {
-        flex-direction: row;
-        display: flex;
-        justify-content: space-between;
-      }
-    }
-    .rightWrapper {
-      display: flex;
-      align-items: center;
       justify-content: top;
       flex-direction: column;
       margin-bottom: 13rem;
@@ -118,6 +97,27 @@ height: 100vh;
       h2 {
         font-size: 20px;
         font-weight: bold;
+      }
+    }
+    .rightWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      margin-bottom: 13rem;
+      h4 {
+        font-size:30px;
+        font-weight: bold;
+      }
+      .form {
+        margin-top: 80px;
+        width: 22rem;
+        flex-direction: column;
+      }
+      .form-row {
+        flex-direction: row;
+        display: flex;
+        justify-content: space-between;
       }
     }
   }

@@ -311,89 +311,6 @@ function Cadastro() {
 
             <div className="centerWrapper">
               <div className="form">
-                <h4>Endereço</h4>
-
-                <Input
-                  size="sm"
-                  width="22rem"
-                  fontSize={20}
-                  labelText="Rua"
-                  type="text"
-                  error={errors.rua?.message}
-                  {...register('rua')}
-                />
-
-                <div className="form-row">
-                  <Input
-                    size="sm"
-                    width="10rem"
-                    fontSize={20}
-                    labelText="CEP"
-                    mask="99999-999"
-                    type="text"
-                    error={errors.cep?.message}
-                    {...register('cep')}
-                  />
-
-                  <Input
-                    size="sm"
-                    width="10rem"
-                    fontSize={20}
-                    labelText="Bairro"
-                    type="text"
-                    error={errors.bairro?.message}
-                    {...register('bairro')}
-                  />
-                </div>
-
-                <div className="form-row">
-                  <Input
-                    size="sm"
-                    width="10rem"
-                    fontSize={20}
-                    labelText="Cidade"
-                    type="text"
-                    error={errors.cidade?.message}
-                    {...register('cidade')}
-                  />
-
-                  <Input
-                    size="sm"
-                    width="10rem"
-                    fontSize={20}
-                    labelText="Estado"
-                    type="text"
-                    error={errors.estado?.message}
-                    {...register('estado')}
-                  />
-                </div>
-
-                <div className="form-row">
-                  <Input
-                    size="sm"
-                    width="10rem"
-                    fontSize={20}
-                    labelText="Número"
-                    type="text"
-                    error={errors.numero?.message}
-                    {...register('numero')}
-                  />
-
-                  <Input
-                    size="sm"
-                    width="10rem"
-                    fontSize={20}
-                    labelText="Complemento"
-                    type="text"
-                    error={errors.complemento?.message}
-                    {...register('complemento')}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="rightWrapper">
-              <div className="form">
                 <h5>Escolaridade</h5>
 
                 <Input
@@ -485,6 +402,89 @@ function Cadastro() {
                     />
                   </Stack>
                 </CheckboxGroup>
+              </div>
+            </div>
+
+            <div className="rightWrapper">
+              <div className="form">
+                <h4>Endereço</h4>
+
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  labelText="Rua"
+                  type="text"
+                  error={errors.rua?.message}
+                  {...register('rua')}
+                />
+
+                <div className="form-row">
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="CEP"
+                    mask="99999-999"
+                    type="text"
+                    error={errors.cep?.message}
+                    {...register('cep')}
+                  />
+
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="Bairro"
+                    type="text"
+                    error={errors.bairro?.message}
+                    {...register('bairro')}
+                  />
+                </div>
+
+                <div className="form-row">
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="Cidade"
+                    type="text"
+                    error={errors.cidade?.message}
+                    {...register('cidade')}
+                  />
+
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="Estado"
+                    type="text"
+                    error={errors.estado?.message}
+                    {...register('estado')}
+                  />
+                </div>
+
+                <div className="form-row">
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="Número"
+                    type="text"
+                    error={errors.numero?.message}
+                    {...register('numero')}
+                  />
+
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="Complemento"
+                    type="text"
+                    error={errors.complemento?.message}
+                    {...register('complemento')}
+                  />
+                </div>
               </div>
             </div>
           </div>
