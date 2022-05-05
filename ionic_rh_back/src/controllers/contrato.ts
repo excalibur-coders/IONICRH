@@ -78,7 +78,6 @@ export const updateContratoUser = async (req: Request, res: Response, next: Next
                 }
             )
             .execute()
-        next()
     } catch (error) {
         res.json(error)
     }
