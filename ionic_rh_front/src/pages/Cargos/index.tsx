@@ -1,11 +1,16 @@
 import { useEffect, useState, useCallback } from 'react';
-import { Box, Link, Divider, Icon, Thead, Th, Spinner } from '@chakra-ui/react';
+import {
+  Box,
+  Link,
+  Divider,
+  InputGroup,
+  InputLeftElement,
+} from '@chakra-ui/react';
 import { SearchIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import { theme } from 'theme';
 import Sidebar from 'components/Sidebar';
 import Input from 'components/Input';
 import Navbar from 'components/navbar';
-import { MdFilterList, MdList } from 'react-icons/md';
 import { Table, Tbody, Tr, Td, TableContainer } from '@chakra-ui/react';
 import { HStack } from '@chakra-ui/react';
 import * as S from './styles';
@@ -16,7 +21,8 @@ import { AxiosError } from 'axios';
 
 interface ICargo {
   departamento: IDepartamento;
-  cargo_head?: string;
+  cargo_id: number;
+  headID?: string;
   cargo_nivel?: string;
   cargo_area?: string;
 }
@@ -68,77 +74,66 @@ function Cargos() {
 
         <div className="input">
           <br></br>
-          <HStack spacing="800px">
-            <Box w="100px" fontSize={20}>
-              <Icon as={MdFilterList} w={9} h={5} />
-              Filtrar
-            </Box>
+          <HStack>
             <Box w="100px" fontSize={20}>
               <ArrowBackIcon w={7} h={7} />
               <Link href="/">Voltar</Link>
             </Box>
           </HStack>
           <br></br>
-          <HStack spacing="200px">
-            <Box w="10px">
-              <Input
-                size="xs"
-                width="200px"
-                fontSize={20}
-                placeholder="Nome, cargo ou departamento"
-                labelText={''}
-              />
-            </Box>
-            <Box w="100px">
-              <SearchIcon w={5} h={5} />
+          <Box fontSize="4xl" fontWeight="bold">
+            Cargos
+          </Box>
+          <br></br>
+          <HStack>
+            <Box>
+              <InputGroup>
+                {/* eslint-disable-next-line react/no-children-prop */}
+                <InputLeftElement children={<SearchIcon w={5} h={5} />} />
+                <Input
+                  fontSize={20}
+                  size="lg"
+                  width="70vw"
+                  placeholder="       Pesquisar"
+                  labelText={''}
+                />
+              </InputGroup>
             </Box>
           </HStack>
-
-          <div className="Table">
-            <TableContainer>
-              <Table variant="simple" size="lg">
-                <Thead>
-                  <Tr>
-                    <Th fontSize="2xl" color="black">
-                      Cargos
-                    </Th>
-                    <Th fontSize="2xl" color="black">
-                      Listar
-                    </Th>
-                  </Tr>
-                </Thead>
-              </Table>
-              <Divider
-                orientation="horizontal"
-                borderColor={theme.colors.font}
-                variant="solid"
-                size="10rem"
-              />
-              <Table variant="simple" size="lg">
-                <div className="TableTwo">
-                  <Tbody>
-                    {!loading ? (
-                      cargos.map(cargos => (
-                        <Tr key={cargos.cargo_area}>
-                          <Td fontSize="2xl">{cargos.cargo_area}</Td>
-                          <Td></Td>
-                          <Td>
-                            <Link href="/funcionarios" fontSize="4xl">
-                              <MdList color="#4D4E4F" />
-                            </Link>
-                          </Td>
-                        </Tr>
-                      ))
-                    ) : (
-                      <div className="spinnerWrapper">
-                        <Spinner size="md" />
-                      </div>
-                    )}
-                  </Tbody>
-                </div>
-              </Table>
-            </TableContainer>
-          </div>
+          <br></br>
+          <HStack spacing="500px">
+            <Box fontSize="2xl" fontWeight="bold">
+              Cargo
+            </Box>
+            <Box fontSize="2xl" fontWeight="bold">
+              Departamento
+            </Box>
+          </HStack>
+          <Divider
+            orientation="horizontal"
+            borderColor={theme.colors.font}
+            variant="solid"
+            size="10rem"
+          />
+          <br></br>
+          <TableContainer>
+            <Table variant="striped" size="lg" background="#DBDBDB">
+              <div className="TableTwo">
+                <Tbody>
+                  {cargos.map(cargos => (
+                    <Tr key={cargos.cargo_id}>
+                      <Td className="TBody" fontSize="2xl">
+                        {cargos.cargo_area}
+                      </Td>
+                      <Td className="TBody" fontSize="2xl">
+                        {cargos.departamento.dep_name}
+                      </Td>
+                    </Tr>
+                  ))}
+                </Tbody>
+              </div>
+            </Table>
+          </TableContainer>
         </div>
       </S.Container>
     </>

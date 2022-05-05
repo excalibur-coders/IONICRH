@@ -9,14 +9,17 @@ export const Container = styled(Flex)`
   }
 
   .Table {
-    display: flex;
-    align-items: left;
-    margin-top: 100px;
+    width: 70vw;
+  }
+
+  .TBody {
+    width: 70vw;
+    color: {theme.colors.primary};
   }
 
   .TableTwo {
     display: flex;
-    justify-content: center;
+    justify-content: left;
   }
 
   .spinnerWrapper {

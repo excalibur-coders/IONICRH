@@ -1,23 +1,78 @@
-import { Box, Icon, Link, Divider } from '@chakra-ui/react';
-import { SearchIcon, ArrowBackIcon } from '@chakra-ui/icons';
+import {
+  Box,
+  Link,
+  Divider,
+  InputGroup,
+  InputLeftElement,
+} from '@chakra-ui/react';
+import { SearchIcon, ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
+import { useEffect, useState, useCallback } from 'react';
 import { theme } from 'theme';
 import Sidebar from 'components/Sidebar';
 import Input from 'components/Input';
 import Navbar from 'components/navbar';
-import { MdFilterList, MdOutlineAccountBox } from 'react-icons/md';
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-} from '@chakra-ui/react';
+import { Table, Tbody, Tr, Td } from '@chakra-ui/react';
 import { HStack } from '@chakra-ui/react';
 import * as S from './styles';
+import { api } from 'services/api';
+
+import { parseCookies } from 'nookies';
+import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+interface IFuncionarios {
+  user_id: string;
+  user_nome: string;
+  contrato: IContrato[];
+  dep_name: IDepartamento;
+  cargo_area: ICargo;
+}
+
+interface IContrato {
+  contrato_faixa_salarial: number;
+  cargo: ICargo;
+}
+
+interface IDepartamento {
+  dep_name: string;
+}
+
+interface ICargo {
+  cargo_area: string;
+  departamento: IDepartamento;
+}
 
 function DeptoTI() {
+  const cookies = parseCookies();
+  const navigate = useNavigate();
+
+  const [funcionarios, setFuncionarios] = useState<IFuncionarios[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const getAllFuncionarios = useCallback(() => {
+    setLoading(true);
+    api
+      .get('/user/listagen-user', {
+        headers: {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
+        },
+      })
+      .then(({ data }) => {
+        console.log(data);
+        setFuncionarios(data);
+      })
+      .catch((error: Error | AxiosError) => {
+        console.log(error);
+      });
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+  }, [setLoading, setFuncionarios]);
+
+  useEffect(() => {
+    getAllFuncionarios();
+  }, []);
+
   return (
     <>
       <div>
@@ -31,92 +86,106 @@ function DeptoTI() {
 
         <div className="input">
           <br></br>
-          <HStack spacing="600px">
-            <Box w="100px" fontSize={20}>
-              <Icon as={MdFilterList} w={9} h={5} />
-              Filtrar
-            </Box>
+          <HStack>
             <Box w="100px" fontSize={20}>
               <ArrowBackIcon w={7} h={7} />
               <Link href="/home">Voltar</Link>
             </Box>
           </HStack>
           <br></br>
-          <HStack spacing="200px">
-            <Box w="10px">
-              <Input
-                size="xs"
-                width="200px"
-                fontSize={20}
-                placeholder="Nome, cargo ou departamento"
-                labelText={''}
-              />
-            </Box>
-            <Box w="100px">
-              <SearchIcon w={5} h={5} />
+          <Box fontSize="4xl" fontWeight="bold">
+            Departamento - TI
+          </Box>
+          <br></br>
+          <HStack>
+            <Box>
+              <InputGroup>
+                {/* eslint-disable-next-line react/no-children-prop */}
+                <InputLeftElement children={<SearchIcon w={5} h={5} />} />
+                <Input
+                  fontSize={20}
+                  size="lg"
+                  width="70vw"
+                  placeholder="       Pesquisar"
+                  labelText={''}
+                />
+              </InputGroup>
             </Box>
           </HStack>
-
-          <div className="Table">
-            <TableContainer>
-              <Table variant="simple" size="lg">
-                <Thead>
-                  <Tr>
-                    <Th fontSize="2xl" color="black">
-                      #Nome
-                    </Th>
-                    <Th fontSize="2xl" color="black">
-                      Salário
-                    </Th>
-                    <Th fontSize="2xl" color="black">
-                      Cargo
-                    </Th>
-                    <Th fontSize="2xl" color="black">
-                      Perfil
-                    </Th>
-                  </Tr>
-                </Thead>
-              </Table>
-              <Divider
-                orientation="horizontal"
-                borderColor={theme.colors.font}
-                variant="solid"
-                size="10rem"
-              />
-              <Table variant="simple" size="lg">
-                <div className="TableTwo">
-                  <Tbody>
-                    <Tr>
-                      <Td fontSize="xl">Lucas Costa</Td>
-                      <Td>R$ 5000,00</Td>
-                      <Td>DevPleno</Td>
-                      <Td>
-                        <Icon
-                          as={MdOutlineAccountBox}
-                          w={5}
-                          h={5}
-                          color="#4D4E4F"
-                        />
-                      </Td>
-                    </Tr>
-                    <Tr>
-                      <Td fontSize="xl">Priscila Silva</Td>
-                      <Td>R$ 7000,00</Td>
-                      <Td>Product Owner</Td>
-                      <Td>
-                        <Icon
-                          as={MdOutlineAccountBox}
-                          w={5}
-                          h={5}
-                          color="#4D4E4F"
-                        />
-                      </Td>
-                    </Tr>
-                  </Tbody>
-                </div>
-              </Table>
-            </TableContainer>
-          </div>
+          <br></br>
+          <HStack spacing="150px">
+            <Box fontSize="2xl" fontWeight="bold">
+              Nome
+            </Box>
+            <Box fontSize="2xl" fontWeight="bold">
+              Salário
+            </Box>
+            <Box fontSize="2xl" fontWeight="bold">
+              Departamento
+            </Box>
+            <HStack spacing="250px">
+              <Box fontSize="2xl" fontWeight="bold">
+                Cargo
+              </Box>
+              <Box fontSize="2xl" fontWeight="bold">
+                Perfil
+              </Box>
+            </HStack>
+          </HStack>
+          <Divider
+            orientation="horizontal"
+            borderColor={theme.colors.font}
+            variant="solid"
+            size="10rem"
+          />
+          <br></br>
+          <Table variant="striped" size="lg">
+            <div className="TableTwo">
+              <Tbody>
+                {funcionarios.map(funcionario => {
+                  //console.log('bom dia', funcionario);
+                  return (
+                    <>
+                      <Tr>
+                        <Td fontSize="md">{funcionario.user_nome}</Td>
+                        <Td>
+                          {funcionario.contrato?.[0]?.contrato_faixa_salarial
+                            ? funcionario.contrato?.[0]?.contrato_faixa_salarial
+                            : '-'}
+                        </Td>
+                        <Td></Td>
+                        <Td>
+                          {funcionario.contrato?.[0]?.cargo.departamento
+                            .dep_name
+                            ? funcionario.contrato?.[0]?.cargo.departamento
+                                .dep_name
+                            : '-'}
+                        </Td>
+                        <Td></Td>
+                        <Td>
+                          {funcionario.contrato?.[0]?.cargo.cargo_area
+                            ? funcionario.contrato?.[0]?.cargo.cargo_area
+                            : '-'}
+                        </Td>
+                        <Td></Td>
+                        <Td></Td>
+                        <Td>
+                          <Link
+                            href="/funcionarios"
+                            fontSize="xl"
+                            color={theme.colors.primary}
+                          >
+                            Ver
+                            <ArrowForwardIcon color={theme.colors.primary} />
+                          </Link>
+                        </Td>
+                      </Tr>
+                    </>
+                  );
+                })}
+              </Tbody>
+            </div>
+          </Table>
         </div>
       </S.Container>
     </>

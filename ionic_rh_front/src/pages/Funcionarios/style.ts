@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 import { Flex } from '@chakra-ui/react';
 
 export const Container = styled(Flex)`
-  background: #00000029;
+
+  background = {theme.colors.background};
 
   .input {
     margin-left: 50px;
@@ -17,6 +18,7 @@ export const Container = styled(Flex)`
   .TableTwo {
     display: flex;
     justify-content: center;
+    margin-left: -20px;
   }
 
   .spinnerWrapper {
@@ -29,6 +31,5 @@ export const Container = styled(Flex)`
 `;
 
 export const ContainerInput = styled.div`
-  margin-left: 30px;
   bottom: 90px;
 `;
