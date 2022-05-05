@@ -186,7 +186,7 @@ function UserEdit() {
       .then(({ data }) => {
         setUser(data);
         // setUserValues(data)
-        console.log({
+        /* console.log({
           contrato_base: data.contrato_base,
           contrato_tempo_de_casa: data.contrato_tempo_de_casa,
           contrato_termos: data.contrato_termos,
@@ -203,7 +203,7 @@ function UserEdit() {
           contrato_type: data.contrato_type,
           cargoCargoId: data.cargoCargoId,
           empContratanteContratanteId: data.empContratanteContratanteId,
-        });
+        }); */
       })
       .catch((error: Error | AxiosError) => {
         console.log(error);
@@ -259,16 +259,14 @@ function UserEdit() {
   };
 
   const onSubmit = useCallback(async data => {
-    console.log('user id', id);
-    console.log('contrato id', data);
+    console.log(data.contrato_type);
 
     await api
       .put(
         `/user/update-contrato-user/${id}`,
         {
-          contrato_id: data.contrato_id,
           contrato_base: data.contrato_base,
-          contrato_tempo_de_casa: data.contrato_tempo_de_casa,
+          contrato_tempo_de_casa: data.contrato_base,
           contrato_termos: data.contrato_termos,
           contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
           contrato_dominio: data.contrato_dominio,
@@ -280,12 +278,12 @@ function UserEdit() {
           contrato_vale_refeicao: data.contrato_vale_refeicao,
           contrato_vale_alimentacao: data.contrato_vale_alimentacao,
           contrato_auxilio_creche: data.contrato_auxilio_creche,
-          contrato_type: data.contrato_type,
+          contrato_tipo: data.contrato_type,
           cargoCargoId: data.cargo_area,
-          contrato_turno: data.contrato_turno,
           empContratanteContratanteId: data.empContratanteContratanteId,
           contrato_adimissao: data?.contrato_data_adicao,
           contrato_matricula: data?.contrato_matricula,
+          contrato_turno: data.contrato_turno,
         },
         {
           headers: {
@@ -728,9 +726,10 @@ function UserEdit() {
                       size="xs"
                       {...register('contrato_type')}
                     >
-                      <option value="option1">PJ</option>
-                      <option value="option2">CLT</option>
-                      <option value="option3">Estágio</option>
+                      <option value="Pessoa Juridica">PJ</option>
+                      <option value="CLT">CLT</option>
+                      <option value="Estagio">Estagio</option>
+                      <option value="Temporario">Temporario</option>
                     </Select>
                     {/*                     <Input
                       size="xs"
@@ -787,15 +786,16 @@ function UserEdit() {
                   </div>
 
                   <div className="coluna2">
-                    <span>Empresa contratada:</span>
+                    <span>Empresa contratante:</span>
                     <Select
                       placeholder="Selecione uma opção"
                       size="xs"
                       {...register('contratante_nome')}
                     >
-                      <option value="option1">IONIC</option>
-                      <option value="option2">NESS</option>
-                      <option value="option3">n sei</option>
+                      <option value="Ionic">IONIC</option>
+                      <option value="Ness">NESS</option>
+                      <option value="Nesslaw">NESSLAW</option>
+                      <option value="Iara">IARA</option>
                     </Select>
                     {/*                     <Input
                       size="xs"
