@@ -7,11 +7,7 @@ const departamentoRepository = AppDataSource.getRepository(departamento);
 
 export const getAllDepartamentos = async (req: Request, res: Response) => {
   try {
-    const departamentos = await departamentoRepository.find({
-      select: {
-        dep_name: true,
-      }
-    });
+    const departamentos = await departamentoRepository.find();
     res.json(departamentos);
   } catch (error) {
     res.json(error);
@@ -96,7 +92,8 @@ export const getDepFilter = async (req: Request, res: Response) => {
               "d.dep_id",
               "c.cargo_area",
               "cont.contrato_faixa_salarial",
-              "u.user_nome"
+              "u.user_nome",
+              "u.user_id"
           ])
           .from(departamento, "d")
           .leftJoin("d.cargo", "c")

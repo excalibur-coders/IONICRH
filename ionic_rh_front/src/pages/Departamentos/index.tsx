@@ -6,7 +6,7 @@ import {
   InputGroup,
   InputLeftElement,
 } from '@chakra-ui/react';
-import { SearchIcon, ArrowBackIcon } from '@chakra-ui/icons';
+import { SearchIcon, ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { theme } from 'theme';
 import Navbar from 'components/nav';
 import Sidebar from 'components/Sidebar';
@@ -16,10 +16,12 @@ import { HStack } from '@chakra-ui/react';
 import * as S from './styles';
 import { api } from 'services/api';
 import { parseCookies } from 'nookies';
+import { useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
 
 interface IDepartamentos {
   dep_name: string;
+  dep_id: number;
 }
 
 function Departamentos() {
@@ -27,7 +29,7 @@ function Departamentos() {
 
   const [departamentos, setDepartamentos] = useState<IDepartamentos[]>([]);
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();
   const getAllDepartamentos = useCallback(() => {
     setLoading(true);
     api
@@ -108,9 +110,21 @@ function Departamentos() {
               <div className="TableTwo">
                 <Tbody>
                   {departamentos.map(departamento => (
-                    <Tr key={departamento.dep_name}>
+                    <Tr key={departamento.dep_id}>
                       <Td className="TBody" fontSize="2xl">
                         {departamento.dep_name}
+                      </Td>
+                      <Td>
+                        <Link
+                          fontSize="xl"
+                          color={theme.colors.primary}
+                          onClick={() => {
+                            navigate(`/Departamento/${departamento.dep_id}`);
+                          }}
+                        >
+                          Ver
+                          <ArrowForwardIcon color={theme.colors.primary} />
+                        </Link>
                       </Td>
                     </Tr>
                   ))}

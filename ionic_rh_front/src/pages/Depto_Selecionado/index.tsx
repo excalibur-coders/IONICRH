@@ -38,28 +38,37 @@ interface IFuncionarios {
   user_nome: string;
 }
  */
-interface IFuncionarios {
-  user_nome: string;
-  contrato: IContrato;
-}
+
+/* interface IFuncionarios {
+  cargo: Array<{
+    user_nome: string;
+    contrato: IContrato;
+  }>;
+} */
+
 interface IContrato {
   contrato_faixa_salarial: number;
-  cargo: ICargo;
+  user: {
+    user_nome: string;
+    user_id: number;
+  };
+}
+
+interface IFuncionarios {
+  cargo?: ICargo[];
+  dep_id: number;
+  dep_name: string;
 }
 interface ICargo {
   cargo_area: string;
-  departamento: IDepartamento;
-}
-interface IDepartamento {
-  dep_id: number;
-  dep_name: string;
+  contrato: IContrato[];
 }
 
 function DeptoTI() {
   const cookies = parseCookies();
   const navigate = useNavigate();
   const { id } = useParams();
-  const [departamentos, setDepartamentos] = useState<IFuncionarios[]>([]);
+  const [departamentos, setDepartamentos] = useState<IFuncionarios>();
   const [loading, setLoading] = useState(false);
 
   const getAllDepartamentos = useCallback(() => {
@@ -71,7 +80,7 @@ function DeptoTI() {
         },
       })
       .then(({ data }) => {
-        console.log('Boa noite', data);
+        /* console.log('Boa noite', data); */
         setDepartamentos(data);
       })
       .catch((error: Error | AxiosError) => {
@@ -80,10 +89,15 @@ function DeptoTI() {
     setTimeout(() => {
       setLoading(false);
     }, 5000);
-  }, [setDepartamentos]);
+  }, [cookies, id]);
 
   useEffect(() => {
     getAllDepartamentos();
+    departamentos?.cargo?.forEach(carg => {
+      carg.contrato.forEach(contr => {
+        console.log(contr.user);
+      });
+    });
   }, []);
 
   return (
@@ -102,12 +116,18 @@ function DeptoTI() {
           <HStack>
             <Box w="100px" fontSize={20}>
               <ArrowBackIcon w={7} h={7} />
-              <Link href="/home">Voltar</Link>
+              <Link
+                onClick={() => {
+                  navigate(`/departamentos`);
+                }}
+              >
+                Voltar
+              </Link>
             </Box>
           </HStack>
           <br></br>
           <Box fontSize="4xl" fontWeight="bold">
-            Departamento - TI
+            Departamento - {departamentos?.dep_name}
           </Box>
           <br></br>
           <HStack>
@@ -133,9 +153,6 @@ function DeptoTI() {
             <Box fontSize="2xl" fontWeight="bold">
               Salário
             </Box>
-            <Box fontSize="2xl" fontWeight="bold">
-              Departamento
-            </Box>
             <HStack spacing="250px">
               <Box fontSize="2xl" fontWeight="bold">
                 Cargo
@@ -155,27 +172,28 @@ function DeptoTI() {
           <Table variant="striped" size="lg">
             <div className="TableTwo">
               <Tbody>
-                {/* Fazer um For / Map */}
-                {/* {funcionarios.map(funcionario => {
-                  //console.log('bom dia', funcionario);
-                    <>
-                      <Tr>
-                        <Td fontSize="md">
-                          {funcionario.cargo.contrato.user.user_nome}
-                        </Td>
-                        <Td>
-                          <Link
-                            href="/funcionarios"
-                            fontSize="xl"
-                            color={theme.colors.primary}
-                            Ver
-                            <ArrowForwardIcon color={theme.colors.primary} />
-                          </Link>
-                        </Td>
-                      </Tr>
-                    </>
-                  );
-                })} */}
+                {departamentos?.cargo?.map((carg, index) =>
+                  carg.contrato.map(ctr => (
+                    <Tr key={index}>
+                      <Td fontSize="md">{ctr.user.user_nome}</Td>
+                      <Td fontSize="md">{ctr.contrato_faixa_salarial}</Td>
+                      <Td fontSize="md">{carg.cargo_area}</Td>
+                      <Td fontSize="md">{}</Td>
+                      <Td>
+                        <Link
+                          fontSize="xl"
+                          color={theme.colors.primary}
+                          onClick={() => {
+                            navigate(`/user/${ctr.user.user_id}`);
+                          }}
+                        >
+                          Ver
+                          <ArrowForwardIcon color={theme.colors.primary} />
+                        </Link>
+                      </Td>
+                    </Tr>
+                  )),
+                )}
               </Tbody>
             </div>
           </Table>
