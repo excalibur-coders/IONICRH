@@ -2,9 +2,9 @@ import { useEffect, useState, useCallback } from 'react';
 import { theme } from 'theme';
 import { Box, Icon, Link, Divider, Spinner } from '@chakra-ui/react';
 import { SearchIcon, ArrowBackIcon } from '@chakra-ui/icons';
-import Sidebar from 'components/Sidebar';
 import Input from 'components/Input';
 import Navbar from 'components/navbar';
+import Sidemenu from 'components/sideMenu';
 import { MdFilterList, MdOutlineAccountBox } from 'react-icons/md';
 import {
   Table,
@@ -21,6 +21,7 @@ import { api } from 'services/api';
 
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
+import Sidebar from 'components/Sidebar';
 
 interface IFuncionarios {
   user_nome: string;
@@ -81,7 +82,7 @@ function Funcionarios() {
 
       <S.Container>
         <div>
-          <Sidebar />
+          <Sidemenu />
         </div>
 
         <div className="input">
