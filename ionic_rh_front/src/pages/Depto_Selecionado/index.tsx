@@ -18,48 +18,61 @@ import { api } from 'services/api';
 
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
-interface IFuncionarios {
-  user_id: string;
-  user_nome: string;
-  contrato: IContrato[];
-  dep_name: IDepartamento;
-  cargo_area: ICargo;
-}
-
-interface IContrato {
-  contrato_faixa_salarial: number;
+/* interface IDepartamento {
   cargo: ICargo;
-}
-
-interface IDepartamento {
+  dep_id: number;
   dep_name: string;
 }
 
 interface ICargo {
   cargo_area: string;
+  contrato: IContrato;
+}
+interface IContrato {
+  contrato_faixa_salarial: number;
+  user: IFuncionarios;
+}
+interface IFuncionarios {
+  user_nome: string;
+}
+ */
+interface IFuncionarios {
+  user_nome: string;
+  contrato: IContrato;
+}
+interface IContrato {
+  contrato_faixa_salarial: number;
+  cargo: ICargo;
+}
+interface ICargo {
+  cargo_area: string;
   departamento: IDepartamento;
+}
+interface IDepartamento {
+  dep_id: number;
+  dep_name: string;
 }
 
 function DeptoTI() {
   const cookies = parseCookies();
   const navigate = useNavigate();
-
-  const [funcionarios, setFuncionarios] = useState<IFuncionarios[]>([]);
+  const { id } = useParams();
+  const [departamentos, setDepartamentos] = useState<IFuncionarios[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const getAllFuncionarios = useCallback(() => {
-    setLoading(true);
+  const getAllDepartamentos = useCallback(() => {
+    setLoading(false);
     api
-      .get('/user/listagen-user', {
+      .get(`/departamentos/departamentos-filtro/${id}`, {
         headers: {
           Authorization: `Bearer ${cookies['ionicookie.token']}`,
         },
       })
       .then(({ data }) => {
-        console.log(data);
-        setFuncionarios(data);
+        console.log('Boa noite', data);
+        setDepartamentos(data);
       })
       .catch((error: Error | AxiosError) => {
         console.log(error);
@@ -67,10 +80,10 @@ function DeptoTI() {
     setTimeout(() => {
       setLoading(false);
     }, 5000);
-  }, [setLoading, setFuncionarios]);
+  }, [setDepartamentos]);
 
   useEffect(() => {
-    getAllFuncionarios();
+    getAllDepartamentos();
   }, []);
 
   return (
@@ -142,39 +155,19 @@ function DeptoTI() {
           <Table variant="striped" size="lg">
             <div className="TableTwo">
               <Tbody>
-                {funcionarios.map(funcionario => {
+                {/* Fazer um For / Map */}
+                {/* {funcionarios.map(funcionario => {
                   //console.log('bom dia', funcionario);
-                  return (
                     <>
                       <Tr>
-                        <Td fontSize="md">{funcionario.user_nome}</Td>
-                        <Td>
-                          {funcionario.contrato?.[0]?.contrato_faixa_salarial
-                            ? funcionario.contrato?.[0]?.contrato_faixa_salarial
-                            : '-'}
+                        <Td fontSize="md">
+                          {funcionario.cargo.contrato.user.user_nome}
                         </Td>
-                        <Td></Td>
-                        <Td>
-                          {funcionario.contrato?.[0]?.cargo.departamento
-                            .dep_name
-                            ? funcionario.contrato?.[0]?.cargo.departamento
-                                .dep_name
-                            : '-'}
-                        </Td>
-                        <Td></Td>
-                        <Td>
-                          {funcionario.contrato?.[0]?.cargo.cargo_area
-                            ? funcionario.contrato?.[0]?.cargo.cargo_area
-                            : '-'}
-                        </Td>
-                        <Td></Td>
-                        <Td></Td>
                         <Td>
                           <Link
                             href="/funcionarios"
                             fontSize="xl"
                             color={theme.colors.primary}
-                          >
                             Ver
                             <ArrowForwardIcon color={theme.colors.primary} />
                           </Link>
@@ -182,7 +175,7 @@ function DeptoTI() {
                       </Tr>
                     </>
                   );
-                })}
+                })} */}
               </Tbody>
             </div>
           </Table>

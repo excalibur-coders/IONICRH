@@ -93,6 +93,7 @@ export const getDepFilter = async (req: Request, res: Response) => {
           .createQueryBuilder()
           .select([
               "d.dep_name",
+              "d.dep_id",
               "c.cargo_area",
               "cont.contrato_faixa_salarial",
               "u.user_nome"
