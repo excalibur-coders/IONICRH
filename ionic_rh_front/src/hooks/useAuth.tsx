@@ -5,16 +5,16 @@ import {
   useContext,
   createContext,
   Dispatch,
-  SetStateAction
-} from "react";
-import Cookies from "js-cookie";
+  SetStateAction,
+} from 'react';
+import Cookies from 'js-cookie';
 
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import { api } from "services/api";
+import { api } from 'services/api';
 
-import { setCookie, parseCookies } from "nookies";
-import { IUser } from "interfaces/IUser";
+import { setCookie, parseCookies } from 'nookies';
+import { IUser } from 'interfaces/IUser';
 
 interface SignInProps {
   email: string;
@@ -25,38 +25,52 @@ interface AuthContextData {
   signOut: () => void;
   isAuthenticated: boolean;
   user: IUser | undefined;
-  setUser: Dispatch<SetStateAction<IUser | undefined>>
+  setUser: Dispatch<SetStateAction<IUser | undefined>>;
   signIn: (credentials: SignInProps) => Promise<void>;
 }
 
 type AuthProviderProps = {
   children: ReactNode;
-}
+};
 
 export const AuthContext = createContext({} as AuthContextData);
 
 export function signOut() {
+  //const navigate = useNavigate();
+
   Cookies.remove('ionicookie.token');
   Cookies.remove('ionicookie.user_id');
+  //navigate('/Colab_home');
 }
 
-export function AuthProvider ({ children }: AuthProviderProps) {
-
+export function AuthProvider({ children }: AuthProviderProps) {
   const navigate = useNavigate();
 
   const [user, setUser] = useState<IUser>();
 
   const isAuthenticated = !!user;
 
-  // useEffect(() => {
-  //   const isAuthenticated = !!user;
+  useEffect(() => {
+    const isAuthenticated = !!user;
 
-  //   const { 'ionicookie.token': token, 'ionicookie.user_id': user_id } = parseCookies();
+    const { 'ionicookie.token': token, 'ionicookie.user_id': user_id } =
+      parseCookies();
 
-  //   if (token) {
-
-  //   }
-  // }, [])
+    if (token) {
+      api
+        .get('user/usuario-perfil', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then(({ data }) => {
+          setUser(data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  }, []);
 
   interface ISession {
     token: string;
@@ -65,25 +79,38 @@ export function AuthProvider ({ children }: AuthProviderProps) {
 
   async function signIn({ email, password }: SignInProps) {
     try {
-      const { data } = await api
-        .post<IUser>("user/login", {
-          user_email: email,
-          password: password
-        });
+      const { data } = await api.post<IUser>('user/login', {
+        user_email: email,
+        password: password,
+      });
 
       setCookie(null, 'ionicookie.token', data.token as string, {
         maxAge: 60 * 60 * 24,
-        path: '/'
-      })
+        path: '/',
+      });
 
-      setCookie(null, 'ionicookie.user_id', String(data.id), {
+      setCookie(null, 'ionicookie.user_id', String(data.user_id), {
         maxAge: 60 * 60 * 24,
-        path: '/'
-      })
+        path: '/',
+      });
 
       setUser(data);
 
-      navigate('/ContaSucesso');
+      // console.log(data?.user_role?.[0])
+      if (data?.user_role?.[0] === 'Administrador') navigate('/funcionarios');
+      else if (
+        (data?.user_nome,
+        data?.user_cpf,
+        data?.user_rg,
+        data?.user_nacionalidade,
+        data?.user_nascimento,
+        data?.user_naturalidade,
+        data?.user_genero,
+        data?.user_raca,
+        data?.user_estado_civil)
+      ) {
+        navigate('/Colab_home');
+      } else navigate('/Cadastro_colaborador');
     } catch (error) {
       alert('Parece que o usuário ou senha está incorreta.');
       console.log(error);
@@ -97,7 +124,7 @@ export function AuthProvider ({ children }: AuthProviderProps) {
         signIn,
         signOut,
         setUser,
-        isAuthenticated
+        isAuthenticated,
       }}
     >
       {children}

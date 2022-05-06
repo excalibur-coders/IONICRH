@@ -37,7 +37,7 @@ export const CustomInput = styled(Input)`
 `;
 
 export const Label = styled.label<LabelProps>`
-  font-size: ${(props) => ( props.fontSize )}px;
+  font-size: ${props => props.fontSize}px;
   font-weight: bold;
   color: ${theme.colors.font};
 `;

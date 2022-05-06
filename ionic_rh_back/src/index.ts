@@ -7,8 +7,11 @@ import departamentoRoutes from "./routes/departamento";
 import userRoutes from './routes/user';
 import cargoRoutes from './routes/cargo'
 import empresaRoutes from './routes/empresa_contratante'
-import { USER } from "models/user";
-import { Cargo, Contrato, Departamento, Empresa_Contrante } from "models/empresa";
+import { empresa_contratante } from "models/emp_contratante";
+import { departamento } from "models/departamento";
+import { user } from "models/user";
+import { cargo } from "models/cargo";
+import { contrato } from "models/contrato";
 // import authRoutes from './routes/auth';
 
 const app = express();
@@ -17,11 +20,11 @@ const app = express();
 try {
   AppDataSource.initialize().then(async () => {
     console.log('Banco conectado com sucesso');
-    const userRepository = AppDataSource.getRepository(USER)
-    const depRepository = AppDataSource.getRepository(Departamento)
-    const empcontRepository = AppDataSource.getRepository(Empresa_Contrante)
-    const cargoRepository = AppDataSource.getRepository(Cargo)
-    const contRepository = AppDataSource.getRepository(Contrato)
+    const userRepository = AppDataSource.getRepository(user)
+    const depRepository = AppDataSource.getRepository(departamento)
+    const empcontRepository = AppDataSource.getRepository(empresa_contratante)
+    const cargoRepository = AppDataSource.getRepository(cargo)
+    const contRepository = AppDataSource.getRepository(contrato)
     let Administrador = await userRepository.findOne({
       where: {
         user_nome: "Administrador"
@@ -33,7 +36,7 @@ try {
       await depRepository
         .createQueryBuilder()
         .insert()
-        .into(Departamento)
+        .into(departamento)
         .values([
           { dep_name: "RH" },
           { dep_name: "T.I" },
@@ -47,7 +50,7 @@ try {
       await empcontRepository
         .createQueryBuilder()
         .insert()
-        .into(Empresa_Contrante)
+        .into(empresa_contratante)
         .values([
           {
             contratante_nome: "NESS",
@@ -71,34 +74,29 @@ try {
       await cargoRepository
         .createQueryBuilder()
         .insert()
-        .into(Cargo)
+        .into(cargo)
         .values([
           {
-            cargo_head: "Rodrigo Cavalcanti",
             cargo_area: "Recursos Humanos",
             cargo_nivel: "Júnior",
-            departamentoDepId: 1
+            departamentoDepId: 1,
           },
           {
-            cargo_head: "Camile Fernande",
             cargo_area: "Operações de infraestrutura de TI",
             cargo_nivel: "Pleno",
-            departamentoDepId: 2
+            departamentoDepId: 2,
           },
           {
-            cargo_head: "Flavia Nogueira",
             cargo_area: "Marketing Instintucional",
             cargo_nivel: "Sênior",
             departamentoDepId: 3
           },
           {
-            cargo_head: "Pablo Juan",
             cargo_area: "Lider de Projeto delivers RJ",
             cargo_nivel: "Pleno",
             departamentoDepId: 4
           },
           {
-            cargo_head: "Rodrigo Cavalcanti",
             cargo_area: "Administrativo & Financeiro",
             cargo_nivel: "Sênior",
             departamentoDepId: 5
@@ -108,7 +106,7 @@ try {
       await userRepository
         .createQueryBuilder()
         .insert()
-        .into(USER)
+        .into(user)
         .values({
           user_nome: "Administrador",
           user_email: "Administrador@ExcaliburCoders.com.br",
@@ -129,12 +127,15 @@ try {
       await contRepository
         .createQueryBuilder()
         .insert()
-        .into(Contrato)
+        .into(contrato)
         .values({
+          contrato_matricula: "7002-255",
+          contrato_adimissao: "01/04/2022",
           contrato_base: "São José dos Campos",
           contrato_tempo_de_casa: "08/04/2022",
           contrato_termos: "Política para Propriedade Intelectual da IONIC - válida a partir de 25/02/2022",
           contrato_dominio: "www.BichoCorporações.com.br",
+          contrato_turno: "Noturno",
           contrato_faixa_salarial: 3751.52,
           contrato_plano_saude: 675.25,
           contrato_vale_transporte: 289.27,
@@ -144,10 +145,24 @@ try {
           contrato_distrato: "Não tem",
           contrato_tempo_formalizacao: "Não tem",
           contrato_data_desligamento: "Não tem",
+          contrato_tipo: ["CLT"],
           userUserId: 1,
           cargoCargoId: 4,
           empContratanteContratanteId: 2,
         })
+        .execute()
+
+      cargoRepository
+        .createQueryBuilder()
+        .update(cargo)
+        .set({
+          "headID": 1
+        })
+        .where(
+          "cargo_id = :cargo_id", {
+            cargo_id: 1
+        }
+        )
         .execute()
     }
   });

@@ -1,24 +1,32 @@
 import { useEffect, useState, useCallback } from 'react';
-import { Box, Icon, Link, Divider, Spinner} from '@chakra-ui/react';
-import {SearchIcon, ArrowBackIcon} from '@chakra-ui/icons';
+import { Box, Icon, Link, Divider, Spinner } from '@chakra-ui/react';
+import { SearchIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import { theme } from 'theme';
 import Sidebar from 'components/Sidebar';
 import Input from 'components/Input';
 import Navbar from 'components/navbar';
-import { MdFilterList, MdList} from 'react-icons/md';
-import {Table, Thead, Tbody, Tr, Th, Td,TableContainer} from '@chakra-ui/react'
-import { HStack } from '@chakra-ui/react'
+import { MdFilterList, MdList } from 'react-icons/md';
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableContainer,
+} from '@chakra-ui/react';
+import { HStack } from '@chakra-ui/react';
 import * as S from './styles';
 import { api } from 'services/api';
 
-import { parseCookies } from "nookies";
+import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
 
 interface IDepartamentos {
   dep_name: string;
 }
 
-function Departamentos(){
+function Departamentos() {
   const cookies = parseCookies();
 
   const [departamentos, setDepartamentos] = useState<IDepartamentos[]>([]);
@@ -26,19 +34,21 @@ function Departamentos(){
 
   const getAllDepartamentos = useCallback(() => {
     setLoading(true);
-    api.get('/departamentos', {
-      headers: {
-        Authorization: `Bearer ${cookies['ionicookie.token']}`,
-      }
-    }).then(({data}) => {
-      setDepartamentos(data);
-    }).catch((error: Error | AxiosError) => {
-      console.log(error);
-    })
+    api
+      .get('/departamentos/departamentos', {
+        headers: {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
+        },
+      })
+      .then(({ data }) => {
+        setDepartamentos(data);
+      })
+      .catch((error: Error | AxiosError) => {
+        console.log(error);
+      });
     setTimeout(() => {
       setLoading(false);
     }, 5000);
-
   }, [setLoading, setDepartamentos]);
 
   useEffect(() => {
@@ -47,62 +57,81 @@ function Departamentos(){
 
   return (
     <>
-      <div><Navbar /></div>
+      <div>
+        <Navbar />
+      </div>
 
       <S.Container>
-        <div >
+        <div>
           <Sidebar />
         </div>
 
-        <div className='input'>
+        <div className="input">
           <br></br>
-          <HStack spacing='600px'>
-            <Box w='100px' fontSize={20}>
+          <HStack spacing="600px">
+            <Box w="100px" fontSize={20}>
               <Icon as={MdFilterList} w={9} h={5} />
               Filtrar
             </Box>
-            <Box w='100px' fontSize={20}>
+            <Box w="100px" fontSize={20}>
               <ArrowBackIcon w={7} h={7} />
-              <Link href='/home'>Voltar</Link>
+              <Link href="/home">Voltar</Link>
             </Box>
           </HStack>
           <br></br>
-          <HStack spacing='200px'>
-            <Box w='10px' >
-              <Input size='xs' width="200px" fontSize={20} placeholder="Nome, cargo ou departamento" labelText={""} />
+          <HStack spacing="200px">
+            <Box w="10px">
+              <Input
+                size="xs"
+                width="200px"
+                fontSize={20}
+                placeholder="Nome, cargo ou departamento"
+                labelText={''}
+              />
             </Box>
-            <Box w='100px'>
+            <Box w="100px">
               <SearchIcon w={5} h={5} />
             </Box>
           </HStack>
 
-          <div className='Table'>
-            <TableContainer >
-              <Table variant='simple' size='lg'>
+          <div className="Table">
+            <TableContainer>
+              <Table variant="simple" size="lg">
                 <Thead>
                   <Tr>
-                    <Th fontSize='2xl' color='black' >Departamentos</Th>
-                    <Th fontSize='2xl' color='black'>Listar</Th>
+                    <Th fontSize="2xl" color="black">
+                      Departamentos
+                    </Th>
+                    <Th fontSize="2xl" color="black">
+                      Listar
+                    </Th>
                   </Tr>
                 </Thead>
               </Table>
-              <Divider orientation="horizontal" borderColor={theme.colors.font} variant='solid' size='10rem' />
-              <Table variant='simple' size='lg'>
-                <div className='TableTwo'>
+              <Divider
+                orientation="horizontal"
+                borderColor={theme.colors.font}
+                variant="solid"
+                size="10rem"
+              />
+              <Table variant="simple" size="lg">
+                <div className="TableTwo">
                   <Tbody>
                     {!loading ? (
                       departamentos.map(departamento => (
-                        <Tr>
-                          <Td fontSize='2xl'>{departamento.dep_name}</Td>
+                        <Tr key={departamento.dep_name}>
+                          <Td fontSize="2xl">{departamento.dep_name}</Td>
                           <Td></Td>
                           <Td>
-                            <Link href="/funcionarios" fontSize='4xl'><MdList color='#4D4E4F' /></Link>
+                            <Link href="/funcionarios" fontSize="4xl">
+                              <MdList color="#4D4E4F" />
+                            </Link>
                           </Td>
                         </Tr>
                       ))
                     ) : (
-                      <div className='spinnerWrapper'>
-                        <Spinner size='md' />
+                      <div className="spinnerWrapper">
+                        <Spinner size="md" />
                       </div>
                     )}
                   </Tbody>
@@ -113,8 +142,7 @@ function Departamentos(){
         </div>
       </S.Container>
     </>
-  )
-
+  );
 }
 
-export default Departamentos
+export default Departamentos;

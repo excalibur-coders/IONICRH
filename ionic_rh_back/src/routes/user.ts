@@ -1,19 +1,17 @@
 import express from "express";
 
+import { cadastro } from 'controllers/Cadastro_Usuario';
+import { loginUser } from 'controllers/Login_Usuario';
 import {
-  CadastroUser,
-  loginUser,
-  getAllUser,
-  updateUser,
-  getLoggedUserData,
-  adicionarIdioma,
   adicioanrEscolaridade,
-  getUserById,
-  adicionarTelefone,
+  adicionarDependente,
+  adicionarDocumento,
   adicionarEndereco,
-  getAllUsers
-} from "controllers/User";
-
+  adicionarIdioma, adicionarTelefone,
+  updateUser
+} from 'controllers/autoCadastro_Usuario'
+import multer from 'multer';
+import multerConfig from 'config/multer'
 import {
   insertContratoUser, updateContratoUser
 } from 'controllers/contrato'
@@ -30,17 +28,20 @@ import {
   verifyUpdateRequestValues,
   verifyUsedCpf
 } from "middlewares/user";
+import { getLoggedUserData, getAllColaborador, getColaboradorContratoID } from "controllers/User";
 
 
 const router = express.Router();
 
+// Cadastro do usuario
 router.post(
   '/cadastro',
   verifyUserExistsByEmail,
   verifyRegisterRequestValues,
-  CadastroUser
+  cadastro
 );
 
+// Login do usuario
 router.post(
   '/login',
   verifyLoginRequestValues,
@@ -49,55 +50,74 @@ router.post(
 
 router.use(auth);
 
+// Auto Cadastro do usario
 router.put(
-  '/update',
+  '/auto-cadastro',
+  multer(multerConfig).single('file'),  
   adicioanrEscolaridade,
   adicionarIdioma,
   adicionarTelefone,
   adicionarEndereco,
+  adicionarDependente,
+  adicionarDocumento,
   updateUser
 );
 
+// Home do usario
 router.get(
-  '/logged-user-info',
+  '/usuario-perfil',
   getLoggedUserData);
 
+/* router.get(
+  '/user-info',
+  getLoggedUserData); */
+
+
+// Pegar TODOS usarios
 router.get(
   '/allUser',
   verifyUserRole(["Administrador"]),
-  getAllUser);
+  getAllColaborador);
 
-router.get(
-  '/user-info',
-  getLoggedUserData);
 
 /* router.get(
   '/allUser',
   getAllUser); */
 
+
 router.get(
-  '/Get-All-User',
-  verifyUserRole(["Administrador"]), 
-  getAllUsers )
+  '/listagen-user',
+  verifyUserRole(["Administrador"]),
+  getAllColaborador)
 
 // Rotas de Contrato
 router.get(
-  '/user-info/:id',
+  '/usuario-perfil/:id',
   verifyUserRole(["Administrador", "Gestor"]),
-  getUserById)
+  getColaboradorContratoID)
 router.post(
-  '/Inserir-contrato-user/:id',
+  '/usuario-perfil/:id',
   verifyUserRole(["Administrador", "Gestor"]),
   insertContratoUser,
-  getUserById)
+  getColaboradorContratoID)
+
+router.post(
+  '/teste',
+ /*  multer(multerConfig).single('file'),
+  adicionarDocumento */
+  adicionarDependente
+)
+/* 
 router.get(
   '/Contrato-user',
   verifyUserRole(["Administrador", "Gestor"]),
   getLoggedUserData)
+ */
+// Fazer alteração no contrato do usuario
 router.put(
   '/update-contrato-user/:id',
   verifyUserRole(["Administrador", "Gestor"]),
   updateContratoUser,
-  getUserById)
-  
+  getColaboradorContratoID)
+
 export default router; 

@@ -3,97 +3,110 @@ import { Flex } from '@chakra-ui/react';
 import { theme } from 'theme';
 
 export const Container = styled(Flex)`
-height:100vh;
-display: flex;
-flex-direction:column;
-color: ${theme.colors.font};
-
-.centerWrapper{
+  height: 100vh;
   display: flex;
-  flex-wrap: wrap;
-  height:100%;
+  flex-direction: column;
+  color: ${theme.colors.font};
 
-
-  .leftWrapper {
-    position: relative;
-    float: left;
-    width: 60%;
+  .centerWrapper {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    height: 100%;
 
-    img {
-      width: 120px;
-      margin: 5px 5px;
-      margin-top:10px;
-    }
+    .leftWrapper {
+      position: relative;
+      float: left;
+      width: 60%;
+      display: flex;
+      flex-direction: column;
 
-    .form {
-      width: 20rem;
-      margin: 0 auto;
-      margin-top: 80px;
-
-      h1 {
-        margin: 50px;
-
-        text-align: center;
-        font-weight: bold;
-        font-size: 20px;
+      img {
+        width: 120px;
+        margin: 5px 5px;
+        margin-top: 10px;
       }
 
-      .formFooter {
+      .form {
+        width: 20rem;
+        margin: 0 auto;
+        margin-top: 80px;
+
+        h1 {
+          margin: 50px;
+
+          text-align: center;
+          font-weight: bold;
+          font-size: 20px;
+        }
+
+        .formFooter {
+          display: flex;
+          justify-content: space-between;
+
+          margin-top: 10px;
+
+          a {
+            color: ${theme.colors.primary};
+          }
+        }
+      }
+
+      .registerWrapper {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
 
-        margin-top: 10px;
+        margin-top: 50px;
 
-        a {
+        span {
+          text-align: center;
+        }
+
+        span:last-child {
+          text-align: center;
           color: ${theme.colors.primary};
         }
       }
     }
 
-    .registerWrapper {
+    .rightWrapper {
+      position: relative;
+      width: 40%;
+      float: right;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: ${theme.colors.primary};
 
-      margin-top: 50px;
-
-      span {
-        text-align: center;
+      img {
+        width: 30rem;
       }
 
-      span:last-child {
-        text-align: center;
-        color: ${theme.colors.primary};
+      .no {
+        display: none;
       }
     }
   }
 
-  .rightWrapper {
-    position: relative;
-    width: 40%;
-    float: right;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: ${theme.colors.primary};
-
-    img {
-      width: 30rem;
-    }
-  }
-}
-
-@media(max-width: 768px) {
-  .centerWrapper{
-      .leftWrapper{
-          width: 100%;
+  @media (max-width: 768px) {
+    .centerWrapper {
+      .leftWrapper {
+        width: 100%;
       }
 
-      .rightWrapper{
-          width: 100%;
-          margin-top: 50px;
-  }
-}
+      .rightWrapper {
+        background: none;
+        width: 100%;
+        margin-top: 0px;
 
+        img {
+          display: none;
+        }
+
+        .no {
+          display: flex;
+          width: 100%;
+        }
+      }
+    }
+  }
 `;

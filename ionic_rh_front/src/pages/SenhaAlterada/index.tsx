@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Input from 'components/Input';
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
 import LogoGray from 'assets/svg/logo-gray.svg';
+import logoresponsive from 'assets/svg/logoresponsive.png';
 import { theme } from 'theme';
 
 import * as S from './styles';
@@ -15,26 +16,21 @@ import Button from 'components/Button';
 function SenhaAlterada() {
   return (
     <S.Container>
-      <div className='centerWrapper'>
-        <div className='leftWrapper'>
-          <img src={IonicLogo} />
-
-          <div className='form'>
-            <h1>Senha Alterada com sucesso!</h1>
-
-            <div className='registerWrapper'>
-              <span><Link to="/">Voltar ao Login</Link></span>
-            </div>
-          </div>
-        </div>
-
-        <div className="rightWrapper">
-          <img src={LogoGray} />
+      <div className="leftWrapper">
+        <img src={IonicLogo} />
+        <div className="text">
+          <h1>Senha alterada com Sucesso !</h1>
+          <span>
+            <Link to="/">Voltar</Link>
+          </span>
         </div>
       </div>
-
+      <div className="rightWrapper">
+        <img src={LogoGray} />
+        <img className="no" src={logoresponsive} />
+      </div>
     </S.Container>
   );
-};
+}
 
 export default SenhaAlterada;
