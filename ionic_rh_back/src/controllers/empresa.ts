@@ -76,6 +76,21 @@ export const getAllPesqDeslig = async (req: Request, res: Response) => {
     }
 }
 
+export const getAllEmpresa = async (req: Request, res: Response) => {
+    try {
+        const dadosEmpresa = await empcontRepository
+            .createQueryBuilder()
+            .select('e')
+            .from(empresa_contratante, 'e')
+            .getMany()
+
+        res.json(dadosEmpresa)
+
+    } catch (error) {
+        res.json(error)
+    }
+}
+
 export const createPesqDesl = async (req: Request, res: Response, next: NextFunction) => {
     try {
 
