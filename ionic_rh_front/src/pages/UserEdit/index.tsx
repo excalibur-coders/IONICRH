@@ -160,9 +160,21 @@ interface IFormProps {
   empContratanteContratanteId?: number;
 }
 
+interface IDepartamentos {
+  dep_name: string;
+}
+
+interface IEmpresas {
+  contratante_id: number;
+  contratante_nome: string;
+  contratante_cnpj: string;
+}
+
 function UserEdit() {
   const cookies = parseCookies();
   const [user, setUser] = useState<IUser>();
+  const [departamentos, setDepartamentos] = useState<IDepartamentos[]>([]);
+  const [empresas, setEmpresas] = useState<IEmpresas[]>([]);
   const { id } = useParams();
 
   const {
@@ -176,7 +188,38 @@ function UserEdit() {
     //resolver: yupResolver(schema),
   });
 
-  const getUserInfo = () => {
+  const getAllEmpresas = useCallback(() => {
+    api
+      .get('/empresa/empresas', {
+        headers: {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
+        },
+      })
+      .then(({ data }) => {
+        console.log(data);
+        setEmpresas(data);
+      })
+      .catch((error: Error | AxiosError) => {
+        console.log(error);
+      });
+  }, [cookies]);
+
+  const getAllDepartamentos = useCallback(() => {
+    api
+      .get('/departamentos/departamentos', {
+        headers: {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
+        },
+      })
+      .then(({ data }) => {
+        setDepartamentos(data);
+      })
+      .catch((error: Error | AxiosError) => {
+        console.log(error);
+      });
+  }, [cookies]);
+
+  const getUserInfo = useCallback(() => {
     api
       .get(`/user/usuario-perfil/${id}`, {
         headers: {
@@ -185,33 +228,16 @@ function UserEdit() {
       })
       .then(({ data }) => {
         setUser(data);
-        // setUserValues(data)
-        /* console.log({
-          contrato_base: data.contrato_base,
-          contrato_tempo_de_casa: data.contrato_tempo_de_casa,
-          contrato_termos: data.contrato_termos,
-          contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
-          contrato_dominio: data.contrato_dominio,
-          contrato_data_desligamento: data.contrato_data_desligamento,
-          contrato_distrato: data.contrato_distrato,
-          contrato_faixa_salarial: data.contrato_faixa_salarial,
-          contrato_plano_saude: data.contrato_plano_saude,
-          contrato_vale_transporte: data.contrato_vale_transporte,
-          contrato_vale_refeicao: data.contrato_vale_refeicao,
-          contrato_vale_alimentacao: data.contrato_vale_alimentacao,
-          contrato_auxilio_creche: data.contrato_auxilio_creche,
-          contrato_type: data.contrato_type,
-          cargoCargoId: data.cargoCargoId,
-          empContratanteContratanteId: data.empContratanteContratanteId,
-        }); */
       })
       .catch((error: Error | AxiosError) => {
         console.log(error);
       });
-  };
+  }, [cookies, id]);
 
   useEffect(() => {
     getUserInfo();
+    getAllDepartamentos();
+    getAllEmpresas();
   }, []);
 
   const setUserValues = (data: IUser) => {
@@ -258,46 +284,49 @@ function UserEdit() {
     );
   };
 
-  const onSubmit = useCallback(async data => {
-    console.log(data.contrato_type);
+  const onSubmit = useCallback(
+    async data => {
+      console.log(data.contrato_type);
 
-    await api
-      .put(
-        `/user/update-contrato-user/${id}`,
-        {
-          contrato_base: data.contrato_base,
-          contrato_tempo_de_casa: data.contrato_base,
-          contrato_termos: data.contrato_termos,
-          contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
-          contrato_dominio: data.contrato_dominio,
-          contrato_data_desligamento: data.contrato_data_desligamento,
-          contrato_distrato: data.contrato_distrato,
-          contrato_faixa_salarial: data.contrato_faixa_salarial,
-          contrato_plano_saude: data.contrato_plano_saude,
-          contrato_vale_transporte: data.contrato_vale_transporte,
-          contrato_vale_refeicao: data.contrato_vale_refeicao,
-          contrato_vale_alimentacao: data.contrato_vale_alimentacao,
-          contrato_auxilio_creche: data.contrato_auxilio_creche,
-          contrato_tipo: data.contrato_type,
-          cargoCargoId: data.cargo_area,
-          empContratanteContratanteId: data.empContratanteContratanteId,
-          contrato_adimissao: data?.contrato_data_adicao,
-          contrato_matricula: data?.contrato_matricula,
-          contrato_turno: data.contrato_turno,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${cookies['ionicookie.token']}`,
+      await api
+        .put(
+          `/user/update-contrato-user/${id}`,
+          {
+            contrato_base: data.contrato_base,
+            contrato_tempo_de_casa: data.contrato_base,
+            contrato_termos: data.contrato_termos,
+            contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
+            contrato_dominio: data.contrato_dominio,
+            contrato_data_desligamento: data.contrato_data_desligamento,
+            contrato_distrato: data.contrato_distrato,
+            contrato_faixa_salarial: Number(data.contrato_faixa_salarial),
+            contrato_plano_saude: Number(data.contrato_plano_saude),
+            contrato_vale_transporte: Number(data.contrato_vale_transporte),
+            contrato_vale_refeicao: Number(data.contrato_vale_refeicao),
+            contrato_vale_alimentacao: Number(data.contrato_vale_alimentacao),
+            contrato_auxilio_creche: Number(data.contrato_auxilio_creche),
+            contrato_tipo: data.contrato_type,
+            cargoCargoId: data.cargo_area,
+            empContratanteContratanteId: data.empContratanteContratanteId,
+            contrato_adimissao: data?.contrato_data_adicao,
+            contrato_matricula: data?.contrato_matricula,
+            contrato_turno: data.contrato_turno,
           },
-        },
-      )
-      .then(({ data }) => {
-        console.log(data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+          {
+            headers: {
+              Authorization: `Bearer ${cookies['ionicookie.token']}`,
+            },
+          },
+        )
+        .then(({ data }) => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    [cookies, id],
+  );
 
   return (
     <>
@@ -606,9 +635,11 @@ function UserEdit() {
                       size="xs"
                       {...register('dep_name')}
                     >
-                      <option value="option1">RH</option>
-                      <option value="option2">Marketing</option>
-                      <option value="option3">TI</option>
+                      {departamentos.map((departamento, index) => (
+                        <option key={index} value="option1">
+                          {departamento.dep_name}
+                        </option>
+                      ))}
                     </Select>
                     {/*                     <Input
                       size="xs"
@@ -792,10 +823,18 @@ function UserEdit() {
                       size="xs"
                       {...register('contratante_nome')}
                     >
-                      <option value="Ionic">IONIC</option>
+                      {empresas.map(empresa => (
+                        <option
+                          key={empresa.contratante_id}
+                          value={empresa.contratante_id}
+                        >
+                          {empresa.contratante_nome}
+                        </option>
+                      ))}
+                      {/* <option value="Ionic">IONIC</option>
                       <option value="Ness">NESS</option>
                       <option value="Nesslaw">NESSLAW</option>
-                      <option value="Iara">IARA</option>
+                      <option value="Iara">IARA</option> */}
                     </Select>
                     {/*                     <Input
                       size="xs"

@@ -45,11 +45,11 @@ function Departamentos() {
     setTimeout(() => {
       setLoading(false);
     }, 5000);
-  }, [setLoading, setDepartamentos]);
+  }, [cookies]);
 
   useEffect(() => {
     getAllDepartamentos();
-  }, []);
+  }, [getAllDepartamentos]);
 
   return (
     <>
