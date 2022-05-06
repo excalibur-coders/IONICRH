@@ -33,6 +33,14 @@ height: 100vh;
   margin-top: 1vh;
   align-items: center;
   position: absolute;
+
+  img {
+        position: absolute;
+        width: 600px;
+        z-index: -1;
+        margin-top: 80px;
+        opacity: 0.5;
+      }
     }
 }
   .mainWrapper {
@@ -40,6 +48,9 @@ height: 100vh;
     height: 90vh;
     display: flex;
     justify-content: space-around;
+    position: relative;
+    z-index: 1;
+
     .leftWrapper {
       margin-bottom: 17rem;
       h3 {
@@ -66,6 +77,14 @@ height: 100vh;
             border-radius: 10px;
             background-color: #f4f4f5;
           }
+
+          .etnia {
+            height: 33px;
+            width: 22rem;
+            border: 1px solid black;
+            border-radius: 10px;
+            background-color: #f4f4f5;
+          }
         }
       }
       .form-row {
@@ -80,6 +99,9 @@ height: 100vh;
       justify-content: top;
       flex-direction: column;
       margin-bottom: 13rem;
+      input {
+        background-color:#f4f4f5;
+      }
       h5 {
         font-size:30px;
         font-weight: bold;
@@ -108,6 +130,11 @@ height: 100vh;
       h4 {
         font-size:30px;
         font-weight: bold;
+      }
+      h6 {
+        font-size: 30px;
+        font-weight: bold;
+        margin-top: 15px;
       }
       .form {
         margin-top: 80px;

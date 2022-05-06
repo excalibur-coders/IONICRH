@@ -175,6 +175,8 @@ function Cadastro() {
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="main">
+          <img src={LogoGray} />
+
           <div className="mainWrapper">
             <div className="leftWrapper">
               <div className="form">
@@ -189,6 +191,17 @@ function Cadastro() {
                   defaultValue={user?.user_nome}
                   error={errors.nomecompleto?.message}
                   {...register('nomecompleto')}
+                />
+
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  labelText="E-mail"
+                  type="text"
+                  defaultValue={user?.user_email}
+                  error={errors.email?.message}
+                  {...register('email')}
                 />
 
                 <div className="form-row">
@@ -275,26 +288,19 @@ function Cadastro() {
                   {...register('estadocivil')}
                 />
 
-                <Input
-                  size="sm"
-                  width="22rem"
-                  fontSize={20}
-                  labelText="Etnia"
-                  type="text"
-                  error={errors.etnia?.message}
-                  {...register('etnia')}
-                />
-
-                <Input
-                  size="sm"
-                  width="22rem"
-                  fontSize={20}
-                  labelText="E-mail"
-                  type="text"
-                  defaultValue={user?.user_email}
-                  error={errors.email?.message}
-                  {...register('email')}
-                />
+                <div className="dropdown">
+                  <label htmlFor="lang" className="dropdowntext">
+                    Etnia
+                  </label>
+                  <select className="etnia" id="lang" {...register('etnia')}>
+                    <option>Selecione seu etnia</option>
+                    <option value="branco">Branco</option>
+                    <option value="negro">Negro</option>
+                    <option value="pardo">Pardo</option>
+                    <option value="amarelo">Amarelo</option>
+                    <option value="indigena">Indígena</option>
+                  </select>
+                </div>
 
                 <Input
                   size="sm"
@@ -384,12 +390,17 @@ function Cadastro() {
                 <h2>Idiomas</h2>
                 <CheckboxGroup colorScheme="blue">
                   <Stack spacing={[1, 5]} direction={['column', 'row']}>
-                    <Checkbox value="ingles" {...register('idiomas.0.ingles')}>
+                    <Checkbox
+                      value="ingles"
+                      {...register('idiomas.0.ingles')}
+                      border="#000"
+                    >
                       Inglês
                     </Checkbox>
                     <Checkbox
                       value="espanhol"
                       {...register('idiomas.0.espanhol')}
+                      border="#000"
                     >
                       Espanhol
                     </Checkbox>
@@ -485,6 +496,8 @@ function Cadastro() {
                     {...register('complemento')}
                   />
                 </div>
+
+                <h6>Anexos</h6>
               </div>
             </div>
           </div>
