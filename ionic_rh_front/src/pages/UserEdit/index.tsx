@@ -174,6 +174,7 @@ function UserEdit() {
   const cookies = parseCookies();
   const [user, setUser] = useState<IUser>();
   const [departamentos, setDepartamentos] = useState<IDepartamentos[]>([]);
+  const [cargos, setCargos] = useState<ICargo[]>([]);
   const [empresas, setEmpresas] = useState<IEmpresas[]>([]);
   const { id } = useParams();
 
@@ -219,6 +220,21 @@ function UserEdit() {
       });
   }, [cookies]);
 
+  const getAllCargos = useCallback(() => {
+    api
+      .get('/cargo/cargos', {
+        headers: {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
+        },
+      })
+      .then(({ data }) => {
+        setCargos(data);
+      })
+      .catch((error: Error | AxiosError) => {
+        console.log(error);
+      });
+  }, [cookies]);
+
   const getUserInfo = useCallback(() => {
     api
       .get(`/user/usuario-perfil/${id}`, {
@@ -238,6 +254,7 @@ function UserEdit() {
     getUserInfo();
     getAllDepartamentos();
     getAllEmpresas();
+    getAllCargos();
   }, []);
 
   const setUserValues = (data: IUser) => {
@@ -654,14 +671,17 @@ function UserEdit() {
 
                   <div className="coluna1">
                     <span>Cargo:</span>
-                    <Input
+                    <Select
+                      placeholder="Selecione uma opção"
                       size="xs"
-                      placeholder=""
-                      width="auto"
-                      fontSize={15}
-                      {...register('cargo_area')}
-                      defaultValue={user?.contrato?.[0]?.cargo.cargo_area}
-                    />
+                      {...register('dep_name')}
+                    >
+                      {cargos.map((cargo, index) => (
+                        <option key={index} value="option1">
+                          {cargo.cargo_area}
+                        </option>
+                      ))}
+                    </Select>
                   </div>
 
                   <div className="coluna1">
