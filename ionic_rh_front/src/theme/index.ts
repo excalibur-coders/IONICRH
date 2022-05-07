@@ -17,6 +17,10 @@ export const theme = extendTheme({
 
   styles: {
     global: {
+      '*': {
+        fontFamily: 'Arial',
+      },
+
       body: {
         bg: '#f4f4f5',
         overflow: 'overlay',

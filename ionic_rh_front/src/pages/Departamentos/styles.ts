@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-import { Flex, Box } from '@chakra-ui/react';
-import { theme } from 'theme';
+import { Flex } from '@chakra-ui/react';
 
 export const Container = styled(Flex)`
   backgroud: #00000029;
@@ -10,14 +9,17 @@ export const Container = styled(Flex)`
   }
 
   .Table {
-    display: flex;
-    align-items: left;
-    margin-top: 100px;
+    width: 70vw;
+  }
+
+  .TBody {
+    width: 70vw;
+    color: {theme.colors.primary};
   }
 
   .TableTwo {
     display: flex;
-    justify-content: center;
+    justify-content: left;
   }
 
   .spinnerWrapper {

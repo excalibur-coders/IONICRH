@@ -1,8 +1,5 @@
-import { ReactNode } from 'react';
-import Navbar from 'components/navbar';
 import styled from '@emotion/styled';
-import { Flex, Box } from '@chakra-ui/react';
-import { theme } from 'theme';
+import { Flex } from '@chakra-ui/react';
 
 export const Container = styled(Flex)`
   background: #f4f4f5;
@@ -20,6 +17,7 @@ export const Container = styled(Flex)`
   .TableTwo {
     display: flex;
     justify-content: center;
+    margin-left: -20px;
   }
 
   .spinnerWrapper {
@@ -32,6 +30,5 @@ export const Container = styled(Flex)`
 `;
 
 export const ContainerInput = styled.div`
-  margin-left: 30px;
   bottom: 90px;
 `;

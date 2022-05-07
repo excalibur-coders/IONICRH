@@ -16,9 +16,9 @@ export class cargo {
 
     // Pleno, Junior e Senior
     @Column({
-        type: "varchar",
+        type: "int",
     })
-    cargo_nivel!: string;
+    cargo_valor!: number;
 
     @Column({
         type: "varchar",

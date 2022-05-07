@@ -1,8 +1,15 @@
 import { useEffect, useState, useCallback } from 'react';
 import { theme } from 'theme';
-import { Box, Icon, Link, Divider, Spinner } from '@chakra-ui/react';
-import { SearchIcon, ArrowBackIcon } from '@chakra-ui/icons';
+import {
+  Box,
+  Link,
+  Divider,
+  InputGroup,
+  InputLeftElement,
+} from '@chakra-ui/react';
+import { SearchIcon, ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import Input from 'components/Input';
+import Nav from 'components/nav';
 import Navbar from 'components/navbar';
 import Sidemenu from 'components/sideMenu';
 import { MdFilterList, MdOutlineAccountBox } from 'react-icons/md';
@@ -23,8 +30,10 @@ import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
 import Sidebar from 'components/Sidebar';
 import RespBar from 'components/RespBar';
+import { useNavigate } from 'react-router-dom';
 
 interface IFuncionarios {
+  user_id: string;
   user_nome: string;
   contrato: IContrato[];
   dep_name: IDepartamento;
@@ -47,6 +56,7 @@ interface ICargo {
 
 function Funcionarios() {
   const cookies = parseCookies();
+  const navigate = useNavigate();
 
   const [funcionarios, setFuncionarios] = useState<IFuncionarios[]>([]);
   const [loading, setLoading] = useState(false);
@@ -88,112 +98,106 @@ function Funcionarios() {
 
         <div className="input">
           <br></br>
-          <HStack spacing="600px">
-            <Box w="100px" fontSize={20}>
-              <Icon as={MdFilterList} w={9} h={5} />
-              Filtrar
-            </Box>
+          <HStack>
             <Box w="100px" fontSize={20}>
               <ArrowBackIcon w={7} h={7} />
               <Link href="/home">Voltar</Link>
             </Box>
           </HStack>
           <br></br>
-          <HStack spacing="200px">
-            <Box w="10px">
+          <Box fontSize="4xl" fontWeight="bold">
+            Funcionários
+          </Box>
+          <Box>
+            <InputGroup>
+              {/* eslint-disable-next-line react/no-children-prop */}
+              <InputLeftElement children={<SearchIcon w={5} h={5} />} />
               <Input
-                size="xs"
-                width="200px"
                 fontSize={20}
-                placeholder="Nome, cargo ou departamento"
+                size="lg"
+                width="70vw"
+                placeholder="       Pesquisar"
                 labelText={''}
               />
+            </InputGroup>
+          </Box>
+          <br></br>
+          <HStack spacing="150px">
+            <Box fontSize="2xl" fontWeight="bold">
+              Nome
             </Box>
-            <Box w="100px">
-              <SearchIcon w={5} h={5} />
+            <Box fontSize="2xl" fontWeight="bold">
+              Salário
             </Box>
+            <Box fontSize="2xl" fontWeight="bold">
+              Departamento
+            </Box>
+            <HStack spacing="250px">
+              <Box fontSize="2xl" fontWeight="bold">
+                Cargo
+              </Box>
+              <Box fontSize="2xl" fontWeight="bold">
+                Perfil
+              </Box>
+            </HStack>
           </HStack>
-
-          <div className="Table">
-            <TableContainer>
-              <Table variant="simple" size="md">
-                <Thead>
-                  <Tr>
-                    <Th fontSize="2xl" color="black">
-                      #Nome
-                    </Th>
-                    <Th fontSize="2xl" color="black">
-                      Salário
-                    </Th>
-                    <Th fontSize="2xl" color="black">
-                      Departamento
-                    </Th>
-                    <Th fontSize="2xl" color="black">
-                      Cargo
-                    </Th>
-                    <Th fontSize="2xl" color="black">
-                      Perfil
-                    </Th>
-                  </Tr>
-                </Thead>
-              </Table>
-              <Divider
-                orientation="horizontal"
-                borderColor={theme.colors.font}
-                variant="solid"
-                size="10rem"
-              />
-              <Table variant="simple" size="lg">
-                <div className="TableTwo">
-                  <Tbody>
-                    {!loading ? (
-                      funcionarios.map(funcionario => {
-                        console.log('bom dia', funcionario);
-                        return (
-                          <>
-                            <Tr>
-                              <Td fontSize="xl">{funcionario.user_nome}</Td>
-                              {/* <Td fontSize='xl'>R$ 2000,00</Td>
-                          <Td fontSize='xl'>T.I</Td>
-                          <Td fontSize='xl'>Desenvolvedor</Td> */}
-                              <Td>
-                                {funcionario.contrato?.[0]
+          <Divider
+            orientation="horizontal"
+            borderColor={theme.colors.font}
+            variant="solid"
+            size="10rem"
+          />
+          <br></br>
+          <TableContainer>
+            <Table variant="striped" size="lg" background="#DBDBDB">
+              <div className="TableTwo">
+                <Tbody>
+                  {funcionarios.map(funcionario => {
+                    //console.log('bom dia', funcionario);
+                    return (
+                      <>
+                        <Tr>
+                          <Td fontSize="md">{funcionario.user_nome}</Td>
+                          <Td>
+                            {funcionario.contrato?.[0]?.contrato_faixa_salarial
+                              ? funcionario.contrato?.[0]
                                   ?.contrato_faixa_salarial
-                                  ? funcionario.contrato?.[0]
-                                      ?.contrato_faixa_salarial
-                                  : '-'}
-                              </Td>
-                              <Td>
-                                {funcionario.contrato?.[0]?.cargo.departamento
+                              : '-'}
+                          </Td>
+                          <Td></Td>
+                          <Td>
+                            {funcionario.contrato?.[0]?.cargo.departamento
+                              .dep_name
+                              ? funcionario.contrato?.[0]?.cargo.departamento
                                   .dep_name
-                                  ? funcionario.contrato?.[0]?.cargo
-                                      .departamento.dep_name
-                                  : '-'}
-                              </Td>
-                              <Td>
-                                {funcionario.contrato?.[0]?.cargo.cargo_area
-                                  ? funcionario.contrato?.[0]?.cargo.cargo_area
-                                  : '-'}
-                              </Td>
-                              <Td>
-                                <Link href="/perfil" fontSize="4xl">
-                                  <MdOutlineAccountBox color="#4D4E4F" />
-                                </Link>
-                              </Td>
-                            </Tr>
-                          </>
-                        );
-                      })
-                    ) : (
-                      <div className="spinnerWrapper">
-                        <Spinner size="md" />
-                      </div>
-                    )}
-                  </Tbody>
-                </div>
-              </Table>
-            </TableContainer>
-          </div>
+                              : '-'}
+                          </Td>
+                          <Td></Td>
+                          <Td>
+                            {funcionario.contrato?.[0]?.cargo.cargo_area
+                              ? funcionario.contrato?.[0]?.cargo.cargo_area
+                              : '-'}
+                          </Td>
+                          <Td></Td>
+                          <Td></Td>
+                          <Td>
+                            <Link
+                              href="/funcionarios"
+                              fontSize="xl"
+                              color={theme.colors.primary}
+                            >
+                              Ver
+                              <ArrowForwardIcon color={theme.colors.primary} />
+                            </Link>
+                          </Td>
+                        </Tr>
+                      </>
+                    );
+                  })}
+                </Tbody>
+              </div>
+            </Table>
+          </TableContainer>
         </div>
       </S.Container>
     </>
