@@ -6,6 +6,7 @@ import Input from 'components/Input';
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
 import LogoGray from 'assets/svg/logo-gray.svg';
 import { theme } from 'theme';
+import logoresponsive from 'assets/svg/logoresponsive.png';
 
 import { parseCookies } from 'nookies';
 
@@ -110,6 +111,7 @@ function Login() {
 
         <div className="rightWrapper">
           <img src={LogoGray} />
+          <img className="no" src={logoresponsive} />
         </div>
       </div>
     </S.Container>

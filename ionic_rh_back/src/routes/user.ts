@@ -3,7 +3,8 @@ import express from "express";
 import { cadastro } from 'controllers/Cadastro_Usuario';
 import { loginUser } from 'controllers/Login_Usuario';
 import {
-  adicionarEscolaridade,
+  adicioanrEscolaridade,
+  adicionarDependente,
   adicionarDocumento,
   adicionarEndereco,
   adicionarIdioma, adicionarTelefone,
@@ -57,6 +58,7 @@ router.put(
   adicionarIdioma,
   adicionarTelefone,
   adicionarEndereco,
+  adicionarDependente,
   adicionarDocumento,
   updateUser
 );
@@ -99,11 +101,12 @@ router.post(
   insertContratoUser,
   getColaboradorContratoID)
 
-/* router.post(
+router.post(
   '/teste',
-  multer(multerConfig).single('file'),
-  adicionarDocumento
-) */
+ /*  multer(multerConfig).single('file'),
+  adicionarDocumento */
+  adicionarDependente
+)
 /* 
 router.get(
   '/Contrato-user',

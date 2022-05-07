@@ -1,9 +1,11 @@
 // import { Input, Stack } from '@chakra-ui/react';
+import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
 import Input from 'components/Input';
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
 import LogoGray from 'assets/svg/logo-gray.svg';
+import logoresponsive from 'assets/svg/logoresponsive.png';
 import { theme } from 'theme';
 
 import * as S from './styles';
@@ -35,6 +37,7 @@ function RecuperarSenha() {
 
         <div className="rightWrapper">
           <img src={LogoGray} />
+          <img className="no" src={logoresponsive} />
         </div>
       </div>
     </S.Container>

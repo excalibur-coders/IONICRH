@@ -2,6 +2,7 @@ import {
     Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne
 } from "typeorm";
 import { contrato } from "./contrato";
+import { dependente } from "./userDependente";
 import { documentos } from "./user_docs";
 import { endereco } from "./user_endereco";
 import { escolaridade } from "./user_escola";
@@ -108,6 +109,9 @@ export class user {
 
     @OneToMany(() => escolaridade, (escolaridade) => escolaridade.user)
     escolaridade!: escolaridade
+
+    @OneToMany(() => dependente, (dependente) => dependente.user)
+    dependente!: dependente
 
     @OneToMany(() => documentos, (docs) => docs.user)
     docs!: documentos
