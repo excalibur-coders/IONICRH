@@ -58,7 +58,7 @@ interface IContrato {
   contrato_turno?: string;
   empContratanteContratanteId?: IEmpContratante;
   cargoCargoId?: ICargo;
-  contrato_adimissao?: string;
+  contrato_data_adimissao?: string;
 }
 
 interface IEmpContratante {
@@ -155,7 +155,7 @@ interface IFormProps {
   contrato_type?: string;
   contrato_data_adicao?: string;
   contratante_nome?: string;
-  contrato_adimissao?: string;
+  contrato_data_adimissao?: string;
   user_raca: string;
   user_rg?: string;
   contrato_turno?: string;
@@ -256,6 +256,7 @@ function UserEdit() {
     getAllDepartamentos();
     getAllEmpresas();
     getAllCargos();
+    console.log(user?.contrato?.[0]?.contrato_matricula);
   }, []);
 
   const setUserValues = (data: IUser) => {
@@ -300,15 +301,16 @@ function UserEdit() {
       'empContratanteContratanteId',
       data.contrato[0].empContratanteContratanteId?.contratante_id,
     );
-    setValue('contrato_adimissao', data.contrato[0].contrato_adimissao);
+    setValue(
+      'contrato_data_adimissao',
+      data.contrato[0].contrato_data_adimissao,
+    );
     setValue('contrato_matricula', data.contrato[0].contrato_matricula);
   };
-  };
 
-  const onSubmit = useCallback(
-    async (data: IFormProps) => {
-      const cadastroContrato =
-    async (data: IFormProps) => {
+  const onSubmit = useCallback(async (data: IFormProps) => {
+    const cadastroContrato = async (data: IFormProps) => {
+      console.log(data);
       await api
         .post(
           `/user/usuario-perfil/${id}`,
@@ -322,14 +324,14 @@ function UserEdit() {
             contrato_dominio: data.contrato_dominio,
             contrato_data_desligamento: data.contrato_data_desligamento,
             contrato_distrato: data.contrato_distrato,
-            contrato_adimissao: data.contrato_adimissao,
+            contrato_data_adimissao: data.contrato_data_adimissao,
             contrato_faixa_salarial: data.contrato_faixa_salarial,
             contrato_plano_saude: data.contrato_plano_saude,
             contrato_vale_transporte: data.contrato_vale_transporte,
             contrato_vale_refeicao: data.contrato_vale_refeicao,
             contrato_vale_alimentacao: data.contrato_vale_alimentacao,
             contrato_auxilio_creche: data.contrato_auxilio_creche,
-            contrato_tipo: data.contrato_tipo,
+            contrato_tipo: data.contrato_type,
             cargoCargoId: data.cargo_area,
             empContratanteContratanteId: data.empContratanteContratanteId,
           },
@@ -345,10 +347,9 @@ function UserEdit() {
         .catch(error => {
           console.log(error);
         });
-    }
+    };
 
-  const updateContrato =
-    async (data: IFormProps) => {
+    const updateContrato = async (data: IFormProps) => {
       await api
         .put(
           `/user/update-contrato-user/${id}`,
@@ -369,7 +370,7 @@ function UserEdit() {
             contrato_tipo: data.contrato_type,
             cargoCargoId: data.cargo_area,
             empContratanteContratanteId: data.empContratanteContratanteId,
-            contrato_adimissao: data?.contrato_data_adicao,
+            contrato_adimissao: data?.contrato_data_adimissao,
             contrato_matricula: data?.contrato_matricula,
             contrato_turno: data.contrato_turno,
           },
@@ -385,15 +386,13 @@ function UserEdit() {
         .catch(error => {
           console.log(error);
         });
-    }
+    };
 
+    cadastroContrato(data);
 
-
-      if (String(data?.contrato_matricula).length > 0) updateContrato;
-      else cadastroContrato(data);
-    },
-    [],
-  );
+    // if (!user?.contrato?.[0]?.contrato_matricula) updateContrato(data);
+    // else cadastroContrato(data);
+  }, []);
 
   return (
     <>
@@ -777,7 +776,7 @@ function UserEdit() {
                       width="auto"
                       fontSize={15}
                       {...register('cargo_head')}
-                      defaultValue={user?.contrato?.[0]?.cargo.cargo_head}
+                      //defaultValue={user?.contrato?.[0]?.cargo.cargo_head}
                     />
                   </div>
 
@@ -801,7 +800,7 @@ function UserEdit() {
                       width="auto"
                       fontSize={15}
                       {...register('cargo_nivel')}
-                      defaultValue={user?.contrato?.[0]?.cargo.cargo_nivel}
+                      //defaultValue={user?.contrato?.[0]?.cargo.cargo_nivel}
                     />
                   </div>
 
