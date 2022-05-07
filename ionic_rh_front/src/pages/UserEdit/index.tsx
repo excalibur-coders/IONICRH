@@ -37,7 +37,6 @@ interface IUser {
 }
 
 interface IContrato {
-  cargo: ICargo;
   contrato_matricula?: string;
   contrato_auxilio_creche?: number;
   contrato_base?: string;
@@ -57,16 +56,19 @@ interface IContrato {
   contrato_data_adicao?: string;
   emp_contratante: IEmpContratante;
   contrato_turno?: string;
-  empContratanteContratanteId?: number;
-  cargoCargoId?: number;
+  empContratanteContratanteId?: IEmpContratante;
+  cargoCargoId?: ICargo;
+  contrato_adimissao?: string;
 }
 
 interface IEmpContratante {
+  contratante_id: number;
   contratante_nome?: string;
 }
 
 interface ICargo {
   departamento: IDepartamento;
+  cargo_id: number;
   cargo_head?: string;
   cargo_nivel?: string;
   cargo_area?: string;
@@ -135,7 +137,7 @@ interface IFormProps {
   dep_name?: string;
   cargo_head?: string;
   cargo_nivel?: string;
-  cargo_area?: string;
+  cargo_area?: number;
   contrato_matricula?: string;
   contrato_auxilio_creche?: number;
   contrato_base?: string;
@@ -153,6 +155,7 @@ interface IFormProps {
   contrato_type?: string;
   contrato_data_adicao?: string;
   contratante_nome?: string;
+  contrato_adimissao?: string;
   user_raca: string;
   user_rg?: string;
   contrato_turno?: string;
@@ -186,7 +189,6 @@ function UserEdit() {
     setValue,
   } = useForm<IFormProps>({
     mode: 'onBlur',
-    //resolver: yupResolver(schema),
   });
 
   const getAllEmpresas = useCallback(() => {
@@ -197,7 +199,6 @@ function UserEdit() {
         },
       })
       .then(({ data }) => {
-        console.log(data);
         setEmpresas(data);
       })
       .catch((error: Error | AxiosError) => {
@@ -293,18 +294,61 @@ function UserEdit() {
       data.contrato[0].contrato_auxilio_creche,
     );
     setValue('contrato_type', data.contrato[0].contrato_type);
-    setValue('cargo_area', data.contrato[0].cargo.cargo_area);
+    setValue('cargo_area', data.contrato[0].cargoCargoId?.cargo_id);
     setValue('contrato_turno', data.contrato[0].contrato_turno);
     setValue(
       'empContratanteContratanteId',
-      data.contrato[0].empContratanteContratanteId,
+      data.contrato[0].empContratanteContratanteId?.contratante_id,
     );
+    setValue('contrato_adimissao', data.contrato[0].contrato_adimissao);
+    setValue('contrato_matricula', data.contrato[0].contrato_matricula);
+  };
   };
 
   const onSubmit = useCallback(
-    async data => {
-      console.log(data.contrato_type);
+    async (data: IFormProps) => {
+      const cadastroContrato =
+    async (data: IFormProps) => {
+      await api
+        .post(
+          `/user/usuario-perfil/${id}`,
+          {
+            contrato_matricula: data.contrato_matricula,
+            contrato_turno: data.contrato_turno,
+            contrato_base: data.contrato_base,
+            contrato_tempo_de_casa: data.contrato_tempo_de_casa,
+            contrato_termos: data.contrato_termos,
+            contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
+            contrato_dominio: data.contrato_dominio,
+            contrato_data_desligamento: data.contrato_data_desligamento,
+            contrato_distrato: data.contrato_distrato,
+            contrato_adimissao: data.contrato_adimissao,
+            contrato_faixa_salarial: data.contrato_faixa_salarial,
+            contrato_plano_saude: data.contrato_plano_saude,
+            contrato_vale_transporte: data.contrato_vale_transporte,
+            contrato_vale_refeicao: data.contrato_vale_refeicao,
+            contrato_vale_alimentacao: data.contrato_vale_alimentacao,
+            contrato_auxilio_creche: data.contrato_auxilio_creche,
+            contrato_tipo: data.contrato_tipo,
+            cargoCargoId: data.cargo_area,
+            empContratanteContratanteId: data.empContratanteContratanteId,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${cookies['ionicookie.token']}`,
+            },
+          },
+        )
+        .then(({ data }) => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
 
+  const updateContrato =
+    async (data: IFormProps) => {
       await api
         .put(
           `/user/update-contrato-user/${id}`,
@@ -341,8 +385,14 @@ function UserEdit() {
         .catch(error => {
           console.log(error);
         });
+    }
+
+
+
+      if (String(data?.contrato_matricula).length > 0) updateContrato;
+      else cadastroContrato(data);
     },
-    [cookies, id],
+    [],
   );
 
   return (
