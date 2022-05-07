@@ -3,7 +3,7 @@ import express from "express";
 import { cadastro } from 'controllers/Cadastro_Usuario';
 import { loginUser } from 'controllers/Login_Usuario';
 import {
-  adicioanrEscolaridade,
+  adicionarEscolaridade,
   adicionarDependente,
   adicionarDocumento,
   adicionarEndereco,
