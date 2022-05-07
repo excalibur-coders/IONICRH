@@ -2,8 +2,7 @@ import styled from '@emotion/styled';
 import { Flex } from '@chakra-ui/react';
 
 export const Container = styled(Flex)`
-
-  background = {theme.colors.background};
+  background: #f4f4f5;
 
   .input {
     margin-left: 50px;

@@ -8,9 +8,10 @@ import {
   InputLeftElement,
 } from '@chakra-ui/react';
 import { SearchIcon, ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
-import Sidebar from 'components/Sidebar';
 import Input from 'components/Input';
 import Nav from 'components/nav';
+import Navbar from 'components/navbar';
+import Sidemenu from 'components/sideMenu';
 import { MdFilterList, MdOutlineAccountBox } from 'react-icons/md';
 import {
   Table,
@@ -27,6 +28,8 @@ import { api } from 'services/api';
 
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
+import Sidebar from 'components/Sidebar';
+import RespBar from 'components/RespBar';
 import { useNavigate } from 'react-router-dom';
 
 interface IFuncionarios {
@@ -85,12 +88,12 @@ function Funcionarios() {
   return (
     <>
       <div>
-        <Nav></Nav>
+        <RespBar />
       </div>
 
       <S.Container>
         <div>
-          <Sidebar />
+          <Sidemenu />
         </div>
 
         <div className="input">
