@@ -31,11 +31,11 @@
 > **Requisitos**
 
 - ![feito](./docs/readme/check.jpeg) Cadastro de Colaboradores;
-- ![em andamento] Repositório para documentos dos Colaboradores;
-- ![em andamento] Trilha de Aprendizagem e Status de Realização;
+- ![em andamento](./docs/readme/check.jpeg) Repositório para documentos dos Colaboradores;
+- ![em andamento](./docs/readme/vazio.jpeg) Trilha de Aprendizagem e Status de Realização;
 - ![em andamento] Organogramas da Empresa;
 - ![feito](./docs/readme/check.jpeg) Repositório de documentos da empresa (políticas, normas, regras, etc);
-- ![em andamento] Dossiê gerado em PDF por colaborador para consulta do Administrador e Gestor.
+- ![em andamento](./docs/readme/vazio.jpeg) Dossiê gerado em PDF por colaborador para consulta do Administrador e Gestor.
   <br>
 
 > **Funcionalidades extras**
@@ -50,8 +50,8 @@
 
 - ![feito](./docs/readme/check.jpeg) [SPRINT 0](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint0) - 18/03/2022 a 24/03/2022
 - ![feito](./docs/readme/check.jpeg) [SPRINT 1](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint1) - 25/03/2022 a 14/04/2022
-- ![em andamento] [SPRINT 2](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint2) - 25/04/2022 a 15/05/2022
-- ![em andamento] [SPRINT 3](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint3) - 16/05/2022 a 05/06/2022
+- ![em andamento](./docs/readme/check.jpeg)[SPRINT 2](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint2) - 25/04/2022 a 15/05/2022
+- ![em andamento](./docs/readme/vazio.jpeg)[SPRINT 3](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint3) - 16/05/2022 a 05/06/2022
 
 ![Cronograma](./docs/readme/cronograma.png)
 
