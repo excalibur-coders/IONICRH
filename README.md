@@ -33,7 +33,7 @@
 - ![feito](./docs/readme/check.jpeg) Cadastro de Colaboradores;
 - ![em andamento](./docs/readme/check.jpeg) Repositório para documentos dos Colaboradores;
 - ![em andamento](./docs/readme/a_fazer.jpeg) Trilha de Aprendizagem e Status de Realização;
-- ![em andamento] Organogramas da Empresa;
+- ![em andamento](./docs/readme/check.jpeg) Organogramas da Empresa;
 - ![feito](./docs/readme/check.jpeg) Repositório de documentos da empresa (políticas, normas, regras, etc);
 - ![em andamento](./docs/readme/a_fazer.jpeg) Dossiê gerado em PDF por colaborador para consulta do Administrador e Gestor.
   <br>
