@@ -3,7 +3,8 @@ import {
     createEmpCont,
     createPesqDesl,
     getPesqDesligID,
-    getAllPesqDeslig
+    getAllPesqDeslig,
+    getAllEmpresa
 } from "controllers/empresa";
 
 const router = express.Router()
@@ -12,6 +13,7 @@ const router = express.Router()
 router.post('/crirar-empresa', createEmpCont)
 router.post('/criar-pesquisa-desligamento', createPesqDesl)
 router.get('/', getAllPesqDeslig)
+router.get('/empresas', getAllEmpresa);
 router.get('/:id', getPesqDesligID)
 
 export default router;

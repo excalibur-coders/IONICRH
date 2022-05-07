@@ -145,7 +145,7 @@ function User() {
       .catch(error => {
         console.log(error);
       });
-  }, []);
+  }, [cookies, id]);
 
   return (
     <>

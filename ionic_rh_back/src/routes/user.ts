@@ -54,7 +54,7 @@ router.use(auth);
 router.put(
   '/auto-cadastro',
   multer(multerConfig).single('file'),  
-  adicioanrEscolaridade,
+  adicionarEscolaridade,
   adicionarIdioma,
   adicionarTelefone,
   adicionarEndereco,
@@ -113,6 +113,7 @@ router.get(
   verifyUserRole(["Administrador", "Gestor"]),
   getLoggedUserData)
  */
+
 // Fazer alteração no contrato do usuario
 router.put(
   '/update-contrato-user/:id',

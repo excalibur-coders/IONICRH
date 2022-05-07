@@ -7,7 +7,7 @@ import { AuthContext } from 'hooks/useAuth';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function navbar() {
+function Navbar() {
   const { signOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -53,4 +53,4 @@ function navbar() {
   );
 }
 
-export default navbar;
+export default Navbar;
