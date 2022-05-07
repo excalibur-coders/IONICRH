@@ -50,8 +50,8 @@
 
 - ![feito](./docs/readme/check.jpeg) [SPRINT 0](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint0) - 18/03/2022 a 24/03/2022
 - ![feito](./docs/readme/check.jpeg) [SPRINT 1](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint1) - 25/03/2022 a 14/04/2022
-- ![em andamento](./docs/readme/check.jpeg)[SPRINT 2](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint2) - 25/04/2022 a 15/05/2022
-- ![em andamento](./docs/readme/a_fazer.jpeg)[SPRINT 3](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint3) - 16/05/2022 a 05/06/2022
+- ![em andamento](./docs/readme/check.jpeg) [SPRINT 2](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint2) - 25/04/2022 a 15/05/2022
+- ![em andamento](./docs/readme/a_fazer.jpeg) [SPRINT 3](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint3) - 16/05/2022 a 05/06/2022
 
 ![Cronograma](./docs/readme/cronograma.png)
 
