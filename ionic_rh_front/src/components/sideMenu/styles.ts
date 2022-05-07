@@ -37,8 +37,10 @@ export const Container = styled.div`
 
             .icon {
               position: relative;
-              display: block;
-              min-width: 80px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              min-width: 60px;
               height: 60px;
               line-height: 60px;
               text-align: center;
@@ -59,7 +61,7 @@ export const Container = styled.div`
         }
 
         li:hover {
-          background: #efefef;
+          background: #58d3db;
         }
       }
     }
@@ -76,6 +78,13 @@ export const Container = styled.div`
       border: 5px solid #f4f4f5;
       border-radius: 50%;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .before {
+        display: none;
+      }
     }
     .toggle::before {
       content: '';
@@ -89,6 +98,17 @@ export const Container = styled.div`
     }
     .toggle.open::before {
       content: '';
+    }
+    .toggle.open {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .after {
+        display: none;
+      }
+      .before {
+        display: flex;
+      }
     }
   }
 `;

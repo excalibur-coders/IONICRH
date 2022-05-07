@@ -22,6 +22,7 @@ import { api } from 'services/api';
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
 import Sidebar from 'components/Sidebar';
+import RespBar from 'components/RespBar';
 
 interface IFuncionarios {
   user_nome: string;
@@ -77,7 +78,7 @@ function Funcionarios() {
   return (
     <>
       <div>
-        <Navbar />
+        <RespBar />
       </div>
 
       <S.Container>

@@ -1,10 +1,15 @@
 import { Link } from 'react-router-dom';
-import { List, ListItem, ListIcon } from '@chakra-ui/react';
-import temporary from '../../assets/svg/temporary.svg';
-
+import { List, ListItem, ListIcon, Button } from '@chakra-ui/react';
 import * as S from './styles';
 import { useState } from 'react';
-
+import {
+  MdOutlineBusinessCenter,
+  MdOutlinePeopleAlt,
+  MdOutlineApartment,
+  MdSchema,
+  MdKeyboardArrowLeft,
+  MdKeyboardArrowRight,
+} from 'react-icons/md';
 function Sidemenu() {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -13,35 +18,43 @@ function Sidemenu() {
         <div className={`navigation ${isOpen && 'open'}`}>
           <ul>
             <li>
-              <a href="">
-                <span className="icon">
-                  <img src={temporary} />
-                </span>
-                <span className="tittle">Cargos</span>
+              <a>
+                <Link to={'/Cargos'}>
+                  <span className="icon">
+                    <MdOutlineBusinessCenter size="35px" />
+                  </span>
+                  <span className="tittle">Cargos</span>
+                </Link>
               </a>
             </li>
             <li>
-              <a href="">
-                <span className="icon">
-                  <img src={temporary} />
-                </span>
-                <span className="tittle">Departamentos</span>
+              <a>
+                <Link to={'/Departamentos'}>
+                  <span className="icon">
+                    <MdOutlineApartment size="35px" />
+                  </span>
+                  <span className="tittle">Departamentos</span>
+                </Link>
               </a>
             </li>
             <li>
-              <a href="">
-                <span className="icon">
-                  <img src={temporary} />
-                </span>
-                <span className="tittle">Funcionarios</span>
+              <a>
+                <Link to={'/Funcionarios'}>
+                  <span className="icon">
+                    <MdOutlinePeopleAlt size="35px" />
+                  </span>
+                  <span className="tittle">Funcionarios</span>
+                </Link>
               </a>
             </li>
             <li>
-              <a href="">
-                <span className="icon">
-                  <img src={temporary} />
-                </span>
-                <span className="tittle">Organograma</span>
+              <a>
+                <Link to={''}>
+                  <span className="icon">
+                    <MdSchema size="35px" />
+                  </span>
+                  <span className="tittle">Organograma</span>
+                </Link>
               </a>
             </li>
           </ul>
@@ -50,7 +63,12 @@ function Sidemenu() {
           className={`toggle ${isOpen && 'open'}`}
           onClick={() => setIsOpen(!isOpen)}
         >
-          <img src={temporary} />
+          <span className="after">
+            <MdKeyboardArrowRight size="25px" />
+          </span>
+          <span className="before">
+            <MdKeyboardArrowLeft size="25px" />
+          </span>
         </div>
       </div>
     </S.Container>
