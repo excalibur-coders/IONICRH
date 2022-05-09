@@ -84,26 +84,19 @@ export const Container = styled(Flex)`
         height: 50vh;
         width: 90vw;
 
-        .porcent_obrigatorio, .porcent_geral {
-
-
-          h1{
+        .porcent_obrigatorio,
+        .porcent_geral {
+          h1 {
             font-size: 20px;
           }
-
         }
       }
 
       .cards {
-
-        h2{
+        h2 {
           font-size: 10vw;
         }
       }
-
     }
-
-    }
-
-
+  }
 `;
