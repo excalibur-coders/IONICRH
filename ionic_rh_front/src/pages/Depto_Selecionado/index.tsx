@@ -1,23 +1,105 @@
-import { Box, Icon, Link, Divider } from '@chakra-ui/react';
-import { SearchIcon, ArrowBackIcon } from '@chakra-ui/icons';
+import {
+  Box,
+  Link,
+  Divider,
+  InputGroup,
+  InputLeftElement,
+} from '@chakra-ui/react';
+import { SearchIcon, ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
+import { useEffect, useState, useCallback } from 'react';
 import { theme } from 'theme';
 import Sidebar from 'components/Sidebar';
 import Input from 'components/Input';
 import Navbar from 'components/navbar';
-import { MdFilterList, MdOutlineAccountBox } from 'react-icons/md';
-import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableContainer,
-} from '@chakra-ui/react';
+import { Table, Tbody, Tr, Td } from '@chakra-ui/react';
 import { HStack } from '@chakra-ui/react';
 import * as S from './styles';
+import { api } from 'services/api';
+
+import { parseCookies } from 'nookies';
+import { AxiosError } from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
+
+/* interface IDepartamento {
+  cargo: ICargo;
+  dep_id: number;
+  dep_name: string;
+}
+
+interface ICargo {
+  cargo_area: string;
+  contrato: IContrato;
+}
+interface IContrato {
+  contrato_faixa_salarial: number;
+  user: IFuncionarios;
+}
+interface IFuncionarios {
+  user_nome: string;
+}
+ */
+
+/* interface IFuncionarios {
+  cargo: Array<{
+    user_nome: string;
+    contrato: IContrato;
+  }>;
+} */
+
+interface IContrato {
+  contrato_faixa_salarial: number;
+  user: {
+    user_nome: string;
+    user_id: number;
+  };
+}
+
+interface IFuncionarios {
+  cargo?: ICargo[];
+  dep_id: number;
+  dep_name: string;
+}
+interface ICargo {
+  cargo_area: string;
+  contrato: IContrato[];
+}
 
 function DeptoTI() {
+  const cookies = parseCookies();
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const [departamentos, setDepartamentos] = useState<IFuncionarios>();
+  const [loading, setLoading] = useState(false);
+
+  const getAllDepartamentos = useCallback(() => {
+    setLoading(false);
+    api
+      .get(`/departamentos/departamentos-filtro/${id}`, {
+        headers: {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
+        },
+      })
+      .then(({ data }) => {
+        /* console.log('Boa noite', data); */
+        setDepartamentos(data);
+      })
+      .catch((error: Error | AxiosError) => {
+        console.log(error);
+      });
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+  }, [cookies, id]);
+
+  useEffect(() => {
+    getAllDepartamentos();
+    departamentos?.cargo?.forEach(carg => {
+      carg.contrato.forEach(contr => {
+        console.log(contr.user);
+      });
+    });
+  }, []);
+
   return (
     <>
       <div>
@@ -31,92 +113,90 @@ function DeptoTI() {
 
         <div className="input">
           <br></br>
-          <HStack spacing="600px">
-            <Box w="100px" fontSize={20}>
-              <Icon as={MdFilterList} w={9} h={5} />
-              Filtrar
-            </Box>
+          <HStack>
             <Box w="100px" fontSize={20}>
               <ArrowBackIcon w={7} h={7} />
-              <Link href="/home">Voltar</Link>
+              <Link
+                onClick={() => {
+                  navigate(`/departamentos`);
+                }}
+              >
+                Voltar
+              </Link>
             </Box>
           </HStack>
           <br></br>
-          <HStack spacing="200px">
-            <Box w="10px">
-              <Input
-                size="xs"
-                width="200px"
-                fontSize={20}
-                placeholder="Nome, cargo ou departamento"
-                labelText={''}
-              />
-            </Box>
-            <Box w="100px">
-              <SearchIcon w={5} h={5} />
+          <Box fontSize="4xl" fontWeight="bold">
+            Departamento - {departamentos?.dep_name}
+          </Box>
+          <br></br>
+          <HStack>
+            <Box>
+              <InputGroup>
+                {/* eslint-disable-next-line react/no-children-prop */}
+                <InputLeftElement children={<SearchIcon w={5} h={5} />} />
+                <Input
+                  fontSize={20}
+                  size="lg"
+                  width="70vw"
+                  placeholder="       Pesquisar"
+                  labelText={''}
+                />
+              </InputGroup>
             </Box>
           </HStack>
-
-          <div className="Table">
-            <TableContainer>
-              <Table variant="simple" size="lg">
-                <Thead>
-                  <Tr>
-                    <Th fontSize="2xl" color="black">
-                      #Nome
-                    </Th>
-                    <Th fontSize="2xl" color="black">
-                      Salário
-                    </Th>
-                    <Th fontSize="2xl" color="black">
-                      Cargo
-                    </Th>
-                    <Th fontSize="2xl" color="black">
-                      Perfil
-                    </Th>
-                  </Tr>
-                </Thead>
-              </Table>
-              <Divider
-                orientation="horizontal"
-                borderColor={theme.colors.font}
-                variant="solid"
-                size="10rem"
-              />
-              <Table variant="simple" size="lg">
-                <div className="TableTwo">
-                  <Tbody>
-                    <Tr>
-                      <Td fontSize="xl">Lucas Costa</Td>
-                      <Td>R$ 5000,00</Td>
-                      <Td>DevPleno</Td>
+          <br></br>
+          <HStack spacing="150px">
+            <Box fontSize="2xl" fontWeight="bold">
+              Nome
+            </Box>
+            <Box fontSize="2xl" fontWeight="bold">
+              Salário
+            </Box>
+            <HStack spacing="250px">
+              <Box fontSize="2xl" fontWeight="bold">
+                Cargo
+              </Box>
+              <Box fontSize="2xl" fontWeight="bold">
+                Perfil
+              </Box>
+            </HStack>
+          </HStack>
+          <Divider
+            orientation="horizontal"
+            borderColor={theme.colors.font}
+            variant="solid"
+            size="10rem"
+          />
+          <br></br>
+          <Table variant="striped" size="lg">
+            <div className="TableTwo">
+              <Tbody>
+                {departamentos?.cargo?.map((carg, index) =>
+                  carg.contrato.map(ctr => (
+                    <Tr key={index}>
+                      <Td fontSize="md">{ctr.user.user_nome}</Td>
+                      <Td fontSize="md">{ctr.contrato_faixa_salarial}</Td>
+                      <Td fontSize="md">{carg.cargo_area}</Td>
+                      <Td fontSize="md">{}</Td>
                       <Td>
-                        <Icon
-                          as={MdOutlineAccountBox}
-                          w={5}
-                          h={5}
-                          color="#4D4E4F"
-                        />
+                        <Link
+                          fontSize="xl"
+                          color={theme.colors.primary}
+                          onClick={() => {
+                            navigate(`/user/${ctr.user.user_id}`);
+                          }}
+                        >
+                          Ver
+                          <ArrowForwardIcon color={theme.colors.primary} />
+                        </Link>
                       </Td>
                     </Tr>
-                    <Tr>
-                      <Td fontSize="xl">Priscila Silva</Td>
-                      <Td>R$ 7000,00</Td>
-                      <Td>Product Owner</Td>
-                      <Td>
-                        <Icon
-                          as={MdOutlineAccountBox}
-                          w={5}
-                          h={5}
-                          color="#4D4E4F"
-                        />
-                      </Td>
-                    </Tr>
-                  </Tbody>
-                </div>
-              </Table>
-            </TableContainer>
-          </div>
+                  )),
+                )}
+              </Tbody>
+            </div>
+          </Table>
         </div>
       </S.Container>
     </>

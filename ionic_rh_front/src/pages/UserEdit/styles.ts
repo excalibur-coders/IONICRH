@@ -114,6 +114,7 @@ export const Container = styled(Flex)`
                 .coluna3 {
                   display: inline-flex;
                   padding: 0 30px;
+                  margin-bottom: 10px;
 
                   Input {
                     border: transparent;

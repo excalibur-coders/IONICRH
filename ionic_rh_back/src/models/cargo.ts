@@ -6,26 +6,16 @@ import { departamento } from "./departamento";
 export class cargo {
     @PrimaryGeneratedColumn({ type: "int" })
     cargo_id!: number;
-
-    // Provavelmente auto relação com a tabela USER onde é "gerente" ou não
-    /* @Column({
-        type: "varchar",
-        nullable: true,
-    })
-    cargo_head!: string; */
-
-    // Pleno, Junior e Senior
     @Column({
-        type: "varchar",
+        type: "int",
     })
-    cargo_nivel!: string;
+    cargo_valor!: number;
 
     @Column({
         type: "varchar",
     })
     cargo_area!: string;
 
-    //Chave estrangeira
     @OneToMany(() => contrato, (contrato) => contrato.cargo)
     contrato!: contrato
 

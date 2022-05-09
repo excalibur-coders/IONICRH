@@ -17,9 +17,8 @@ export const Container = styled(Flex)`
   }
 
   .TableTwo {
-    width: 50%;
+    width: 70vw;
     display: flex;
-    margin-left: 20px;
   }
 `;
 

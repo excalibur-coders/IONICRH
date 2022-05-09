@@ -86,6 +86,12 @@ export class user {
         unique: true
     })
     user_cnpj?: string
+    @Column({
+        type: "boolean",
+        nullable: true,
+        default: false
+    })
+    user_verificado?: Boolean
 
     @Column({
         type: "varchar",

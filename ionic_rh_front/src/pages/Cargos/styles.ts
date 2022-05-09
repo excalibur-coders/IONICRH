@@ -9,18 +9,12 @@ export const Container = styled(Flex)`
     margin-left: 50px;
   }
 
-  .Table {
-    width: 90%;
-    display: flex;
-    align-items: left;
-    margin-top: 100px;
-    margin-left: 30px;
+  .TBody {
+    width: 35vw;
   }
 
   .TableTwo {
-    width: 50%;
     display: flex;
-    margin-left: 20px;
   }
 
   @media (max-width: 700px) {
