@@ -93,6 +93,7 @@ export const generate = async () => {
                 user_raca: "Indigena",
                 user_role: ["Administrador"],
                 password: passwordHash,
+                user_verificado: 1
             },
             {
                 user_nome: "Gabriel Souza Bicho Nunes",
@@ -106,6 +107,7 @@ export const generate = async () => {
                 user_raca: "Indigena",
                 user_role: ["Colaborador"],
                 password: passwordHash,
+                user_verificado: 1
             },
             {
                 user_nome: "Matheus Fiora Avante",
@@ -119,6 +121,7 @@ export const generate = async () => {
                 user_raca: "Indigena",
                 user_role: ["Gestor"],
                 password: passwordHash,
+                user_verificado: 1
             },
             {
                 user_nome: "Murilo Fattore",
@@ -132,6 +135,7 @@ export const generate = async () => {
                 user_raca: "Branco",
                 user_role: ["Consultor"],
                 password: passwordHash,
+                user_verificado: 1
             },
             {
                 user_nome: "Lucas Costa",
@@ -145,6 +149,7 @@ export const generate = async () => {
                 user_raca: "Branco",
                 user_role: ["Colaborador"],
                 password: passwordHash,
+                user_verificado: 1
             },
             {
                 user_nome: "Gabriela Silva",
@@ -158,6 +163,7 @@ export const generate = async () => {
                 user_raca: "Pardo",
                 user_role: ["Colaborador"],
                 password: passwordHash,
+                user_verificado: 1
             },
             ])
             .execute()
