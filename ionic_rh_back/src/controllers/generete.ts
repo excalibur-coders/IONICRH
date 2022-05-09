@@ -292,6 +292,54 @@ export const generate = async () => {
             }
             )
             .execute()
+        cargoRepository
+            .createQueryBuilder()
+            .update(cargo)
+            .set({
+                "headID": 2
+            })
+            .where(
+                "cargo_id = :cargo_id", {
+                cargo_id: 1
+            }
+            )
+            .execute()
+        cargoRepository
+            .createQueryBuilder()
+            .update(cargo)
+            .set({
+                "headID": 6
+            })
+            .where(
+                "cargo_id = :cargo_id", {
+                cargo_id: 3
+            }
+            )
+            .execute()
+        cargoRepository
+            .createQueryBuilder()
+            .update(cargo)
+            .set({
+                "headID": 4
+            })
+            .where(
+                "cargo_id = :cargo_id", {
+                cargo_id: 8
+            }
+            )
+            .execute()
+        cargoRepository
+            .createQueryBuilder()
+            .update(cargo)
+            .set({
+                "headID": 5
+            })
+            .where(
+                "cargo_id = :cargo_id", {
+                cargo_id: 11
+            }
+            )
+            .execute()
     } catch (error) {
         console.log(error);
     }
