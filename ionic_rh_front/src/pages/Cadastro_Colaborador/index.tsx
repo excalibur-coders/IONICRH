@@ -331,47 +331,6 @@ function Cadastro() {
                   mask="(99) 99999-9999"
                   {...register('telefone')}
                 />
-
-                <h6>Dependentes</h6>
-
-                <Input
-                  size="sm"
-                  width="22rem"
-                  fontSize={20}
-                  fontWeight="bold"
-                  labelText="Nome"
-                  type="text"
-                  {...register('dependente_nome')}
-                />
-
-                <div className="form-row">
-                  <Input
-                    size="sm"
-                    width="10rem"
-                    fontSize={20}
-                    labelText="Data de nascimento"
-                    type="date"
-                    {...register('dependente_nascimento')}
-                  />
-
-                  <div className="dropdown">
-                    <label htmlFor="lang" className="dropdowntext">
-                      Parentesco
-                    </label>
-                    <select
-                      className="parentesco"
-                      id="lang"
-                      {...register('dependente_origin')}
-                    >
-                      <option>Selecione o Parentesco</option>
-                      <option value="irmao">Irmão(ã)</option>
-                      <option value="pai">Pai</option>
-                      <option value="mae">Mãe</option>
-                      <option value="avo">Avô(ó)</option>
-                      <option value="primo">Primo(a)</option>
-                    </select>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -557,7 +516,125 @@ function Cadastro() {
                   />
                 </div>
 
-                <h6>Anexos</h6>
+                <h6>Dependentes</h6>
+                <h1>Cadastre abaixo, até 3 dependentes</h1>
+
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  fontWeight="bold"
+                  labelText="Nome"
+                  type="text"
+                  {...register('dependente_nome')}
+                />
+
+                <div className="form-row">
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="Data de nascimento"
+                    type="date"
+                    {...register('dependente_nascimento')}
+                  />
+
+                  <div className="dropdown">
+                    <label htmlFor="lang" className="dropdowntext">
+                      Parentesco
+                    </label>
+                    <select
+                      className="parentesco"
+                      id="lang"
+                      {...register('dependente_origin')}
+                    >
+                      <option>Selecione o Parentesco</option>
+                      <option value="irmao">Irmão(ã)</option>
+                      <option value="pai">Pai</option>
+                      <option value="mae">Mãe</option>
+                      <option value="avo">Avô(ó)</option>
+                      <option value="primo">Primo(a)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  fontWeight="bold"
+                  labelText="Nome"
+                  type="text"
+                  {...register('dependente_nome')}
+                />
+
+                <div className="form-row">
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="Data de nascimento"
+                    type="date"
+                    {...register('dependente_nascimento')}
+                  />
+
+                  <div className="dropdown">
+                    <label htmlFor="lang" className="dropdowntext">
+                      Parentesco
+                    </label>
+                    <select
+                      className="parentesco"
+                      id="lang"
+                      {...register('dependente_origin')}
+                    >
+                      <option>Selecione o Parentesco</option>
+                      <option value="irmao">Irmão(ã)</option>
+                      <option value="pai">Pai</option>
+                      <option value="mae">Mãe</option>
+                      <option value="avo">Avô(ó)</option>
+                      <option value="primo">Primo(a)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  fontWeight="bold"
+                  labelText="Nome"
+                  type="text"
+                  {...register('dependente_nome')}
+                />
+
+                <div className="form-row">
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="Data de nascimento"
+                    type="date"
+                    {...register('dependente_nascimento')}
+                  />
+
+                  <div className="dropdown">
+                    <label htmlFor="lang" className="dropdowntext">
+                      Parentesco
+                    </label>
+                    <select
+                      className="parentesco"
+                      id="lang"
+                      {...register('dependente_origin')}
+                    >
+                      <option>Selecione o Parentesco</option>
+                      <option value="irmao">Irmão(ã)</option>
+                      <option value="pai">Pai</option>
+                      <option value="mae">Mãe</option>
+                      <option value="avo">Avô(ó)</option>
+                      <option value="primo">Primo(a)</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
