@@ -1,69 +1,87 @@
 # Projeto IonicRH
 
-![Equipe ExcaliburCoders](./docs/img/1.png)
+![Equipe ExcaliburCoders](./docs/readme/apresentação.png)
 
-- Lucas Braz Dias (Scrum Master)
+<p align="center">
+  <a href ="#o-projeto"> Projeto </a>  • 
+  <a href ="#dart-proposta"> Proposta </a>  • 
+  <a href ="#mapa-mental-do-produto"> Mapa Mental do Produto </a>  • 
+  <a href ="#calendar-cronograma-das-entregas"> Cronograma das Entregas </a>  • 
+  <a href ="#-tecnologias-utilizadas"> Tecnologias Utilizadas </a>  • 
+  <a href ="#backlog-do-produto">Backlog do Produto </a>  •
+  <a href ="#backlog-das-sprints">Backlog das Sprints </a>  •
+  <a href ="#passo-a-passo-da-instalação-do-sistema">Passo a Passo da Instalação do Sistema </a>  •
+  <a href ="#equipe"> Equipe </a> 
+</p>
 
-#### [Linked](https://www.linkedin.com/in/lucas-braz-dias/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/lucasbdias)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
+## O Projeto
 
-- Priscila Aparecida Silva (Produtc Owner)
+![Objetivo](./docs/readme/objetivo.png)
 
-#### [Linked](https://www.linkedin.com/in/priscilasilva1801/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/prsilva)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
+<br>
 
-- Tais Gomes Salomao (Dev Team)
+> Status do Projeto: Em andamento
 
-#### [Linked](https://www.linkedin.com/in/tais-salomao)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/taissalomao)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
+<br>
 
-- Rodrigo de Andrade Paula (Dev Team)
+## :dart: Proposta
 
-#### [Linked](https://www.linkedin.com/in/rodrigo-de-andrade-a34605104)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/RodrigodeAndrade90)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
+**Desenvolver um sistema de apoio a Gestão de Departamento Pessoal com os seguintes requisitos:**<br><br>
 
-- Kevin Ferreira Mirenda (Dev team)
+> **Requisitos**
 
-#### [Linked](https://www.linkedin.com/in/kevin-mirenda-a54a64220)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/KevinFMfatec)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
+- ![feito](./docs/readme/check.jpeg) Cadastro de Colaboradores;
+- ![em andamento] Repositório para documentos dos Colaboradores;
+- ![em andamento] Trilha de Aprendizagem e Status de Realização;
+- ![em andamento] Organogramas da Empresa;
+- ![feito](./docs/readme/check.jpeg) Repositório de documentos da empresa (políticas, normas, regras, etc);
+- ![em andamento] Dossiê gerado em PDF por colaborador para consulta do Administrador e Gestor.
+  <br>
 
-- Rafael Leonardo Lopes (Dev Team)
+> **Funcionalidades extras**
 
-#### [Linked](https://www.linkedin.com/in/rafael-leonardo-lopes/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/Rafael-leonardo)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
+<br>
 
-- Lucas Ferreira da Costa (Dev Team)
+## Mapa Mental do Produto
 
-#### [Linked](https://www.linkedin.com/in/lucas-costa-a49a01219/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/ddaiwon)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
+![Mapa Mental](./docs/readme/mapa.png)
 
-- Gabriel Souza Bicho Nunes (Dev Team)
+## :calendar: Cronograma das Entregas
 
-#### [Linked](https://www.linkedin.com/in/gabriel-souza-bicho-nunes-429191185/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/ZeroPirata)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
+- ![feito](./docs/readme/check.jpeg) [SPRINT 0](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint0) - 18/03/2022 a 24/03/2022
+- ![feito](./docs/readme/check.jpeg) [SPRINT 1](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint1) - 25/03/2022 a 14/04/2022
+- ![em andamento] [SPRINT 2](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint2) - 25/04/2022 a 15/05/2022
+- ![em andamento] [SPRINT 3](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint3) - 16/05/2022 a 05/06/2022
 
-- Vinícius Andrade B. (Dev Team)
+![Cronograma](./docs/readme/cronograma.png)
 
-#### [Linked](https://www.linkedin.com/in/vin%C3%ADcius-barbosa-78111a206/)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/download.png" width="15" height="15" /> [Github](https://github.com/ViniciusAndBar)<img src="https://raw.githubusercontent.com/marciosousa4/GEOFPI---Projeto-Integrador/master/Loading%20images/GitHub-Mark.png" width="20" height="20" />
+<br>
 
-## API 2º Semestre do Curso de Desenvolvimento de Software Multiplataforma
+## 💻 Tecnologias Utilizadas
 
-- M2: Prof. José Walmir Gonçalves Duque
-- P2: Prof. Claudio Etelvino de Lima
+![Tecnologias](./docs/readme/tecnologias.png)
 
-## Objetivo do Projeto
+- **Banco de Dados:** MySQL;
+- **Back-end:** NodeJS;
+- **Front-end:** HTML, CSS, JavaScript, ChackaUi, React, Typescript ;
+- **Ferramentas:** Visual Studio Code, Jira, Miro, Canva, Trello, Git e Github;
+- **Metodologia Utilizada:** Metodologia Ágil | SCRUM
 
-## _User Story_
+<br>
 
-![Colaborador](./docs/img/Colaborador.png)
+## Backlog do Produto
 
-![Administrador](./docs/img/Administrador.png)
+![Backlog Produto](./docs/readme/backlogp.png)
 
-## Backlog da Sprint
+<br>
 
-![Backlog](./docs/img/backlog.png)
+## Backlog das Sprints
 
-## Modelagem do Banco de Dados
+![Backlog Sprints](./docs/readme/backlogs.png)
 
-![ModeloBD](./docs/img/modelagem.png)
+<br>
 
-## Tecnologias Utilizadas
-
-![Tecnologias](./docs/img/tecnologias.png)
-
-## Passo a passo da instalação do sistema
+## Passo a Passo da Instalação do Sistema
 
 ```bash
 git clone https://github.com/excalibur-coders/IONICRH.git
@@ -87,12 +105,12 @@ Na pasta backend mudar o nome do arquivo:
 .envcopy para .env
 ```
 
-## Dentro do env é necessário colocar as configurações do seu conector MySQL;
+### Dentro do env é necessário colocar as configurações do seu conector MySQL;
 
-## Importante criar a database que deseja armazenar, as tabelas e afins:
+### Importante criar a database que deseja armazenar, as tabelas e afins:
 
 ```bash
-Create database [nome];
+Create database [nome]
 ```
 
 Alterar dados de acordo com seu ambiente:
@@ -125,12 +143,21 @@ Após instalar as dependências, iniciar o serviço em cada uma das pasta
 npm start dev ou  yarn dev
 ```
 
-## Sistema Desenvolvido
+<br>
 
-## Cronograma de Entregas
+## Equipe
 
-| Data       | Links      |
-| ---------- | ---------- |
-| 14/04/2022 | [Sprint 1] |
-| 15/05/2022 | [Sprint 2] |
-| 05/06/2021 | [Sprint 3] |
+<br>
+
+| Nome                 | Função         | Linkedin                                                                      | GitHub                                        | Avatar                                         |
+| -------------------- | -------------- | ----------------------------------------------------------------------------- | --------------------------------------------- | ---------------------------------------------- |
+| **Lucas Braz Dias**  | Scrum Master   | [@LinkedIn](https://www.linkedin.com/in/lucas-braz-dias/)                     | [@GitHub](https://github.com/lucasbdias)      | ![Lucasbd](./docs/readme/equipe/lucasbd.jpg)   |
+| **Priscila Silva**   | Product Owner  | [@LinkedIn](https://www.linkedin.com/in/priscilasilva1801/)                   | [@GitHub](https://github.com/prsilva)         | ![Priscila](./docs/readme/equipe/priscila.jpg) |
+| **Taís Salomão**     | Desenvolvedora | [@LinkedIn](https://www.linkedin.com/in/tais-salomao/)                        | [@GitHub](https://github.com/taissalomao)     | ![Tais](./docs/readme/equipe/tais.jpg)         |
+| **Kevin Mirenda**    | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/kevin-mirenda-a54a64220)              | [@GitHub](https://github.com/KevinFMfatec)    | ![Kevin](./docs/readme/equipe/kevin.jpg)       |
+| **Rafael Lopes**     | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/rafael-leonardo-lopes/)               | [@GitHub](https://github.com/Rafael-leonardo) | ![Rafael](./docs/readme/equipe/rafael.jpg)     |
+| **Lucas Costa**      | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/lucas-costa-a49a01219/)               | [@GitHub](https://github.com/ddaiwon)         | ![Lucasc](./docs/readme/equipe/lucasc.jpg)     |
+| **Gabriel Souza**    | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/gabriel-souza-bicho-nunes-429191185/) | [@GitHub](https://github.com/ZeroPirata)      | ![Gabriel](./docs/readme/equipe/gabriel.jpg)   |
+| **Vinicius Andrade** | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/vin%C3%ADcius-barbosa-78111a206/)     | [@GitHub](https://github.com/ViniciusAndBar)  | ![Vinicius](./docs/readme/equipe/vinicius.jpg) |
+
+<br>

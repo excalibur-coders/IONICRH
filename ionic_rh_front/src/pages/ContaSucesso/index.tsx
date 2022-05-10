@@ -13,24 +13,14 @@ import * as S from './styles';
 function ContaSucesso() {
   return (
     <S.Container>
-      <div className="centerWrapper">
-        <div className="leftWrapper">
-          <img src={IonicLogo} />
-
-          <div className="form">
-            <h1>Conta Criada com sucesso!</h1>
-
-            <div className="registerWrapper">
-              <span>
-                <Link to="/">Voltar ao Login</Link>
-              </span>
-            </div>
-          </div>
+      <div className="leftWrapper">
+        <img src={IonicLogo} />
+        <div className="text">
+          <h1>Conta criada com Sucesso !</h1>
+          <span>
+            <Link to="/">Voltar</Link>
+          </span>
         </div>
-      </div>
-      <div className="rightWrapper">
-        <img src={LogoGray} />
-        <img className="no" src={logoresponsive} />
       </div>
       <div className="rightWrapper">
         <img src={LogoGray} />

@@ -4,6 +4,12 @@ import { theme } from 'theme';
 
 export const Container = styled(Flex)`
   height: 100vh;
+
+  img {
+    width: 120px;
+    margin: 5px 5px;
+  }
+
   .leftWrapper {
     width: 60%;
     margin-bottom: 25px;
@@ -52,11 +58,8 @@ export const Container = styled(Flex)`
     }
     .no {
       display: none;
+      margin: 0px 0px 0px 0px;
     }
-  }
-  img {
-    width: 120px;
-    margin: 5px 5px;
   }
 
   @media (max-width: 700px) {

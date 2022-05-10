@@ -27,12 +27,16 @@ export const createCargo = async (req: Request, res: Response) => {
 
 export const getAllCargos = async (req: Request, res: Response) => {
     try {
-        const cargo = await cargoRepository.find({
-            select: {
-                cargo_area:true
-            }
-        })
-        res.json(cargo)
+        const cargos = await cargoRepository
+        .createQueryBuilder()
+        .select([
+            'c',
+            'd'
+        ])
+        .from(cargo, 'c')
+        .leftJoin('c.departamento','d')
+        .getMany()
+        res.json(cargos)
     } catch (error) {
         res.json(error)
     }

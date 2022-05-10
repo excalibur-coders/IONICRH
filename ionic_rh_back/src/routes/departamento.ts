@@ -5,7 +5,9 @@ import {
   deleteDepartamento, 
   getAllDepartamentos, 
   getDepartamentoById, 
-  updateDepartamento 
+  updateDepartamento,
+  getDepFilter,
+  organograma
 } from "controllers/Departamento";
 import { auth } from "middlewares/auth";
 
@@ -13,7 +15,9 @@ const router = express.Router();
 
 /* router.use(auth) */
 router.get('/departamentos', getAllDepartamentos);
+router.get('/departamentos-filtro/:id', getDepFilter )
 router.get('/departamentos/:id', getDepartamentoById);
+router.get('/Organograma', organograma);
 router.post('/criar-departamento', createDepartamento);
 router.put('/alterar/:id', updateDepartamento);
 router.delete('/deletar-departamento/:id', deleteDepartamento)

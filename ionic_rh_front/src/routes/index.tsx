@@ -19,6 +19,7 @@ import Colab_home from 'pages/Colaborador_home';
 import Colab_onboard from 'pages/Colaborador_onboard';
 import Colab_user from 'pages/Colaborador_user';
 import Consultor from 'pages/Consultor_Tela';
+import Org from 'pages/Organograma';
 
 function Routes() {
   return (
@@ -38,12 +39,13 @@ function Routes() {
       <Route path="/Colab_onboard" element={<Colab_onboard />} />
       <Route path="/Colab_user" element={<Colab_user />} />
       <Route path="/Cargos" element={<Cargos />} />
-      <Route path="/Ti" element={<DeptoTI />} />
+      <Route path="/Departamento/:id" element={<DeptoTI />} />
       <Route path="/User/:id" element={<User />} />
       <Route path="/UserEdit/:id" element={<UserEdit />} />
       <Route path="/Administrador" element={<Administrador />} />
       <Route path="/AdministradorEdit" element={<AdministradorEdit />} />
       <Route path="/Consultor" element={<Consultor />} />
+      <Route path="/Organograma" element={<Org />} />
     </RoutesWrapper>
     // </BrowserRouter>
   );
