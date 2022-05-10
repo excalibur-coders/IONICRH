@@ -62,6 +62,12 @@ interface CadastroProps {
   dependente_nome: string;
   dependente_nascimento: string;
   dependente_origin: string;
+  dependente_nome2: string;
+  dependente_nascimento2: string;
+  dependente_origin2: string;
+  dependente_nome3: string;
+  dependente_nascimento3: string;
+  dependente_origin3: string;
 }
 
 function Cadastro() {
@@ -117,11 +123,21 @@ function Cadastro() {
               tell_numero: data.telefone.split(' ')[1].replace('-', ''),
             },
           ],
-          dependente: [
+          dependentes: [
             {
               dependente_nome: data.dependente_nome,
               dependente_nascimento: data.dependente_nascimento,
               dependente_origin: data.dependente_origin,
+            },
+            {
+              dependente_nome: data.dependente_nome2,
+              dependente_nascimento: data.dependente_nascimento2,
+              dependente_origin: data.dependente_origin2,
+            },
+            {
+              dependente_nome: data.dependente_nome3,
+              dependente_nascimento: data.dependente_nascimento3,
+              dependente_origin: data.dependente_origin3,
             },
           ],
         },
@@ -565,7 +581,7 @@ function Cadastro() {
                   fontWeight="bold"
                   labelText="Nome"
                   type="text"
-                  {...register('dependente_nome')}
+                  {...register('dependente_nome2')}
                 />
 
                 <div className="form-row">
@@ -575,7 +591,7 @@ function Cadastro() {
                     fontSize={20}
                     labelText="Data de nascimento"
                     type="date"
-                    {...register('dependente_nascimento')}
+                    {...register('dependente_nascimento2')}
                   />
 
                   <div className="dropdown">
@@ -585,7 +601,7 @@ function Cadastro() {
                     <select
                       className="parentesco"
                       id="lang"
-                      {...register('dependente_origin')}
+                      {...register('dependente_origin2')}
                     >
                       <option>Selecione o Parentesco</option>
                       <option value="irmao">Irmão(ã)</option>
@@ -604,7 +620,7 @@ function Cadastro() {
                   fontWeight="bold"
                   labelText="Nome"
                   type="text"
-                  {...register('dependente_nome')}
+                  {...register('dependente_nome3')}
                 />
 
                 <div className="form-row">
@@ -614,7 +630,7 @@ function Cadastro() {
                     fontSize={20}
                     labelText="Data de nascimento"
                     type="date"
-                    {...register('dependente_nascimento')}
+                    {...register('dependente_nascimento3')}
                   />
 
                   <div className="dropdown">
@@ -624,7 +640,7 @@ function Cadastro() {
                     <select
                       className="parentesco"
                       id="lang"
-                      {...register('dependente_origin')}
+                      {...register('dependente_origin3')}
                     >
                       <option>Selecione o Parentesco</option>
                       <option value="irmao">Irmão(ã)</option>

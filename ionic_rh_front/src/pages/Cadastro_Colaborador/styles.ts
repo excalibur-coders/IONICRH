@@ -155,7 +155,7 @@ export const Container = styled(Flex)`
         margin-top: 15px;
       }
       h1 {
-        font-size: 22px;
+        font-size: 20px;
         font-weight: bold;
         margin-bottom: 10px;
       }
