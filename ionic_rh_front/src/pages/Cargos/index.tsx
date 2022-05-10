@@ -8,9 +8,9 @@ import {
 } from '@chakra-ui/react';
 import { SearchIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import { theme } from 'theme';
-import Sidebar from 'components/Sidebar';
 import Input from 'components/Input';
-import Navbar from 'components/navbar';
+import RespBar from 'components/RespBar';
+import Sidemenu from 'components/sideMenu';
 import { Table, Tbody, Tr, Td, TableContainer } from '@chakra-ui/react';
 import { HStack } from '@chakra-ui/react';
 import * as S from './styles';
@@ -64,12 +64,12 @@ function Cargos() {
   return (
     <>
       <div>
-        <Navbar />
+        <RespBar />
       </div>
 
       <S.Container>
         <div>
-          <Sidebar />
+          <Sidemenu />
         </div>
 
         <div className="input">

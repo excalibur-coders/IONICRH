@@ -1,18 +1,18 @@
 import React from 'react';
 import './styles.ts';
 import Chart from './components/Chart';
-import Navbar from 'components/navbar';
 
 import { useEffect, useState, useCallback } from 'react';
 import { theme } from 'theme';
 
 import * as S from './styles';
+import RespBar from 'components/RespBar';
 
 export default function App() {
   return (
     <>
       <div>
-        <Navbar />
+        <RespBar />
       </div>
       <S.Container>
         <div className="Center">

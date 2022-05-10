@@ -1,6 +1,6 @@
 import { MdAccountCircle } from 'react-icons/md';
 import { theme } from 'theme';
-import Nav from 'components/nav';
+import RespBar from 'components/RespBar';
 import * as S from './styles';
 // import { Input, Stack } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
@@ -149,7 +149,7 @@ function User() {
 
   return (
     <>
-      <Nav></Nav>
+      <RespBar />
       <S.Container>
         <div className="Wrapper">
           <div className="centerWrapper">

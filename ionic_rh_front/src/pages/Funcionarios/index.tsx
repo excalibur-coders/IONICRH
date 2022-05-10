@@ -9,8 +9,6 @@ import {
 } from '@chakra-ui/react';
 import { SearchIcon, ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import Input from 'components/Input';
-import Nav from 'components/nav';
-import Navbar from 'components/navbar';
 import Sidemenu from 'components/sideMenu';
 import { MdFilterList, MdOutlineAccountBox } from 'react-icons/md';
 import {
@@ -25,10 +23,8 @@ import {
 import { HStack } from '@chakra-ui/react';
 import * as S from './style';
 import { api } from 'services/api';
-
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
-import Sidebar from 'components/Sidebar';
 import RespBar from 'components/RespBar';
 import { useNavigate } from 'react-router-dom';
 

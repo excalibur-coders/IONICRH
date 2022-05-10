@@ -8,9 +8,9 @@ import {
 import { SearchIcon, ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { useEffect, useState, useCallback } from 'react';
 import { theme } from 'theme';
-import Sidebar from 'components/Sidebar';
+import Sidemenu from 'components/sideMenu';
+import RespBar from 'components/RespBar';
 import Input from 'components/Input';
-import Navbar from 'components/navbar';
 import { Table, Tbody, Tr, Td } from '@chakra-ui/react';
 import { HStack } from '@chakra-ui/react';
 import * as S from './styles';
@@ -103,12 +103,12 @@ function DeptoTI() {
   return (
     <>
       <div>
-        <Navbar />
+        <RespBar />
       </div>
 
       <S.Container>
         <div>
-          <Sidebar />
+          <Sidemenu />
         </div>
 
         <div className="input">

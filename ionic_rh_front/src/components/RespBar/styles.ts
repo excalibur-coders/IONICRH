@@ -10,6 +10,7 @@ export const Navbar = styled.nav`
   background-color: #f4f4f5;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   position: fixed;
+  top: 0px;
   display: flex;
   justify-content: space-around;
 

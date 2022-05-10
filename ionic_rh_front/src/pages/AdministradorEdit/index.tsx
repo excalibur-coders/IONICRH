@@ -1,6 +1,6 @@
 import { MdAccountCircle } from 'react-icons/md';
 import { theme } from 'theme';
-import Nav from 'components/nav';
+import RespBar from 'components/RespBar';
 import * as S from './styles';
 // import { Input, Stack } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
@@ -14,7 +14,7 @@ import Button from 'components/Button';
 function AdministradorEdit() {
   return (
     <>
-      <Nav></Nav>
+      <RespBar />
       <S.Container>
         <div className="Wrapper">
           <div className="centerWrapper">
