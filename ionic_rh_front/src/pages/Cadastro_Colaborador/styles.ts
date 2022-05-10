@@ -57,6 +57,11 @@ height: 100vh;
         font-size:30px;
         font-weight: bold;
       }
+      h6 {
+        font-size: 30px;
+        font-weight: bold;
+        margin-top: 15px;
+      }
       .form {
         width: 22rem;
         margin-top: 80px;
@@ -81,6 +86,22 @@ height: 100vh;
           .etnia {
             height: 33px;
             width: 22rem;
+            border: 1px solid black;
+            border-radius: 10px;
+            background-color: #f4f4f5;
+          }
+
+          .estadocivil {
+            height: 33px;
+            width: 22rem;
+            border: 1px solid black;
+            border-radius: 10px;
+            background-color: #f4f4f5;
+          }
+
+          .parentesco {
+            height: 33px;
+            width: 10rem;
             border: 1px solid black;
             border-radius: 10px;
             background-color: #f4f4f5;

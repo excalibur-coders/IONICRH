@@ -59,6 +59,9 @@ interface CadastroProps {
     },
   ];
   contrato: string;
+  dependente_nome: string;
+  dependente_nascimento: string;
+  dependente_origin: string;
 }
 
 function Cadastro() {
@@ -112,6 +115,13 @@ function Cadastro() {
             {
               tell_ddd: data.telefone.split(' ')[0].replace(/([()])/g, ''),
               tell_numero: data.telefone.split(' ')[1].replace('-', ''),
+            },
+          ],
+          dependente: [
+            {
+              dependente_nome: data.dependente_nome,
+              dependente_nascimento: data.dependente_nascimento,
+              dependente_origin: data.dependente_origin,
             },
           ],
         },
@@ -278,15 +288,23 @@ function Cadastro() {
                   />
                 </div>
 
-                <Input
-                  size="sm"
-                  width="22rem"
-                  fontSize={20}
-                  labelText="Estado Civil"
-                  type="text"
-                  error={errors.estadocivil?.message}
-                  {...register('estadocivil')}
-                />
+                <div className="dropdown">
+                  <label htmlFor="lang" className="dropdowntext">
+                    Estado Civil
+                  </label>
+                  <select
+                    className="estadocivil"
+                    id="lang"
+                    {...register('estadocivil')}
+                  >
+                    <option>Selecione seu estado civil</option>
+                    <option value="solteiro">Solteiro(a)</option>
+                    <option value="casado">Casado(a)</option>
+                    <option value="divorciado">Divorciado(a)</option>
+                    <option value="viuvo">Viúvo(a)</option>
+                    <option value="separado">Separado(a) Judicialmente</option>
+                  </select>
+                </div>
 
                 <div className="dropdown">
                   <label htmlFor="lang" className="dropdowntext">
@@ -306,12 +324,54 @@ function Cadastro() {
                   size="sm"
                   width="22rem"
                   fontSize={20}
+                  fontWeight="bold"
                   labelText="Telefone"
                   type="text"
                   error={errors.telefone?.message}
                   mask="(99) 99999-9999"
                   {...register('telefone')}
                 />
+
+                <h6>Dependentes</h6>
+
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  fontWeight="bold"
+                  labelText="Nome"
+                  type="text"
+                  {...register('dependente_nome')}
+                />
+
+                <div className="form-row">
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="Data de nascimento"
+                    type="date"
+                    {...register('dependente_nascimento')}
+                  />
+
+                  <div className="dropdown">
+                    <label htmlFor="lang" className="dropdowntext">
+                      Parentesco
+                    </label>
+                    <select
+                      className="parentesco"
+                      id="lang"
+                      {...register('dependente_origin')}
+                    >
+                      <option>Selecione o Parentesco</option>
+                      <option value="irmao">Irmão(ã)</option>
+                      <option value="pai">Pai</option>
+                      <option value="mae">Mãe</option>
+                      <option value="avo">Avô(ó)</option>
+                      <option value="primo">Primo(a)</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
 
