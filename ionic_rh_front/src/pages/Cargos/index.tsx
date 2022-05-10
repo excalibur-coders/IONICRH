@@ -9,7 +9,7 @@ import {
 import { SearchIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import { theme } from 'theme';
 import Input from 'components/Input';
-import RespBar from 'components/RespBar';
+import RespBar_adm from 'components/Respbar_adm';
 import Sidemenu from 'components/sideMenu';
 import { Table, Tbody, Tr, Td, TableContainer } from '@chakra-ui/react';
 import { HStack } from '@chakra-ui/react';
@@ -64,7 +64,7 @@ function Cargos() {
   return (
     <>
       <div>
-        <RespBar />
+        <RespBar_adm />
       </div>
 
       <S.Container>

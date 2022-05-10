@@ -25,7 +25,7 @@ import * as S from './style';
 import { api } from 'services/api';
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
-import RespBar from 'components/RespBar';
+import RespBar_adm from 'components/Respbar_adm';
 import { useNavigate } from 'react-router-dom';
 
 interface IFuncionarios {
@@ -84,7 +84,7 @@ function Funcionarios() {
   return (
     <>
       <div>
-        <RespBar />
+        <RespBar_adm />
       </div>
 
       <S.Container>
