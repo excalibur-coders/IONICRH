@@ -13,16 +13,18 @@ import * as S from './styles';
 function ContaSucesso() {
   return (
     <S.Container>
-      <div className='leftWrapper'>
+      <div className="leftWrapper">
         <img src={IonicLogo} />
-        <div className='text'>
+        <div className="text">
           <h1>Conta criada com Sucesso !</h1>
-          <span><Link to="/">Voltar</Link></span>
+          <span>
+            <Link to="/">Voltar</Link>
+          </span>
         </div>
       </div>
       <div className="rightWrapper">
         <img src={LogoGray} />
-        <img className='no' src={logoresponsive} />
+        <img className="no" src={logoresponsive} />
       </div>
     </S.Container>
   );

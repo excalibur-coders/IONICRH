@@ -54,8 +54,6 @@ export const Container = styled.div`
       .test {
         width: 100%;
       }
-
     }
-
   }
 `;

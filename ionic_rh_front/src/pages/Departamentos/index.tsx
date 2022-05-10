@@ -101,12 +101,7 @@ function Departamentos() {
           />
           <br></br>
           <TableContainer>
-            <Table
-              variant="striped"
-              size="lg"
-              className="Table"
-              background="#DBDBDB"
-            >
+            <Table variant="striped" size="lg" background="#DBDBDB">
               <div className="TableTwo">
                 <Tbody>
                   {departamentos.map(departamento => (

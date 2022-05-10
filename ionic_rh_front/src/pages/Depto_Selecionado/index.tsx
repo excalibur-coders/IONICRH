@@ -146,14 +146,14 @@ function DeptoTI() {
             </Box>
           </HStack>
           <br></br>
-          <HStack spacing="150px">
+          <HStack className="Largura" spacing="13vw">
             <Box fontSize="2xl" fontWeight="bold">
               Nome
             </Box>
             <Box fontSize="2xl" fontWeight="bold">
               Salário
             </Box>
-            <HStack spacing="250px">
+            <HStack spacing="400px">
               <Box fontSize="2xl" fontWeight="bold">
                 Cargo
               </Box>
@@ -169,19 +169,28 @@ function DeptoTI() {
             size="10rem"
           />
           <br></br>
-          <Table variant="striped" size="lg">
-            <div className="TableTwo">
+
+          <div>
+            <Table variant="striped" size="lg" background="#DBDBDB">
               <Tbody>
                 {departamentos?.cargo?.map((carg, index) =>
                   carg.contrato.map(ctr => (
                     <Tr key={index}>
-                      <Td fontSize="md">{ctr.user.user_nome}</Td>
-                      <Td fontSize="md">{ctr.contrato_faixa_salarial}</Td>
-                      <Td fontSize="md">{carg.cargo_area}</Td>
-                      <Td fontSize="md">{}</Td>
+                      <Td className="TBody" fontSize="lg">
+                        {ctr.user.user_nome}
+                      </Td>
+                      <Td className="TBody" fontSize="lg">
+                        {ctr.contrato_faixa_salarial}
+                      </Td>
+                      <Td className="TBody" fontSize="lg">
+                        {carg.cargo_area}
+                      </Td>
+                      <Td className="TBody" fontSize="lg">
+                        {}
+                      </Td>
                       <Td>
                         <Link
-                          fontSize="xl"
+                          fontSize="x1"
                           color={theme.colors.primary}
                           onClick={() => {
                             navigate(`/user/${ctr.user.user_id}`);
@@ -195,8 +204,8 @@ function DeptoTI() {
                   )),
                 )}
               </Tbody>
-            </div>
-          </Table>
+            </Table>
+          </div>
         </div>
       </S.Container>
     </>
