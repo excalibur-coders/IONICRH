@@ -73,22 +73,24 @@ function Departamentos() {
             </Box>
           </HStack>
           <br></br>
-          <Box fontSize="4xl" fontWeight="bold">
-            Departamentos
-          </Box>
-          <Box>
-            <InputGroup>
-              {/* eslint-disable-next-line react/no-children-prop */}
-              <InputLeftElement children={<SearchIcon w={5} h={5} />} />
-              <Input
-                fontSize={20}
-                size="lg"
-                width="70vw"
-                placeholder="       Pesquisar"
-                labelText={''}
-              />
-            </InputGroup>
-          </Box>
+          <HStack spacing="50vw">
+            <Box fontSize="4xl" fontWeight="bold">
+              Departamentos
+            </Box>
+            <Box>
+              <InputGroup>
+                {/* eslint-disable-next-line react/no-children-prop */}
+                <InputLeftElement children={<SearchIcon w={5} h={5} />} />
+                <Input
+                  fontSize={20}
+                  size="lg"
+                  width="15vw"
+                  placeholder="       Pesquisar"
+                  labelText={''}
+                />
+              </InputGroup>
+            </Box>
+          </HStack>
           <br></br>
           <Box fontSize="2xl" fontWeight="bold">
             Nome

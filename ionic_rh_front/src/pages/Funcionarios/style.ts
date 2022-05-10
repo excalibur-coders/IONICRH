@@ -8,6 +8,10 @@ export const Container = styled(Flex)`
     margin-left: 50px;
   }
 
+  .search {
+    flex-wrap: wrap;
+  }
+
   .Table {
     display: flex;
     align-items: left;

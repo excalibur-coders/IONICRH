@@ -81,11 +81,10 @@ function Cargos() {
             </Box>
           </HStack>
           <br></br>
-          <Box fontSize="4xl" fontWeight="bold">
-            Cargos
-          </Box>
-          <br></br>
-          <HStack>
+          <HStack spacing="50vw">
+            <Box fontSize="4xl" fontWeight="bold">
+              Cargos
+            </Box>
             <Box>
               <InputGroup>
                 {/* eslint-disable-next-line react/no-children-prop */}
@@ -93,7 +92,7 @@ function Cargos() {
                 <Input
                   fontSize={20}
                   size="lg"
-                  width="70vw"
+                  width="15vw"
                   placeholder="       Pesquisar"
                   labelText={''}
                 />
@@ -117,7 +116,7 @@ function Cargos() {
           />
           <br></br>
           <TableContainer>
-            <Table variant="striped" size="lg" background="#DBDBDB">
+            <Table variant="striped" size="lg" background="#00000029">
               <div className="TableTwo">
                 <Tbody>
                   {cargos.map(cargos => (

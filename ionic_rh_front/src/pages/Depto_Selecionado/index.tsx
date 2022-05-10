@@ -126,11 +126,10 @@ function DeptoTI() {
             </Box>
           </HStack>
           <br></br>
-          <Box fontSize="4xl" fontWeight="bold">
-            Departamento - {departamentos?.dep_name}
-          </Box>
-          <br></br>
-          <HStack>
+          <HStack spacing="40vw">
+            <Box fontSize="4xl" fontWeight="bold">
+              Departamento - {departamentos?.dep_name}
+            </Box>
             <Box>
               <InputGroup>
                 {/* eslint-disable-next-line react/no-children-prop */}
@@ -138,7 +137,7 @@ function DeptoTI() {
                 <Input
                   fontSize={20}
                   size="lg"
-                  width="70vw"
+                  width="15vw"
                   placeholder="       Pesquisar"
                   labelText={''}
                 />
