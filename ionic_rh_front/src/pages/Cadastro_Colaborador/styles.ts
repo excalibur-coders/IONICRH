@@ -133,6 +133,23 @@ export const Container = styled(Flex)`
         margin-top: 80px;
         width: 22rem;
         flex-direction: column;
+        .dropdown {
+          display: flex;
+          flex-direction: column;
+          .dropdowntext {
+            display: flex;
+            align-items: left;
+            font-size: 20px;
+            font-weight: bold;
+          }
+          .status {
+            height: 33px;
+            width: 22rem;
+            border: 1px solid black;
+            border-radius: 10px;
+            background-color: #f4f4f5;
+          }
+        }
       }
       .form-row {
         flex-direction: row;

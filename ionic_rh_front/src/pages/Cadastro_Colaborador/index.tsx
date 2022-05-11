@@ -58,7 +58,7 @@ interface CadastroProps {
       outros: string;
     },
   ];
-  contrato: string;
+  /* contrato: string; */
   dependente_nome: string;
   dependente_nascimento: string;
   dependente_origin: string;
@@ -94,7 +94,7 @@ function Cadastro() {
           user_genero: data.genero,
           user_raca: data.etnia,
           user_estado_civil: data.estadocivil,
-          user_tipo_contrato: data.contrato,
+          /* user_tipo_contrato: data.contrato, */
           escolaridades: [
             {
               school_instituicao: data.school_instituicao,
@@ -180,7 +180,7 @@ function Cadastro() {
       school_inicio: yup.string().required('Início obrigatório!'),
       school_termino: yup.string().required('Término obrigatório!'),
       school_status: yup.string().required('Status obrigatório!'),
-      contrato: yup.string().required('Tipo contrato obrigatório!'),
+      /* contrato: yup.string().required('Tipo contrato obrigatório!'), */
     })
     .required();
 
@@ -394,15 +394,21 @@ function Cadastro() {
                   {...register('school_termino')}
                 />
 
-                <Input
-                  size="sm"
-                  width="22rem"
-                  fontSize={20}
-                  labelText="Status"
-                  type="text"
-                  error={errors.school_status?.message}
-                  {...register('school_status')}
-                />
+                <div className="dropdown">
+                  <label htmlFor="lang" className="dropdowntext">
+                    Status
+                  </label>
+                  <select
+                    className="status"
+                    id="lang"
+                    {...register('school_status')}
+                  >
+                    <option>Selecione o status</option>
+                    <option value="completo">Completo</option>
+                    <option value="cursando">Cursando</option>
+                    <option value="incompleto">Incompleto</option>
+                  </select>
+                </div>
 
                 <Input
                   size="sm"
@@ -412,7 +418,7 @@ function Cadastro() {
                   {...register('school_curso')}
                 />
 
-                <Input
+                {/* <Input
                   size="sm"
                   width="22rem"
                   fontSize={20}
@@ -420,7 +426,7 @@ function Cadastro() {
                   type="text"
                   error={errors.contrato?.message}
                   {...register('contrato')}
-                />
+                /> */}
 
                 <h2>Idiomas</h2>
                 <CheckboxGroup colorScheme="blue">
