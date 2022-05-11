@@ -126,7 +126,7 @@ function DeptoTI() {
             </Box>
           </HStack>
           <br></br>
-          <HStack spacing="40vw">
+          <HStack className="search">
             <Box fontSize="4xl" fontWeight="bold">
               Departamento - {departamentos?.dep_name}
             </Box>
@@ -145,21 +145,19 @@ function DeptoTI() {
             </Box>
           </HStack>
           <br></br>
-          <HStack className="Largura" spacing="13vw">
+          <HStack className="TBody_2" spacing="80px">
             <Box fontSize="2xl" fontWeight="bold">
               Nome
             </Box>
             <Box fontSize="2xl" fontWeight="bold">
               Salário
             </Box>
-            <HStack spacing="400px">
-              <Box fontSize="2xl" fontWeight="bold">
-                Cargo
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Perfil
-              </Box>
-            </HStack>
+            <Box fontSize="2xl" fontWeight="bold">
+              Cargo
+            </Box>
+            <Box fontSize="2xl" fontWeight="bold">
+              Perfil
+            </Box>
           </HStack>
           <Divider
             orientation="horizontal"
