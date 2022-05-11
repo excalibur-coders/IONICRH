@@ -117,6 +117,32 @@ export const Container = styled(Flex)`
         justify-content: space-between;
       }
     }
+    .anexoWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: row;
+      border: 1px solid red;
+
+      .form {
+        width: 22rem;
+        flex-direction: row;
+        margin-top: 15px;
+        margin-bottom: 10rem;
+        h6 {
+          font-size: 30px;
+          font-weight: bold;
+          margin-top: 0px;
+        }
+        h4 {
+          font-size: 20px;
+          font-weight: bold;
+        }
+        Button {
+          margin-top: 30px;
+        }
+      }
+    }
     .centerWrapper {
       display: flex;
       align-items: center;

@@ -347,6 +347,20 @@ function Cadastro() {
                   mask="(99) 99999-9999"
                   {...register('telefone')}
                 />
+
+                <div className="anexoWrapper">
+                  <div className="form">
+                    <h6>Anexos</h6>
+                    <h4>
+                      Anexe abaixo os arquivos necessários: RG (Frente e Verso)
+                    </h4>
+                    <Button
+                      text="Anexar arquivos"
+                      color={theme.colors.primary}
+                      type="submit"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
