@@ -9,8 +9,6 @@ import {
 } from '@chakra-ui/react';
 import { SearchIcon, ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import Input from 'components/Input';
-import Nav from 'components/nav';
-import Navbar from 'components/navbar';
 import Sidemenu from 'components/sideMenu';
 import { MdFilterList, MdOutlineAccountBox } from 'react-icons/md';
 import {
@@ -25,10 +23,9 @@ import {
 import { HStack } from '@chakra-ui/react';
 import * as S from './style';
 import { api } from 'services/api';
-
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
-import RespBar from 'components/RespBar';
+import RespBar_adm from 'components/Respbar_adm';
 import { useNavigate } from 'react-router-dom';
 
 interface IFuncionarios {
@@ -87,7 +84,7 @@ function Funcionarios() {
   return (
     <>
       <div>
-        <RespBar />
+        <RespBar_adm />
       </div>
 
       <S.Container>
@@ -100,7 +97,7 @@ function Funcionarios() {
           <HStack className="search">
             <Box w="100px" fontSize={20}>
               <ArrowBackIcon w={7} h={7} />
-              <Link href="/home">Voltar</Link>
+              <button onClick={() => navigate(-1)}>Voltar</button>
             </Box>
           </HStack>
           <br></br>
@@ -183,7 +180,7 @@ function Funcionarios() {
                           <Td></Td>
                           <Td>
                             <Link
-                              href="/funcionarios"
+                              href={`User/${funcionario.user_id}`}
                               fontSize="xl"
                               color={theme.colors.primary}
                             >

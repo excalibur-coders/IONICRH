@@ -8,9 +8,9 @@ import {
 } from '@chakra-ui/react';
 import { SearchIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import { theme } from 'theme';
-import Sidebar from 'components/Sidebar';
 import Input from 'components/Input';
-import Navbar from 'components/navbar';
+import RespBar_adm from 'components/Respbar_adm';
+import Sidemenu from 'components/sideMenu';
 import { Table, Tbody, Tr, Td, TableContainer } from '@chakra-ui/react';
 import { HStack } from '@chakra-ui/react';
 import * as S from './styles';
@@ -18,6 +18,7 @@ import { api } from 'services/api';
 
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface ICargo {
   departamento: IDepartamento;
@@ -33,6 +34,7 @@ interface IDepartamento {
 
 function Cargos() {
   const cookies = parseCookies();
+  const navigate = useNavigate();
 
   const [cargos, setCargos] = useState<ICargo[]>([]);
   const [loading, setLoading] = useState(false);
@@ -64,12 +66,12 @@ function Cargos() {
   return (
     <>
       <div>
-        <Navbar />
+        <RespBar_adm />
       </div>
 
       <S.Container>
         <div>
-          <Sidebar />
+          <Sidemenu />
         </div>
 
         <div className="input">
@@ -77,7 +79,7 @@ function Cargos() {
           <HStack>
             <Box w="100px" fontSize={20}>
               <ArrowBackIcon w={7} h={7} />
-              <Link href="/">Voltar</Link>
+              <button onClick={() => navigate(-1)}>Voltar</button>
             </Box>
           </HStack>
           <br></br>

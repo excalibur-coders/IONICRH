@@ -1,6 +1,6 @@
 // import { Input, Stack } from '@chakra-ui/react';
 import { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Input from 'components/Input';
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
@@ -14,6 +14,8 @@ import Button from 'components/Button';
 // console.log(theme.colors.primary);
 
 function SenhaAlterada() {
+  const navigate = useNavigate();
+
   return (
     <S.Container>
       <div className="leftWrapper">
@@ -21,7 +23,7 @@ function SenhaAlterada() {
         <div className="text">
           <h1>Senha alterada com Sucesso !</h1>
           <span>
-            <Link to="/">Voltar</Link>
+            <button onClick={() => navigate(-1)}>Voltar</button>
           </span>
         </div>
       </div>

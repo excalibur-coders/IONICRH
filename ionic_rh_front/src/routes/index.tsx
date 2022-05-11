@@ -19,6 +19,7 @@ import Colab_home from 'pages/Colaborador_home';
 import Colab_onboard from 'pages/Colaborador_onboard';
 import Colab_user from 'pages/Colaborador_user';
 import Consultor from 'pages/Consultor_Tela';
+import Org from 'pages/Organograma';
 
 function Routes() {
   return (
@@ -44,6 +45,7 @@ function Routes() {
       <Route path="/Administrador" element={<Administrador />} />
       <Route path="/AdministradorEdit" element={<AdministradorEdit />} />
       <Route path="/Consultor" element={<Consultor />} />
+      <Route path="/Organograma" element={<Org />} />
     </RoutesWrapper>
     // </BrowserRouter>
   );

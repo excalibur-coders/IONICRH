@@ -112,3 +112,36 @@ export const getDepFilter = async (req: Request, res: Response) => {
       res.json(error)
   }
 }
+
+export const organograma = async (req: Request, res: Response) => {
+  try {
+      const {
+          id
+      } = req.params
+      const result = await departamentoRepository
+          .createQueryBuilder()
+          .select([
+              "d.dep_name",
+              "d.dep_id",
+              "c.headID",
+              "c.cargo_area",
+              "cont.contrato_matricula",
+              "u.user_nome",
+              "u.user_email",
+              "u.user_id",
+          ])
+          .from(departamento, "d")
+          .leftJoin("d.cargo", "c")
+          .leftJoin('c.contrato','cont')
+          .leftJoin('cont.user','u')
+          .andWhere("d.dep_id = departamentoDepId", {
+          })
+          .andWhere("c.cargo_id = cargoCargoId")
+          .andWhere("cont.userUserId = user_id")
+          .getMany()
+      res.json(result)
+  } catch (error) {
+      res.json(error)
+  }
+}
+

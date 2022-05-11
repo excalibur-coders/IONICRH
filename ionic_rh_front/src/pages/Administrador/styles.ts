@@ -6,6 +6,7 @@ import { theme } from 'theme';
 export const Container = styled(Flex)`
   height: 100vh;
   display: flex;
+  margin-top: 3rem;
   flex-direction: column;
   color: ${theme.colors.font};
   .Wrapper {
