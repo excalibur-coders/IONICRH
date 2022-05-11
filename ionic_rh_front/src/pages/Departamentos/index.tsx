@@ -8,8 +8,8 @@ import {
 } from '@chakra-ui/react';
 import { SearchIcon, ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { theme } from 'theme';
-import Navbar from 'components/nav';
-import Sidebar from 'components/Sidebar';
+import RespBar_adm from 'components/Respbar_adm';
+import Sidemenu from 'components/sideMenu';
 import Input from 'components/Input';
 import { Table, Tbody, Tr, Td, TableContainer } from '@chakra-ui/react';
 import { HStack } from '@chakra-ui/react';
@@ -56,12 +56,12 @@ function Departamentos() {
   return (
     <>
       <div>
-        <Navbar></Navbar>
+        <RespBar_adm />
       </div>
 
       <S.Container>
         <div>
-          <Sidebar />
+          <Sidemenu />
         </div>
 
         <div className="input">

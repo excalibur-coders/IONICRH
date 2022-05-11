@@ -9,6 +9,11 @@ import {
   MdSchema,
   MdKeyboardArrowLeft,
   MdKeyboardArrowRight,
+  MdOutlinePlaylistAdd,
+  MdFormatListBulleted,
+  MdAdminPanelSettings,
+  MdOutlinePersonPin,
+  MdOutlineDesktopMac,
 } from 'react-icons/md';
 function Sidemenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,43 +24,93 @@ function Sidemenu() {
           <ul>
             <li>
               <a>
-                <Link to={'/Cargos'}>
+                <Link to={'/Cadastrar'}>
                   <span className="icon">
-                    <MdOutlineBusinessCenter size="35px" />
+                    <MdOutlinePlaylistAdd size="35px" />
                   </span>
-                  <span className="tittle">Cargos</span>
+                  <span className="tittle">Cadastrar</span>
                 </Link>
               </a>
             </li>
             <li>
               <a>
-                <Link to={'/Departamentos'}>
-                  <span className="icon">
-                    <MdOutlineApartment size="35px" />
-                  </span>
-                  <span className="tittle">Departamentos</span>
-                </Link>
+                <span className="icon">
+                  <MdFormatListBulleted size="35px" />
+                </span>
+                <span className="tittle">Listar</span>
               </a>
+              <ul>
+                <li>
+                  <a>
+                    <Link to={'/Cargos'}>
+                      <span className="icon">
+                        <MdOutlineBusinessCenter size="25px" />
+                      </span>
+                      <span className="tittle">Cargos</span>
+                    </Link>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <Link to={'/Departamentos'}>
+                      <span className="icon">
+                        <MdOutlineApartment size="25px" />
+                      </span>
+                      <span className="tittle">Departamentos</span>
+                    </Link>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <Link to={'/Funcionarios'}>
+                      <span className="icon">
+                        <MdOutlinePeopleAlt size="25px" />
+                      </span>
+                      <span className="tittle">Funcionarios</span>
+                    </Link>
+                  </a>
+                </li>
+              </ul>
             </li>
             <li>
               <a>
-                <Link to={'/Funcionarios'}>
-                  <span className="icon">
-                    <MdOutlinePeopleAlt size="35px" />
-                  </span>
-                  <span className="tittle">Funcionarios</span>
-                </Link>
+                <span className="icon">
+                  <MdSchema size="35px" />
+                </span>
+                <span className="tittle">Organograma</span>
               </a>
-            </li>
-            <li>
-              <a>
-                <Link to={''}>
-                  <span className="icon">
-                    <MdSchema size="35px" />
-                  </span>
-                  <span className="tittle">Organograma</span>
-                </Link>
-              </a>
+              <ul>
+                <li>
+                  <a>
+                    <Link to={'/'}>
+                      <span className="icon">
+                        <MdAdminPanelSettings size="25px" />
+                      </span>
+                      <span className="tittle">Administração</span>
+                    </Link>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <Link to={'/'}>
+                      <span className="icon">
+                        <MdOutlinePersonPin size="25px" />
+                      </span>
+                      <span className="tittle">Recursos Humanos</span>
+                    </Link>
+                  </a>
+                </li>
+                <li>
+                  <a>
+                    <Link to={'/'}>
+                      <span className="icon">
+                        <MdOutlineDesktopMac size="25px" />
+                      </span>
+                      <span className="tittle">TI</span>
+                    </Link>
+                  </a>
+                </li>
+              </ul>
             </li>
           </ul>
         </div>

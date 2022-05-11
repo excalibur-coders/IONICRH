@@ -3,6 +3,8 @@ import { Flex } from '@chakra-ui/react';
 
 export const Container = styled(Flex)`
   backgroud: #00000029;
+  margin-top: 3rem;
+  overflow: hidden;
 
   .input {
     margin-left: 50px;
