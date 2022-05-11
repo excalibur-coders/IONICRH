@@ -330,10 +330,10 @@ function User() {
                   Departamento:{' '}
                   {user?.contrato?.[0]?.cargo.departamento?.dep_name}{' '}
                 </span>
-                <span>Cargo: {user?.contrato?.[0]?.contrato_base}</span>
+                <span>Cargo: {user?.contrato?.[0]?.cargo.cargo_area}</span>
                 <span>Turno: </span>
                 <span>Status: </span>
-                <span>Base: </span>
+                <span>Base: {user?.contrato?.[0]?.contrato_base} </span>
                 <span>Head: {user?.contrato?.[0]?.cargo.cargo_head} </span>
                 <span>Domínio: </span>
                 <span>Nível: {user?.contrato?.[0]?.cargo.cargo_nivel} </span>

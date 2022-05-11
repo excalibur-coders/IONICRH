@@ -9,6 +9,7 @@ export const Container = styled.div`
     .navigation {
       position: relative;
       width: 60px;
+      height: 135vh;
       background: ${theme.colors.primary};
       border-radius: 0px 10px 10px 0px;
       overflow: hidden;
