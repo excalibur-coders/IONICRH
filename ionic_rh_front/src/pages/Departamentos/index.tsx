@@ -69,7 +69,7 @@ function Departamentos() {
           <HStack>
             <Box w="100px" fontSize={20}>
               <ArrowBackIcon w={7} h={7} />
-              <Link href="/home">Voltar</Link>
+              <button onClick={() => navigate(-1)}>Voltar</button>
             </Box>
           </HStack>
           <br></br>

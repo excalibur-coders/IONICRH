@@ -10,6 +10,7 @@ import { escolaridade } from "models/user_escola";
 import { idiomas } from "models/user_idioma";
 import { telefone } from "models/user_telefone";
 import { documentos } from "models/user_docs";
+import { dependente } from "models/userDependente";
 
 interface IDecodedParams {
     id: string;
@@ -23,6 +24,7 @@ const escolaridadeRepository = AppDataSource.getRepository(escolaridade);
 const telefoneRepository = AppDataSource.getRepository(telefone);
 const endRepository = AppDataSource.getRepository(endereco)
 const docsRepository = AppDataSource.getRepository(documentos)
+const dependenteRepository = AppDataSource.getRepository(dependente)
 
 export const updateUser = async (req: Request, res: Response) => {
     try {
@@ -156,13 +158,36 @@ export const adicionarEndereco = async (req: Request, res: Response, next: NextF
         res.json(error)
     }
 }
-
+export const adicionarDependente = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const tokenHeader = req.headers.authorization;
+        const splitToken = tokenHeader?.split(' ')[1] as string;
+        const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
+        const {
+            dependentes
+        } = req.body
+        const adicionarDependete = dependentes.map((deps: any) => {
+            return {
+                ...deps,
+                userUserId: Number(decodedJwt.id)
+            }
+        })
+        await dependenteRepository
+            .createQueryBuilder()
+            .insert()
+            .into(dependente)
+            .values(adicionarDependete)
+            .execute()
+        next()
+    } catch (error) {
+        res.json(error)
+    }
+}
 export const adicionarDocumento = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const tokenHeader = req.headers.authorization;
         const splitToken = tokenHeader?.split(' ')[1] as string;
         const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
-        /* const {} = req.file */
         await docsRepository
             .createQueryBuilder()
             .insert()
@@ -175,7 +200,7 @@ export const adicionarDocumento = async (req: Request, res: Response, next: Next
                 userUserId: Number(decodedJwt.id)
             })
             .execute()
-            next()
+        next()
     } catch (error) {
         res.json(error)
     }

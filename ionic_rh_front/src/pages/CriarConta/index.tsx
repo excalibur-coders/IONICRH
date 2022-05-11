@@ -12,6 +12,7 @@ import Input from 'components/Input';
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
 import LogoGray from 'assets/svg/logo-gray.svg';
 import { theme } from 'theme';
+import logoresponsive from 'assets/svg/logoresponsive.png';
 
 import * as S from './styles';
 import Button from 'components/Button';
@@ -153,6 +154,7 @@ function CriarConta() {
 
         <div className="rightWrapper">
           <img src={LogoGray} />
+          <img className="no" src={logoresponsive} />
         </div>
       </div>
     </S.Container>

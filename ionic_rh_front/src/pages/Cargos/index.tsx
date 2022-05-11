@@ -18,6 +18,7 @@ import { api } from 'services/api';
 
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface ICargo {
   departamento: IDepartamento;
@@ -33,6 +34,7 @@ interface IDepartamento {
 
 function Cargos() {
   const cookies = parseCookies();
+  const navigate = useNavigate();
 
   const [cargos, setCargos] = useState<ICargo[]>([]);
   const [loading, setLoading] = useState(false);
@@ -77,7 +79,7 @@ function Cargos() {
           <HStack>
             <Box w="100px" fontSize={20}>
               <ArrowBackIcon w={7} h={7} />
-              <Link href="/">Voltar</Link>
+              <button onClick={() => navigate(-1)}>Voltar</button>
             </Box>
           </HStack>
           <br></br>

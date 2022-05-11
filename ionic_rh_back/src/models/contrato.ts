@@ -1,11 +1,12 @@
 import {
-    Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn
+    Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany
 } from "typeorm";
 import { cargo } from "./cargo";
 import { empresa_contratante } from "./emp_contratante";
 import { empresa_PJ } from "./emp_pj";
 
 import { user } from "./user";
+import { dependente } from "./userDependente";
 export type Contratacao_type = "Pessoa Juridica" | "CLT" | "Estagio" | "Temporario"
 @Entity()
 export class contrato {
@@ -14,32 +15,39 @@ export class contrato {
 
     @Column({
         type: "varchar",
+        nullable: true
+
     })
     contrato_base!: string;
 
     @Column({
         type: "varchar",
+        nullable: true
     })
     contrato_adimissao!: string;
 
     @Column({
         type: "varchar",
+        nullable: true
     })
     contrato_matricula!: string;
     
     @Column({
         type: "varchar",
-        length: 2000
+        length: 2000,
+        nullable: true
     })
     contrato_turno!: string;
 
     @Column({
         type: "varchar",
+        nullable: true
     })
     contrato_tempo_de_casa!: string;
 
     @Column({
         type: "varchar",
+        nullable: true
     })
     contrato_termos!: string;
 
@@ -52,6 +60,7 @@ export class contrato {
     // User ?? Dominio = site e afins
     @Column({
         type: "varchar",
+        nullable: true
     })
     contrato_dominio!: string;
 
@@ -64,16 +73,19 @@ export class contrato {
 
     @Column({
         type: "float",
+        nullable: true
     })
     contrato_faixa_salarial!: number;
 
     @Column({
         type: "float",
+        nullable: true
     })
     contrato_plano_saude!: number;
 
     @Column({
         type: "float",
+        nullable: true
     })
     contrato_vale_transporte!: number;
 
@@ -119,6 +131,7 @@ export class contrato {
     })
     userUserId!: number
 
+
     @ManyToOne(() => empresa_contratante, (emp_contratante) => emp_contratante.contrato)
     @JoinColumn({
         name: "empContratanteContratanteId"
@@ -141,4 +154,7 @@ export class contrato {
         type: "int"
     })
     cargoCargoId?: number
+
+    @OneToMany(() => cargo, (cargoHead) => cargoHead.cargoID)
+    cargoHead?: cargo
 }

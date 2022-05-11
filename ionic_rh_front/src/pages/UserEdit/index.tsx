@@ -3,7 +3,7 @@ import { theme } from 'theme';
 import Nav from 'components/nav';
 import * as S from './styles';
 import { useState, useCallback, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Input from 'components/Input';
 import { Divider, Select } from '@chakra-ui/react';
 import Button from 'components/Button';
@@ -37,7 +37,7 @@ interface IUser {
 }
 
 interface IContrato {
-  /* cargo: ICargo; */
+  cargo: ICargo;
   contrato_matricula?: string;
   contrato_auxilio_creche?: number;
   contrato_base?: string;
@@ -53,8 +53,8 @@ interface IContrato {
   contrato_vale_alimentacao?: number;
   contrato_vale_refeicao?: number;
   contrato_vale_transporte?: number;
-  contrato_type?: string;
-  contrato_data_adicao?: string;
+  contrato_tipo?: string;
+  contrato_data_admissao?: string;
   emp_contratante: IEmpContratante;
   contrato_turno?: string;
   empContratanteContratanteId?: IEmpContratante;
@@ -156,9 +156,8 @@ interface IFormProps {
   contrato_vale_transporte?: number;
   contrato_type?: string;
   contrato_tipo?: string;
-  contrato_data_adicao?: string;
+  contrato_data_admissao?: string;
   contratante_nome?: string;
-  contrato_adimissao?: string;
   user_raca: string;
   user_rg?: string;
   contrato_turno?: string;
@@ -179,16 +178,15 @@ function UserEdit() {
   const [cargos, setCargos] = useState<ICargo[]>([]);
   const [empresas, setEmpresas] = useState<IEmpresas[]>([]);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
     setValue,
   } = useForm<IFormProps>({
     mode: 'onBlur',
-    //resolver: yupResolver(schema),
   });
 
   const getAllEmpresas = useCallback(() => {
@@ -278,14 +276,14 @@ function UserEdit() {
         'contrato_auxilio_creche',
         data.contrato[0].contrato_auxilio_creche,
       );
-      setValue('contrato_type', data.contrato[0].contrato_type);
+      setValue('contrato_type', data.contrato[0].contrato_tipo);
       setValue('cargo_area', data.contrato[0].cargoCargoId?.cargo_id);
       setValue('contrato_turno', data.contrato[0].contrato_turno);
       setValue(
         'empContratanteContratanteId',
         data.contrato[0].empContratanteContratanteId?.contratante_id,
       );
-      setValue('contrato_adimissao', data.contrato[0].contrato_adimissao);
+      setValue('contrato_data_admissao', data.contrato[0].contrato_adimissao);
       setValue('contrato_matricula', data.contrato[0].contrato_matricula);
     },
     [setValue],
@@ -336,9 +334,9 @@ function UserEdit() {
             contrato_vale_alimentacao: Number(data.contrato_vale_alimentacao),
             contrato_auxilio_creche: Number(data.contrato_auxilio_creche),
             contrato_tipo: data.contrato_type,
-            cargoCargoId: data.cargo_area,
+            cargoCargoId: 1,
             empContratanteContratanteId: data.empContratanteContratanteId,
-            contrato_adimissao: data?.contrato_data_adicao,
+            contrato_adimissao: data?.contrato_data_admissao,
             contrato_matricula: data?.contrato_matricula,
             contrato_turno: data.contrato_turno,
           },
@@ -380,7 +378,7 @@ function UserEdit() {
             contrato_tipo: data.contrato_type,
             cargoCargoId: data.cargo_area,
             empContratanteContratanteId: data.contratante_nome,
-            contrato_adimissao: data?.contrato_data_adicao,
+            contrato_adimissao: data?.contrato_data_admissao,
             contrato_matricula: data?.contrato_matricula,
             contrato_turno: data.contrato_turno,
           },
@@ -392,7 +390,6 @@ function UserEdit() {
         )
         .then(({ data }) => {
           console.log(data);
-          console.log(data.contrato.cargo_area);
         })
         .catch(error => {
           console.log(error);
@@ -403,8 +400,6 @@ function UserEdit() {
 
   const onSubmit = useCallback(
     async data => {
-      console.log(user?.contrato?.[0]?.contrato_matricula);
-
       if (user?.contrato?.[0]?.contrato_matricula == null)
         cadastroContrato(data);
       else updateContrato(data);
@@ -438,7 +433,11 @@ function UserEdit() {
                   />
                   {/*</Link>/*/}
                   <Link to="User/:id">
-                    <Button text="Cancelar" color={theme.colors.red} />
+                    <Button
+                      text="Cancelar"
+                      color={theme.colors.red}
+                      onClick={() => navigate(-1)}
+                    />
                   </Link>
                 </div>
 
@@ -715,9 +714,16 @@ function UserEdit() {
                   <div className="coluna1">
                     <span>Departamento: </span>
                     <Select
-                      placeholder="Selecione uma opção"
+                      placeholder={
+                        user?.contrato?.[0]?.cargo.departamento.dep_id
+                          ? user?.contrato?.[0]?.cargo.departamento.dep_name
+                          : 'Selecione uma opção'
+                      }
                       size="xs"
                       {...register('dep_name')}
+                      defaultValue={
+                        user?.contrato?.[0]?.cargo.departamento.dep_id
+                      }
                     >
                       {departamentos.map((departamento, index) => (
                         <option key={index} value={departamento.dep_id}>
@@ -739,9 +745,14 @@ function UserEdit() {
                   <div className="coluna1">
                     <span>Cargo:</span>
                     <Select
-                      placeholder="Selecione uma opção"
+                      placeholder={
+                        user?.contrato?.[0]?.cargo.cargo_id
+                          ? user?.contrato?.[0]?.cargo.cargo_area
+                          : 'Selecione uma opção'
+                      }
                       size="xs"
                       {...register('cargo_area')}
+                      defaultValue={user?.contrato?.[0]?.cargo.cargo_id}
                     >
                       {cargos.map((cargo, index) => (
                         <option key={index} value={cargo.cargo_id}>
@@ -842,6 +853,7 @@ function UserEdit() {
                     <Select
                       placeholder="Selecione uma opção"
                       size="xs"
+                      defaultValue={user?.contrato?.[0]?.contrato_tipo}
                       {...register('contrato_type')}
                     >
                       <option value="Pessoa Juridica">PJ</option>
@@ -898,17 +910,25 @@ function UserEdit() {
                       placeholder=""
                       width="auto"
                       fontSize={15}
-                      {...register('contrato_data_adicao')}
-                      defaultValue={user?.contrato?.[0]?.contrato_data_adicao}
+                      {...register('contrato_data_admissao')}
+                      defaultValue={user?.contrato?.[0]?.contrato_data_admissao}
                     />
                   </div>
 
                   <div className="coluna2">
                     <span>Empresa contratante:</span>
                     <Select
-                      placeholder="Selecione uma opção"
+                      placeholder={
+                        user?.contrato?.[0]?.emp_contratante.contratante_nome
+                          ? user?.contrato?.[0]?.emp_contratante
+                              .contratante_nome
+                          : 'Selecione uma opção'
+                      }
                       size="xs"
                       {...register('contratante_nome')}
+                      defaultValue={
+                        user?.contrato?.[0]?.emp_contratante.contratante_id
+                      }
                     >
                       {empresas.map(empresa => (
                         <option
