@@ -41,6 +41,11 @@ export const Container = styled(Flex)`
       margin-top: 80px;
       opacity: 0.5;
     }
+    .ButtonW {
+      display: flex;
+      align-items: center;
+      margin-top: 18rem;
+    }
   }
   .mainWrapper {
     width: 100%;
@@ -186,11 +191,6 @@ export const Container = styled(Flex)`
           justify-content: space-between;
         }
       }
-    }
-    .ButtonW {
-      display: flex;
-      align-items: center;
-      margin-top: 1rem;
     }
   }
 `;

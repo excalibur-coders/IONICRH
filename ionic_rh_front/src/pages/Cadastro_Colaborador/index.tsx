@@ -550,7 +550,7 @@ function Cadastro() {
                     size="sm"
                     width="10rem"
                     fontSize={20}
-                    labelText="Data de nascimento"
+                    labelText="Nascimento"
                     type="date"
                     {...register('dependente_nascimento')}
                   />
@@ -589,7 +589,7 @@ function Cadastro() {
                     size="sm"
                     width="10rem"
                     fontSize={20}
-                    labelText="Data de nascimento"
+                    labelText="Nascimento"
                     type="date"
                     {...register('dependente_nascimento2')}
                   />
@@ -628,7 +628,7 @@ function Cadastro() {
                     size="sm"
                     width="10rem"
                     fontSize={20}
-                    labelText="Data de nascimento"
+                    labelText="Nascimento"
                     type="date"
                     {...register('dependente_nascimento3')}
                   />
