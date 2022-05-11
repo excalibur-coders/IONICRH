@@ -118,7 +118,7 @@ function DeptoTI() {
               <ArrowBackIcon w={7} h={7} />
               <Link
                 onClick={() => {
-                  navigate(`/departamentos`);
+                  navigate(-1);
                 }}
               >
                 Voltar

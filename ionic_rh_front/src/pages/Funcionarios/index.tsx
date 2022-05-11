@@ -97,7 +97,7 @@ function Funcionarios() {
           <HStack>
             <Box w="100px" fontSize={20}>
               <ArrowBackIcon w={7} h={7} />
-              <Link href="/home">Voltar</Link>
+              <button onClick={() => navigate(-1)}>Voltar</button>
             </Box>
           </HStack>
           <br></br>
@@ -178,7 +178,7 @@ function Funcionarios() {
                           <Td></Td>
                           <Td>
                             <Link
-                              href="/funcionarios"
+                              href={`User/${funcionario.user_id}`}
                               fontSize="xl"
                               color={theme.colors.primary}
                             >
