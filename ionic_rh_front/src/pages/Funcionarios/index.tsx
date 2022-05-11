@@ -88,7 +88,7 @@ function Funcionarios() {
       </div>
 
       <S.Container>
-        <div>
+        <div className="side">
           <Sidemenu />
         </div>
 

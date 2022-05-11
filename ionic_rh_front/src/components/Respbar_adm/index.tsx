@@ -13,13 +13,13 @@ function RespBar_adm() {
   const { signOut } = useContext(AuthContext);
   return (
     <S.Navbar>
-      <a href="/Colab_home">
+      <a href="/ADM_home">
         <img src={logo} />
       </a>
       <S.Navlist>
         <ul className={`nav_menu ${isOpen && 'open'}`}>
           <li className="nav_item">
-            <a href="Funcionarios">Listagem</a>
+            <a href="/Funcionarios">Listagem</a>
           </li>
           <li className="nav_item0">
             <a href="/Administrador">Perfil</a>

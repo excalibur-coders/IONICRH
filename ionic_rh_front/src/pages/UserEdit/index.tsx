@@ -1,6 +1,6 @@
 import { MdAccountCircle } from 'react-icons/md';
 import { theme } from 'theme';
-import RespBar from 'components/RespBar';
+import RespBar_adm from 'components/Respbar_adm';
 import * as S from './styles';
 import { useState, useCallback, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -409,7 +409,7 @@ function UserEdit() {
 
   return (
     <>
-      <RespBar />
+      <RespBar_adm />
 
       <S.Container>
         <form onSubmit={handleSubmit(onSubmit)}>
