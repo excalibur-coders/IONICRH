@@ -64,7 +64,7 @@ function Departamentos() {
           <Sidemenu />
         </div>
 
-        <div className="input">
+        <div className="Corpo">
           <br></br>
           <HStack>
             <Box w="100px" fontSize={20}>
@@ -73,7 +73,7 @@ function Departamentos() {
             </Box>
           </HStack>
           <br></br>
-          <HStack spacing="50vw">
+          <HStack className="search">
             <Box fontSize="4xl" fontWeight="bold">
               Departamentos
             </Box>
@@ -84,7 +84,7 @@ function Departamentos() {
                 <Input
                   fontSize={20}
                   size="lg"
-                  width="15vw"
+                  width="20vw"
                   placeholder="       Pesquisar"
                   labelText={''}
                 />

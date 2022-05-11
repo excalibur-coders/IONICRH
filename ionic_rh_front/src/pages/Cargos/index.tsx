@@ -83,7 +83,7 @@ function Cargos() {
             </Box>
           </HStack>
           <br></br>
-          <HStack spacing="50vw">
+          <HStack className="search">
             <Box fontSize="4xl" fontWeight="bold">
               Cargos
             </Box>
@@ -102,7 +102,7 @@ function Cargos() {
             </Box>
           </HStack>
           <br></br>
-          <HStack spacing="500px">
+          <HStack spacing="32vw">
             <Box fontSize="2xl" fontWeight="bold">
               Cargo
             </Box>

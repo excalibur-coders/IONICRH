@@ -92,16 +92,16 @@ function Funcionarios() {
           <Sidemenu />
         </div>
 
-        <div className="input">
+        <div className="Corpo">
           <br></br>
-          <HStack className="search">
+          <HStack>
             <Box w="100px" fontSize={20}>
               <ArrowBackIcon w={7} h={7} />
               <button onClick={() => navigate(-1)}>Voltar</button>
             </Box>
           </HStack>
           <br></br>
-          <HStack spacing="50vw">
+          <HStack className="search">
             <Box fontSize="4xl" fontWeight="bold">
               Funcionários
             </Box>
@@ -112,7 +112,7 @@ function Funcionarios() {
                 <Input
                   fontSize={20}
                   size="lg"
-                  width="15vw"
+                  width="18vw"
                   placeholder="       Pesquisar"
                   labelText={''}
                 />
@@ -120,7 +120,7 @@ function Funcionarios() {
             </Box>
           </HStack>
           <br></br>
-          <HStack spacing="150px">
+          <HStack className="TBody_2">
             <Box fontSize="2xl" fontWeight="bold">
               Nome
             </Box>
@@ -130,14 +130,12 @@ function Funcionarios() {
             <Box fontSize="2xl" fontWeight="bold">
               Departamento
             </Box>
-            <HStack spacing="250px">
-              <Box fontSize="2xl" fontWeight="bold">
-                Cargo
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Perfil
-              </Box>
-            </HStack>
+            <Box fontSize="2xl" fontWeight="bold">
+              Cargo
+            </Box>
+            <Box fontSize="2xl" fontWeight="bold">
+              Perfil
+            </Box>
           </HStack>
           <Divider
             orientation="horizontal"
@@ -154,31 +152,29 @@ function Funcionarios() {
                     //console.log('bom dia', funcionario);
                     return (
                       <>
-                        <Tr>
-                          <Td fontSize="md">{funcionario.user_nome}</Td>
-                          <Td>
+                        <Tr className="TBody_2">
+                          <Td className="TBody_2" fontSize="md">
+                            {funcionario.user_nome}
+                          </Td>
+                          <Td className="TBody_2">
                             {funcionario.contrato?.[0]?.contrato_faixa_salarial
                               ? funcionario.contrato?.[0]
                                   ?.contrato_faixa_salarial
                               : '-'}
                           </Td>
-                          <Td></Td>
-                          <Td>
+                          <Td className="TBody_2">
                             {funcionario.contrato?.[0]?.cargo.departamento
                               .dep_name
                               ? funcionario.contrato?.[0]?.cargo.departamento
                                   .dep_name
                               : '-'}
                           </Td>
-                          <Td></Td>
-                          <Td>
+                          <Td className="TBody_2">
                             {funcionario.contrato?.[0]?.cargo.cargo_area
                               ? funcionario.contrato?.[0]?.cargo.cargo_area
                               : '-'}
                           </Td>
-                          <Td></Td>
-                          <Td></Td>
-                          <Td>
+                          <Td className="TBody_2">
                             <Link
                               href={`User/${funcionario.user_id}`}
                               fontSize="xl"
