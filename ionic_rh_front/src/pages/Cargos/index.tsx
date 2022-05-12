@@ -70,7 +70,7 @@ function Cargos() {
       </div>
 
       <S.Container>
-        <div>
+        <div className="sidebar">
           <Sidemenu />
         </div>
 
