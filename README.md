@@ -78,7 +78,8 @@
 
 ## Backlog do Produto
 
-![produto](https://user-images.githubusercontent.com/80925387/167985028-b4ae6e54-1620-43c0-8f18-c075be8408a0.png)
+![produto](https://user-images.githubusercontent.com/80925387/167988579-5427c958-28e5-435a-9e02-42137939c540.png)
+
 
 <br>
 
