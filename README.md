@@ -36,13 +36,13 @@
 - ![em andamento](./docs/readme/a_fazer.jpeg) Usuários devem ter perfis diferentes (administrador, gestor, consultor, colaborador);
 - ![feito](./docs/readme/check.jpeg) Organograma da Empresa;
 - ![feito](./docs/readme/check.jpeg) Repositório de documentos da empresa (políticas, normas, regras, etc);
-- ![feito](./docs/readme/a_fazer.jpeg) Upload e Download de documentos para consulta do Administrador e Gestor.
+- ![feito](./docs/readme/check.jpeg) Upload e Download de documentos para consulta do Administrador e Gestor.
   <br>
 
 > **Requisitos não Funcionais**
 - ![feito](./docs/readme/check.jpeg) Linguagens NodeJS, TypeScript, Javascript;
 - ![feito](./docs/readme/check.jpeg) Banco de Dados Relacional;
-- ![feito](./docs/readme/a_fazer.jpeg) Manual do usuário para navegação.
+- ![feito](./docs/readme/check.jpeg) Manual do usuário para navegação.
 
 
 <br>
