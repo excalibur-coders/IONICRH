@@ -94,106 +94,113 @@ function Funcionarios() {
 
         <div className="input">
           <br></br>
-          <HStack>
-            <Box w="100px" fontSize={20}>
-              <ArrowBackIcon w={7} h={7} />
-              <button onClick={() => navigate(-1)}>Voltar</button>
-            </Box>
-          </HStack>
-          <br></br>
-          <Box fontSize="4xl" fontWeight="bold">
-            Funcionários
-          </Box>
-          <Box>
-            <InputGroup>
-              {/* eslint-disable-next-line react/no-children-prop */}
-              <InputLeftElement children={<SearchIcon w={5} h={5} />} />
-              <Input
-                fontSize={20}
-                size="lg"
-                width="70vw"
-                placeholder="       Pesquisar"
-                labelText={''}
-              />
-            </InputGroup>
-          </Box>
-          <br></br>
-          <HStack spacing="150px">
-            <Box fontSize="2xl" fontWeight="bold">
-              Nome
-            </Box>
-            <Box fontSize="2xl" fontWeight="bold">
-              Salário
-            </Box>
-            <Box fontSize="2xl" fontWeight="bold">
-              Departamento
-            </Box>
-            <HStack spacing="250px">
-              <Box fontSize="2xl" fontWeight="bold">
-                Cargo
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Perfil
+          <div className="container1">
+            <HStack>
+              <Box w="100px" fontSize={20}>
+                <ArrowBackIcon w={7} h={7} />
+                <button onClick={() => navigate(-1)}>Voltar</button>
               </Box>
             </HStack>
-          </HStack>
-          <Divider
-            orientation="horizontal"
-            borderColor={theme.colors.font}
-            variant="solid"
-            size="10rem"
-          />
+            <br></br>
+            <Box fontSize="4xl" fontWeight="bold">
+              Funcionários
+            </Box>
+            <Box>
+              <InputGroup>
+                {/* eslint-disable-next-line react/no-children-prop */}
+                <InputLeftElement children={<SearchIcon w={5} h={5} />} />
+                <Input
+                  fontSize={20}
+                  size="lg"
+                  width="70vw"
+                  placeholder="       Pesquisar"
+                  labelText={''}
+                />
+              </InputGroup>
+            </Box>
+          </div>
           <br></br>
-          <TableContainer>
-            <Table variant="striped" size="lg" background="#DBDBDB">
-              <div className="TableTwo">
-                <Tbody>
-                  {funcionarios.map(funcionario => {
-                    //console.log('bom dia', funcionario);
-                    return (
-                      <>
-                        <Tr>
-                          <Td fontSize="md">{funcionario.user_nome}</Td>
-                          <Td>
-                            {funcionario.contrato?.[0]?.contrato_faixa_salarial
-                              ? funcionario.contrato?.[0]
-                                  ?.contrato_faixa_salarial
-                              : '-'}
-                          </Td>
-                          <Td></Td>
-                          <Td>
-                            {funcionario.contrato?.[0]?.cargo.departamento
-                              .dep_name
-                              ? funcionario.contrato?.[0]?.cargo.departamento
-                                  .dep_name
-                              : '-'}
-                          </Td>
-                          <Td></Td>
-                          <Td>
-                            {funcionario.contrato?.[0]?.cargo.cargo_area
-                              ? funcionario.contrato?.[0]?.cargo.cargo_area
-                              : '-'}
-                          </Td>
-                          <Td></Td>
-                          <Td></Td>
-                          <Td>
-                            <Link
-                              href={`User/${funcionario.user_id}`}
-                              fontSize="xl"
-                              color={theme.colors.primary}
-                            >
-                              Ver
-                              <ArrowForwardIcon color={theme.colors.primary} />
-                            </Link>
-                          </Td>
-                        </Tr>
-                      </>
-                    );
-                  })}
-                </Tbody>
-              </div>
-            </Table>
-          </TableContainer>
+          <div className="container">
+            <HStack spacing="150px">
+              <Box fontSize="2xl" fontWeight="bold">
+                Nome
+              </Box>
+              <Box fontSize="2xl" fontWeight="bold">
+                Salário
+              </Box>
+              <Box fontSize="2xl" fontWeight="bold">
+                Departamento
+              </Box>
+              <HStack spacing="250px">
+                <Box fontSize="2xl" fontWeight="bold">
+                  Cargo
+                </Box>
+                <Box fontSize="2xl" fontWeight="bold">
+                  Perfil
+                </Box>
+              </HStack>
+            </HStack>
+            <Divider
+              orientation="horizontal"
+              borderColor={theme.colors.font}
+              variant="solid"
+              size="10rem"
+            />
+            <br></br>
+            <TableContainer>
+              <Table variant="striped" size="lg" background="#DBDBDB">
+                <div className="TableTwo">
+                  <Tbody>
+                    {funcionarios.map(funcionario => {
+                      //console.log('bom dia', funcionario);
+                      return (
+                        <>
+                          <Tr>
+                            <Td fontSize="md">{funcionario.user_nome}</Td>
+                            <Td>
+                              {funcionario.contrato?.[0]
+                                ?.contrato_faixa_salarial
+                                ? funcionario.contrato?.[0]
+                                    ?.contrato_faixa_salarial
+                                : '-'}
+                            </Td>
+                            <Td></Td>
+                            <Td>
+                              {funcionario.contrato?.[0]?.cargo.departamento
+                                .dep_name
+                                ? funcionario.contrato?.[0]?.cargo.departamento
+                                    .dep_name
+                                : '-'}
+                            </Td>
+                            <Td></Td>
+                            <Td>
+                              {funcionario.contrato?.[0]?.cargo.cargo_area
+                                ? funcionario.contrato?.[0]?.cargo.cargo_area
+                                : '-'}
+                            </Td>
+                            <Td></Td>
+                            <Td></Td>
+                            <Td>
+                              <Link
+                                href={`User/${funcionario.user_id}`}
+                                fontSize="xl"
+                                color={theme.colors.primary}
+                              >
+                                Ver
+                                <ArrowForwardIcon
+                                  color={theme.colors.primary}
+                                />
+                              </Link>
+                            </Td>
+                          </Tr>
+                        </>
+                      );
+                    })}
+                  </Tbody>
+                </div>
+              </Table>
+            </TableContainer>
+          </div>
         </div>
       </S.Container>
     </>

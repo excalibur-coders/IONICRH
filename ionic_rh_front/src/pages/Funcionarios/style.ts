@@ -29,6 +29,20 @@ export const Container = styled(Flex)`
   .funcSpinnerWrapper {
     margin-top: 30px;
   }
+
+  @media (max-width: 700px) {
+    overflow-x: hidden;
+    .container {
+      width: 70vw;
+      overflow-x: auto;
+    }
+    .container1 {
+      width: 70vw;
+      .input {
+        margin-left: 0;
+      }
+    }
+  }
 `;
 
 export const ContainerInput = styled.div`
