@@ -8,14 +8,27 @@ export const Container = styled(Flex)`
 
   .input {
     margin-left: 50px;
+    width: 70vw;
+    margin: 0 auto;
+    height: 100vh;
   }
 
   .TBody {
-    width: 35vw;
+    width: 75vw;
+    color: {theme.colors.primary};
+    justify-content: space-around;
   }
 
   .TableTwo {
     display: flex;
+    justify-content: space-between;
+    margin-left: -20px;
+  }
+
+  .search {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   @media (max-width: 700px) {
