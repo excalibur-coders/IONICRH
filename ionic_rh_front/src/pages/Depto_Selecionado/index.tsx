@@ -126,11 +126,10 @@ function DeptoTI() {
             </Box>
           </HStack>
           <br></br>
-          <Box fontSize="4xl" fontWeight="bold">
-            Departamento - {departamentos?.dep_name}
-          </Box>
-          <br></br>
-          <HStack>
+          <HStack className="search">
+            <Box fontSize="4xl" fontWeight="bold">
+              Departamento - {departamentos?.dep_name}
+            </Box>
             <Box>
               <InputGroup>
                 {/* eslint-disable-next-line react/no-children-prop */}
@@ -138,7 +137,7 @@ function DeptoTI() {
                 <Input
                   fontSize={20}
                   size="lg"
-                  width="70vw"
+                  width="15vw"
                   placeholder="       Pesquisar"
                   labelText={''}
                 />
@@ -146,21 +145,19 @@ function DeptoTI() {
             </Box>
           </HStack>
           <br></br>
-          <HStack spacing="150px">
+          <HStack className="TBody_2" spacing="80px">
             <Box fontSize="2xl" fontWeight="bold">
               Nome
             </Box>
             <Box fontSize="2xl" fontWeight="bold">
               Salário
             </Box>
-            <HStack spacing="250px">
-              <Box fontSize="2xl" fontWeight="bold">
-                Cargo
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Perfil
-              </Box>
-            </HStack>
+            <Box fontSize="2xl" fontWeight="bold">
+              Cargo
+            </Box>
+            <Box fontSize="2xl" fontWeight="bold">
+              Perfil
+            </Box>
           </HStack>
           <Divider
             orientation="horizontal"
@@ -169,19 +166,28 @@ function DeptoTI() {
             size="10rem"
           />
           <br></br>
-          <Table variant="striped" size="lg">
-            <div className="TableTwo">
+
+          <div>
+            <Table variant="striped" size="lg" background="#DBDBDB">
               <Tbody>
                 {departamentos?.cargo?.map((carg, index) =>
                   carg.contrato.map(ctr => (
                     <Tr key={index}>
-                      <Td fontSize="md">{ctr.user.user_nome}</Td>
-                      <Td fontSize="md">{ctr.contrato_faixa_salarial}</Td>
-                      <Td fontSize="md">{carg.cargo_area}</Td>
-                      <Td fontSize="md">{}</Td>
+                      <Td className="TBody" fontSize="lg">
+                        {ctr.user.user_nome}
+                      </Td>
+                      <Td className="TBody" fontSize="lg">
+                        {ctr.contrato_faixa_salarial}
+                      </Td>
+                      <Td className="TBody" fontSize="lg">
+                        {carg.cargo_area}
+                      </Td>
+                      <Td className="TBody" fontSize="lg">
+                        {}
+                      </Td>
                       <Td>
                         <Link
-                          fontSize="xl"
+                          fontSize="x1"
                           color={theme.colors.primary}
                           onClick={() => {
                             navigate(`/user/${ctr.user.user_id}`);
@@ -195,8 +201,8 @@ function DeptoTI() {
                   )),
                 )}
               </Tbody>
-            </div>
-          </Table>
+            </Table>
+          </div>
         </div>
       </S.Container>
     </>

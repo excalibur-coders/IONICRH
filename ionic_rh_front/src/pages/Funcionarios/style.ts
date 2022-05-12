@@ -6,29 +6,36 @@ export const Container = styled(Flex)`
   margin-top: 3rem;
   overflow: hidden;
 
-  .input {
+  .Corpo {
     margin-left: 50px;
+    width: 80vw;
+    margin: 0 auto;
+    height: 100vh;
   }
 
-  .Table {
+  .search {
     display: flex;
-    align-items: left;
-    margin-top: 100px;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   .TableTwo {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     margin-left: -20px;
   }
 
-  .spinnerWrapper {
-    margin-top: 30px;
+  .TBody {
+    width: 40vw;
+    color: {theme.colors.primary};
   }
 
-  .funcSpinnerWrapper {
-    margin-top: 30px;
+  .TBody_2 {
+    width: 75vw;
+    color: {theme.colors.primary};
+    justify-content: space-around;
   }
+
 `;
 
 export const ContainerInput = styled.div`
