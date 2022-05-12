@@ -84,11 +84,10 @@ function Cargos() {
               </Box>
             </HStack>
             <br></br>
-            <Box fontSize="4xl" fontWeight="bold">
-              Cargos
-            </Box>
-            <br></br>
-            <HStack>
+            <HStack className="search">
+              <Box fontSize="4xl" fontWeight="bold">
+                Cargos
+              </Box>
               <Box>
                 <InputGroup>
                   {/* eslint-disable-next-line react/no-children-prop */}
@@ -96,7 +95,7 @@ function Cargos() {
                   <Input
                     fontSize={20}
                     size="lg"
-                    width="70vw"
+                    width="50vw"
                     placeholder="       Pesquisar"
                     labelText={''}
                   />
@@ -105,58 +104,42 @@ function Cargos() {
             </HStack>
           </div>
           <br></br>
-          <HStack className="search">
-            <Box fontSize="4xl" fontWeight="bold">
-              Cargos
-            </Box>
-            <Box>
-              <InputGroup>
-                {/* eslint-disable-next-line react/no-children-prop */}
-                <InputLeftElement children={<SearchIcon w={5} h={5} />} />
-                <Input
-                  fontSize={20}
-                  size="lg"
-                  width="15vw"
-                  placeholder="       Pesquisar"
-                  labelText={''}
-                />
-              </InputGroup>
-            </Box>
-          </HStack>
-          <br></br>
-          <HStack spacing="32vw">
-            <Box fontSize="2xl" fontWeight="bold">
-              Cargo
-            </Box>
-            <Box fontSize="2xl" fontWeight="bold">
-              Departamento
-            </Box>
-          </HStack>
-          <Divider
-            orientation="horizontal"
-            borderColor={theme.colors.font}
-            variant="solid"
-            size="10rem"
-          />
-          <br></br>
-          <TableContainer>
-            <Table variant="striped" size="lg" background="#00000029">
-              <div className="TableTwo">
-                <Tbody>
-                  {cargos.map(cargos => (
-                    <Tr key={cargos.cargo_id}>
-                      <Td className="TBody" fontSize="2xl">
-                        {cargos.cargo_area}
-                      </Td>
-                      <Td className="TBody" fontSize="2xl">
-                        {cargos.departamento.dep_name}
-                      </Td>
-                    </Tr>
-                  ))}
-                </Tbody>
-              </div>
-            </Table>
-          </TableContainer>
+          <div className="container">
+            <br></br>
+            <HStack spacing="32vw">
+              <Box fontSize="2xl" fontWeight="bold">
+                Cargo
+              </Box>
+              <Box fontSize="2xl" fontWeight="bold">
+                Departamento
+              </Box>
+            </HStack>
+            <Divider
+              orientation="horizontal"
+              borderColor={theme.colors.font}
+              variant="solid"
+              size="10rem"
+            />
+            <br></br>
+            <TableContainer>
+              <Table variant="striped" size="lg" background="#00000029">
+                <div className="TableTwo">
+                  <Tbody>
+                    {cargos.map(cargos => (
+                      <Tr key={cargos.cargo_id}>
+                        <Td className="TBody" fontSize="2xl">
+                          {cargos.cargo_area}
+                        </Td>
+                        <Td className="TBody" fontSize="2xl">
+                          {cargos.departamento.dep_name}
+                        </Td>
+                      </Tr>
+                    ))}
+                  </Tbody>
+                </div>
+              </Table>
+            </TableContainer>
+          </div>
         </div>
       </S.Container>
     </>
