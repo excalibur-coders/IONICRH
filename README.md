@@ -28,17 +28,22 @@
 
 **Desenvolver um sistema de apoio a Gestão de Departamento Pessoal com os seguintes requisitos:**<br><br>
 
-> **Requisitos**
+> **Requisitos Funcionais**
 
 - ![feito](./docs/readme/check.jpeg) Cadastro de Colaboradores;
-- ![em andamento](./docs/readme/check.jpeg) Repositório para documentos dos Colaboradores;
-- ![em andamento](./docs/readme/a_fazer.jpeg) Trilha de Aprendizagem e Status de Realização;
-- ![em andamento](./docs/readme/check.jpeg) Organogramas da Empresa;
+- ![feito](./docs/readme/check.jpeg) Repositório para documentos dos Colaboradores;
+- ![em andamento](./docs/readme/a_fazer.jpeg) Cadastros de Trilha de Aprendizado e Status de Realização;
+- ![em andamento](./docs/readme/a_fazer.jpeg) Usuários devem ter perfis diferentes (administrador, gestor, consultor, colaborador);
+- ![feito](./docs/readme/check.jpeg) Organograma da Empresa;
 - ![feito](./docs/readme/check.jpeg) Repositório de documentos da empresa (políticas, normas, regras, etc);
-- ![em andamento](./docs/readme/a_fazer.jpeg) Dossiê gerado em PDF por colaborador para consulta do Administrador e Gestor.
+- ![feito](./docs/readme/a_fazer.jpeg) Upload e Download de documentos para consulta do Administrador e Gestor.
   <br>
 
-> **Funcionalidades extras**
+> **Requisitos não Funcionais**
+- ![feito](./docs/readme/check.jpeg) Linguagens NodeJS, TypeScript, Javascript;
+- ![feito](./docs/readme/check.jpeg) Banco de Dados Relacional;
+- ![feito](./docs/readme/a_fazer.jpeg) Manual do usuário para navegação.
+
 
 <br>
 
@@ -48,22 +53,24 @@
 
 ## :calendar: Cronograma das Entregas
 
-- ![feito](./docs/readme/check.jpeg) [SPRINT 0](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint0) - 18/03/2022 a 24/03/2022
+- ![feito](./docs/readme/check.jpeg) [SPRINT 0 (Kick Off)](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint0) - 18/03/2022 a 24/03/2022
 - ![feito](./docs/readme/check.jpeg) [SPRINT 1](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint1) - 25/03/2022 a 14/04/2022
 - ![em andamento](./docs/readme/check.jpeg) [SPRINT 2](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint2) - 25/04/2022 a 15/05/2022
 - ![em andamento](./docs/readme/a_fazer.jpeg) [SPRINT 3](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint3) - 16/05/2022 a 05/06/2022
 
-![Cronograma](./docs/readme/cronograma.png)
+![Cronograma](https://user-images.githubusercontent.com/80925387/167988052-6f1df450-347e-452c-bc17-d0ac7097a74e.png)
+
 
 <br>
 
 ## 💻 Tecnologias Utilizadas
 
-![Tecnologias](./docs/readme/tecnologias.png)
+![Tecnologias](https://user-images.githubusercontent.com/80925387/167985230-3fe735ad-4843-4adb-84a7-a62d84da1939.png)
+
 
 - **Banco de Dados:** MySQL;
-- **Back-end:** NodeJS;
-- **Front-end:** HTML, CSS, JavaScript, ChackaUi, React, Typescript ;
+- **Back-end:** NodeJS, JWT Jason Web Token, AWS;
+- **Front-end:** HTML, CSS, JavaScript, ChackaUi, React, Typescript;
 - **Ferramentas:** Visual Studio Code, Jira, Miro, Canva, Trello, Git e Github;
 - **Metodologia Utilizada:** Metodologia Ágil | SCRUM
 
@@ -71,13 +78,14 @@
 
 ## Backlog do Produto
 
-![Backlog Produto](./docs/readme/backlogp.png)
+![produto](https://user-images.githubusercontent.com/80925387/167988579-5427c958-28e5-435a-9e02-42137939c540.png)
+
 
 <br>
 
 ## Backlog das Sprints
 
-![Backlog Sprints](./docs/readme/backlogs.png)
+![sprints](https://user-images.githubusercontent.com/80925387/167985168-e8578ddb-92e3-4ced-97e2-1888d909a5c7.png)
 
 <br>
 
