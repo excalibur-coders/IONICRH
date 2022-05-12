@@ -64,7 +64,7 @@ function Departamentos() {
           <Sidemenu />
         </div>
 
-        <div className="input">
+        <div className="Corpo">
           <br></br>
           <HStack>
             <Box w="100px" fontSize={20}>
@@ -73,22 +73,24 @@ function Departamentos() {
             </Box>
           </HStack>
           <br></br>
-          <Box fontSize="4xl" fontWeight="bold">
-            Departamentos
-          </Box>
-          <Box>
-            <InputGroup>
-              {/* eslint-disable-next-line react/no-children-prop */}
-              <InputLeftElement children={<SearchIcon w={5} h={5} />} />
-              <Input
-                fontSize={20}
-                size="lg"
-                width="70vw"
-                placeholder="       Pesquisar"
-                labelText={''}
-              />
-            </InputGroup>
-          </Box>
+          <HStack className="search">
+            <Box fontSize="4xl" fontWeight="bold">
+              Departamentos
+            </Box>
+            <Box>
+              <InputGroup>
+                {/* eslint-disable-next-line react/no-children-prop */}
+                <InputLeftElement children={<SearchIcon w={5} h={5} />} />
+                <Input
+                  fontSize={20}
+                  size="lg"
+                  width="20vw"
+                  placeholder="       Pesquisar"
+                  labelText={''}
+                />
+              </InputGroup>
+            </Box>
+          </HStack>
           <br></br>
           <Box fontSize="2xl" fontWeight="bold">
             Nome
@@ -101,12 +103,7 @@ function Departamentos() {
           />
           <br></br>
           <TableContainer>
-            <Table
-              variant="striped"
-              size="lg"
-              className="Table"
-              background="#DBDBDB"
-            >
+            <Table variant="striped" size="lg" background="#DBDBDB">
               <div className="TableTwo">
                 <Tbody>
                   {departamentos.map(departamento => (
