@@ -58,7 +58,8 @@
 - ![em andamento](./docs/readme/check.jpeg) [SPRINT 2](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint2) - 25/04/2022 a 15/05/2022
 - ![em andamento](./docs/readme/a_fazer.jpeg) [SPRINT 3](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint3) - 16/05/2022 a 05/06/2022
 
-![Cronograma](./docs/readme/cronograma.png)
+![Cronograma](https://user-images.githubusercontent.com/80925387/167988052-6f1df450-347e-452c-bc17-d0ac7097a74e.png)
+
 
 <br>
 
