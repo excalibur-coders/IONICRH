@@ -188,19 +188,20 @@ export const adicionarDocumento = async (req: Request, res: Response, next: Next
         const tokenHeader = req.headers.authorization;
         const splitToken = tokenHeader?.split(' ')[1] as string;
         const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
-        await docsRepository
+        const jubileu = await docsRepository
             .createQueryBuilder()
             .insert()
             .into(documentos)
             .values({
-                docs_nome: req.file?.originalname,
+                docs_nome: req.files?.originalname,
                 docs_size: req.file?.size,
                 docs_type: req.file?.mimetype,
                 docs_url: req.file?.location,
                 userUserId: Number(decodedJwt.id)
             })
             .execute()
-        next()
+        res.json(jubileu);
+        // next()
     } catch (error) {
         res.json(error)
     }

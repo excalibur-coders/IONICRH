@@ -103,9 +103,9 @@ router.post(
 
 router.post(
   '/teste',
- /*  multer(multerConfig).single('file'),
-  adicionarDocumento */
-  adicionarDependente
+  multer(multerConfig).single('file'),
+  adicionarDocumento
+  // adicionarDependente
 )
 /* 
 router.get(
