@@ -14,16 +14,8 @@
   <a href ="#equipe"> Equipe </a> 
 </p>
 
-## O Projeto
-
-![Objetivo](./docs/readme/objetivo.png)
-
 <br>
-
-> Status do Projeto: Em andamento
-
-<br>
-
+ 
 ## :dart: Proposta
 
 **Desenvolver um sistema de apoio a Gestão de Departamento Pessoal com os seguintes requisitos:**<br><br>
@@ -44,12 +36,8 @@
 - ![feito](./docs/readme/check.jpeg) Banco de Dados Relacional;
 - ![feito](./docs/readme/check.jpeg) Manual do usuário para navegação.
 
-
 <br>
 
-## Mapa Mental do Produto
-
-![Mapa Mental](./docs/readme/mapa.png)
 
 ## :calendar: Cronograma das Entregas
 
@@ -58,8 +46,21 @@
 - ![em andamento](./docs/readme/check.jpeg) [SPRINT 2](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint2) - 25/04/2022 a 15/05/2022
 - ![em andamento](./docs/readme/a_fazer.jpeg) [SPRINT 3](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint3) - 16/05/2022 a 05/06/2022
 
-![Cronograma](https://user-images.githubusercontent.com/80925387/167988052-6f1df450-347e-452c-bc17-d0ac7097a74e.png)
 
+> Status do Projeto: Em andamento
+
+<br>
+
+## O Projeto
+
+![Objetivo](./docs/readme/objetivo.png)
+
+
+<br>
+
+## Mapa Mental do Produto
+
+![Mapa Mental](./docs/readme/mapa.png)
 
 <br>
 
@@ -84,8 +85,8 @@
 <br>
 
 ## Backlog das Sprints
+![backlog das sprints](https://user-images.githubusercontent.com/80925387/168347328-0af2a14f-f963-4218-b9a9-bb150b5396f3.png)
 
-![sprints](https://user-images.githubusercontent.com/80925387/167985168-e8578ddb-92e3-4ced-97e2-1888d909a5c7.png)
 
 <br>
 
