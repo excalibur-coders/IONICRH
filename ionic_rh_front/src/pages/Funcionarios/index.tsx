@@ -131,6 +131,9 @@ function Funcionarios() {
                 Salário
               </Box>
               <Box fontSize="2xl" fontWeight="bold">
+                Departamento
+              </Box>
+              <Box fontSize="2xl" fontWeight="bold">
                 Cargo
               </Box>
               <Box fontSize="2xl" fontWeight="bold">
