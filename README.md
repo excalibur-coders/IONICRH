@@ -149,7 +149,7 @@ Salvar o arquivo .env;
 Após instalar as dependências, iniciar o serviço em cada uma das pasta
 
 ```bash
-npm start dev ou  yarn dev
+npm start / yarn dev
 ```
 
 <br>
