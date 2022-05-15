@@ -201,8 +201,6 @@ function Cadastro() {
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="main">
-          <img src={LogoGray} />
-
           <div className="mainWrapper">
             <div className="leftWrapper">
               <div className="form">

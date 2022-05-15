@@ -6,7 +6,6 @@ import {
   MdOutlinePeopleAlt,
   MdOutlineApartment,
   MdSchema,
-  MdOutlinePlaylistAdd,
 } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
