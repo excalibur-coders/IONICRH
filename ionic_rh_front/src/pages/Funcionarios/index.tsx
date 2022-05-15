@@ -94,104 +94,111 @@ function Funcionarios() {
 
         <div className="Corpo">
           <br></br>
-          <HStack>
-            <Box w="100px" fontSize={20}>
-              <ArrowBackIcon w={7} h={7} />
-              <button onClick={() => navigate(-1)}>Voltar</button>
-            </Box>
-          </HStack>
+          <div className="container1">
+            <HStack>
+              <Box w="100px" fontSize={20}>
+                <ArrowBackIcon w={7} h={7} />
+                <button onClick={() => navigate(-1)}>Voltar</button>
+              </Box>
+            </HStack>
+            <br></br>
+            <HStack className="search">
+              <Box fontSize="4xl" fontWeight="bold">
+                Funcionários
+              </Box>
+              <Box>
+                <InputGroup>
+                  {/* eslint-disable-next-line react/no-children-prop */}
+                  <InputLeftElement children={<SearchIcon w={5} h={5} />} />
+                  <Input
+                    fontSize={20}
+                    size="lg"
+                    width="50vw"
+                    placeholder="       Pesquisar"
+                    labelText={''}
+                  />
+                </InputGroup>
+              </Box>
+            </HStack>
+          </div>
           <br></br>
-          <HStack className="search">
-            <Box fontSize="4xl" fontWeight="bold">
-              Funcionários
-            </Box>
-            <Box>
-              <InputGroup>
-                {/* eslint-disable-next-line react/no-children-prop */}
-                <InputLeftElement children={<SearchIcon w={5} h={5} />} />
-                <Input
-                  fontSize={20}
-                  size="lg"
-                  width="18vw"
-                  placeholder="       Pesquisar"
-                  labelText={''}
-                />
-              </InputGroup>
-            </Box>
-          </HStack>
-          <br></br>
-          <HStack className="TBody_2">
-            <Box fontSize="2xl" fontWeight="bold">
-              Nome
-            </Box>
-            <Box fontSize="2xl" fontWeight="bold">
-              Salário
-            </Box>
-            <Box fontSize="2xl" fontWeight="bold">
-              Departamento
-            </Box>
-            <Box fontSize="2xl" fontWeight="bold">
-              Cargo
-            </Box>
-            <Box fontSize="2xl" fontWeight="bold">
-              Perfil
-            </Box>
-          </HStack>
-          <Divider
-            orientation="horizontal"
-            borderColor={theme.colors.font}
-            variant="solid"
-            size="10rem"
-          />
-          <br></br>
-          <TableContainer>
-            <Table variant="striped" size="lg" background="#DBDBDB">
-              <div className="TableTwo">
-                <Tbody>
-                  {funcionarios.map(funcionario => {
-                    //console.log('bom dia', funcionario);
-                    return (
-                      <>
-                        <Tr className="TBody_2">
-                          <Td className="TBody_2" fontSize="md">
-                            {funcionario.user_nome}
-                          </Td>
-                          <Td className="TBody_2">
-                            {funcionario.contrato?.[0]?.contrato_faixa_salarial
-                              ? funcionario.contrato?.[0]
-                                  ?.contrato_faixa_salarial
-                              : '-'}
-                          </Td>
-                          <Td className="TBody_2">
-                            {funcionario.contrato?.[0]?.cargo.departamento
-                              .dep_name
-                              ? funcionario.contrato?.[0]?.cargo.departamento
-                                  .dep_name
-                              : '-'}
-                          </Td>
-                          <Td className="TBody_2">
-                            {funcionario.contrato?.[0]?.cargo.cargo_area
-                              ? funcionario.contrato?.[0]?.cargo.cargo_area
-                              : '-'}
-                          </Td>
-                          <Td className="TBody_2">
-                            <Link
-                              href={`User/${funcionario.user_id}`}
-                              fontSize="xl"
-                              color={theme.colors.primary}
-                            >
-                              Ver
-                              <ArrowForwardIcon color={theme.colors.primary} />
-                            </Link>
-                          </Td>
-                        </Tr>
-                      </>
-                    );
-                  })}
-                </Tbody>
-              </div>
-            </Table>
-          </TableContainer>
+          <div className="container">
+            <HStack className="TBody_2">
+              <Box fontSize="2xl" fontWeight="bold">
+                Nome
+              </Box>
+              <Box fontSize="2xl" fontWeight="bold">
+                Salário
+              </Box>
+              <Box fontSize="2xl" fontWeight="bold">
+                Departamento
+              </Box>
+              <Box fontSize="2xl" fontWeight="bold">
+                Cargo
+              </Box>
+              <Box fontSize="2xl" fontWeight="bold">
+                Perfil
+              </Box>
+            </HStack>
+            <Divider
+              orientation="horizontal"
+              borderColor={theme.colors.font}
+              variant="solid"
+              size="10rem"
+            />
+            <br></br>
+            <TableContainer>
+              <Table variant="striped" size="lg" background="#DBDBDB">
+                <div className="TableTwo">
+                  <Tbody>
+                    {funcionarios.map(funcionario => {
+                      //console.log('bom dia', funcionario);
+                      return (
+                        <>
+                          <Tr className="TBody_2">
+                            <Td className="TBody_2" fontSize="md">
+                              {funcionario.user_nome}
+                            </Td>
+                            <Td className="TBody_2">
+                              {funcionario.contrato?.[0]
+                                ?.contrato_faixa_salarial
+                                ? funcionario.contrato?.[0]
+                                    ?.contrato_faixa_salarial
+                                : '-'}
+                            </Td>
+                            <Td className="TBody_2">
+                              {funcionario.contrato?.[0]?.cargo.departamento
+                                .dep_name
+                                ? funcionario.contrato?.[0]?.cargo.departamento
+                                    .dep_name
+                                : '-'}
+                            </Td>
+                            <Td className="TBody_2">
+                              {funcionario.contrato?.[0]?.cargo.cargo_area
+                                ? funcionario.contrato?.[0]?.cargo.cargo_area
+                                : '-'}
+                            </Td>
+                            <Td className="TBody_2">
+                              <Link
+                                href={`User/${funcionario.user_id}`}
+                                fontSize="xl"
+                                color={theme.colors.primary}
+                              >
+                                Ver
+                                <ArrowForwardIcon
+                                  color={theme.colors.primary}
+                                />
+                              </Link>
+                            </Td>
+                          </Tr>
+                        </>
+                      );
+                    })}
+                  </Tbody>
+                </div>
+              </Table>
+            </TableContainer>
+          </div>
         </div>
       </S.Container>
     </>

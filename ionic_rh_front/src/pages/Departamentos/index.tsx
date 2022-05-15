@@ -66,69 +66,74 @@ function Departamentos() {
 
         <div className="Corpo">
           <br></br>
-          <HStack>
-            <Box w="100px" fontSize={20}>
-              <ArrowBackIcon w={7} h={7} />
-              <button onClick={() => navigate(-1)}>Voltar</button>
-            </Box>
-          </HStack>
+          <div className="container1">
+            <HStack>
+              <Box w="100px" fontSize={20}>
+                <ArrowBackIcon w={7} h={7} />
+                <button onClick={() => navigate(-1)}>Voltar</button>
+              </Box>
+            </HStack>
+            <br></br>
+            <HStack className="search">
+              <Box fontSize="4xl" fontWeight="bold">
+                Departamentos
+              </Box>
+              <Box>
+                <InputGroup>
+                  {/* eslint-disable-next-line react/no-children-prop */}
+                  <InputLeftElement children={<SearchIcon w={5} h={5} />} />
+                  <Input
+                    fontSize={20}
+                    size="lg"
+                    width="50vw"
+                    placeholder="       Pesquisar"
+                    labelText={''}
+                  />
+                </InputGroup>
+              </Box>
+            </HStack>
+          </div>
           <br></br>
-          <HStack className="search">
-            <Box fontSize="4xl" fontWeight="bold">
-              Departamentos
+          <div className="container">
+            <br></br>
+            <Box fontSize="2xl" fontWeight="bold">
+              Nome
             </Box>
-            <Box>
-              <InputGroup>
-                {/* eslint-disable-next-line react/no-children-prop */}
-                <InputLeftElement children={<SearchIcon w={5} h={5} />} />
-                <Input
-                  fontSize={20}
-                  size="lg"
-                  width="20vw"
-                  placeholder="       Pesquisar"
-                  labelText={''}
-                />
-              </InputGroup>
-            </Box>
-          </HStack>
-          <br></br>
-          <Box fontSize="2xl" fontWeight="bold">
-            Nome
-          </Box>
-          <Divider
-            orientation="horizontal"
-            borderColor={theme.colors.font}
-            variant="solid"
-            size="10rem"
-          />
-          <br></br>
-          <TableContainer>
-            <Table variant="striped" size="lg" background="#DBDBDB">
-              <div className="TableTwo">
-                <Tbody>
-                  {departamentos.map(departamento => (
-                    <Tr key={departamento.dep_id}>
-                      <Td className="TBody" fontSize="2xl">
-                        {departamento.dep_name}
-                      </Td>
-                      <Td>
-                        <Link
-                          fontSize="xl"
-                          color={theme.colors.primary}
-                          onClick={() => {
-                            navigate(`/Departamento/${departamento.dep_id}`);
-                          }}
-                        >
-                          Ver
-                          <ArrowForwardIcon color={theme.colors.primary} />
-                        </Link>
-                      </Td>
-                    </Tr>
-                  ))}
-                </Tbody>
-              </div>
-            </Table>
-          </TableContainer>
+            <Divider
+              orientation="horizontal"
+              borderColor={theme.colors.font}
+              variant="solid"
+              size="10rem"
+            />
+            <br></br>
+            <TableContainer>
+              <Table variant="striped" size="lg" background="#DBDBDB">
+                <div className="TableTwo">
+                  <Tbody>
+                    {departamentos.map(departamento => (
+                      <Tr key={departamento.dep_id}>
+                        <Td className="TBody" fontSize="2xl">
+                          {departamento.dep_name}
+                        </Td>
+                        <Td>
+                          <Link
+                            fontSize="xl"
+                            color={theme.colors.primary}
+                            onClick={() => {
+                              navigate(`/Departamento/${departamento.dep_id}`);
+                            }}
+                          >
+                            Ver
+                            <ArrowForwardIcon color={theme.colors.primary} />
+                          </Link>
+                        </Td>
+                      </Tr>
+                    ))}
+                  </Tbody>
+                </div>
+              </Table>
+            </TableContainer>
+          </div>
         </div>
       </S.Container>
     </>

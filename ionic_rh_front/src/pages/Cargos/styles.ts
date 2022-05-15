@@ -5,7 +5,6 @@ import { theme } from 'theme';
 export const Container = styled(Flex)`
   backgroud: #00000029;
   margin-top: 3rem;
-  overflow: hidden;
 
   .input {
     margin-left: 50px;
@@ -33,10 +32,17 @@ export const Container = styled(Flex)`
   }
 
   @media (max-width: 700px) {
-    border: 1px solid red;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+    overflow-x: hidden;
+    .container {
+      width: 70vw;
+      overflow-x: auto;
+    }
+    .container1 {
+      width: 70vw;
+      .input {
+        margin-left: 0;
+      }
+    }
   }
 `;
 

@@ -113,95 +113,99 @@ function DeptoTI() {
 
         <div className="input">
           <br></br>
-          <HStack>
-            <Box w="100px" fontSize={20}>
-              <ArrowBackIcon w={7} h={7} />
-              <Link
-                onClick={() => {
-                  navigate(-1);
-                }}
-              >
-                Voltar
-              </Link>
-            </Box>
-          </HStack>
+          <div className="container1">
+            <HStack>
+              <Box w="100px" fontSize={20}>
+                <ArrowBackIcon w={7} h={7} />
+                <Link
+                  onClick={() => {
+                    navigate(-1);
+                  }}
+                >
+                  Voltar
+                </Link>
+              </Box>
+            </HStack>
+            <br></br>
+            <HStack className="search">
+              <Box fontSize="4xl" fontWeight="bold">
+                Departamento - <br></br> {departamentos?.dep_name}
+              </Box>
+              <Box>
+                <InputGroup>
+                  {/* eslint-disable-next-line react/no-children-prop */}
+                  <InputLeftElement children={<SearchIcon w={5} h={5} />} />
+                  <Input
+                    fontSize={20}
+                    size="lg"
+                    width="50vw"
+                    placeholder="       Pesquisar"
+                    labelText={''}
+                  />
+                </InputGroup>
+              </Box>
+            </HStack>
+          </div>
           <br></br>
-          <HStack className="search">
-            <Box fontSize="4xl" fontWeight="bold">
-              Departamento - {departamentos?.dep_name}
-            </Box>
-            <Box>
-              <InputGroup>
-                {/* eslint-disable-next-line react/no-children-prop */}
-                <InputLeftElement children={<SearchIcon w={5} h={5} />} />
-                <Input
-                  fontSize={20}
-                  size="lg"
-                  width="15vw"
-                  placeholder="       Pesquisar"
-                  labelText={''}
-                />
-              </InputGroup>
-            </Box>
-          </HStack>
-          <br></br>
-          <HStack className="TBody_2" spacing="80px">
-            <Box fontSize="2xl" fontWeight="bold">
-              Nome
-            </Box>
-            <Box fontSize="2xl" fontWeight="bold">
-              Salário
-            </Box>
-            <Box fontSize="2xl" fontWeight="bold">
-              Cargo
-            </Box>
-            <Box fontSize="2xl" fontWeight="bold">
-              Perfil
-            </Box>
-          </HStack>
-          <Divider
-            orientation="horizontal"
-            borderColor={theme.colors.font}
-            variant="solid"
-            size="10rem"
-          />
-          <br></br>
+          <div className="container">
+            <HStack className="TBody_2" spacing="80px">
+              <Box fontSize="2xl" fontWeight="bold">
+                Nome
+              </Box>
+              <Box fontSize="2xl" fontWeight="bold">
+                Salario
+              </Box>
+              <Box fontSize="2xl" fontWeight="bold">
+                Cargo
+              </Box>
+              <Box fontSize="2xl" fontWeight="bold">
+                Perfil
+              </Box>
+            </HStack>
+            <Divider
+              orientation="horizontal"
+              borderColor={theme.colors.font}
+              variant="solid"
+              size="10rem"
+            />
+            <br></br>
 
-          <div>
-            <Table variant="striped" size="lg" background="#DBDBDB">
-              <Tbody>
-                {departamentos?.cargo?.map((carg, index) =>
-                  carg.contrato.map(ctr => (
-                    <Tr key={index}>
-                      <Td className="TBody" fontSize="lg">
-                        {ctr.user.user_nome}
-                      </Td>
-                      <Td className="TBody" fontSize="lg">
-                        {ctr.contrato_faixa_salarial}
-                      </Td>
-                      <Td className="TBody" fontSize="lg">
-                        {carg.cargo_area}
-                      </Td>
-                      <Td className="TBody" fontSize="lg">
-                        {}
-                      </Td>
-                      <Td>
-                        <Link
-                          fontSize="x1"
-                          color={theme.colors.primary}
-                          onClick={() => {
-                            navigate(`/user/${ctr.user.user_id}`);
-                          }}
-                        >
-                          Ver
-                          <ArrowForwardIcon color={theme.colors.primary} />
-                        </Link>
-                      </Td>
-                    </Tr>
-                  )),
-                )}
-              </Tbody>
-            </Table>
+            <div>
+              <Table variant="striped" size="lg" background="#DBDBDB">
+                <Tbody>
+                  {departamentos?.cargo?.map((carg, index) =>
+                    carg.contrato.map(ctr => (
+                      <Tr key={index}>
+                        <Td className="TBody" fontSize="lg">
+                          {ctr.user.user_nome}
+                        </Td>
+                        <Td className="TBody" fontSize="lg">
+                          {ctr.contrato_faixa_salarial}
+                        </Td>
+                        <Td className="TBody" fontSize="lg">
+                          {carg.cargo_area}
+                        </Td>
+                        <Td className="TBody" fontSize="lg">
+                          {}
+                        </Td>
+                        <Td>
+                          <Link
+                            fontSize="x1"
+                            color={theme.colors.primary}
+                            onClick={() => {
+                              navigate(`/user/${ctr.user.user_id}`);
+                            }}
+                          >
+                            Ver
+                            <ArrowForwardIcon color={theme.colors.primary} />
+                          </Link>
+                        </Td>
+                      </Tr>
+                    )),
+                  )}
+                </Tbody>
+              </Table>
+            </div>
           </div>
         </div>
       </S.Container>

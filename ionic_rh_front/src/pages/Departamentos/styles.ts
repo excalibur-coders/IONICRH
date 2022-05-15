@@ -27,7 +27,19 @@ export const Container = styled(Flex)`
     justify-content: space-between;
     flex-wrap: wrap;
   }
-
+  @media (max-width: 700px) {
+    overflow-x: hidden;
+    .container {
+      width: 70vw;
+      overflow-x: auto;
+    }
+    .container1 {
+      .input {
+        width: 70vw;
+        margin-left: 0;
+      }
+    }
+  }
 `;
 
 export const ContainerInput = styled.div`

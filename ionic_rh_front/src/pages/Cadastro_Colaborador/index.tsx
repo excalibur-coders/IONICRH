@@ -26,6 +26,7 @@ import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 interface CadastroProps {
+  contrato: any;
   nomecompleto: string;
   nacionalidade: string;
   naturalidade: string;
@@ -58,7 +59,7 @@ interface CadastroProps {
       outros: string;
     },
   ];
-  contrato: string;
+  /* contrato: string; */
   dependente_nome: string;
   dependente_nascimento: string;
   dependente_origin: string;
@@ -234,7 +235,7 @@ function Cadastro() {
       school_inicio: yup.string().required('Início obrigatório!'),
       school_termino: yup.string().required('Término obrigatório!'),
       school_status: yup.string().required('Status obrigatório!'),
-      contrato: yup.string().required('Tipo contrato obrigatório!'),
+      /* contrato: yup.string().required('Tipo contrato obrigatório!'), */
     })
     .required();
 
@@ -255,8 +256,6 @@ function Cadastro() {
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="main">
-          <img src={LogoGray} />
-
           <div className="mainWrapper">
             <div className="leftWrapper">
               <div className="form">
@@ -431,6 +430,19 @@ function Cadastro() {
                   type="file"
                   onChange={handleSaveResidency}
                 />
+                <div className="anexoWrapper">
+                  <div className="form">
+                    <h6>Anexos</h6>
+                    <h4>
+                      Anexe abaixo os arquivos necessários: RG (Frente e Verso)
+                    </h4>
+                    <Button
+                      text="Anexar arquivos"
+                      color={theme.colors.primary}
+                      type="submit"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -478,15 +490,21 @@ function Cadastro() {
                   {...register('school_termino')}
                 />
 
-                <Input
-                  size="sm"
-                  width="22rem"
-                  fontSize={20}
-                  labelText="Status"
-                  type="text"
-                  error={errors.school_status?.message}
-                  {...register('school_status')}
-                />
+                <div className="dropdown">
+                  <label htmlFor="lang" className="dropdowntext">
+                    Status
+                  </label>
+                  <select
+                    className="status"
+                    id="lang"
+                    {...register('school_status')}
+                  >
+                    <option>Selecione o status</option>
+                    <option value="completo">Completo</option>
+                    <option value="cursando">Cursando</option>
+                    <option value="incompleto">Incompleto</option>
+                  </select>
+                </div>
 
                 <Input
                   size="sm"
@@ -496,7 +514,7 @@ function Cadastro() {
                   {...register('school_curso')}
                 />
 
-                <Input
+                {/* <Input
                   size="sm"
                   width="22rem"
                   fontSize={20}
@@ -504,7 +522,7 @@ function Cadastro() {
                   type="text"
                   error={errors.contrato?.message}
                   {...register('contrato')}
-                />
+                /> */}
 
                 <h2>Idiomas</h2>
                 <CheckboxGroup colorScheme="blue">
