@@ -187,7 +187,7 @@ function Cadastro() {
         )
         .then(({ data }) => {
           console.log(data);
-          // navigate('/Colab_home');
+          navigate('/Colab_home');
         })
         .catch(error => {
           console.log(error);
