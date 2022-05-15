@@ -1,6 +1,6 @@
 import { MdAccountCircle } from 'react-icons/md';
 import { theme } from 'theme';
-import Nav from 'components/nav';
+import RespBar_adm from 'components/Respbar_adm';
 import * as S from './styles';
 // import { Input, Stack } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
@@ -149,7 +149,7 @@ function User() {
 
   return (
     <>
-      <Nav></Nav>
+      <RespBar_adm />
       <S.Container>
         <div className="Wrapper">
           <div className="centerWrapper">
@@ -160,7 +160,7 @@ function User() {
 
               <div className="User">
                 <h1>{user?.user_nome}</h1>
-                <Link to="/UserEdit/">
+                <Link to={`/UserEdit/${user?.user_id}`}>
                   <Button text="Editar Usuário" color={theme.colors.primary} />
                 </Link>
               </div>

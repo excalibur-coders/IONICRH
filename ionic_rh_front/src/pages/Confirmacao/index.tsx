@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
 import LogoGray from 'assets/svg/logo-gray.svg';
@@ -9,6 +9,8 @@ import * as S from './styles';
 // console.log(theme.colors.primary);
 
 function Confirmacao() {
+  const navigate = useNavigate();
+
   return (
     <S.Container>
       <div className="leftWrapper">
@@ -18,7 +20,7 @@ function Confirmacao() {
           <h2>Voltar para pagina de Login</h2>
           <br></br>
           <span>
-            <Link to="/">Voltar</Link>
+            <button onClick={() => navigate(-1)}>Voltar</button>
           </span>
         </div>
       </div>

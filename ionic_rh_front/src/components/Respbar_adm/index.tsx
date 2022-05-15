@@ -7,28 +7,25 @@ import { useContext, useState } from 'react';
 import { AuthContext } from 'hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
-function RespBar() {
+function RespBar_adm() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const { signOut } = useContext(AuthContext);
   return (
     <S.Navbar>
-      <a href="/Colab_home">
+      <a href="/ADM_home">
         <img src={logo} />
       </a>
       <S.Navlist>
         <ul className={`nav_menu ${isOpen && 'open'}`}>
           <li className="nav_item">
-            <a href="/Colab_home">Home</a>
-          </li>
-          <li className="nav_item">
-            <a href="/Colab_Onboard">Onboard</a>
+            <a href="/Adm_home">Home</a>
           </li>
           <li className="nav_item0">
-            <a href="/Colab_user">Perfil</a>
+            <a href="/Administrador">Perfil</a>
           </li>
           <li className="nav_item0">
-            <a href="">Sair</a>
+            <a href="/">Sair</a>
           </li>
         </ul>
         <div
@@ -42,11 +39,11 @@ function RespBar() {
         <div className="">
           <Button
             className="button"
-            href="Colab_user"
+            href="Administrador"
             as={MdAccountCircle}
             color={theme.colors.font}
             onClick={() => {
-              navigate('/Colab_user');
+              navigate('/Administrador');
             }}
           />
           <Button
@@ -64,4 +61,4 @@ function RespBar() {
   );
 }
 
-export default RespBar;
+export default RespBar_adm;

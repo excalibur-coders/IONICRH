@@ -1,9 +1,9 @@
 import { MdAccountCircle } from 'react-icons/md';
 import { theme } from 'theme';
-import Nav from 'components/nav';
+import RespBar_adm from 'components/Respbar_adm';
 import * as S from './styles';
-import { useEffect, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useCallback, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Input from 'components/Input';
 import { Divider, Select } from '@chakra-ui/react';
 import Button from 'components/Button';
@@ -37,6 +37,7 @@ interface IUser {
 }
 
 interface IContrato {
+  cargo: ICargo;
   contrato_matricula?: string;
   contrato_auxilio_creche?: number;
   contrato_base?: string;
@@ -52,13 +53,13 @@ interface IContrato {
   contrato_vale_alimentacao?: number;
   contrato_vale_refeicao?: number;
   contrato_vale_transporte?: number;
-  contrato_type?: string;
-  contrato_data_adicao?: string;
+  contrato_tipo?: string;
+  contrato_data_admissao?: string;
   emp_contratante: IEmpContratante;
   contrato_turno?: string;
   empContratanteContratanteId?: IEmpContratante;
   cargoCargoId?: ICargo;
-  contrato_data_adimissao?: string;
+  contrato_adimissao?: string;
 }
 
 interface IEmpContratante {
@@ -67,14 +68,15 @@ interface IEmpContratante {
 }
 
 interface ICargo {
-  departamento: IDepartamento;
+  departamento: IDepartamentos;
   cargo_id: number;
   cargo_head?: string;
   cargo_nivel?: string;
   cargo_area?: string;
 }
 
-interface IDepartamento {
+interface IDepartamentos {
+  dep_id?: number;
   dep_name?: string;
 }
 
@@ -153,18 +155,14 @@ interface IFormProps {
   contrato_vale_refeicao?: number;
   contrato_vale_transporte?: number;
   contrato_type?: string;
-  contrato_data_adicao?: string;
+  contrato_tipo?: string;
+  contrato_data_admissao?: string;
   contratante_nome?: string;
-  contrato_data_adimissao?: string;
   user_raca: string;
   user_rg?: string;
   contrato_turno?: string;
   contrato_termos?: string;
   empContratanteContratanteId?: number;
-}
-
-interface IDepartamentos {
-  dep_name: string;
 }
 
 interface IEmpresas {
@@ -180,12 +178,12 @@ function UserEdit() {
   const [cargos, setCargos] = useState<ICargo[]>([]);
   const [empresas, setEmpresas] = useState<IEmpresas[]>([]);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
     setValue,
   } = useForm<IFormProps>({
     mode: 'onBlur',
@@ -236,6 +234,61 @@ function UserEdit() {
       });
   }, [cookies]);
 
+  const setUserValues = useCallback(
+    (data: IUser) => {
+      setValue(
+        'contrato_faixa_salarial',
+        data.contrato[0].contrato_faixa_salarial,
+      );
+      setValue('contrato_base', data.contrato[0].contrato_base);
+      setValue(
+        'contrato_tempo_de_casa',
+        data.contrato[0].contrato_tempo_de_casa,
+      );
+      setValue(
+        'contrato_tempo_formalizacao',
+        data.contrato[0].contrato_tempo_formalizacao,
+      );
+      setValue('contrato_dominio', data.contrato[0].contrato_dominio);
+      setValue(
+        'contrato_data_desligamento',
+        data.contrato[0].contrato_data_desligamento,
+      );
+      setValue('contrato_distrato', data.contrato[0].contrato_distrato);
+      setValue(
+        'contrato_faixa_salarial',
+        data.contrato[0].contrato_faixa_salarial,
+      );
+      setValue('contrato_plano_saude', data.contrato[0].contrato_plano_saude);
+      setValue(
+        'contrato_vale_transporte',
+        data.contrato[0].contrato_vale_transporte,
+      );
+      setValue(
+        'contrato_vale_refeicao',
+        data.contrato[0].contrato_vale_refeicao,
+      );
+      setValue(
+        'contrato_vale_alimentacao',
+        data.contrato[0].contrato_vale_alimentacao,
+      );
+      setValue(
+        'contrato_auxilio_creche',
+        data.contrato[0].contrato_auxilio_creche,
+      );
+      setValue('contrato_type', data.contrato[0].contrato_tipo);
+      setValue('cargo_area', data.contrato[0].cargoCargoId?.cargo_id);
+      setValue('contrato_turno', data.contrato[0].contrato_turno);
+      setValue(
+        'empContratanteContratanteId',
+        data.contrato[0].empContratanteContratanteId?.contratante_id,
+      );
+      setValue('contrato_data_admissao', data.contrato[0].contrato_adimissao);
+      setValue('contrato_matricula', data.contrato[0].contrato_matricula);
+    },
+    [setValue],
+  );
+
   const getUserInfo = useCallback(() => {
     api
       .get(`/user/usuario-perfil/${id}`, {
@@ -245,111 +298,24 @@ function UserEdit() {
       })
       .then(({ data }) => {
         setUser(data);
+        setUserValues(data);
       })
       .catch((error: Error | AxiosError) => {
         console.log(error);
       });
-  }, [cookies, id]);
+  }, [cookies, id, setUserValues]);
 
   useEffect(() => {
     getUserInfo();
     getAllDepartamentos();
     getAllEmpresas();
     getAllCargos();
-    console.log(user?.contrato?.[0]?.contrato_matricula);
   }, []);
 
-  const setUserValues = (data: IUser) => {
-    setValue(
-      'contrato_faixa_salarial',
-      data.contrato[0].contrato_faixa_salarial,
-    );
-    setValue('contrato_base', data.contrato[0].contrato_base);
-    setValue('contrato_tempo_de_casa', data.contrato[0].contrato_tempo_de_casa);
-    setValue(
-      'contrato_tempo_formalizacao',
-      data.contrato[0].contrato_tempo_formalizacao,
-    );
-    setValue('contrato_dominio', data.contrato[0].contrato_dominio);
-    setValue(
-      'contrato_data_desligamento',
-      data.contrato[0].contrato_data_desligamento,
-    );
-    setValue('contrato_distrato', data.contrato[0].contrato_distrato);
-    setValue(
-      'contrato_faixa_salarial',
-      data.contrato[0].contrato_faixa_salarial,
-    );
-    setValue('contrato_plano_saude', data.contrato[0].contrato_plano_saude);
-    setValue(
-      'contrato_vale_transporte',
-      data.contrato[0].contrato_vale_transporte,
-    );
-    setValue('contrato_vale_refeicao', data.contrato[0].contrato_vale_refeicao);
-    setValue(
-      'contrato_vale_alimentacao',
-      data.contrato[0].contrato_vale_alimentacao,
-    );
-    setValue(
-      'contrato_auxilio_creche',
-      data.contrato[0].contrato_auxilio_creche,
-    );
-    setValue('contrato_type', data.contrato[0].contrato_type);
-    setValue('cargo_area', data.contrato[0].cargoCargoId?.cargo_id);
-    setValue('contrato_turno', data.contrato[0].contrato_turno);
-    setValue(
-      'empContratanteContratanteId',
-      data.contrato[0].empContratanteContratanteId?.contratante_id,
-    );
-    setValue(
-      'contrato_data_adimissao',
-      data.contrato[0].contrato_data_adimissao,
-    );
-    setValue('contrato_matricula', data.contrato[0].contrato_matricula);
-  };
+  const updateContrato = useCallback(
+    async (data: IFormProps) => {
+      console.log(data.cargo_area);
 
-  const onSubmit = useCallback(async (data: IFormProps) => {
-    const cadastroContrato = async (data: IFormProps) => {
-      console.log(data);
-      await api
-        .post(
-          `/user/usuario-perfil/${id}`,
-          {
-            contrato_matricula: data.contrato_matricula,
-            contrato_turno: data.contrato_turno,
-            contrato_base: data.contrato_base,
-            contrato_tempo_de_casa: data.contrato_tempo_de_casa,
-            contrato_termos: data.contrato_termos,
-            contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
-            contrato_dominio: data.contrato_dominio,
-            contrato_data_desligamento: data.contrato_data_desligamento,
-            contrato_distrato: data.contrato_distrato,
-            contrato_data_adimissao: data.contrato_data_adimissao,
-            contrato_faixa_salarial: data.contrato_faixa_salarial,
-            contrato_plano_saude: data.contrato_plano_saude,
-            contrato_vale_transporte: data.contrato_vale_transporte,
-            contrato_vale_refeicao: data.contrato_vale_refeicao,
-            contrato_vale_alimentacao: data.contrato_vale_alimentacao,
-            contrato_auxilio_creche: data.contrato_auxilio_creche,
-            contrato_tipo: data.contrato_type,
-            cargoCargoId: data.cargo_area,
-            empContratanteContratanteId: data.empContratanteContratanteId,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${cookies['ionicookie.token']}`,
-            },
-          },
-        )
-        .then(({ data }) => {
-          console.log(data);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    };
-
-    const updateContrato = async (data: IFormProps) => {
       await api
         .put(
           `/user/update-contrato-user/${id}`,
@@ -368,9 +334,9 @@ function UserEdit() {
             contrato_vale_alimentacao: Number(data.contrato_vale_alimentacao),
             contrato_auxilio_creche: Number(data.contrato_auxilio_creche),
             contrato_tipo: data.contrato_type,
-            cargoCargoId: data.cargo_area,
+            cargoCargoId: 1,
             empContratanteContratanteId: data.empContratanteContratanteId,
-            contrato_adimissao: data?.contrato_data_adimissao,
+            contrato_adimissao: data?.contrato_data_admissao,
             contrato_matricula: data?.contrato_matricula,
             contrato_turno: data.contrato_turno,
           },
@@ -386,17 +352,64 @@ function UserEdit() {
         .catch(error => {
           console.log(error);
         });
-    };
+    },
+    [cookies, id],
+  );
 
-    cadastroContrato(data);
+  const cadastroContrato = useCallback(
+    async (data: IFormProps) => {
+      await api
+        .post(
+          `/user/usuario-perfil/${id}`,
+          {
+            contrato_base: data.contrato_base,
+            contrato_tempo_de_casa: data.contrato_base,
+            contrato_termos: data.contrato_termos,
+            contrato_tempo_formalizacao: data.contrato_tempo_formalizacao,
+            contrato_dominio: data.contrato_dominio,
+            contrato_data_desligamento: data.contrato_data_desligamento,
+            contrato_distrato: data.contrato_distrato,
+            contrato_faixa_salarial: Number(data.contrato_faixa_salarial),
+            contrato_plano_saude: Number(data.contrato_plano_saude),
+            contrato_vale_transporte: Number(data.contrato_vale_transporte),
+            contrato_vale_refeicao: Number(data.contrato_vale_refeicao),
+            contrato_vale_alimentacao: Number(data.contrato_vale_alimentacao),
+            contrato_auxilio_creche: Number(data.contrato_auxilio_creche),
+            contrato_tipo: data.contrato_type,
+            cargoCargoId: data.cargo_area,
+            empContratanteContratanteId: data.contratante_nome,
+            contrato_adimissao: data?.contrato_data_admissao,
+            contrato_matricula: data?.contrato_matricula,
+            contrato_turno: data.contrato_turno,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${cookies['ionicookie.token']}`,
+            },
+          },
+        )
+        .then(({ data }) => {
+          console.log(data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    [cookies, id],
+  );
 
-    // if (!user?.contrato?.[0]?.contrato_matricula) updateContrato(data);
-    // else cadastroContrato(data);
-  }, []);
+  const onSubmit = useCallback(
+    async data => {
+      if (user?.contrato?.[0]?.contrato_matricula == null)
+        cadastroContrato(data);
+      else updateContrato(data);
+    },
+    [cadastroContrato, updateContrato, user?.contrato],
+  );
 
   return (
     <>
-      <Nav></Nav>
+      <RespBar_adm />
 
       <S.Container>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -420,7 +433,11 @@ function UserEdit() {
                   />
                   {/*</Link>/*/}
                   <Link to="User/:id">
-                    <Button text="Cancelar" color={theme.colors.red} />
+                    <Button
+                      text="Cancelar"
+                      color={theme.colors.red}
+                      onClick={() => navigate(-1)}
+                    />
                   </Link>
                 </div>
 
@@ -697,12 +714,19 @@ function UserEdit() {
                   <div className="coluna1">
                     <span>Departamento: </span>
                     <Select
-                      placeholder="Selecione uma opção"
+                      placeholder={
+                        user?.contrato?.[0]?.cargo.departamento.dep_id
+                          ? user?.contrato?.[0]?.cargo.departamento.dep_name
+                          : 'Selecione uma opção'
+                      }
                       size="xs"
                       {...register('dep_name')}
+                      defaultValue={
+                        user?.contrato?.[0]?.cargo.departamento.dep_id
+                      }
                     >
                       {departamentos.map((departamento, index) => (
-                        <option key={index} value="option1">
+                        <option key={index} value={departamento.dep_id}>
                           {departamento.dep_name}
                         </option>
                       ))}
@@ -721,12 +745,17 @@ function UserEdit() {
                   <div className="coluna1">
                     <span>Cargo:</span>
                     <Select
-                      placeholder="Selecione uma opção"
+                      placeholder={
+                        user?.contrato?.[0]?.cargo.cargo_id
+                          ? user?.contrato?.[0]?.cargo.cargo_area
+                          : 'Selecione uma opção'
+                      }
                       size="xs"
-                      {...register('dep_name')}
+                      {...register('cargo_area')}
+                      defaultValue={user?.contrato?.[0]?.cargo.cargo_id}
                     >
                       {cargos.map((cargo, index) => (
-                        <option key={index} value="option1">
+                        <option key={index} value={cargo.cargo_id}>
                           {cargo.cargo_area}
                         </option>
                       ))}
@@ -800,7 +829,7 @@ function UserEdit() {
                       width="auto"
                       fontSize={15}
                       {...register('cargo_nivel')}
-                      //defaultValue={user?.contrato?.[0]?.cargo.cargo_nivel}
+                      // defaultValue={user?.contrato?.[0]?.cargo.cargo_nivel}
                     />
                   </div>
 
@@ -824,6 +853,7 @@ function UserEdit() {
                     <Select
                       placeholder="Selecione uma opção"
                       size="xs"
+                      defaultValue={user?.contrato?.[0]?.contrato_tipo}
                       {...register('contrato_type')}
                     >
                       <option value="Pessoa Juridica">PJ</option>
@@ -880,17 +910,25 @@ function UserEdit() {
                       placeholder=""
                       width="auto"
                       fontSize={15}
-                      {...register('contrato_data_adicao')}
-                      defaultValue={user?.contrato?.[0]?.contrato_data_adicao}
+                      {...register('contrato_data_admissao')}
+                      defaultValue={user?.contrato?.[0]?.contrato_data_admissao}
                     />
                   </div>
 
                   <div className="coluna2">
                     <span>Empresa contratante:</span>
                     <Select
-                      placeholder="Selecione uma opção"
+                      placeholder={
+                        user?.contrato?.[0]?.emp_contratante.contratante_nome
+                          ? user?.contrato?.[0]?.emp_contratante
+                              .contratante_nome
+                          : 'Selecione uma opção'
+                      }
                       size="xs"
                       {...register('contratante_nome')}
+                      defaultValue={
+                        user?.contrato?.[0]?.emp_contratante.contratante_id
+                      }
                     >
                       {empresas.map(empresa => (
                         <option

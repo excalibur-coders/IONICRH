@@ -4,6 +4,7 @@ import { Button } from '@chakra-ui/react';
 import { theme } from 'theme';
 
 export const Container = styled(Flex)`
+  margin-top: 3rem;
   height: 100vh;
   display: flex;
   flex-direction: column;

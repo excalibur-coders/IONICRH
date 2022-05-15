@@ -8,9 +8,9 @@ import {
 import { SearchIcon, ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { useEffect, useState, useCallback } from 'react';
 import { theme } from 'theme';
-import Sidebar from 'components/Sidebar';
+import Sidemenu from 'components/sideMenu';
+import RespBar_adm from 'components/Respbar_adm';
 import Input from 'components/Input';
-import Navbar from 'components/navbar';
 import { Table, Tbody, Tr, Td } from '@chakra-ui/react';
 import { HStack } from '@chakra-ui/react';
 import * as S from './styles';
@@ -103,57 +103,58 @@ function DeptoTI() {
   return (
     <>
       <div>
-        <Navbar />
+        <RespBar_adm />
       </div>
 
       <S.Container>
         <div>
-          <Sidebar />
+          <Sidemenu />
         </div>
 
         <div className="input">
           <br></br>
-          <HStack>
-            <Box w="100px" fontSize={20}>
-              <ArrowBackIcon w={7} h={7} />
-              <Link
-                onClick={() => {
-                  navigate(`/departamentos`);
-                }}
-              >
-                Voltar
-              </Link>
-            </Box>
-          </HStack>
+          <div className="container1">
+            <HStack>
+              <Box w="100px" fontSize={20}>
+                <ArrowBackIcon w={7} h={7} />
+                <Link
+                  onClick={() => {
+                    navigate(-1);
+                  }}
+                >
+                  Voltar
+                </Link>
+              </Box>
+            </HStack>
+            <br></br>
+            <HStack className="search">
+              <Box fontSize="4xl" fontWeight="bold">
+                Departamento - <br></br> {departamentos?.dep_name}
+              </Box>
+              <Box>
+                <InputGroup>
+                  {/* eslint-disable-next-line react/no-children-prop */}
+                  <InputLeftElement children={<SearchIcon w={5} h={5} />} />
+                  <Input
+                    fontSize={20}
+                    size="lg"
+                    width="50vw"
+                    placeholder="       Pesquisar"
+                    labelText={''}
+                  />
+                </InputGroup>
+              </Box>
+            </HStack>
+          </div>
           <br></br>
-          <Box fontSize="4xl" fontWeight="bold">
-            Departamento - {departamentos?.dep_name}
-          </Box>
-          <br></br>
-          <HStack>
-            <Box>
-              <InputGroup>
-                {/* eslint-disable-next-line react/no-children-prop */}
-                <InputLeftElement children={<SearchIcon w={5} h={5} />} />
-                <Input
-                  fontSize={20}
-                  size="lg"
-                  width="70vw"
-                  placeholder="       Pesquisar"
-                  labelText={''}
-                />
-              </InputGroup>
-            </Box>
-          </HStack>
-          <br></br>
-          <HStack spacing="150px">
-            <Box fontSize="2xl" fontWeight="bold">
-              Nome
-            </Box>
-            <Box fontSize="2xl" fontWeight="bold">
-              Salário
-            </Box>
-            <HStack spacing="250px">
+          <div className="container">
+            <HStack className="TBody_2" spacing="80px">
+              <Box fontSize="2xl" fontWeight="bold">
+                Nome
+              </Box>
+              <Box fontSize="2xl" fontWeight="bold">
+                Salario
+              </Box>
               <Box fontSize="2xl" fontWeight="bold">
                 Cargo
               </Box>
@@ -161,42 +162,51 @@ function DeptoTI() {
                 Perfil
               </Box>
             </HStack>
-          </HStack>
-          <Divider
-            orientation="horizontal"
-            borderColor={theme.colors.font}
-            variant="solid"
-            size="10rem"
-          />
-          <br></br>
-          <Table variant="striped" size="lg">
-            <div className="TableTwo">
-              <Tbody>
-                {departamentos?.cargo?.map((carg, index) =>
-                  carg.contrato.map(ctr => (
-                    <Tr key={index}>
-                      <Td fontSize="md">{ctr.user.user_nome}</Td>
-                      <Td fontSize="md">{ctr.contrato_faixa_salarial}</Td>
-                      <Td fontSize="md">{carg.cargo_area}</Td>
-                      <Td fontSize="md">{}</Td>
-                      <Td>
-                        <Link
-                          fontSize="xl"
-                          color={theme.colors.primary}
-                          onClick={() => {
-                            navigate(`/user/${ctr.user.user_id}`);
-                          }}
-                        >
-                          Ver
-                          <ArrowForwardIcon color={theme.colors.primary} />
-                        </Link>
-                      </Td>
-                    </Tr>
-                  )),
-                )}
-              </Tbody>
+            <Divider
+              orientation="horizontal"
+              borderColor={theme.colors.font}
+              variant="solid"
+              size="10rem"
+            />
+            <br></br>
+
+            <div>
+              <Table variant="striped" size="lg" background="#DBDBDB">
+                <Tbody>
+                  {departamentos?.cargo?.map((carg, index) =>
+                    carg.contrato.map(ctr => (
+                      <Tr key={index}>
+                        <Td className="TBody" fontSize="lg">
+                          {ctr.user.user_nome}
+                        </Td>
+                        <Td className="TBody" fontSize="lg">
+                          {ctr.contrato_faixa_salarial}
+                        </Td>
+                        <Td className="TBody" fontSize="lg">
+                          {carg.cargo_area}
+                        </Td>
+                        <Td className="TBody" fontSize="lg">
+                          {}
+                        </Td>
+                        <Td>
+                          <Link
+                            fontSize="x1"
+                            color={theme.colors.primary}
+                            onClick={() => {
+                              navigate(`/user/${ctr.user.user_id}`);
+                            }}
+                          >
+                            Ver
+                            <ArrowForwardIcon color={theme.colors.primary} />
+                          </Link>
+                        </Td>
+                      </Tr>
+                    )),
+                  )}
+                </Tbody>
+              </Table>
             </div>
-          </Table>
+          </div>
         </div>
       </S.Container>
     </>

@@ -2,21 +2,21 @@ import styled from '@emotion/styled';
 import { theme } from 'theme';
 
 export const Container = styled.div`
+  background: ${theme.colors.primary};
+  height: 100%;
   .contaiiner {
+    height: 100vh;
     position: relative;
-
     .navigation {
       position: relative;
       width: 60px;
-      height: 100vh;
-      background: ${theme.colors.primary};
       border-radius: 0px 10px 10px 0px;
       overflow: hidden;
       box-shadow: 0 5px 15px #rgba(0, 0, 0, 0.2);
       transition: 0.5s;
 
       ul {
-        position: absolute;
+        position: block;
         top: 0;
         left: 0;
         width: 100%;
@@ -32,7 +32,7 @@ export const Container = styled.div`
             width: 100%;
             display: flex;
             text-decoration: none;
-            color: ${theme.colors.font};
+            color: #493e3e;
             font-weight: 500;
 
             .icon {
@@ -58,10 +58,24 @@ export const Container = styled.div`
               withe-space: nowrap;
             }
           }
+          ul {
+            li {
+              display: none;
+              a {
+                color: ${theme.colors.font};
+              }
+            }
+          }
+          a:hover {
+            background: #58d3db;
+          }
         }
-
         li:hover {
-          background: #58d3db;
+          ul {
+            li {
+              display: block;
+            }
+          }
         }
       }
     }
