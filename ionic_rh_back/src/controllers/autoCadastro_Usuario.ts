@@ -14,6 +14,9 @@ import { dependente } from "models/userDependente";
 import path from "path";
 import multer from 'multer';
 import multerConfig from 'config/multer'
+import crypto from 'crypto';
+import multerS3 from 'multer-s3'
+import aws from 'aws-sdk';
 
 interface IDecodedParams {
     id: string;
@@ -192,6 +195,36 @@ export const adicionarDocumento = async (req: Request, res: Response, next: Next
         const splitToken = tokenHeader?.split(' ')[1] as string;
         const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
         const { file, avatar } = req.files;
+
+        // var fileName: string;
+
+        // const s3 = {
+        //     s3: multerS3({
+        //         s3: new aws.S3(),
+        //         bucket: String(process.env.BUCKET_NAME),
+        //         contentType: multerS3.AUTO_CONTENT_TYPE,
+        //         acl: 'public-read',
+        //         key: (req, file, cb) => {
+        //             crypto.randomBytes(16, (err, hash) => {
+        //                 if (err) cb(err);
+            
+        //                 fileName = `${hash.toString("hex")}-${file.originalname}`;
+        //                 const { name , ext  } = path.parse(fileName);
+        //                 cb(null, fileName);
+        //             });
+        //         }
+        //     })
+        // }
+
+        // const multerConfig = {
+        //     storage: s3["s3"],
+        //     limits: {
+        //         fileSize: 5 * 1024 * 1024,
+        //     }
+        // }
+
+        // multer(multerConfig).fields([{name: 'file', maxCount: 3}, {name: 'avatar', maxCount: 1}]);
+        
         const dados = [...file, ...avatar]
         const salvos = dados.forEach(async (file) => {
             const { name, ext } = path.parse(file.originalname)
@@ -207,9 +240,8 @@ export const adicionarDocumento = async (req: Request, res: Response, next: Next
                     userUserId: Number(decodedJwt.id),
                 })
                 .execute()
-            return jubileu
-        })
-        res.json(req.files)
+                return res.json(jubileu);
+            })
         // next()
     } catch (error) {
         res.json(error)

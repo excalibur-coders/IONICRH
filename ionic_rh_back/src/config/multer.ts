@@ -3,6 +3,7 @@ import path from 'path';
 import crypto from 'crypto';
 import multerS3 from 'multer-s3'
 import aws from 'aws-sdk';
+import returnEncryptedFileName from 'functions/encryptedFileName';
 
 const s3 = {
     s3: multerS3({
@@ -11,13 +12,16 @@ const s3 = {
         contentType: multerS3.AUTO_CONTENT_TYPE,
         acl: 'public-read',
         key: (req, file, cb) => {
-            crypto.randomBytes(16, (err, hash) => {
-                if (err) cb(err);
+            // crypto.randomBytes(16, (err, hash) => {
+            //     if (err) cb(err);
     
-                const fileName = `${hash.toString("hex")}-${file.originalname}`;
-                const { name , ext  } = path.parse(fileName);
-                cb(null, fileName);
-            });
+            //     const fileName = `${hash.toString("hex")}-${file.originalname}`;
+            //     const { name , ext  } = path.parse(fileName);
+            //     cb(null, fileName);
+            // });
+            // console.log(returnEncryptedFileName(file));
+            console.log('a ', returnEncryptedFileName(file));
+            cb(null, returnEncryptedFileName(file));
         }
     })
 }

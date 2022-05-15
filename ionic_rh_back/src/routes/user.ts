@@ -104,7 +104,7 @@ router.post(
 
 router.post(
   '/teste',
-  multer(multerConfig).fields([{name: 'file', maxCount: 2}, {name: 'avatar', maxCount: 1}]),
+  multer(multerConfig).fields([{name: 'file', maxCount: 3}, {name: 'avatar', maxCount: 1}]),
   adicionarDocumento
   // adicionarDependente
 )
