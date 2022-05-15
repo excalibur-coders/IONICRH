@@ -33,7 +33,7 @@
     "@typescript-eslint/ban-ts-comment": "off",
     "no-case-declarations": "off",
     "prettier/prettier": [
-      "error",
+      "off",
       {
         "endOfLine": "auto"
       }

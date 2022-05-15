@@ -60,7 +60,7 @@ function Card() {
         },
       })
       .then(({ data }) => {
-        /* console.log(data); */
+        console.log(data);
         setOrganograma(data);
       })
       .catch((error: Error | AxiosError) => {
@@ -80,7 +80,7 @@ function Card() {
 
   return (
     <S.Container>
-      {/* {organograma?.map((org, index) => (
+      {/*{organograma?.map((org, index) => (
         <>
           <h1 key={index}>{org.dep_name}</h1>
           {org.cargo.map((carg, index) => (
@@ -95,17 +95,27 @@ function Card() {
             </>
           ))}
         </>
-      ))} */}
+              ))} */}
       <Tree
         label={
-          <StyledCard>
-            <div>
-              <b>
-                <h1>{}</h1>
-              </b>
-              <h2>Dev</h2>
-            </div>
-          </StyledCard>
+          <>
+            <StyledCard>
+              <div>
+                <b>
+                  <h1>{}</h1>
+                </b>
+                <h2>Dev</h2>
+              </div>
+            </StyledCard>
+            <StyledCard>
+              <div>
+                <b>
+                  <h1>{}</h1>
+                </b>
+                <h2>Dev</h2>
+              </div>
+            </StyledCard>
+          </>
         }
       >
         <TreeNode label={<h1>Oi</h1>} />
