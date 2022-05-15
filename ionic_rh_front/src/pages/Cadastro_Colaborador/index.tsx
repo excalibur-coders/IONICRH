@@ -75,15 +75,33 @@ function Cadastro() {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const [photo, setPhoto] = useState<File>();
+  const [rgOrCpf, setRgOrCpf] = useState<File>();
+  const [residency, setResidency] = useState<File>();
 
   const handleSavePhoto = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) setPhoto(e.target.files[0]);
   }, []);
 
+  const handleSaveRgOrCpf = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) setRgOrCpf(e.target.files[0]);
+  }, []);
+
+  const handleSaveResidency = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files) setResidency(e.target.files[0]);
+    },
+    [],
+  );
+
   const handleUploadFile = useCallback(async () => {
     const formData = new FormData();
 
     formData.append('file', photo as string | Blob);
+    formData.append('file', rgOrCpf as string | Blob);
+    formData.append('file', residency as string | Blob);
+    formData.append('avatar', residency as string | Blob);
+
+    console.log(formData.getAll('file'));
 
     await api
       .post('/user/teste', formData, {
@@ -92,22 +110,15 @@ function Cadastro() {
         },
       })
       .then(({ status }) => {
-        console.log(status);
+        console.log('status: ', status);
       })
       .catch(error => {
-        console.log(error);
+        console.log('error: ', error);
       });
-  }, [cookies, photo]);
+  }, [cookies, photo, residency, rgOrCpf]);
 
-  const onSubmit = useCallback(
-    async (data: CadastroProps) => {
-      const idiomasfalados: (string | boolean)[] = [];
-      Object.values(data.idiomas[0]).forEach((value, index) => {
-        idiomasfalados.push(value);
-      });
-
-      handleUploadFile();
-
+  const autoRegister = useCallback(
+    async (data: CadastroProps, idiomasfalados: (string | boolean)[]) => {
       await api
         .put<CadastroProps>(
           '/user/auto-cadastro',
@@ -182,7 +193,21 @@ function Cadastro() {
           console.log(error);
         });
     },
-    [cookies, handleUploadFile],
+    [cookies],
+  );
+
+  const onSubmit = useCallback(
+    async (data: CadastroProps) => {
+      const idiomasfalados: (string | boolean)[] = [];
+      Object.values(data.idiomas[0]).forEach((value, index) => {
+        idiomasfalados.push(value);
+      });
+
+      handleUploadFile();
+
+      autoRegister(data, idiomasfalados);
+    },
+    [autoRegister, handleUploadFile],
   );
 
   const schema = yup
@@ -219,7 +244,7 @@ function Cadastro() {
     formState: { errors },
   } = useForm<CadastroProps>({
     mode: 'onBlur',
-    resolver: yupResolver(schema),
+    // resolver: yupResolver(schema),
   });
 
   return (
@@ -385,6 +410,26 @@ function Cadastro() {
                   labelText="Foto"
                   type="file"
                   onChange={handleSavePhoto}
+                />
+
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  fontWeight="bold"
+                  labelText="RG/CPF"
+                  type="file"
+                  onChange={handleSaveRgOrCpf}
+                />
+
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  fontWeight="bold"
+                  labelText="RG/CPF"
+                  type="file"
+                  onChange={handleSaveResidency}
                 />
               </div>
             </div>
