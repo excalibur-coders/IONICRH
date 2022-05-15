@@ -201,8 +201,6 @@ function Cadastro() {
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="main">
-          <img src={LogoGray} />
-
           <div className="mainWrapper">
             <div className="leftWrapper">
               <div className="form">
@@ -273,9 +271,22 @@ function Cadastro() {
                       {...register('genero')}
                     >
                       <option>Selecione seu Gênero</option>
-                      <option value="masculino">Masculino</option>
-                      <option value="feminino">Feminino</option>
+                      <option value="homem(cis)">
+                        Homem / Homem cisgênero
+                      </option>
+                      <option value="mulher(cis)">
+                        Mulher / Mulher cisgênero
+                      </option>
+                      <option value="homem(trans)">Homem transgênero</option>
+                      <option value="mulher(trans)">Mulher trangênero</option>
+                      <option value="travesti">Travesti</option>
+                      <option value="nao-binario">Não binário</option>
+                      <option value="agenero">Agênero</option>
+                      <option value="genero-fluido">Gender-fluid</option>
                       <option value="outro">Outro</option>
+                      <option value="prefiro-nao-responder">
+                        Prefiro não responder
+                      </option>
                     </select>
                   </div>
                 </div>

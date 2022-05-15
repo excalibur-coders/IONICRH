@@ -20,10 +20,6 @@ export const Container = styled(Flex)`
         width: 20rem;
       }
     }
-    img {
-      width: 160px;
-      margin: 5px 15px;
-    }
   }
   .main {
     display: flex;
@@ -122,7 +118,6 @@ export const Container = styled(Flex)`
       align-items: center;
       justify-content: space-between;
       flex-direction: row;
-      border: 1px solid red;
 
       .form {
         width: 22rem;
