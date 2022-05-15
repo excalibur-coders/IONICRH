@@ -430,7 +430,7 @@ function Cadastro() {
                   type="file"
                   onChange={handleSaveResidency}
                 />
-                <div className="anexoWrapper">
+                {/* <div className="anexoWrapper">
                   <div className="form">
                     <h6>Anexos</h6>
                     <h4>
@@ -442,7 +442,7 @@ function Cadastro() {
                       type="submit"
                     />
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
 
