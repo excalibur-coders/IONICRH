@@ -39,7 +39,7 @@ const Card = (props: { data: any[] }) => {
               <b>
                 <h1>Tais</h1>
               </b>
-              <h2>Dev</h2>
+              <h2>CEO</h2>
             </div>
           </StyledCard>
         }

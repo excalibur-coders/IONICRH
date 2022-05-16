@@ -102,7 +102,7 @@ function Sidemenu() {
                 </li>
                 <li>
                   <a>
-                    <Link to={'/'}>
+                    <Link to={'/Organograma'}>
                       <span className="icon">
                         <MdOutlineDesktopMac size="25px" />
                       </span>
