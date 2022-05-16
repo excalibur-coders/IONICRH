@@ -1,10 +1,35 @@
-import data from './data.json';
 import { Tree, TreeNode } from 'react-organizational-chart';
 import styled from '@emotion/styled';
 
 import * as S from './styles';
+import { parseCookies } from 'nookies';
+import { useNavigate } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
+import { api } from 'services/api';
+import { AxiosError } from 'axios';
+/* http://localhost:5000/departamentos/organograma */
 
-const Card = (props: { data: any[] }) => {
+interface IDep {
+  dep_id: number;
+  dep_name: string;
+  cargo: ICargo[];
+}
+interface ICargo {
+  cargo_area: string;
+  cargo_valor: number;
+  headID: number;
+  contrato: IContrato[];
+}
+interface IContrato {
+  contrato_matricula: string;
+  user: IUser;
+}
+interface IUser {
+  user_id: number;
+  user_nome: string;
+  user_email: string;
+}
+function Card() {
   const StyledNode = styled.div`
     padding: 5px;
     border-radius: 100%;
@@ -22,223 +47,71 @@ const Card = (props: { data: any[] }) => {
     box-shadow: -2px 2px 10px 3px rgba(0, 0, 0, 0.1);
     width: 200px;
   `;
+  const cookies = parseCookies();
+  const navigate = useNavigate();
+  const [organograma, setOrganograma] = useState<IDep[]>();
+
+  const getOrganograma = useCallback(() => {
+    api
+      .get('/Organograma/', {
+        headers: {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
+        },
+      })
+      .then(({ data }) => {
+        /* console.log(data); */
+        setOrganograma(data);
+      })
+      .catch((error: Error | AxiosError) => {
+        console.log(error);
+      });
+  }, [cookies]);
+
+  useEffect(() => {
+    getOrganograma();
+  }, [getOrganograma]);
   return (
     <S.Container>
-      <Tree
-        label={
-          <StyledCard>
-            <StyledNode>
-              <div className="fotosPerfil">
-                <img
-                  src="https://raw.githubusercontent.com/excalibur-coders/IONICRH/master/docs/readme/equipe/tais.jpg"
-                  alt=""
-                />
-              </div>
-            </StyledNode>
-            <div>
-              <b>
-                <h1>Tais</h1>
-              </b>
-              <h2>Dev</h2>
-            </div>
-          </StyledCard>
-        }
-      >
-        <TreeNode
+      {organograma?.map((org, i) => (
+        <>
+        <Tree key={i}
           label={
-            <StyledCard>
-              <StyledNode>
-                <div className="fotosPerfil">
-                  <img
-                    src="https://raw.githubusercontent.com/excalibur-coders/IONICRH/master/docs/readme/equipe/gabriel.jpg"
-                    alt=""
-                  />
-                </div>
-              </StyledNode>
+            < StyledCard >
               <div>
                 <b>
-                  <h1>Gabriel</h1>
+                  <h1>
+                    <>
+                      <h1><h1>{org.dep_name}</h1></h1>
+                    </>
+                  </h1>
                 </b>
-                <h2>Dev</h2>
               </div>
             </StyledCard>
           }
-        >
-          <TreeNode
-            label={
-              <StyledCard>
-                <StyledNode>
-                  <div className="fotosPerfil">
-                    <img
-                      src="https://raw.githubusercontent.com/excalibur-coders/IONICRH/master/docs/readme/equipe/vinicius.jpg"
-                      alt=""
-                    />
-                  </div>
-                </StyledNode>
-                <div>
-                  <b>
-                    <h1>Vinícius</h1>
-                  </b>
-                  <h2>Dev</h2>
-                </div>
-              </StyledCard>
+          >
+            {
+              org.cargo.map((carg, i) =>(
+                <>
+                <TreeNode label={
+                  <>
+                  <StyledCard>
+                    <h1 key={carg.cargo_valor}>{carg.cargo_area}</h1>
+                  </StyledCard>
+                  <StyledNode>{carg.contrato.map((cont, i)=> (
+                    <>
+                      {cont.user.user_nome}
+                    </>
+                  ))}</StyledNode>
+                  </>
+                  }/>
+                </>
+              ))
             }
-          />
-          <TreeNode
-            label={
-              <StyledCard>
-                <StyledNode>
-                  <div className="fotosPerfil">
-                    <img
-                      src="https://avatars.githubusercontent.com/u/68930336?v=4"
-                      alt=""
-                    />
-                  </div>
-                </StyledNode>
-                <div>
-                  <b>
-                    <h1>Lucas C</h1>
-                  </b>
-                  <h2>Dev</h2>
-                </div>
-              </StyledCard>
-            }
-          />
-        </TreeNode>
-        <TreeNode
-          label={
-            <StyledCard>
-              <StyledNode>
-                <div className="fotosPerfil">
-                  <img
-                    src="https://raw.githubusercontent.com/excalibur-coders/IONICRH/master/docs/readme/equipe/lucasbd.jpg"
-                    alt=""
-                  />
-                </div>
-              </StyledNode>
-              <div>
-                <b>
-                  <h1>Lucas BD</h1>
-                </b>
-                <h2>Master</h2>
-              </div>
-            </StyledCard>
-          }
-        >
-          <TreeNode
-            label={
-              <StyledCard>
-                <StyledNode>
-                  <div className="fotosPerfil">
-                    <img
-                      src="https://raw.githubusercontent.com/excalibur-coders/IONICRH/master/docs/readme/equipe/rafael.jpg"
-                      alt=""
-                    />
-                  </div>
-                </StyledNode>
-                <div>
-                  <b>
-                    <h1>Rafa</h1>
-                  </b>
-                  <h2>Dev</h2>
-                </div>
-              </StyledCard>
-            }
-          />
-        </TreeNode>
-        <TreeNode
-          label={
-            <StyledCard>
-              <StyledNode>
-                <div className="fotosPerfil">
-                  <img
-                    src="https://raw.githubusercontent.com/excalibur-coders/IONICRH/master/docs/readme/equipe/priscila.jpg"
-                    alt=""
-                  />
-                </div>
-              </StyledNode>
-              <div>
-                <b>
-                  <h1>Priscila</h1>
-                </b>
-                <h2>P.O</h2>
-              </div>
-            </StyledCard>
-          }
-        >
-          <TreeNode
-            label={
-              <StyledCard>
-                <StyledNode>
-                  <div className="fotosPerfil">
-                    <img
-                      src="https://avatars.githubusercontent.com/u/68930336?v=4"
-                      alt=""
-                    />
-                  </div>
-                </StyledNode>
-                <div>
-                  <b>
-                    <h1>Lucas C</h1>
-                  </b>
-                  <h2>Dev</h2>
-                </div>
-              </StyledCard>
-            }
-          />
-        </TreeNode>
-        <TreeNode
-          label={
-            <StyledCard>
-              <StyledNode>
-                <div className="fotosPerfil">
-                  <img
-                    src="https://avatars.githubusercontent.com/u/68930336?v=4"
-                    alt=""
-                  />
-                </div>
-              </StyledNode>
-              <div>
-                <b>
-                  <h1>Flamenguista</h1>
-                </b>
-                <h2>Dev</h2>
-              </div>
-            </StyledCard>
-          }
-        >
-          <TreeNode
-            label={
-              <StyledCard>
-                <StyledNode>
-                  <div className="fotosPerfil">
-                    <img
-                      src="https://raw.githubusercontent.com/excalibur-coders/IONICRH/master/docs/readme/equipe/kevin.jpg"
-                      alt=""
-                    />
-                  </div>
-                </StyledNode>
-                <div>
-                  <b>
-                    <h1>Kevin</h1>
-                  </b>
-                  <h2>Dev</h2>
-                </div>
-              </StyledCard>
-            }
-          />
-        </TreeNode>
-      </Tree>
-    </S.Container>
+        </Tree >
+        </>
+      ))}
+    </S.Container >
   );
-};
+}
 
-const Chart = () => {
-  return (
-    <div className="org-tree">
-      <Card data={data} />
-    </div>
-  );
-};
-
-export default Chart;
+export default Card;
