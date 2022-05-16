@@ -1,35 +1,31 @@
 import {
     Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne
 } from "typeorm";
+import { contrato } from "./contrato";
+import { dependente } from "./userDependente";
+import { documentos } from "./user_docs";
+import { endereco } from "./user_endereco";
+import { escolaridade } from "./user_escola";
+import { idiomas } from "./user_idioma";
+import { telefone } from "./user_telefone";
 
-import { Contrato } from "./empresa";
-import { Documentos, Endereco, escolaridade, Idiomas, Telefone } from "./user_details";
+
 
 export type Acesso_Sistema = "Administrador" | "Colaborador" | "Gestor" | "Consultor";
 
 @Entity()
-export class USER {
-    static user_nome(user_nome: any) {
-        throw new Error("Method not implemented.");
-    }
-    static findOne(arg0: { user_email: any; user_type: number; }, arg1: (err: any, user: any) => void) {
-        throw new Error("Method not implemented.");
-    }
-    @PrimaryGeneratedColumn({
-        type: "int"
-    })
+export class user {
+    @PrimaryGeneratedColumn({ type: "int" })
     user_id!: number
 
     @Column({
         type: "varchar",
-        length: 300,
         nullable: true,
     })
     user_nome?: string
 
     @Column({
-        type: "char",
-        length: 14,
+        type: "varchar",
         unique: true,
         nullable: true,
     })
@@ -37,72 +33,68 @@ export class USER {
 
     @Column({
         type: "varchar",
-        length: 350,
         unique: true,
     })
     user_email?: string
 
     @Column({
         type: "varchar",
-        length: 50,
         nullable: true,
     })
     user_nacionalidade?: string
 
     @Column({
         type: "varchar",
-        length: 50,
         nullable: true,
     })
     user_naturalidade?: string
 
     @Column({
         type: "varchar",
-        length: 11,
         nullable: true,
     })
     user_nascimento?: string
 
     @Column({
         type: "varchar",
-        length: 35,
         nullable: true,
     })
     user_genero?: string
 
     @Column({
         type: "varchar",
-        length: 25,
         nullable: true,
     })
     user_raca?: string
 
     @Column({
         type: "varchar",
-        length: 25,
         nullable: true,
     })
     user_estado_civil?: string
 
     @Column({
         type: "varchar",
-        length: 12,
         nullable: true,
-        unique:true
+        unique: true
     })
     user_rg?: string
 
     @Column({
         type: "varchar",
-        length: 18,
         nullable: true,
         unique: true
     })
     user_cnpj?: string
+    @Column({
+        type: "boolean",
+        nullable: true,
+        default: false
+    })
+    user_verificado?: Boolean
 
     @Column({
         type: "varchar",
-        length: 255,
     })
     password?: string
 
@@ -115,27 +107,30 @@ export class USER {
 
     // Chave Estrangeira
     // Auto relacionamento
-    @ManyToOne(type => USER, (user) => user.id_)
-    id_!: USER
+    @ManyToOne(type => user, (user) => user.id_)
+    id_!: user
 
-    @OneToMany(type => USER, (user_one => user_one.user_reference_id))
-    user_reference_id!: USER[]
+    @OneToMany(type => user, (user_one => user_one.user_reference_id))
+    user_reference_id!: user[]
 
     @OneToMany(() => escolaridade, (escolaridade) => escolaridade.user)
     escolaridade!: escolaridade
 
-    @OneToMany(() => Documentos, (docs) => docs._fk__user_)
-    docs!: Documentos
+    @OneToMany(() => dependente, (dependente) => dependente.user)
+    dependente!: dependente
 
-    @OneToMany(() => Idiomas, (idioma) => idioma.user)
-    idioma!: Idiomas
+    @OneToMany(() => documentos, (docs) => docs.user)
+    docs!: documentos
 
-    @OneToMany(() => Telefone, (telefone) => telefone.user)
-    telefone!: Telefone
+    @OneToMany(() => idiomas, (idioma) => idioma.user)
+    idioma!: idiomas
 
-    @OneToMany(() => Endereco, (endereco) => endereco.user)
-    endereco!: Endereco
-    
-    @OneToMany(() => Contrato, (contrato) => contrato.user)
-    contrato!: Contrato
+    @OneToMany(() => telefone, (telefone) => telefone.user)
+    telefone!: telefone
+
+    @OneToMany(() => endereco, (endereco) => endereco.user)
+    endereco!: endereco
+
+    @OneToMany(() => contrato, (contrato) => contrato.user)
+    contrato!: contrato
 }

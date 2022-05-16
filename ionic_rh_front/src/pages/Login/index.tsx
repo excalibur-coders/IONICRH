@@ -6,8 +6,9 @@ import Input from 'components/Input';
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
 import LogoGray from 'assets/svg/logo-gray.svg';
 import { theme } from 'theme';
+import logoresponsive from 'assets/svg/logoresponsive.png';
 
-import { parseCookies } from "nookies";
+import { parseCookies } from 'nookies';
 
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
@@ -15,7 +16,7 @@ import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as S from './styles';
 import Button from 'components/Button';
 
-import { AuthContext } from "hooks/useAuth";
+import { AuthContext } from 'hooks/useAuth';
 import { api } from 'services/api';
 
 interface InputsProps {
@@ -26,28 +27,35 @@ interface InputsProps {
 function Login() {
   const cookies = parseCookies();
 
-  const { signIn } = useContext(AuthContext);
+  const { signIn, user } = useContext(AuthContext);
+
+  console.log(user);
 
   const authRoute = () => {
-    api.get('/departamentos', {
-      headers: {
-        Authorization: `Bearer ${cookies['ionicookie.token']}`,
-      }
-    }).then(({data}) => {
-      console.log(data);
-    }).catch(error => {
-      console.log(error);
-    })
-  }
+    api
+      .get('/departamentos', {
+        headers: {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
+        },
+      })
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   const onSubmit = useCallback(async (data: InputsProps) => {
     await signIn(data);
   }, []);
 
-  const schema = yup.object({
-    email: yup.string().required('E-mail obrigatório'),
-    password: yup.string().required('Senha obrigatória!'),
-  }).required();
+  const schema = yup
+    .object({
+      email: yup.string().required('E-mail obrigatório'),
+      password: yup.string().required('Senha obrigatória!'),
+    })
+    .required();
 
   const {
     register,
@@ -60,15 +68,15 @@ function Login() {
 
   return (
     <S.Container>
-      <div className='centerWrapper'>
-        <div className='leftWrapper'>
+      <div className="centerWrapper">
+        <div className="leftWrapper">
           <img src={IonicLogo} />
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <h1>Login</h1>
 
             <Input
-              size='sm'
+              size="sm"
               width="auto"
               fontSize={15}
               labelText="E-mail"
@@ -78,7 +86,7 @@ function Login() {
             />
 
             <Input
-              size='sm'
+              size="sm"
               width="auto"
               fontSize={15}
               labelText="Senha"
@@ -89,32 +97,25 @@ function Login() {
 
             <div className="formFooter">
               <a href="/RecuperarSenha">Esqueceu sua senha?</a>
-              <Button
-                text="Logar"
-                color={theme.colors.primary}
-                type="submit"
-              />
-              <Button
-                text="rota autenticação"
-                color={theme.colors.primary}
-                onClick={() => authRoute()}
-              />
+              <Button text="Logar" color={theme.colors.primary} type="submit" />
             </div>
 
-            <div className='registerWrapper'>
+            <div className="registerWrapper">
               <span>Não tem uma conta?</span>
-              <span><Link to="/cadastro">Cadastrar-se</Link></span>
+              <span>
+                <Link to="/cadastro">Cadastrar-se</Link>
+              </span>
             </div>
           </form>
         </div>
 
-        <div className='rightWrapper'>
+        <div className="rightWrapper">
           <img src={LogoGray} />
+          <img className="no" src={logoresponsive} />
         </div>
       </div>
-
     </S.Container>
   );
-};
+}
 
 export default Login;

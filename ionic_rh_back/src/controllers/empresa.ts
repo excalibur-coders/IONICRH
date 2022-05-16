@@ -1,10 +1,11 @@
 import { Response, Request, NextFunction } from "express";
 import { AppDataSource } from 'config/database'
-import { Empresa_Contrante, Pesquisa_desligamento } from 'models/empresa'
+import { empresa_contratante } from 'models/emp_contratante'
+import { pesquisa_desligamento } from 'models/pesquisa_desligamento'
 
 
-const empcontRepository = AppDataSource.getRepository(Empresa_Contrante);
-const pesqdesRepository = AppDataSource.getRepository(Pesquisa_desligamento);
+const empcontRepository = AppDataSource.getRepository(empresa_contratante);
+const pesqdesRepository = AppDataSource.getRepository(pesquisa_desligamento);
 
 export const createEmpCont = async (req: Request, res: Response) => {
 
@@ -19,7 +20,7 @@ export const createEmpCont = async (req: Request, res: Response) => {
         await empcontRepository
             .createQueryBuilder()
             .insert()
-            .into(Empresa_Contrante)
+            .into(empresa_contratante)
             .values(
                 req.body
             )
@@ -41,7 +42,7 @@ export const getPesqDesligID = async (req: Request, res: Response) => {
                 'e',
                 'p'
             ])
-            .from(Empresa_Contrante, 'e')
+            .from(empresa_contratante, 'e')
             .leftJoin('e.pesq_desligamento', 'p')
             .where(
                 'e.contratante_id = :contratante_id', {
@@ -64,11 +65,26 @@ export const getAllPesqDeslig = async (req: Request, res: Response) => {
             .select([
                 'e',
                 'p.pesq_desligamento'])
-            .from(Empresa_Contrante, 'e')
+            .from(empresa_contratante, 'e')
             .leftJoin('e.pesq_desligamento', 'p')
             .getMany()
 
         res.json(dadosEmpresaDesl)
+
+    } catch (error) {
+        res.json(error)
+    }
+}
+
+export const getAllEmpresa = async (req: Request, res: Response) => {
+    try {
+        const dadosEmpresa = await empcontRepository
+            .createQueryBuilder()
+            .select('e')
+            .from(empresa_contratante, 'e')
+            .getMany()
+
+        res.json(dadosEmpresa)
 
     } catch (error) {
         res.json(error)
@@ -86,7 +102,7 @@ export const createPesqDesl = async (req: Request, res: Response, next: NextFunc
         await pesqdesRepository
             .createQueryBuilder()
             .insert()
-            .into(Pesquisa_desligamento)
+            .into(pesquisa_desligamento)
             .values(req.body)
             .execute()
 

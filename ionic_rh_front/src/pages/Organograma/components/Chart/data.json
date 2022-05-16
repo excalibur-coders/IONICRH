@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Root",
+    "children": [
+      {
+        "name": "Josias",
+        "children": [
+          {
+            "name": "T.I"
+          }
+        ]
+      },
+      {
+        "name": "Godofredo",
+        "children": [
+          {
+            "name": "Cuidador",
+            "children": [
+              {
+                "name": "Gabriel"
+              },
+              {
+                "name": "Lucas"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Child 2"
+      }
+    ]
+  }
+]

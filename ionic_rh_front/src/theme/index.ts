@@ -7,7 +7,7 @@ export const theme = extendTheme({
     font: '#4D4E4F',
     border: '#050006',
     logo: '#00000094',
-    red: '#ed5555'
+    red: '#ed5555',
   },
 
   fonts: {
@@ -17,13 +17,9 @@ export const theme = extendTheme({
 
   styles: {
     global: {
-      // '*': {
-      //   transition: '0.4s',
-      // },
-
-      // html: {
-      //   fontSize: '62.5%',
-      // },
+      '*': {
+        fontFamily: 'Arial',
+      },
 
       body: {
         bg: '#f4f4f5',
