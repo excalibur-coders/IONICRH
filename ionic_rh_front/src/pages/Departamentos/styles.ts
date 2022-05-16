@@ -6,12 +6,11 @@ export const Container = styled(Flex)`
   margin-top: 3rem;
   overflow: hidden;
 
-  .input {
+  .Corpo {
     margin-left: 50px;
-  }
-
-  .Table {
     width: 70vw;
+    margin: 0 auto;
+    height: 100vh;
   }
 
   .TBody {
@@ -20,12 +19,26 @@ export const Container = styled(Flex)`
   }
 
   .TableTwo {
-    display: flex;
     justify-content: left;
   }
 
-  .spinnerWrapper {
-    margin-top: 30px;
+  .search {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 700px) {
+    overflow-x: hidden;
+    .container {
+      width: 70vw;
+      overflow-x: auto;
+    }
+    .container1 {
+      .input {
+        width: 70vw;
+        margin-left: 0;
+      }
+    }
   }
 `;
 

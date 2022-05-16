@@ -2,8 +2,9 @@ import styled from '@emotion/styled';
 import { theme } from 'theme';
 
 export const Container = styled.div`
+  background: ${theme.colors.primary};
+  height: 100%;
   .contaiiner {
-    display: fixed;
     height: 100vh;
     position: relative;
     .navigation {

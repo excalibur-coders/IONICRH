@@ -1,5 +1,5 @@
 // import { Input, Stack } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
 import LogoGray from 'assets/svg/logo-gray.svg';
@@ -11,6 +11,8 @@ import * as S from './styles';
 // console.log(theme.colors.primary);
 
 function ContaSucesso() {
+  const navigate = useNavigate();
+
   return (
     <S.Container>
       <div className="leftWrapper">
@@ -18,7 +20,7 @@ function ContaSucesso() {
         <div className="text">
           <h1>Conta criada com Sucesso !</h1>
           <span>
-            <Link to="/">Voltar</Link>
+            <button onClick={() => navigate(-1)}>Voltar</button>
           </span>
         </div>
       </div>

@@ -69,7 +69,9 @@ export const updateContratoUser = async (req: Request, res: Response, next: Next
                 "contrato_vale_refeicao": requestBody.contrato_vale_refeicao,
                 "contrato_vale_alimentacao": requestBody.contrato_vale_alimentacao,
                 "contrato_auxilio_creche": requestBody.contrato_auxilio_creche,
-                "contrato_tipo": requestBody.contrato_tipo
+                "contrato_tipo": requestBody.contrato_tipo,
+                "cargoCargoId": requestBody.cargoCargoId,
+
             })
             .where(
                 "userUserId = :userUserId", 
@@ -78,6 +80,7 @@ export const updateContratoUser = async (req: Request, res: Response, next: Next
                 }
             )
             .execute()
+        res.json(req.body)
     } catch (error) {
         res.json(error)
     }

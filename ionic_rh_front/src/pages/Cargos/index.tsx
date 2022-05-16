@@ -18,6 +18,7 @@ import { api } from 'services/api';
 
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface ICargo {
   departamento: IDepartamento;
@@ -33,6 +34,7 @@ interface IDepartamento {
 
 function Cargos() {
   const cookies = parseCookies();
+  const navigate = useNavigate();
 
   const [cargos, setCargos] = useState<ICargo[]>([]);
   const [loading, setLoading] = useState(false);
@@ -68,72 +70,76 @@ function Cargos() {
       </div>
 
       <S.Container>
-        <div>
+        <div className="sidebar">
           <Sidemenu />
         </div>
 
         <div className="input">
           <br></br>
-          <HStack>
-            <Box w="100px" fontSize={20}>
-              <ArrowBackIcon w={7} h={7} />
-              <Link href="/">Voltar</Link>
-            </Box>
-          </HStack>
+          <div className="container1">
+            <HStack>
+              <Box w="100px" fontSize={20}>
+                <ArrowBackIcon w={7} h={7} />
+                <button onClick={() => navigate(-1)}>Voltar</button>
+              </Box>
+            </HStack>
+            <br></br>
+            <HStack className="search">
+              <Box fontSize="4xl" fontWeight="bold">
+                Cargos
+              </Box>
+              <Box>
+                <InputGroup>
+                  {/* eslint-disable-next-line react/no-children-prop */}
+                  <InputLeftElement children={<SearchIcon w={5} h={5} />} />
+                  <Input
+                    fontSize={20}
+                    size="lg"
+                    width="50vw"
+                    placeholder="       Pesquisar"
+                    labelText={''}
+                  />
+                </InputGroup>
+              </Box>
+            </HStack>
+          </div>
           <br></br>
-          <Box fontSize="4xl" fontWeight="bold">
-            Cargos
-          </Box>
-          <br></br>
-          <HStack>
-            <Box>
-              <InputGroup>
-                {/* eslint-disable-next-line react/no-children-prop */}
-                <InputLeftElement children={<SearchIcon w={5} h={5} />} />
-                <Input
-                  fontSize={20}
-                  size="lg"
-                  width="70vw"
-                  placeholder="       Pesquisar"
-                  labelText={''}
-                />
-              </InputGroup>
-            </Box>
-          </HStack>
-          <br></br>
-          <HStack spacing="500px">
-            <Box fontSize="2xl" fontWeight="bold">
-              Cargo
-            </Box>
-            <Box fontSize="2xl" fontWeight="bold">
-              Departamento
-            </Box>
-          </HStack>
-          <Divider
-            orientation="horizontal"
-            borderColor={theme.colors.font}
-            variant="solid"
-            size="10rem"
-          />
-          <br></br>
-          <TableContainer>
-            <Table variant="striped" size="lg" background="#DBDBDB">
-              <div className="TableTwo">
-                <Tbody>
-                  {cargos.map(cargos => (
-                    <Tr key={cargos.cargo_id}>
-                      <Td className="TBody" fontSize="2xl">
-                        {cargos.cargo_area}
-                      </Td>
-                      <Td className="TBody" fontSize="2xl">
-                        {cargos.departamento.dep_name}
-                      </Td>
-                    </Tr>
-                  ))}
-                </Tbody>
-              </div>
-            </Table>
-          </TableContainer>
+          <div className="container">
+            <br></br>
+            <HStack spacing="32vw">
+              <Box fontSize="2xl" fontWeight="bold">
+                Cargo
+              </Box>
+              <Box fontSize="2xl" fontWeight="bold">
+                Departamento
+              </Box>
+            </HStack>
+            <Divider
+              orientation="horizontal"
+              borderColor={theme.colors.font}
+              variant="solid"
+              size="10rem"
+            />
+            <br></br>
+            <TableContainer>
+              <Table variant="striped" size="lg" background="#00000029">
+                <div className="TableTwo">
+                  <Tbody>
+                    {cargos.map(cargos => (
+                      <Tr key={cargos.cargo_id}>
+                        <Td className="TBody" fontSize="2xl">
+                          {cargos.cargo_area}
+                        </Td>
+                        <Td className="TBody" fontSize="2xl">
+                          {cargos.departamento.dep_name}
+                        </Td>
+                      </Tr>
+                    ))}
+                  </Tbody>
+                </div>
+              </Table>
+            </TableContainer>
+          </div>
         </div>
       </S.Container>
     </>

@@ -4,6 +4,7 @@ import { Flex, Box } from '@chakra-ui/react';
 import { theme } from 'theme';
 
 export const Container = styled(Flex)`
+  margin-top: 3rem;
   width: 100vw;
   height: 100vh;
   background-color: ${theme.colors.background};
