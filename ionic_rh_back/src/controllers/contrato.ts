@@ -1,13 +1,15 @@
 import { AppDataSource } from "config/database";
-import { Contrato } from "models/empresa";
+import { contrato } from "models/contrato";
 import { Request, Response, NextFunction } from "express";
 import { IContrato } from "interfaces/IContrato";
 
-const contratoRepository = AppDataSource.getRepository(Contrato)
+const contratoRepository = AppDataSource.getRepository(contrato)
+
 // Contrato do Usuario
 export const insertContratoUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const {
+            contrato_matricula,
             contrato_base,
             contrato_tempo_de_casa,
             contrato_termos,
@@ -15,12 +17,14 @@ export const insertContratoUser = async (req: Request, res: Response, next: Next
             contrato_dominio,
             contrato_data_desligamento,
             contrato_distrato,
+            contrato_adimissao,
             contrato_faixa_salarial,
             contrato_plano_saude,
             contrato_vale_transporte,
             contrato_vale_refeicao,
             contrato_vale_alimentacao,
-            contrato_auxilio_creche
+            contrato_auxilio_creche,
+            contrato_tipo
         } = req.body
         const {
             id
@@ -29,7 +33,7 @@ export const insertContratoUser = async (req: Request, res: Response, next: Next
         await contratoRepository
             .createQueryBuilder()
             .insert()
-            .into(Contrato)
+            .into(contrato)
             .values(req.body)
             .execute()
         next()
@@ -48,9 +52,10 @@ export const updateContratoUser = async (req: Request, res: Response, next: Next
 
         await contratoRepository
             .createQueryBuilder()
-            .update(Contrato)
-            .set({
-                "contrato_id": requestBody.contrato_id,
+            .update(contrato)
+            .set ({
+                "contrato_adimissao": requestBody.contrato_adimissao,
+                "contrato_matricula": requestBody.contrato_matricula,
                 "contrato_base": requestBody.contrato_base,
                 "contrato_tempo_de_casa": requestBody.contrato_tempo_de_casa,
                 "contrato_termos": requestBody.contrato_termos,
@@ -64,13 +69,18 @@ export const updateContratoUser = async (req: Request, res: Response, next: Next
                 "contrato_vale_refeicao": requestBody.contrato_vale_refeicao,
                 "contrato_vale_alimentacao": requestBody.contrato_vale_alimentacao,
                 "contrato_auxilio_creche": requestBody.contrato_auxilio_creche,
+                "contrato_tipo": requestBody.contrato_tipo,
+                "cargoCargoId": requestBody.cargoCargoId,
+
             })
             .where(
-                "contrato_id = :contrato_id", {
-                contrato_id: requestBody.contrato_id
-            })
+                "userUserId = :userUserId", 
+                {
+                    userUserId: id
+                }
+            )
             .execute()
-        next()
+        res.json(req.body)
     } catch (error) {
         res.json(error)
     }

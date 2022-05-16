@@ -2,7 +2,7 @@ import { AppDataSource } from 'config/database';
 import { Request, Response, NextFunction } from 'express';
 import * as jwt from 'jsonwebtoken';
 import jwtDecode from 'jwt-decode';
-import { USER } from 'models/user';
+import { user } from 'models/user';
 import { TypedRequestBody } from 'interfaces/IRequest'
 import '../config/dotenv';
 import { IUser } from 'interfaces/IUser';
@@ -39,7 +39,7 @@ export function verifyUserRole(roles: string[]) {
 
         const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
 
-        const userReposiroty = AppDataSource.getRepository(USER)
+        const userReposiroty = AppDataSource.getRepository(user)
         const userRole = await userReposiroty.findOne({
             where: {
                 user_id: Number(decodedJwt.id)

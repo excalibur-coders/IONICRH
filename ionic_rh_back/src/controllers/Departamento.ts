@@ -1,17 +1,13 @@
 import { Response, Request } from "express";
 
 import { AppDataSource } from "config/database";
-import { Departamento } from "models/empresa";
+import { departamento } from "models/departamento";
 
-const departamentoRepository = AppDataSource.getRepository(Departamento);
+const departamentoRepository = AppDataSource.getRepository(departamento);
 
 export const getAllDepartamentos = async (req: Request, res: Response) => {
   try {
-    const departamentos = await departamentoRepository.find({
-      select: {
-        dep_name: true,
-      }
-    });
+    const departamentos = await departamentoRepository.find();
     res.json(departamentos);
   } catch (error) {
     res.json(error);
@@ -48,7 +44,7 @@ export const updateDepartamento = async (req: Request, res: Response) => {
   try {
     await departamentoRepository
       .createQueryBuilder()
-      .update(Departamento).
+      .update(departamento).
       set({
         "dep_name": req.body.dep_name
       })
@@ -70,7 +66,7 @@ export const deleteDepartamento = async (req: Request, res: Response) => {
     await departamentoRepository
       .createQueryBuilder()
       .delete()
-      .from(Departamento)
+      .from(departamento)
       .where(
         "dep_id = :dep_id", {
         dep_id: req.params.id
@@ -83,3 +79,70 @@ export const deleteDepartamento = async (req: Request, res: Response) => {
 
   }
 }
+
+export const getDepFilter = async (req: Request, res: Response) => {
+  try {
+      const {
+          id
+      } = req.params
+      const result = await departamentoRepository
+          .createQueryBuilder()
+          .select([
+              "d.dep_name",
+              "d.dep_id",
+              "c.cargo_area",
+              "cont.contrato_faixa_salarial",
+              "u.user_nome",
+              "u.user_id"
+          ])
+          .from(departamento, "d")
+          .leftJoin("d.cargo", "c")
+          .leftJoin('c.contrato','cont')
+          .leftJoin('cont.user','u')
+          .where("d.dep_id = :dep_id", {
+              dep_id: id
+          })
+          .andWhere("d.dep_id = departamentoDepId", {
+          })
+          .andWhere("c.cargo_id = cargoCargoId")
+          .andWhere("cont.userUserId = user_id")
+          .getOne()
+      res.json(result)
+  } catch (error) {
+      res.json(error)
+  }
+}
+
+export const organograma = async (req: Request, res: Response) => {
+  try {
+      const {
+          id
+      } = req.params
+      const result = await departamentoRepository
+          .createQueryBuilder()
+          .select([
+              "d.dep_name",
+              "d.dep_id",
+              "c.headID",
+              "c.cargo_area",
+              "c.cargo_valor",
+              "cont.contrato_matricula",
+              "u.user_nome",
+              "u.user_email",
+              "u.user_id",
+          ])
+          .from(departamento, "d")
+          .leftJoin("d.cargo", "c")
+          .leftJoin('c.contrato','cont')
+          .leftJoin('cont.user','u')
+          .andWhere("d.dep_id = departamentoDepId", {
+          })
+          .andWhere("c.cargo_id = cargoCargoId")
+          .andWhere("cont.userUserId = user_id")
+          .getMany()
+      res.json(result)
+  } catch (error) {
+      res.json(error)
+  }
+}
+

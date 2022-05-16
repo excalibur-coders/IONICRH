@@ -1,6 +1,6 @@
 import { theme } from 'theme';
-import {Flex} from '@chakra-ui/react';
-import styled from '@emotion/styled'
+import { Flex } from '@chakra-ui/react';
+import styled from '@emotion/styled';
 
 export const Container = styled(Flex)`
 height: 100vh;
@@ -223,4 +223,4 @@ flex-direction: column;
       }
     }
   }
-`
+`;
