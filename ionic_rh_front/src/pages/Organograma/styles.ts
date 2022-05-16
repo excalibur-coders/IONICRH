@@ -10,6 +10,7 @@ export const Container = styled(Flex)`
   background-color: ${theme.colors.background};
   .Center {
     margin: 0 auto;
+    margin-top: 50px;
     h3 {
       font-family: coolvetica, sans-serif;
       text-align: center;

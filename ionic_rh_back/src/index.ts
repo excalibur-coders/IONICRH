@@ -6,7 +6,8 @@ import * as bcrypt from 'bcrypt'
 import departamentoRoutes from "./routes/departamento";
 import userRoutes from './routes/user';
 import cargoRoutes from './routes/cargo'
-import empresaRoutes from './routes/empresa_contratante'
+import empresaRoutes from './routes/empresa_contratante';
+import organograma from './routes/organograma'
 import { empresa_contratante } from "models/emp_contratante";
 import { departamento } from "models/departamento";
 import { user } from "models/user";
@@ -40,6 +41,7 @@ try {
   app.use('/user', userRoutes);
   app.use('/cargo', cargoRoutes);
   app.use('/empresa', empresaRoutes);
+  app.use('/organograma', organograma)
   // app.use('/auth', authRoutes);
 
 

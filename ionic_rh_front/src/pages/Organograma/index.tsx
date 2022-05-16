@@ -2,9 +2,6 @@ import React from 'react';
 import './styles.ts';
 import Chart from './components/Chart';
 
-import { useEffect, useState, useCallback } from 'react';
-import { theme } from 'theme';
-
 import * as S from './styles';
 import RespBar_adm from 'components/Respbar_adm';
 
