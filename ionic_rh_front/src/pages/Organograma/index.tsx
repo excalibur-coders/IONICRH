@@ -4,18 +4,30 @@ import Chart from './components/Chart';
 
 import * as S from './styles';
 import RespBar_adm from 'components/Respbar_adm';
+import { useParams } from 'react-router-dom';
+import Sidemenu from 'components/sideMenu';
+import LogoGray from 'assets/svg/logo-gray.svg'
 
 export default function App() {
+  const { dep } = useParams();
+  console.log(dep);
+
   return (
     <>
-      <div>
-        <RespBar_adm />
-      </div>
-      <S.Container>
-        <div className="Center">
-          <h3>Departamento de Desenvolvimento</h3>
-          <Chart />
+      <RespBar_adm />
+      <S.Container >
+        <div className="side">
+          <Sidemenu />
         </div>
+        <S.CenterContainer>
+          <img src={LogoGray} />
+          <h3>
+            {dep === 'ti' && (
+              'IT Infrastructure Ops'
+            )}
+          </h3>
+          <Chart depName={dep} />
+        </S.CenterContainer>
       </S.Container>
     </>
   );

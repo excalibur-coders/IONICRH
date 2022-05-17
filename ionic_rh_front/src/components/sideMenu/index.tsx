@@ -82,31 +82,31 @@ function Sidemenu() {
               <ul>
                 <li>
                   <a>
-                    <Link to={'/'}>
+                    <Link to={'/Organograma/marketing'}>
                       <span className="icon">
                         <MdAdminPanelSettings size="25px" />
                       </span>
-                      <span className="tittle">Administração</span>
+                      <span className="tittle">Marketing Institucional</span>
                     </Link>
                   </a>
                 </li>
                 <li>
                   <a>
-                    <Link to={'/'}>
+                    <Link to={'/Organograma/administrative'}>
                       <span className="icon">
                         <MdOutlinePersonPin size="25px" />
                       </span>
-                      <span className="tittle">Recursos Humanos</span>
+                      <span className="tittle">{'Administrative & Financial'}</span>
                     </Link>
                   </a>
                 </li>
                 <li>
                   <a>
-                    <Link to={'/Organograma'}>
+                    <Link to={'/Organograma/ti'}>
                       <span className="icon">
                         <MdOutlineDesktopMac size="25px" />
                       </span>
-                      <span className="tittle">TI</span>
+                      <span className="tittle">IT Infrastructure Ops</span>
                     </Link>
                   </a>
                 </li>

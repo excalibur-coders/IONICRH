@@ -46,7 +46,8 @@ function Routes() {
       <Route path="/Administrador" element={<Administrador />} />
       <Route path="/AdministradorEdit" element={<AdministradorEdit />} />
       <Route path="/Consultor" element={<Consultor />} />
-      <Route path="/Organograma" element={<Org />} />
+      {/* <Route path="/Organograma" element={<Org />} /> */}
+      <Route path="/Organograma/:dep" element={<Org />} />
       <Route path="/Adm_home" element={<Adm_Home />} />
     </RoutesWrapper>
     // </BrowserRouter>
