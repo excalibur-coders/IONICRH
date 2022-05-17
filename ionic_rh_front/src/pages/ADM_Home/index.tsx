@@ -64,7 +64,7 @@ function Adm_Home() {
                   </li>
                   <li>
                     <a>
-                      <Link to={'/Organograma'}>
+                      <Link to={'/Organograma/ti'}>
                         <span className="icon">
                           <MdSchema size="40px" />
                         </span>
