@@ -18,13 +18,9 @@ function Adm_Home() {
         </header>
         <main>
           <div className="welcome">
-            <h1>Home</h1>
-            <h2>Bem vindo Administrador</h2>
+            <h1>Bem Vindo, Administrador!</h1>
           </div>
           <div className="listar">
-            <a>
-              <span className="tittle"> Suas opções</span>
-            </a>
             <div className="botoes">
               <div className="left">
                 <ul>

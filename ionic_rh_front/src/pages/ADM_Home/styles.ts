@@ -14,6 +14,7 @@ export const Container = styled.div`
 
     .welcome {
       display: flex;
+      padding-top: 100px;
       flex-direction: column;
       align-items: center;
       justify-content: center;
