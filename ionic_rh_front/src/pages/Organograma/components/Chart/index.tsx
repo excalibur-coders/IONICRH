@@ -29,14 +29,19 @@ interface IUser {
   user_nome: string;
   user_email: string;
 }
-function Card() {
+
+interface ICardProps {
+  depName?: string;
+}
+
+function Card({ depName }: ICardProps) {
   const StyledNode = styled.div`
     padding: 5px;
     border-radius: 100%;
     display: inline-block;
   `;
   const StyledCard = styled.div`
-    padding: 5px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     display: inline-block;
@@ -74,40 +79,110 @@ function Card() {
     <S.Container>
       {organograma?.map((org, i) => (
         <>
-        <Tree key={i}
+          {depName === 'ti'
+          && org.dep_name === 'IT Infrastructure Ops'
+          ? (
+            <Tree key={i}
+              label={
+                < StyledCard >
+                  <div>
+                    <b>
+                      <h1 className="depTitle">
+                        {org.dep_name}
+                      </h1>
+                    </b>
+                  </div>
+                </StyledCard>
+              }
+            >
+              {
+                org.cargo.map((carg, i) => (
+                  <>
+                    <TreeNode label={
+                      <div className='cardWrapper'>
+                        <StyledCard>
+                          <h1 key={carg.cargo_valor} className="cardTitle" >{carg.cargo_area}</h1>
+                        </StyledCard>
+                        <StyledNode>{carg.contrato.map((cont, i) => (
+                          <span className='colabName' key={i}>
+                            {cont.user.user_nome}
+                          </span>
+                        ))}</StyledNode>
+                      </div>
+                    } />
+                  </>
+                ))
+              }
+            </Tree >
+          ) : depName === 'marketing'
+          && org.dep_name === 'Marketing Institucional' ?
+          <Tree key={i}
           label={
             < StyledCard >
               <div>
                 <b>
-                  <h1>
-                    <>
-                      <h1><h1>{org.dep_name}</h1></h1>
-                    </>
+                  <h1 className="depTitle">
+                    {org.dep_name}
                   </h1>
                 </b>
               </div>
             </StyledCard>
           }
-          >
-            {
-              org.cargo.map((carg, i) =>(
-                <>
+        >
+          {
+            org.cargo.map((carg, i) => (
+              <>
                 <TreeNode label={
-                  <>
-                  <StyledCard>
-                    <h1 key={carg.cargo_valor}>{carg.cargo_area}</h1>
-                  </StyledCard>
-                  <StyledNode>{carg.contrato.map((cont, i)=> (
-                    <>
-                      {cont.user.user_nome}
-                    </>
-                  ))}</StyledNode>
-                  </>
-                  }/>
-                </>
-              ))
-            }
+                  <div className='cardWrapper'>
+                    <StyledCard>
+                      <h1 key={carg.cargo_valor} className="cardTitle" >{carg.cargo_area}</h1>
+                    </StyledCard>
+                    <StyledNode>{carg.contrato.map((cont, i) => (
+                      <span className='colabName' key={i}>
+                        {cont.user.user_nome}
+                      </span>
+                    ))}</StyledNode>
+                  </div>
+                } />
+              </>
+            ))
+          }
         </Tree >
+        : depName === 'administrative'
+        && org.dep_name === 'Administrative & Financial' ? <>
+          <Tree key={i}
+          label={
+            < StyledCard >
+              <div>
+                <b>
+                  <h1 className="depTitle">
+                    {org.dep_name}
+                  </h1>
+                </b>
+              </div>
+            </StyledCard>
+          }
+        >
+          {
+            org.cargo.map((carg, i) => (
+              <>
+                <TreeNode label={
+                  <div className='cardWrapper'>
+                    <StyledCard>
+                      <h1 key={carg.cargo_valor} className="cardTitle" >{carg.cargo_area}</h1>
+                    </StyledCard>
+                    <StyledNode>{carg.contrato.map((cont, i) => (
+                      <span className='colabName' key={i}>
+                        {cont.user.user_nome}
+                      </span>
+                    ))}</StyledNode>
+                  </div>
+                } />
+              </>
+            ))
+          }
+        </Tree >
+        </> : <></> }
         </>
       ))}
     </S.Container >

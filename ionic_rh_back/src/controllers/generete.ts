@@ -190,7 +190,7 @@ export const generate = async () => {
                 contrato_data_desligamento: "Não tem",
                 contrato_tipo: ["CLT"],
                 userUserId: 1,
-                cargoCargoId: 5,
+                cargoCargoId: 14,
                 empContratanteContratanteId: 3,
             },
             {
