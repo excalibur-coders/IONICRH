@@ -8,18 +8,22 @@ export class documentos {
 
     @Column({
         type: "varchar",
+        nullable: true
     })
     docs_nome!: string;
     @Column({
         type: "varchar",
+        nullable: true
     })
     docs_url!: string;
     @Column({
         type: "float",
+        nullable: true
     })
     docs_size!: number;
     @Column({
         type: "varchar",
+        nullable: true
     })
     docs_type!: string;
 

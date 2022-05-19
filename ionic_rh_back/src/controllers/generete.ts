@@ -57,17 +57,17 @@ export const generate = async () => {
             .insert()
             .into(cargo)
             .values([
-                { cargo_area: "Marketing Institucional", departamentoDepId: 1, cargo_valor: 1, cargo_id: 1 },
+                { cargo_area: "Marketing Institucional", departamentoDepId: 1, cargo_valor: 2, cargo_id: 1 },
                 { cargo_area: "Institutional Analyst", departamentoDepId: 1, cargo_valor: 2, cargo_id: 2 },
-                { cargo_area: "IT Infrastructure Ops", departamentoDepId: 2, cargo_valor: 1, cargo_id: 3 },
+                { cargo_area: "IT Infrastructure Ops", departamentoDepId: 2, cargo_valor: 2, cargo_id: 3 },
                 { cargo_area: "Technical Leader", departamentoDepId: 2, cargo_valor: 2, cargo_id: 4 },
-                { cargo_area: "Software Architect", departamentoDepId: 2, cargo_valor: 3, cargo_id: 5 },
-                { cargo_area: "IT Technician", departamentoDepId: 2, cargo_valor: 4, cargo_id: 6 },
-                { cargo_area: "Support Analyst", departamentoDepId: 2, cargo_valor: 5, cargo_id: 7 },
-                { cargo_area: "Administrative & Financial", departamentoDepId: 3, cargo_valor: 1, cargo_id: 8 },
+                { cargo_area: "Software Architect", departamentoDepId: 2, cargo_valor: 2, cargo_id: 5 },
+                { cargo_area: "IT Technician", departamentoDepId: 2, cargo_valor: 2, cargo_id: 6 },
+                { cargo_area: "Support Analyst", departamentoDepId: 2, cargo_valor: 2, cargo_id: 7 },
+                { cargo_area: "Administrative & Financial", departamentoDepId: 3, cargo_valor: 2, cargo_id: 8 },
                 { cargo_area: "Financial Analyst", departamentoDepId: 3, cargo_valor: 2, cargo_id: 9 },
-                { cargo_area: "Financial Administrative Assistant", departamentoDepId: 3, cargo_valor: 3, cargo_id: 10 },
-                { cargo_area: "People & Education", departamentoDepId: 4, cargo_valor: 1, cargo_id: 11 },
+                { cargo_area: "Financial Administrative Assistant", departamentoDepId: 3, cargo_valor: 2, cargo_id: 10 },
+                { cargo_area: "People & Education", departamentoDepId: 4, cargo_valor: 2, cargo_id: 11 },
                 { cargo_area: "People & Education Analyst", departamentoDepId: 4, cargo_valor: 2, cargo_id: 12 },
                 { cargo_area: "Administrative Assistant", departamentoDepId: 4, cargo_valor: 2, cargo_id: 13 },
                 { cargo_area: "CEO", departamentoDepId: 5, cargo_valor: 1, cargo_id: 14 }
@@ -190,7 +190,7 @@ export const generate = async () => {
                 contrato_data_desligamento: "Não tem",
                 contrato_tipo: ["CLT"],
                 userUserId: 1,
-                cargoCargoId: 5,
+                cargoCargoId: 14,
                 empContratanteContratanteId: 3,
             },
             {

@@ -29,6 +29,7 @@ import {
   verifyUsedCpf
 } from "middlewares/user";
 import { getLoggedUserData, getAllColaborador, getColaboradorContratoID } from "controllers/User";
+import { downloadFilesUser, getFilesUser } from "controllers/filesSet";
 
 
 const router = express.Router();
@@ -103,17 +104,18 @@ router.post(
 
 router.post(
   '/teste',
- /*  multer(multerConfig).single('file'),
-  adicionarDocumento */
-  adicionarDependente
+  multer(multerConfig).fields([{name: 'file', maxCount: 3}, {name: 'avatar', maxCount: 1}]),
+  adicionarDocumento
+  // adicionarDependente
 )
+router.get('/docs/:id', getFilesUser)
 /* 
 router.get(
   '/Contrato-user',
   verifyUserRole(["Administrador", "Gestor"]),
   getLoggedUserData)
  */
-
+router.get('/docs/download/:id', downloadFilesUser)
 // Fazer alteração no contrato do usuario
 router.put(
   '/update-contrato-user/:id',

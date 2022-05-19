@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ChangeEvent, ReactNode, useEffect, useState } from 'react';
 
 import { useCallback, useContext } from 'react';
 import { useForm } from 'react-hook-form';
@@ -26,6 +26,7 @@ import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 interface CadastroProps {
+  contrato: any;
   nomecompleto: string;
   nacionalidade: string;
   naturalidade: string;
@@ -74,87 +75,141 @@ function Cadastro() {
   const cookies = parseCookies();
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  const [photo, setPhoto] = useState<File>();
+  const [rgOrCpf, setRgOrCpf] = useState<File>();
+  const [residency, setResidency] = useState<File>();
 
-  const onSubmit = useCallback(async (data: CadastroProps) => {
-    const idiomasfalados: (string | boolean)[] = [];
-    Object.values(data.idiomas[0]).forEach((value, index) => {
-      idiomasfalados.push(value);
-    });
+  const handleSavePhoto = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) setPhoto(e.target.files[0]);
+  }, []);
+
+  const handleSaveRgOrCpf = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) setRgOrCpf(e.target.files[0]);
+  }, []);
+
+  const handleSaveResidency = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files) setResidency(e.target.files[0]);
+    },
+    [],
+  );
+
+  const handleUploadFile = useCallback(async () => {
+    const formData = new FormData();
+
+    formData.append('file', photo as string | Blob);
+    formData.append('file', rgOrCpf as string | Blob);
+    formData.append('file', residency as string | Blob);
+    formData.append('avatar', residency as string | Blob);
+
+    console.log(formData.getAll('file'));
 
     await api
-      .put<CadastroProps>(
-        '/user/auto-cadastro',
-        {
-          user_nome: data.nomecompleto,
-          user_cpf: data.cpf,
-          user_rg: data.rg,
-          user_nacionalidade: data.nacionalidade,
-          user_nascimento: data.nascimento,
-          user_naturalidade: data.naturalidade,
-          user_genero: data.genero,
-          user_raca: data.etnia,
-          user_estado_civil: data.estadocivil,
-          /* user_tipo_contrato: data.contrato, */
-          escolaridades: [
-            {
-              school_instituicao: data.school_instituicao,
-              school_formacao: data.school_formacao,
-              school_inicio: data.school_inicio,
-              school_termino: data.school_termino,
-              school_status: data.school_status,
-              school_curso: data.school_curso,
-            },
-          ],
-          enderecos: [
-            {
-              endereco_pais: data.nacionalidade,
-              endereco_bairro: data.bairro,
-              endereco_cidade: data.cidade,
-              endereco_cep: data.cep,
-              endereco_estado: data.estado,
-              endereco_numero: data.numero,
-              endereco_rua: data.rua,
-            },
-          ],
-          idioma_falados: idiomasfalados,
-          telefones: [
-            {
-              tell_ddd: data.telefone.split(' ')[0].replace(/([()])/g, ''),
-              tell_numero: data.telefone.split(' ')[1].replace('-', ''),
-            },
-          ],
-          dependentes: [
-            {
-              dependente_nome: data.dependente_nome,
-              dependente_nascimento: data.dependente_nascimento,
-              dependente_origin: data.dependente_origin,
-            },
-            {
-              dependente_nome: data.dependente_nome2,
-              dependente_nascimento: data.dependente_nascimento2,
-              dependente_origin: data.dependente_origin2,
-            },
-            {
-              dependente_nome: data.dependente_nome3,
-              dependente_nascimento: data.dependente_nascimento3,
-              dependente_origin: data.dependente_origin3,
-            },
-          ],
+      .post('/user/teste', formData, {
+        headers: {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${cookies['ionicookie.token']}`,
-          },
-        },
-      )
-      .then(({ data }) => {
-        console.log(data);
-        navigate('/Colab_home');
+      })
+      .then(({ status }) => {
+        console.log('status: ', status);
       })
       .catch(error => {
-        console.log(error);
+        console.log('error: ', error);
       });
-  }, []);
+  }, [cookies, photo, residency, rgOrCpf]);
+
+  const autoRegister = useCallback(
+    async (data: CadastroProps, idiomasfalados: (string | boolean)[]) => {
+      await api
+        .put<CadastroProps>(
+          '/user/auto-cadastro',
+          {
+            user_nome: data.nomecompleto,
+            user_cpf: data.cpf,
+            user_rg: data.rg,
+            user_nacionalidade: data.nacionalidade,
+            user_nascimento: data.nascimento,
+            user_naturalidade: data.naturalidade,
+            user_genero: data.genero,
+            user_raca: data.etnia,
+            user_estado_civil: data.estadocivil,
+            user_tipo_contrato: data.contrato,
+            escolaridades: [
+              {
+                school_instituicao: data.school_instituicao,
+                school_formacao: data.school_formacao,
+                school_inicio: data.school_inicio,
+                school_termino: data.school_termino,
+                school_status: data.school_status,
+                school_curso: data.school_curso,
+              },
+            ],
+            enderecos: [
+              {
+                endereco_pais: data.nacionalidade,
+                endereco_bairro: data.bairro,
+                endereco_cidade: data.cidade,
+                endereco_cep: data.cep,
+                endereco_estado: data.estado,
+                endereco_numero: data.numero,
+                endereco_rua: data.rua,
+              },
+            ],
+            idioma_falados: idiomasfalados,
+            telefones: [
+              {
+                tell_ddd: data.telefone.split(' ')[0].replace(/([()])/g, ''),
+                tell_numero: data.telefone.split(' ')[1].replace('-', ''),
+              },
+            ],
+            dependentes: [
+              {
+                dependente_nome: data.dependente_nome,
+                dependente_nascimento: data.dependente_nascimento,
+                dependente_origin: data.dependente_origin,
+              },
+              {
+                dependente_nome: data.dependente_nome2,
+                dependente_nascimento: data.dependente_nascimento2,
+                dependente_origin: data.dependente_origin2,
+              },
+              {
+                dependente_nome: data.dependente_nome3,
+                dependente_nascimento: data.dependente_nascimento3,
+                dependente_origin: data.dependente_origin3,
+              },
+            ],
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${cookies['ionicookie.token']}`,
+            },
+          },
+        )
+        .then(({ data }) => {
+          console.log(data);
+          navigate('/Colab_home');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    [cookies],
+  );
+
+  const onSubmit = useCallback(
+    async (data: CadastroProps) => {
+      const idiomasfalados: (string | boolean)[] = [];
+      Object.values(data.idiomas[0]).forEach((value, index) => {
+        idiomasfalados.push(value);
+      });
+
+      handleUploadFile();
+
+      autoRegister(data, idiomasfalados);
+    },
+    [autoRegister, handleUploadFile],
+  );
 
   const schema = yup
     .object({
@@ -190,7 +245,7 @@ function Cadastro() {
     formState: { errors },
   } = useForm<CadastroProps>({
     mode: 'onBlur',
-    resolver: yupResolver(schema),
+    // resolver: yupResolver(schema),
   });
 
   return (
@@ -359,7 +414,36 @@ function Cadastro() {
                   {...register('telefone')}
                 />
 
-                <div className="anexoWrapper">
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  fontWeight="bold"
+                  labelText="Foto"
+                  type="file"
+                  onChange={handleSavePhoto}
+                />
+
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  fontWeight="bold"
+                  labelText="RG/CPF"
+                  type="file"
+                  onChange={handleSaveRgOrCpf}
+                />
+
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  fontWeight="bold"
+                  labelText="RG/CPF"
+                  type="file"
+                  onChange={handleSaveResidency}
+                />
+                {/* <div className="anexoWrapper">
                   <div className="form">
                     <h6>Anexos</h6>
                     <h4>
@@ -371,7 +455,7 @@ function Cadastro() {
                       type="submit"
                     />
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
 

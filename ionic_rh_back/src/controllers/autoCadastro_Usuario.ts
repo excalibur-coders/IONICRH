@@ -11,6 +11,12 @@ import { idiomas } from "models/user_idioma";
 import { telefone } from "models/user_telefone";
 import { documentos } from "models/user_docs";
 import { dependente } from "models/userDependente";
+import path from "path";
+import multer from 'multer';
+import multerConfig from 'config/multer'
+import crypto from 'crypto';
+import multerS3 from 'multer-s3'
+import aws from 'aws-sdk';
 
 interface IDecodedParams {
     id: string;
@@ -188,19 +194,55 @@ export const adicionarDocumento = async (req: Request, res: Response, next: Next
         const tokenHeader = req.headers.authorization;
         const splitToken = tokenHeader?.split(' ')[1] as string;
         const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
-        await docsRepository
-            .createQueryBuilder()
-            .insert()
-            .into(documentos)
-            .values({
-                docs_nome: req.file?.originalname,
-                docs_size: req.file?.size,
-                docs_type: req.file?.mimetype,
-                docs_url: req.file?.location,
-                userUserId: Number(decodedJwt.id)
+        const { file, avatar } = req.files;
+
+        // var fileName: string;
+
+        // const s3 = {
+        //     s3: multerS3({
+        //         s3: new aws.S3(),
+        //         bucket: String(process.env.BUCKET_NAME),
+        //         contentType: multerS3.AUTO_CONTENT_TYPE,
+        //         acl: 'public-read',
+        //         key: (req, file, cb) => {
+        //             crypto.randomBytes(16, (err, hash) => {
+        //                 if (err) cb(err);
+            
+        //                 fileName = `${hash.toString("hex")}-${file.originalname}`;
+        //                 const { name , ext  } = path.parse(fileName);
+        //                 cb(null, fileName);
+        //             });
+        //         }
+        //     })
+        // }
+
+        // const multerConfig = {
+        //     storage: s3["s3"],
+        //     limits: {
+        //         fileSize: 5 * 1024 * 1024,
+        //     }
+        // }
+
+        // multer(multerConfig).fields([{name: 'file', maxCount: 3}, {name: 'avatar', maxCount: 1}]);
+        
+        const dados = [...file, ...avatar]
+        const salvos = dados.forEach(async (file) => {
+            const { name, ext } = path.parse(file.originalname)
+            const jubileu = await docsRepository
+                .createQueryBuilder()
+                .insert()
+                .into(documentos)
+                .values({
+                    docs_nome: name,
+                    docs_type: ext,
+                    docs_size: multerConfig.limits.fileSize,
+                    docs_url: `https://${process.env.BUCKET_NAME}.s3.${process.env.AWS_DEFAULT_REGION}.amazonaws.com/${name}${ext}`,
+                    userUserId: Number(decodedJwt.id),
+                })
+                .execute()
+                return res.json(jubileu);
             })
-            .execute()
-        next()
+        // next()
     } catch (error) {
         res.json(error)
     }

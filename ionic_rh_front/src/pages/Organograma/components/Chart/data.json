@@ -3,24 +3,24 @@
     "name": "Root",
     "children": [
       {
-        "name": "Child 1",
+        "name": "Josias",
         "children": [
           {
-            "name": "Grand Child"
+            "name": "T.I"
           }
         ]
       },
       {
-        "name": "Child 2",
+        "name": "Godofredo",
         "children": [
           {
-            "name": "Grand Child",
+            "name": "Cuidador",
             "children": [
               {
-                "name": "Great Grand Child 1"
+                "name": "Gabriel"
               },
               {
-                "name": "Grand Grand Child 2"
+                "name": "Lucas"
               }
             ]
           }

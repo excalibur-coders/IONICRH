@@ -125,6 +125,7 @@ export const organograma = async (req: Request, res: Response) => {
               "d.dep_id",
               "c.headID",
               "c.cargo_area",
+              "c.cargo_valor",
               "cont.contrato_matricula",
               "u.user_nome",
               "u.user_email",
