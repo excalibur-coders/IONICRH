@@ -33,7 +33,7 @@ interface IDepartamento {
 }
 
 
-function myFunction() {
+/* function myFunction() {
   // Declare variables
   let input, filter, table, tr, td, i, txtValue;
   // eslint-disable-next-line prefer-const
@@ -58,7 +58,7 @@ function myFunction() {
     }
   }
 }
-
+ */
 
 function Cargos() {
   const cookies = parseCookies();
@@ -123,7 +123,7 @@ function Cargos() {
                   <Input
                     type="text"
                     id="myInput"
-                    onKeyUp="myFunction()"
+                    /* onKeyUp="myFunction()" */
                     fontSize={20}
                     size="lg"
                     width="50vw"
