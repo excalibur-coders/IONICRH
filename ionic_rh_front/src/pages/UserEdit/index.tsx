@@ -34,6 +34,7 @@ interface IUser {
   contrato: IContrato[];
   user_raca: string;
   user_rg?: string;
+  user_role?: string;
 }
 
 interface IContrato {
@@ -699,6 +700,32 @@ function UserEdit() {
 
               <div className="coluna">
                 <div className="colunaFuncionais">
+
+                <div className="coluna1">
+                    <span>Perfil de Usuário:</span>
+                    <Select
+                      placeholder={
+                        user?.user_role
+                          ? user?.user_role
+                          : 'Selecione uma opção'
+                      }
+                      size="xs"
+                      {...register('dep_name')}
+                      defaultValue={
+                        user?.user_role
+                      }
+                    >
+                        <option value='Gestor'>Gestor</option>
+                        <option value='Consultor'>Consultor</option>
+                        <option value='Colaborador'>Colaborador</option>
+{/*                       {profile.map((profile, index) => (
+                        <option key={index} value={user?.user_role}>
+                          {user?.user_role}
+                        </option>
+                      ))} */}
+                    </Select>
+                  </div>
+
                   <div className="coluna1">
                     <span>Matricula:</span>
                     <Input
