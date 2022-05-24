@@ -69,6 +69,11 @@ interface CadastroProps {
   dependente_nome3: string;
   dependente_nascimento3: string;
   dependente_origin3: string;
+  empresa_nome: string;
+  empresa_cnpj: string;
+  empresa_natureza: string;
+  empresa_fundacao: string;
+  empresa_etica: string;
 }
 
 function Cadastro() {
@@ -133,7 +138,7 @@ function Cadastro() {
             user_genero: data.genero,
             user_raca: data.etnia,
             user_estado_civil: data.estadocivil,
-            user_tipo_contrato: data.contrato,
+            /* user_tipo_contrato: data.contrato, */
             escolaridades: [
               {
                 school_instituicao: data.school_instituicao,
@@ -179,6 +184,15 @@ function Cadastro() {
                 dependente_origin: data.dependente_origin3,
               },
             ],
+            empresas: [
+              {
+                pj_nome: data.empresa_nome,
+                pj_cnjp: data.empresa_cnpj,
+                pj_natureza_juridica: data.empresa_natureza,
+                pj_fundacao: data.empresa_fundacao,
+                pj_conduta_etica: data.empresa_etica,
+              }
+            ]
           },
           {
             headers: {
@@ -483,26 +497,27 @@ function Cadastro() {
                   {...register('school_formacao')}
                 />
 
-                <Input
-                  size="sm"
-                  width="22rem"
-                  fontSize={20}
-                  labelText="Início"
-                  type="date"
-                  error={errors.school_inicio?.message}
-                  {...register('school_inicio')}
-                />
+                <div className="form-row">
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="Início"
+                    type="date"
+                    error={errors.school_inicio?.message}
+                    {...register('school_inicio')}
+                  />
 
-                <Input
-                  size="sm"
-                  width="22rem"
-                  fontSize={20}
-                  labelText="Termino"
-                  type="date"
-                  error={errors.school_termino?.message}
-                  {...register('school_termino')}
-                />
-
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="Termino"
+                    type="date"
+                    error={errors.school_termino?.message}
+                    {...register('school_termino')}
+                  />
+                </div>
                 <div className="dropdown">
                   <label htmlFor="lang" className="dropdowntext">
                     Status
@@ -563,6 +578,50 @@ function Cadastro() {
                     />
                   </Stack>
                 </CheckboxGroup>
+
+                <h6>Dados Contratuais</h6>
+
+                <div className='form-row'>
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="Empresa"
+                    {...register('empresa_nome')}
+                  />
+
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="CNPJ"
+                    {...register('empresa_cnpj')}
+                  />
+                </div>
+
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  labelText="Natureza Jurídica"
+                  {...register('empresa_natureza')}
+                />
+
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  labelText="Fundação"
+                  {...register('empresa_fundacao')}
+                />
+
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  labelText="Conduta Ética"
+                  {...register('empresa_etica')}
+                />
               </div>
             </div>
 
