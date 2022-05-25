@@ -431,6 +431,7 @@ function UserEdit() {
                     type="submit"
                     text="Salvar"
                     color={theme.colors.primary}
+                    onClick={() => navigate('/ContaAtualizada')}
                   />
                   {/*</Link>/*/}
                   <Link to="User/:id">

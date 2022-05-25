@@ -5,6 +5,7 @@ import { Route, Routes as RoutesWrapper } from 'react-router-dom';
 import Confirmacao from 'pages/Confirmacao';
 import CriarConta from 'pages/CriarConta';
 import ContaSucesso from 'pages/ContaSucesso';
+import ContaAtualizada from 'pages/ContaAtualizada';
 import RecuperarSenha from 'pages/RecuperarSenha';
 import ResetarSenha from 'pages/ResetarSenha';
 import SenhaAlterada from 'pages/SenhaAlterada';
@@ -33,6 +34,7 @@ function Routes() {
       <Route path="/Funcionarios" element={<Funcionarios />} />
       <Route path="/Cadastro" element={<CriarConta />} />
       <Route path="/ContaSucesso" element={<ContaSucesso />} />
+      <Route path="/ContaAtualizada" element={<ContaAtualizada />} />
       <Route path="/RecuperarSenha" element={<RecuperarSenha />} />
       <Route path="/Resetar" element={<ResetarSenha />} />
       <Route path="/SenhaAlterada" element={<SenhaAlterada />} />

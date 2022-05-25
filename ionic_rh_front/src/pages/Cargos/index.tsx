@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, SetStateAction } from 'react';
 import {
   Box,
   Link,
@@ -33,34 +33,9 @@ interface IDepartamento {
 }
 
 
-/* function myFunction() {
-  // Declare variables
-  let input, filter, table, tr, td, i, txtValue;
-  // eslint-disable-next-line prefer-const
-  input = document.getElementById("myInput");
-  // eslint-disable-next-line prefer-const
-  filter = input?.value?.toUpperCase();
-  // eslint-disable-next-line prefer-const
-  table = document.getElementById("myTable");
-  // eslint-disable-next-line prefer-const
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
- */
 
 function Cargos() {
+
   const cookies = parseCookies();
   const navigate = useNavigate();
 
@@ -90,6 +65,21 @@ function Cargos() {
   useEffect(() => {
     getAllCargos();
   }, []);
+
+  // Barra de Pesquisa //
+
+/*   const [searchInput, setSearchInput] = useState("");
+  const cargosPesquisados = getAllCargos;
+
+  const handleChange = (e: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
+    e.preventDefault();
+    setSearchInput(e.target.value);
+  };
+  if (searchInput.length > 0) {
+    cargosPesquisados.filter((cargo: string) => {
+      return cargo.match(searchInput);
+  });
+  } */
 
   return (
     <>
@@ -121,9 +111,10 @@ function Cargos() {
                   {/* eslint-disable-next-line react/no-children-prop */}
                   <InputLeftElement children={<SearchIcon w={5} h={5} />} />
                   <Input
-                    type="text"
+                    type="search"
+/*                     onChange={handleChange}
+                    value={searchInput} */
                     id="myInput"
-                    /* onKeyUp="myFunction()" */
                     fontSize={20}
                     size="lg"
                     width="50vw"
