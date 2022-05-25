@@ -28,6 +28,8 @@ interface IUser {
   user_estado_civil?: string;
   telefone: ITelefone[];
   idioma: IIdioma[];
+  docs: IDocs;
+  docsavatar: IAvatar[];
   documentos?: number;
   escolaridade: IEscolaridade;
   endereco: IEndereco[];
@@ -36,7 +38,12 @@ interface IUser {
   user_rg?: string;
   user_role?: string;
 }
-
+interface IDocs {
+  docs_nome: string;
+  docs_url: string;
+  docs_type: string;
+  docs_header: string;
+}
 interface IContrato {
   cargo: ICargo;
   contrato_matricula?: string;
@@ -80,7 +87,12 @@ interface IDepartamentos {
   dep_id?: number;
   dep_name?: string;
 }
-
+interface IAvatar {
+  avatar_nome: string;
+  avatar_url: string;
+  avatar_type: string;
+  avatar_header: string;
+}
 interface IEscolaridade {
   school_formacao?: string;
   school_status?: string;
@@ -417,9 +429,11 @@ function UserEdit() {
           <div className="Wrapper">
             <div className="centerWrapper">
               <div className="leftWrapper">
-                <div className="foto">
-                  <MdAccountCircle size="100%" />
-                </div>
+                <img
+                  className="foto"
+                  src={user?.docsavatar[0].avatar_url}
+                  alt="profile picture"
+                />
 
                 <div className="User">
                   <h1>{user?.user_nome}</h1>

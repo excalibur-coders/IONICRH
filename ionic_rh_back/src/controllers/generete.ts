@@ -5,16 +5,28 @@ import { contrato } from "models/contrato"
 import { departamento } from "models/departamento"
 import { empresa_contratante } from "models/emp_contratante"
 import { user } from "models/user"
+import { idiomas } from "models/user_idioma"
+import { escolaridade } from "models/user_escola"
+import { telefone } from "models/user_telefone"
+import { documentos } from "models/user_docs"
+import { documentosAvatar } from "models/docsAvatar"
+import { endereco } from "models/user_endereco"
 
 const userRepository = AppDataSource.getRepository(user)
 const depRepository = AppDataSource.getRepository(departamento)
 const empcontRepository = AppDataSource.getRepository(empresa_contratante)
 const cargoRepository = AppDataSource.getRepository(cargo)
 const contRepository = AppDataSource.getRepository(contrato)
+const idiomaRepository = AppDataSource.getRepository(idiomas)
+const escolaridadeRepository = AppDataSource.getRepository(escolaridade)
+const telefoneRepository = AppDataSource.getRepository(telefone)
+const docsFiles = AppDataSource.getRepository(documentos)
+const enderecoRepository = AppDataSource.getRepository(endereco)
+const docsAvatar = AppDataSource.getRepository(documentosAvatar)
 export const generate = async () => {
     try {
         console.log("Dados gerado com sucesso");
-        // Empresas 
+        // Empresas [Certo]
         await empcontRepository
             .createQueryBuilder()
             .insert()
@@ -38,7 +50,7 @@ export const generate = async () => {
                 },
             ])
             .execute()
-        // Departamento
+        // Departamento [Certo]
         await depRepository
             .createQueryBuilder()
             .insert()
@@ -58,18 +70,18 @@ export const generate = async () => {
             .into(cargo)
             .values([
                 { cargo_area: "Marketing Institucional", departamentoDepId: 1, cargo_valor: 2, cargo_id: 1 },
-                { cargo_area: "Institutional Analyst", departamentoDepId: 1, cargo_valor: 2, cargo_id: 2 },
+                { cargo_area: "Institutional Analyst", departamentoDepId: 1, cargo_valor: 3, cargo_id: 2 },
                 { cargo_area: "IT Infrastructure Ops", departamentoDepId: 2, cargo_valor: 2, cargo_id: 3 },
-                { cargo_area: "Technical Leader", departamentoDepId: 2, cargo_valor: 2, cargo_id: 4 },
-                { cargo_area: "Software Architect", departamentoDepId: 2, cargo_valor: 2, cargo_id: 5 },
-                { cargo_area: "IT Technician", departamentoDepId: 2, cargo_valor: 2, cargo_id: 6 },
-                { cargo_area: "Support Analyst", departamentoDepId: 2, cargo_valor: 2, cargo_id: 7 },
+                { cargo_area: "Technical Leader", departamentoDepId: 2, cargo_valor: 3, cargo_id: 4 },
+                { cargo_area: "Software Architect", departamentoDepId: 2, cargo_valor: 4, cargo_id: 5 },
+                { cargo_area: "IT Technician", departamentoDepId: 2, cargo_valor: 5, cargo_id: 6 },
+                { cargo_area: "Support Analyst", departamentoDepId: 2, cargo_valor: 6, cargo_id: 7 },
                 { cargo_area: "Administrative & Financial", departamentoDepId: 3, cargo_valor: 2, cargo_id: 8 },
-                { cargo_area: "Financial Analyst", departamentoDepId: 3, cargo_valor: 2, cargo_id: 9 },
-                { cargo_area: "Financial Administrative Assistant", departamentoDepId: 3, cargo_valor: 2, cargo_id: 10 },
+                { cargo_area: "Financial Analyst", departamentoDepId: 3, cargo_valor: 3, cargo_id: 9 },
+                { cargo_area: "Financial Administrative Assistant", departamentoDepId: 3, cargo_valor: 4, cargo_id: 10 },
                 { cargo_area: "People & Education", departamentoDepId: 4, cargo_valor: 2, cargo_id: 11 },
-                { cargo_area: "People & Education Analyst", departamentoDepId: 4, cargo_valor: 2, cargo_id: 12 },
-                { cargo_area: "Administrative Assistant", departamentoDepId: 4, cargo_valor: 2, cargo_id: 13 },
+                { cargo_area: "People & Education Analyst", departamentoDepId: 4, cargo_valor: 3, cargo_id: 12 },
+                { cargo_area: "Administrative Assistant", departamentoDepId: 4, cargo_valor: 3, cargo_id: 13 },
                 { cargo_area: "CEO", departamentoDepId: 5, cargo_valor: 1, cargo_id: 14 }
             ])
             .execute()
@@ -98,7 +110,8 @@ export const generate = async () => {
             {
                 user_nome: "Gabriel Souza Bicho Nunes",
                 user_email: "gabriel@gmail.com",
-                user_cpf: "462.428.538-77",
+                user_cpf: "813.555.651-97",
+                user_rg: "43.173.335-1",
                 user_nacionalidade: "Brasil",
                 user_naturalidade: "Pidamonhagaba",
                 user_nascimento: "27/04/1995",
@@ -112,7 +125,8 @@ export const generate = async () => {
             {
                 user_nome: "Matheus Fiora Avante",
                 user_email: "Mathues@gmail.com",
-                user_cpf: "462.428.538-78",
+                user_cpf: "128.833.488-55",
+                user_rg: "26.893.403-4",
                 user_nacionalidade: "Brasil",
                 user_naturalidade: "São José dos Campos",
                 user_nascimento: "07/10/1999",
@@ -126,7 +140,8 @@ export const generate = async () => {
             {
                 user_nome: "Murilo Fattore",
                 user_email: "Fattore@gmail.com",
-                user_cpf: "462.428.538-79",
+                user_cpf: "258.661.220-57",
+                user_rg: "46.038.654-2",
                 user_nacionalidade: "Brasil",
                 user_naturalidade: "São José dos Campos",
                 user_nascimento: "07/11/2000",
@@ -140,7 +155,8 @@ export const generate = async () => {
             {
                 user_nome: "Lucas Costa",
                 user_email: "Costa@gmail.com",
-                user_cpf: "462.428.538-80",
+                user_cpf: "066.122.822-31",
+                user_rg: "33.439.509-4",
                 user_nacionalidade: "Brasil",
                 user_naturalidade: "São José dos Campos",
                 user_nascimento: "21/04/2001",
@@ -154,7 +170,8 @@ export const generate = async () => {
             {
                 user_nome: "Gabriela Silva",
                 user_email: "Gabs@gmail.com",
-                user_cpf: "462.428.538-81",
+                user_cpf: "663.753.877-95",
+                user_rg: "20.318.280-7",
                 user_nacionalidade: "Brasil",
                 user_naturalidade: "São José dos Campos",
                 user_nascimento: "21/04/2001",
@@ -172,7 +189,7 @@ export const generate = async () => {
             .insert()
             .into(contrato)
             .values([{
-                contrato_matricula: "7002-255",
+                contrato_matricula: "156412 21 55 2022 1 21231 001 5652360 63",
                 contrato_adimissao: "01/04/2022",
                 contrato_base: "São José dos Campos",
                 contrato_tempo_de_casa: "08/04/2022",
@@ -192,9 +209,10 @@ export const generate = async () => {
                 userUserId: 1,
                 cargoCargoId: 14,
                 empContratanteContratanteId: 3,
+                contrato_nivel: "sênior"
             },
             {
-                contrato_matricula: "8222-555",
+                contrato_matricula: "156412 21 55 2022 1 21231 002 5652361 61",
                 contrato_adimissao: "05/10/2022",
                 contrato_base: "São José dos Campos",
                 contrato_tempo_de_casa: "08/11/2022",
@@ -210,9 +228,10 @@ export const generate = async () => {
                 userUserId: 2,
                 cargoCargoId: 10,
                 empContratanteContratanteId: 1,
+                contrato_nivel: "pleno"
             },
             {
-                contrato_matricula: "8222-515",
+                contrato_matricula: "156412 21 55 2022 1 21231 003 5652363 99",
                 contrato_adimissao: "05/05/2022",
                 contrato_base: "Taubate",
                 contrato_tempo_de_casa: "08/12/2022",
@@ -229,9 +248,10 @@ export const generate = async () => {
                 userUserId: 3,
                 cargoCargoId: 2,
                 empContratanteContratanteId: 4,
+                contrato_nivel: "pleno"
             },
             {
-                contrato_matricula: "1250-515",
+                contrato_matricula: "156412 21 55 2022 1 21231 004 5652364 97",
                 contrato_adimissao: "27/05/2022",
                 contrato_base: "Jacarei",
                 contrato_tempo_de_casa: "08/12/2022",
@@ -247,9 +267,10 @@ export const generate = async () => {
                 userUserId: 4,
                 cargoCargoId: 6,
                 empContratanteContratanteId: 4,
+                contrato_nivel: "pleno"
             },
             {
-                contrato_matricula: "6960-515",
+                contrato_matricula: "156412 21 55 2022 1 21231 005 5652365 95",
                 contrato_adimissao: "27/05/2022",
                 contrato_base: "Jacarei",
                 contrato_tempo_de_casa: "08/12/2022",
@@ -265,9 +286,10 @@ export const generate = async () => {
                 userUserId: 5,
                 cargoCargoId: 1,
                 empContratanteContratanteId: 4,
+                contrato_nivel: "pleno"
             },
             {
-                contrato_matricula: "1458-515",
+                contrato_matricula: "156412 21 55 2022 1 21231 006 5652366 93",
                 contrato_adimissao: "27/05/2022",
                 contrato_base: "Ubatuba",
                 contrato_tempo_de_casa: "08/12/2022",
@@ -283,6 +305,7 @@ export const generate = async () => {
                 userUserId: 6,
                 cargoCargoId: 7,
                 empContratanteContratanteId: 4,
+                contrato_nivel: "júnior"
             },
             ])
             .execute()
@@ -345,6 +368,246 @@ export const generate = async () => {
                 cargo_id: 11
             }
             )
+            .execute()
+        idiomaRepository
+            .createQueryBuilder()
+            .insert()
+            .into(idiomas)
+            .values([{
+                idioma_falados: "Português",
+                userUserId: 1,
+            }, {
+                idioma_falados: "Português",
+                userUserId: 2,
+            }, {
+                idioma_falados: "Português",
+                userUserId: 3,
+            }, {
+                idioma_falados: "Português",
+                userUserId: 4,
+            }, {
+                idioma_falados: "Português",
+                userUserId: 5,
+            }, {
+                idioma_falados: "Português",
+                userUserId: 6,
+            },])
+            .execute()
+        escolaridadeRepository
+            .createQueryBuilder()
+            .insert()
+            .into(escolaridade)
+            .values([{
+                school_formacao: "Ensino Superior",
+                school_curso: "Desenvolvimento de Software Multiplataforma",
+                school_status: "Completo",
+                school_instituicao: "Fatec São José dos Campos",
+                school_inicio: "27/02/2015",
+                school_termino: "31/12/2018",
+                userUserId: 1
+            },
+            {
+                school_formacao: "Ensino Superior",
+                school_curso: "Ciencias da computação",
+                school_status: "Andamento",
+                school_instituicao: "UNIP - Universidade Paulista",
+                school_inicio: "27/02/2018",
+                school_termino: "31/12/2023",
+                userUserId: 2
+            },
+            {
+                school_formacao: "Ensino Superior",
+                school_curso: "Banco de dados",
+                school_status: "Completo",
+                school_instituicao: "Fatec São José dos Campos",
+                school_inicio: "27/02/2015",
+                school_termino: "31/12/2018",
+                userUserId: 3
+            },
+            {
+                school_formacao: "Ensino Superior",
+                school_curso: "Desenvolvimento de Software Multiplataforma",
+                school_status: "Andamento",
+                school_instituicao: "Fatec São José dos Campos",
+                school_inicio: "27/02/2021",
+                school_termino: "31/12/2024",
+                userUserId: 4
+            },
+            {
+                school_formacao: "Ensino Superior",
+                school_curso: "Desenvolvimento de Software Multiplataforma",
+                school_status: "Andamento",
+                school_instituicao: "Fatec São José dos Campos",
+                school_inicio: "27/02/2021",
+                school_termino: "31/12/2024",
+                userUserId: 5
+            }
+                ,
+            {
+                school_formacao: "Ensino Superior",
+                school_curso: "Desenvolvimento de Software Multiplataforma",
+                school_status: "Andamento",
+                school_instituicao: "Fatec São José dos Campos",
+                school_inicio: "27/02/2021",
+                school_termino: "31/12/2024",
+                userUserId: 6
+            }])
+            .execute()
+        telefoneRepository
+            .createQueryBuilder()
+            .insert()
+            .into(telefone)
+            .values([{
+                tell_ddd: "12",
+                tell_numero: "991721721",
+                userUserId: 1
+            },
+            {
+                tell_ddd: "12",
+                tell_numero: "991721722",
+                userUserId: 2
+            },
+            {
+                tell_ddd: "12",
+                tell_numero: "991721723",
+                userUserId: 3
+            },
+            {
+                tell_ddd: "12",
+                tell_numero: "991721724",
+                userUserId: 4
+            },
+            {
+                tell_ddd: "12",
+                tell_numero: "991721725",
+                userUserId: 5
+            },
+            {
+                tell_ddd: "12",
+                tell_numero: "991721726",
+                userUserId: 6
+            }])
+            .execute()
+        docsAvatar
+            .createQueryBuilder()
+            .insert()
+            .into(documentosAvatar)
+            .values([{
+                avatar_id: 1,
+                avatar_nome: 'logoExcalibur',
+                avatar_url: 'https://bichocorporacoes.s3.us-east-1.amazonaws.com/cfbe20f5a899727cf8ceafacc69da1de-logoExcalibur.png',
+                avatar_size: 5242880,
+                avatar_type: '.png',
+                userUserId: 1
+            },
+            {
+                avatar_id: 2,
+                avatar_nome: 'logoExcalibur',
+                avatar_url: 'https://bichocorporacoes.s3.us-east-1.amazonaws.com/cfbe20f5a899727cf8ceafacc69da1de-logoExcalibur.png',
+                avatar_size: 5242880,
+                avatar_type: '.png',
+                userUserId: 2
+            },
+            {
+                avatar_id: 3,
+                avatar_nome: 'logoExcalibur',
+                avatar_url: 'https://bichocorporacoes.s3.us-east-1.amazonaws.com/cfbe20f5a899727cf8ceafacc69da1de-logoExcalibur.png',
+                avatar_size: 5242880,
+                avatar_type: '.png',
+                userUserId: 3
+            },
+            {
+                avatar_id: 4,
+                avatar_nome: 'logoExcalibur',
+                avatar_url: 'https://bichocorporacoes.s3.us-east-1.amazonaws.com/cfbe20f5a899727cf8ceafacc69da1de-logoExcalibur.png',
+                avatar_size: 5242880,
+                avatar_type: '.png',
+                userUserId: 4
+            },
+            {
+                avatar_id: 5,
+                avatar_nome: 'logoExcalibur',
+                avatar_url: 'https://bichocorporacoes.s3.us-east-1.amazonaws.com/cfbe20f5a899727cf8ceafacc69da1de-logoExcalibur.png',
+                avatar_size: 5242880,
+                avatar_type: '.png',
+                userUserId: 5
+            },
+            {
+                avatar_id: 6,
+                avatar_nome: 'logoExcalibur',
+                avatar_url: 'https://bichocorporacoes.s3.us-east-1.amazonaws.com/cfbe20f5a899727cf8ceafacc69da1de-logoExcalibur.png',
+                avatar_size: 5242880,
+                avatar_type: '.png',
+                userUserId: 6
+            },])
+            .execute()
+        enderecoRepository
+            .createQueryBuilder()
+            .insert()
+            .into(endereco)
+            .values([{
+                endereco_pais: "Brasil",
+                endereco_bairro: "Três corações",
+                endereco_cidade: "São José dos campos",
+                endereco_cep: "12235-700",
+                endereco_compl: "",
+                endereco_numero: "396",
+                endereco_rua: "Rua três corações",
+                endereco_estado: "São Paulo",
+                userUserId: 1
+            }, {
+                endereco_pais: "Brasil",
+                endereco_bairro: "Trinta e um de março",
+                endereco_cidade: "São José dos campos",
+                endereco_cep: "12235-800",
+                endereco_compl: "",
+                endereco_numero: "290",
+                endereco_rua: "Rua maria pero tinoco",
+                endereco_estado: "São Paulo",
+                userUserId: 2
+            }, {
+                endereco_pais: "Brasil",
+                endereco_bairro: "Vila industrial",
+                endereco_cidade: "São José dos campos",
+                endereco_cep: "12105-800",
+                endereco_compl: "Apto. 250 bloco 3",
+                endereco_numero: "290",
+                endereco_rua: "Vila",
+                endereco_estado: "São Paulo",
+                userUserId: 3
+            }, {
+                endereco_pais: "Brasil",
+                endereco_bairro: "jardin das industrias",
+                endereco_cidade: "São José dos campos",
+                endereco_cep: "12105-800",
+                endereco_compl: "Apto. 690 bloco 2",
+                endereco_numero: "20",
+                endereco_rua: "Vila",
+                endereco_estado: "São Paulo",
+                userUserId: 4
+            },
+            {
+                endereco_pais: "Brasil",
+                endereco_bairro: "Morumbi",
+                endereco_cidade: "São José dos campos",
+                endereco_cep: "12158-400",
+                endereco_compl: "Apto. 250 bloco 3",
+                endereco_numero: "290",
+                endereco_rua: "Rua Jardim",
+                endereco_estado: "São Paulo",
+                userUserId: 5
+            },
+            {
+                endereco_pais: "Brasil",
+                endereco_bairro: "Residencial União",
+                endereco_cidade: "São José dos campos",
+                endereco_cep: "13505-800",
+                endereco_compl: "",
+                endereco_numero: "980",
+                endereco_rua: "José das peras",
+                endereco_estado: "São Paulo",
+                userUserId: 6
+            },])
             .execute()
     } catch (error) {
         console.log(error);

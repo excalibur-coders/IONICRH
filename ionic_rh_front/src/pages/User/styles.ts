@@ -225,6 +225,11 @@ export const Container = styled(Flex)`
   }
 
   .Wrapper3 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    display: flex;
     .DadosFuncionais {
       span {
         text-align: left;
@@ -232,6 +237,20 @@ export const Container = styled(Flex)`
         font-size: 25px;
         padding: 10px;
         color: ${theme.colors.primary};
+      }
+      .docsMother {
+        display: flex;
+        flex-direction: row;
+        width: 50%;
+        .docsConfig {
+          background: black;
+          .docsImgDiv {
+            background: blue;
+          }
+          .docsLink {
+            color: red;
+          }
+        }
       }
     }
   }

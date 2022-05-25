@@ -31,6 +31,11 @@ export class contrato {
         nullable: true
     })
     contrato_matricula!: string;
+    @Column({
+        type: "varchar",
+        nullable: true
+    })
+    contrato_nivel!: string;
     
     @Column({
         type: "varchar",
