@@ -8,6 +8,7 @@ export interface IContrato {
     contrato_tempo_formalizacao?: string,
     contrato_dominio?: string,
     contrato_data_desligamento?: string,
+    contrato_nivel?: string,
     contrato_distrato?: string,
     contrato_tipo?: ["Pessoa Juridica" | "CLT" | "Estagio" | "Temporario"]
     contrato_faixa_salarial?: number,
