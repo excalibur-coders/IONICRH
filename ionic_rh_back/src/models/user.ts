@@ -2,6 +2,7 @@ import {
     Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne
 } from "typeorm";
 import { contrato } from "./contrato";
+import { documentosAvatar } from "./docsAvatar";
 import { dependente } from "./userDependente";
 import { documentos } from "./user_docs";
 import { endereco } from "./user_endereco";
@@ -121,6 +122,8 @@ export class user {
 
     @OneToMany(() => documentos, (docs) => docs.user)
     docs!: documentos
+    @OneToMany(() => documentosAvatar, (docsavatar) => docsavatar.user)
+    docsavatar!: documentosAvatar
 
     @OneToMany(() => idiomas, (idioma) => idioma.user)
     idioma!: idiomas

@@ -24,13 +24,25 @@ export const getLoggedUserData = async (req: Request, res: Response) => {
         'i',
         'e',
         't',
-        'end'
+        'c',
+        'avatar',
+        'docs',
+        'end',
+        'cont',
+        'd',
+        'en',
       ])
       .from(user, 'u')
       .leftJoin('u.idioma', 'i')
       .leftJoin('u.escolaridade', 'e')
       .leftJoin('u.telefone', 't')
       .leftJoin('u.endereco', 'end')
+      .leftJoin('u.docsavatar', 'avatar')
+      .leftJoin('u.docs', 'docs')
+      .leftJoin('u.contrato', 'c')
+      .leftJoin('c.cargo', 'cont')
+      .leftJoin('cont.departamento', 'd')
+      .leftJoin('c.emp_contratante', 'en')
       .where(
         "u.user_id =:user_id", {
         user_id: Number(decodedJwt.id)
@@ -54,6 +66,8 @@ export const getColaboradorContratoID = async (req: Request, res: Response) => {
         'e',
         't',
         'c',
+        'docs',
+        'docsavatar',
         'end',
         'cont',
         'd',
@@ -64,6 +78,8 @@ export const getColaboradorContratoID = async (req: Request, res: Response) => {
       .leftJoin('u.escolaridade', 'e')
       .leftJoin('u.telefone', 't')
       .leftJoin('u.endereco', 'end')
+      .leftJoin('u.docs', 'docs')
+      .leftJoin('u.docsavatar', 'docsavatar')
       .leftJoin('u.contrato', 'c')
       .leftJoin('c.cargo', 'cont')
       .leftJoin('cont.departamento', 'd')
@@ -98,20 +114,22 @@ export const getAllColaborador = async (req: Request, res: Response) => {
         'end',
         'cont',
         'd',
-        'en'
+        'avatar',
+        'en',
+        'docs'
       ])
       .from(user, 'u')
       .leftJoin('u.idioma', 'i')
       .leftJoin('u.escolaridade', 'e')
       .leftJoin('u.telefone', 't')
+      .leftJoin('u.docs', 'docs')
+      .leftJoin('u.docsavatar', 'avatar')
       .leftJoin('u.endereco', 'end')
       .leftJoin('u.contrato', 'c')
       .leftJoin('c.cargo', 'cont')
       .leftJoin('cont.departamento', 'd')
       .leftJoin('c.emp_contratante', 'en')
       .getMany()
-
-      console.log(userQuery);
 
     res.json(userQuery)
   } catch (err) {
