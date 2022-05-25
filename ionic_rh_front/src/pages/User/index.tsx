@@ -7,8 +7,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdOutlinePictureAsPdf } from 'react-icons/md';
 import { Divider } from '@chakra-ui/react';
+import fileDownload from 'js-file-download';
 import { FaArrowLeft } from 'react-icons/fa';
-
 import { useParams } from 'react-router-dom';
 
 import Button from 'components/Button';
@@ -28,9 +28,10 @@ interface IUser {
   user_genero?: string;
   user_cpf?: string;
   user_estado_civil?: string;
+  docsavatar: IAvatar[];
   telefone: ITelefone[];
   idioma: IIdioma[];
-  documentos?: number;
+  docs?: IDocs[];
   escolaridade: IEscolaridade[];
   endereco: IEndereco[];
   contrato: IContrato[];
@@ -41,12 +42,24 @@ interface IUser {
 interface IIdioma {
   idioma_falados: string;
 }
-
 interface ITelefone {
   tell_ddd?: string;
   tell_numero?: string;
 }
-
+interface IAvatar {
+  avatar_nome: string;
+  avatar_url: string;
+  avatar_type: string;
+  avatar_header: string;
+}
+interface IDocs {
+  docs_id: number;
+  docs_nome: string;
+  docs_url: string;
+  docs_type: string;
+  docs_header: string;
+  docs_key: string;
+}
 interface IEndereco {
   endereco_rua?: string;
   endereco_id?: number;
@@ -109,7 +122,8 @@ function User() {
   const cookies = parseCookies();
   const [user, setUser] = useState<IUser>();
   const [loading, setLoading] = useState(false);
-  const { id } = useParams();
+  const { id, docs_id } = useParams();
+
   // const getAllUser = useCallback(() => {
   //   setLoading(true);
 
@@ -130,10 +144,48 @@ function User() {
 
   // }, [setLoading, setUser]);
 
+  //Vereficar o ERRO DE DOWNLOAD
+  const downloadFile = (
+    docs_id: number,
+    docs_nome: string,
+    docs_type: string,
+  ) => {
+    api
+      .get(`/user/docs/download/${docs_id}`, {
+        headers: {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
+        },
+        responseType: 'blob',
+      })
+      .then(res => {
+        console.log('Baixar', id);
+        const unirarq = docs_nome + docs_type;
+        fileDownload(res.data, unirarq);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   useEffect(() => {
     // getUserInfo()
     api
       .get(`/user/usuario-perfil/${id}`, {
+        headers: {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
+        },
+      })
+      .then(({ data }) => {
+        /* console.log('ola', data); */
+        setUser(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, [cookies, id]);
+  /* useEffect(() => {
+    // getUserInfo()
+    api
+      .get(`/docs/download/${id}/${docs}`, {
         headers: {
           Authorization: `Bearer ${cookies['ionicookie.token']}`,
         },
@@ -145,7 +197,7 @@ function User() {
       .catch(error => {
         console.log(error);
       });
-  }, [cookies, id]);
+  }, [cookies, id, docs]); */
 
   return (
     <>
@@ -154,9 +206,13 @@ function User() {
         <div className="Wrapper">
           <div className="centerWrapper">
             <div className="leftWrapper">
-              <div className="foto">
-                <MdAccountCircle size="100%" />
-              </div>
+              {/* <div className="foto"> */}
+              <img
+                className="foto"
+                src={user?.docsavatar[0].avatar_url}
+                alt="profile picture"
+              />
+              {/* </div> */}
 
               <div className="User">
                 <h1>{user?.user_nome}</h1>
@@ -412,6 +468,38 @@ function User() {
             <span>
               <Link to="/">Código de Conduto e Ética</Link>
             </span>
+            <div className="docsMother">
+              {user?.docs?.map(element => (
+                <>
+                  <div className="docsConfig">
+                    <div className="docsImgDiv">
+                      <img
+                        width={250}
+                        key={element.docs_header}
+                        src={element.docs_url}
+                      />
+                    </div>
+                    <div className="docsLink">
+                      <span>{element.docs_nome + element.docs_type}</span>
+                      <a
+                        href={element.docs_url}
+                        onClick={() =>
+                          downloadFile(
+                            element.docs_id,
+                            element.docs_nome,
+                            element.docs_type,
+                          )
+                        }
+                        rel="noreferrer"
+                        target="_blank"
+                      >
+                        Download
+                      </a>
+                    </div>
+                  </div>
+                </>
+              ))}
+            </div>
           </div>
         </div>
       </S.Container>
