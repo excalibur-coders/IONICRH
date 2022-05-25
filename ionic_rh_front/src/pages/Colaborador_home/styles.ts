@@ -165,6 +165,12 @@ export const Container = styled(Flex)`
     }
   }
 
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   @media (max-width: 1075px) {
     .inferior {
       flex-direction: column;
