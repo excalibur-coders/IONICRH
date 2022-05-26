@@ -68,7 +68,7 @@ function Cargos() {
 
   // Barra de Pesquisa //
 
-/*   const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState("");
   const cargosPesquisados = getAllCargos;
 
   const handleChange = (e: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
@@ -79,7 +79,8 @@ function Cargos() {
     cargosPesquisados.filter((cargo: string) => {
       return cargo.match(searchInput);
   });
-  } */
+  }
+
 
   return (
     <>
