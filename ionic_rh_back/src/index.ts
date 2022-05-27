@@ -13,6 +13,7 @@ import { user } from "models/user";
 import { cargo } from "models/cargo";
 import { contrato } from "models/contrato";
 import { generate } from "controllers/generete";
+import cursoRoutes from "./routes/curso"
 // import authRoutes from './routes/auth';
 
 const app = express();
@@ -40,6 +41,7 @@ try {
   app.use('/user', userRoutes);
   app.use('/cargo', cargoRoutes);
   app.use('/empresa', empresaRoutes);
+  app.use('/curso', cursoRoutes);
   // app.use('/auth', authRoutes);
 
 
