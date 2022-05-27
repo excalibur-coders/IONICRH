@@ -3,7 +3,7 @@ import * as bcrypt from 'bcrypt'
 import { cargo } from "models/cargo"
 import { contrato } from "models/contrato"
 import { departamento } from "models/departamento"
-import { empresa_contratante } from "models/emp_contratante"
+import { empresacontratante } from "models/emp_contratante"
 import { user } from "models/user"
 import { idiomas } from "models/user_idioma"
 import { escolaridade } from "models/user_escola"
@@ -11,10 +11,11 @@ import { telefone } from "models/user_telefone"
 import { documentos } from "models/user_docs"
 import { documentosAvatar } from "models/docsAvatar"
 import { endereco } from "models/user_endereco"
+import { trilha, curso } from "models/trilha"
 
 const userRepository = AppDataSource.getRepository(user)
 const depRepository = AppDataSource.getRepository(departamento)
-const empcontRepository = AppDataSource.getRepository(empresa_contratante)
+const empcontRepository = AppDataSource.getRepository(empresacontratante)
 const cargoRepository = AppDataSource.getRepository(cargo)
 const contRepository = AppDataSource.getRepository(contrato)
 const idiomaRepository = AppDataSource.getRepository(idiomas)
@@ -23,14 +24,99 @@ const telefoneRepository = AppDataSource.getRepository(telefone)
 const docsFiles = AppDataSource.getRepository(documentos)
 const enderecoRepository = AppDataSource.getRepository(endereco)
 const docsAvatar = AppDataSource.getRepository(documentosAvatar)
+const cursosRepository = AppDataSource.getRepository(curso)
+const trilhaRepository = AppDataSource.getRepository(trilha)
+
 export const generate = async () => {
     try {
         console.log("Dados gerado com sucesso");
+        await cursosRepository
+            .createQueryBuilder()
+            .insert()
+            .into(curso)
+            .values([
+                {
+                    curso_descricao: "",
+                    curso_nome: "Marketing Digital",
+                    curso_duracao: "",
+                }, {
+                    curso_descricao: "",
+                    curso_nome: "Redes Sociais",
+                    curso_duracao: "",
+                }, {
+                    curso_descricao: "",
+                    curso_nome: "E-commerce",
+                    curso_duracao: "",
+                }, {
+                    curso_descricao: "",
+                    curso_nome: "Consultoria",
+                    curso_duracao: "",
+                }, {
+                    curso_descricao: "",
+                    curso_nome: "Branding e Marketing Digital",
+                    curso_duracao: "",
+                }, {
+                    curso_descricao: "",
+                    curso_nome: "Gestão do tempo",
+                    curso_duracao: "",
+                }, {
+                    curso_descricao: "",
+                    curso_nome: "Employer Branding",
+                    curso_duracao: "",
+                }, {
+                    curso_descricao: "",
+                    curso_nome: "Processos Gerenciais",
+                    curso_duracao: "",
+                }, {
+                    curso_descricao: "",
+                    curso_nome: "Administração de Cargos e Salários",
+                    curso_duracao: "",
+                }, {
+                    curso_descricao: "",
+                    curso_nome: "Excel Intermediário",
+                    curso_duracao: "",
+                }, {
+                    curso_descricao: "",
+                    curso_nome: "Introdução ao Clean Code",
+                    curso_duracao: "",
+                }, {
+                    curso_descricao: "",
+                    curso_nome: "Aprendendo GIT",
+                    curso_duracao: "",
+                }, {
+                    curso_descricao: "",
+                    curso_nome: "O que é Test-Driven Development (TDD)",
+                    curso_duracao: "",
+                }, {
+                    curso_descricao: "",
+                    curso_nome: "Introdução do NodeJS",
+                    curso_duracao: "",
+                }, {
+                    curso_descricao: "",
+                    curso_nome: "Introdução ao Low Code",
+                    curso_duracao: "",
+                },
+                //Obrigatorios
+                {
+                    curso_descricao: "",
+                    curso_nome: "RDC - 16",
+                    curso_duracao: "",
+                }, {
+                    curso_descricao: "",
+                    curso_nome: "Metodologia ágil",
+                    curso_duracao: "",
+                }, {
+                    curso_descricao: "",
+                    curso_nome: "Integração",
+                    curso_duracao: "",
+                },
+            ])
+            .execute()
         // Empresas [Certo]
         await empcontRepository
             .createQueryBuilder()
             .insert()
-            .into(empresa_contratante)
+            .into(empresacontratante)
             .values([
                 {
                     contratante_nome: "NESS",
@@ -163,7 +249,7 @@ export const generate = async () => {
                 user_estado_civil: "Solteiro",
                 user_genero: "MNasculino",
                 user_raca: "Branco",
-                user_role: ["Colaborador"],
+                user_role: ["Consultor"],
                 password: passwordHash,
                 user_verificado: 1
             },
@@ -541,6 +627,17 @@ export const generate = async () => {
                 userUserId: 6
             },])
             .execute()
+        await trilhaRepository
+            .createQueryBuilder()
+            .insert()
+            .into(trilha)
+            .values([
+                { trilha_nome: "Introdução Ionic", userUserId: 1 },
+                { trilha_nome: "Trilha de Tecnologia", userUserId: 5 },
+                { trilha_nome: "Trilha de Administração", userUserId: 4 },
+                { trilha_nome: "Trilha de Marketing", userUserId: 5 },
+            ])
+            .execute()
         enderecoRepository
             .createQueryBuilder()
             .insert()
@@ -608,6 +705,96 @@ export const generate = async () => {
                 endereco_estado: "São Paulo",
                 userUserId: 6
             },])
+            .execute()
+        await AppDataSource
+            .createQueryBuilder()
+            .insert()
+            .into("trilha_juntos_curso")
+            .values([
+                {
+                    cursoCursoId: 1,
+                    trilhaTrilhaId: 4
+                },
+                {
+                    cursoCursoId: 2,
+                    trilhaTrilhaId: 4
+                },
+                {
+                    cursoCursoId: 3,
+                    trilhaTrilhaId: 4
+                },
+                {
+                    cursoCursoId: 4,
+                    trilhaTrilhaId: 4
+                },
+                {
+                    cursoCursoId: 5,
+                    trilhaTrilhaId: 4
+                },
+                {
+                    cursoCursoId: 6,
+                    trilhaTrilhaId: 3
+                },
+                {
+                    cursoCursoId: 7,
+                    trilhaTrilhaId: 3
+                },
+                {
+                    cursoCursoId: 8,
+                    trilhaTrilhaId: 3
+                },
+                {
+                    cursoCursoId: 9,
+                    trilhaTrilhaId: 3
+                },
+                {
+                    cursoCursoId: 10,
+                    trilhaTrilhaId: 3
+                },
+                {
+                    cursoCursoId: 11,
+                    trilhaTrilhaId: 2
+                },
+                {
+                    cursoCursoId: 12,
+                    trilhaTrilhaId: 2
+                },
+                {
+                    cursoCursoId: 13,
+                    trilhaTrilhaId: 2
+                },
+                {
+                    cursoCursoId: 14,
+                    trilhaTrilhaId: 2
+                },
+                {
+                    cursoCursoId: 15,
+                    trilhaTrilhaId: 2
+                },
+                {
+                    cursoCursoId: 16,
+                    trilhaTrilhaId: 1
+                },
+                {
+                    cursoCursoId: 17,
+                    trilhaTrilhaId: 1
+                },
+                {
+                    cursoCursoId: 18,
+                    trilhaTrilhaId: 1
+                },
+            ])
+            .execute()
+        await AppDataSource
+            .createQueryBuilder()
+            .insert()
+            .into("trilha_junto_user")
+            .values([
+                { trilhaTrilhaId: 1, userUserId: 2 },
+                { trilhaTrilhaId: 2, userUserId: 2 },
+                { trilhaTrilhaId: 1, userUserId: 6 },
+                { trilhaTrilhaId: 4, userUserId: 6 },
+            ])
             .execute()
     } catch (error) {
         console.log(error);
