@@ -41,6 +41,9 @@ function Cargos() {
 
   const [cargos, setCargos] = useState<ICargo[]>([]);
   const [loading, setLoading] = useState(false);
+  const [cargosPesquisados, setCargosPesquisados] = useState<ICargo[]>([]);
+  const [searchInput, setSearchInput] = useState("");
+
 
   const getAllCargos = useCallback(() => {
     setLoading(true);
@@ -52,6 +55,7 @@ function Cargos() {
       })
       .then(({ data }) => {
         setCargos(data);
+        setCargosPesquisados(data);
         console.log(data);
       })
       .catch((error: Error | AxiosError) => {
@@ -60,7 +64,7 @@ function Cargos() {
     setTimeout(() => {
       setLoading(false);
     }, 5000);
-  }, [setLoading, setCargos]);
+  }, [setLoading, setCargos, setCargosPesquisados]);
 
   useEffect(() => {
     getAllCargos();
@@ -68,19 +72,32 @@ function Cargos() {
 
   // Barra de Pesquisa //
 
-  const [searchInput, setSearchInput] = useState("");
-  const cargosPesquisados = getAllCargos;
-
   const handleChange = (e: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
     e.preventDefault();
     setSearchInput(e.target.value);
   };
-  if (searchInput.length > 0) {
-    cargosPesquisados.filter((cargo: string) => {
-      return cargo.match(searchInput);
-  });
-  }
 
+  const sanitizeText = useCallback(
+    text =>
+      text
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase(),
+    [],
+  );
+
+  useEffect(() => {
+    if (searchInput.length > 0) {
+      const cargosFiltrado = cargos.filter((cargo) => (
+        sanitizeText(cargo.cargo_area)?.includes(sanitizeText(searchInput))
+        // console.log(cargo.cargo_area?.match(searchInput));
+        //setCargosPesquisados(cargo?.cargo_area?.match(searchInput));
+      ));
+      setCargosPesquisados(cargosFiltrado);
+    } else {
+      setCargosPesquisados(cargos);
+    }
+  }, [searchInput]);
 
   return (
     <>
@@ -113,9 +130,8 @@ function Cargos() {
                   <InputLeftElement children={<SearchIcon w={5} h={5} />} />
                   <Input
                     type="search"
-/*                     onChange={handleChange}
-                    value={searchInput} */
-                    id="myInput"
+                    onChange={handleChange}
+                    value={searchInput}
                     fontSize={20}
                     size="lg"
                     width="50vw"
@@ -148,7 +164,7 @@ function Cargos() {
               <Table variant="striped" size="lg" background="#00000029">
                 <div className="TableTwo">
                   <Tbody>
-                    {cargos.map(cargos => (
+                    {cargosPesquisados.map(cargos => (
                       <Tr key={cargos.cargo_id}>
                         <Td className="TBody" fontSize="2xl">
                           {cargos.cargo_area}
