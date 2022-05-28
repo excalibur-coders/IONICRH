@@ -1058,6 +1058,11 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
+"@balkangraph/orgchart.js@^8.2.79":
+  version "8.2.79"
+  resolved "https://registry.yarnpkg.com/@balkangraph/orgchart.js/-/orgchart.js-8.2.79.tgz#5f9eb48171ac03b8a88a573fc02762b30a1ec804"
+  integrity sha512-o0hez3wd6tX6mqwFe95rYRri+BHQ5q5IVStDa1UVDxouSykUPu3gnfEsQAmkBoxnSVaIQq4QGQH9lu2aI9mUEA==
+
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"

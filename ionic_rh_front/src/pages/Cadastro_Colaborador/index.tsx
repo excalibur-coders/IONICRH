@@ -245,7 +245,7 @@ function Cadastro() {
     formState: { errors },
   } = useForm<CadastroProps>({
     mode: 'onBlur',
-    // resolver: yupResolver(schema),
+    resolver: yupResolver(schema),
   });
 
   return (
@@ -426,7 +426,7 @@ function Cadastro() {
                   width="22rem"
                   fontSize={20}
                   fontWeight="bold"
-                  labelText="RG/CPF"
+                  labelText="Comprovante de Endereço"
                   type="file"
                   onChange={handleSaveResidency}
                 />
