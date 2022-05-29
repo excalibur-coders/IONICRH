@@ -127,15 +127,15 @@ function Cargos() {
               <Box>
                 <InputGroup>
                   {/* eslint-disable-next-line react/no-children-prop */}
-                  <InputLeftElement children={<SearchIcon w={5} h={5} />} />
-                  <Input
+                  <InputLeftElement className="marginTop" pointerEvents="none" children={<SearchIcon/>} />
+                  <Input className="padding-left40"
                     type="search"
                     onChange={handleChange}
                     value={searchInput}
                     fontSize={20}
                     size="lg"
                     width="50vw"
-                    placeholder="       Pesquisar"
+                    placeholder="Pesquisar"
                     labelText={''}
                   />
                 </InputGroup>

@@ -11,6 +11,14 @@ export const Container = styled(Flex)`
     z-index: 1000;
   }
 
+  .marginTop{
+    margin-top: 3px;
+  }
+
+  .padding-left40{
+    padding-left: 40px;
+  }
+
   .input {
     margin-left: 50px;
     width: 70vw;
