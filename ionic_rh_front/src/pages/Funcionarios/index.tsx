@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, SetStateAction } from 'react';
 import { theme } from 'theme';
 import {
   Box,
@@ -56,6 +56,8 @@ function Funcionarios() {
 
   const [funcionarios, setFuncionarios] = useState<IFuncionarios[]>([]);
   const [loading, setLoading] = useState(false);
+  const [funcionariosPesquisados, setFuncionariosPesquisados] = useState<IFuncionarios[]>([]);
+  const [searchInput, setSearchInput] = useState("");
 
   const getAllFuncionarios = useCallback(() => {
     setLoading(true);
@@ -80,6 +82,35 @@ function Funcionarios() {
   useEffect(() => {
     getAllFuncionarios();
   }, []);
+
+    // Barra de Pesquisa //
+
+    const handleChange = (e: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
+      e.preventDefault();
+      setSearchInput(e.target.value);
+    };
+
+    const sanitizeText = useCallback(
+      text =>
+        text
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase(),
+      [],
+    );
+
+    useEffect(() => {
+      if (searchInput.length > 0) {
+        const funcionarioFiltrado = funcionarios.filter((funcionario) => (
+          sanitizeText(funcionario?.user_nome)?.includes(sanitizeText(searchInput))
+          // console.log(cargo.cargo_area?.match(searchInput));
+          //setCargosPesquisados(cargo?.cargo_area?.match(searchInput));
+        ));
+        setFuncionariosPesquisados(funcionarioFiltrado);
+      } else {
+        setFuncionariosPesquisados(funcionarios);
+      }
+    }, [searchInput]);
 
   return (
     <>
@@ -111,10 +142,13 @@ function Funcionarios() {
                   {/* eslint-disable-next-line react/no-children-prop */}
                   <InputLeftElement children={<SearchIcon w={5} h={5} />} />
                   <Input
+                    type="search"
+                    onChange={handleChange}
+                    value={searchInput}
                     fontSize={20}
                     size="lg"
                     width="50vw"
-                    placeholder="       Pesquisar"
+                    placeholder="Pesquisar"
                     labelText={''}
                   />
                 </InputGroup>
@@ -151,7 +185,7 @@ function Funcionarios() {
               <Table variant="striped" size="lg" background="#DBDBDB">
                 <div className="TableTwo">
                   <Tbody>
-                    {funcionarios.map(funcionario => {
+                    {funcionariosPesquisados.map(funcionario => {
                       //console.log('bom dia', funcionario);
                       return (
                         <>

@@ -97,7 +97,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setUser(data);
 
       // console.log(data?.user_role?.[0])
-      if (data?.user_role?.[0] === 'Administrador') navigate('/ADM_Home');
+      if (data?.user_role?.[0] === 'Administrador') navigate('/Adm_home');
       else if (
         (data?.user_nome,
         data?.user_cpf,
