@@ -38,6 +38,8 @@ export const Container = styled(Flex)`
           margin-top: 12px;
           font-size: 1.2vw;
           border-bottom: 1px solid ${theme.colors.primary};
+          line-height: normal;
+          letter-spacing: normal;
       }
       
     } 
@@ -77,6 +79,8 @@ export const Container = styled(Flex)`
         .list{
           width: 100%;
           border: 2px solid ${theme.colors.primary};
+          height: 188.8px;
+          background-color: ;
 
           h1{
             display: flex;
@@ -89,7 +93,7 @@ export const Container = styled(Flex)`
             display: flex;
             justify-content: center;
             margin-top: 12px;
-            font-size: 1.8vw;
+            font-size: 1.9vw;
             border-bottom: 1px solid ${theme.colors.primary};
           }
       
