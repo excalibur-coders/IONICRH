@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, SetStateAction } from 'react';
 import {
   Box,
   Link,
@@ -27,6 +27,9 @@ interface IDepartamentos {
 function Departamentos() {
   const cookies = parseCookies();
 
+  const [departamentosPesquisados, setDepartamentosPesquisados] = useState<IDepartamentos[]>([]);
+  const [searchInput, setSearchInput] = useState("");
+
   const [departamentos, setDepartamentos] = useState<IDepartamentos[]>([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -52,6 +55,34 @@ function Departamentos() {
   useEffect(() => {
     getAllDepartamentos();
   }, [getAllDepartamentos]);
+
+
+      // Barra de Pesquisa //
+
+      const handleChange = (e: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
+        e.preventDefault();
+        setSearchInput(e.target.value);
+      };
+
+      const sanitizeText = useCallback(
+        text =>
+          text
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase(),
+        [],
+      );
+
+      useEffect(() => {
+        if (searchInput.length > 0) {
+          const departamentoFiltrado = departamentos.filter((departamento) => (
+            sanitizeText(departamento?.dep_name)?.includes(sanitizeText(searchInput))
+          ));
+          setDepartamentosPesquisados(departamentoFiltrado);
+        } else {
+          setDepartamentosPesquisados(departamentos);
+        }
+      }, [searchInput]);
 
   return (
     <>
@@ -83,10 +114,13 @@ function Departamentos() {
                   {/* eslint-disable-next-line react/no-children-prop */}
                   <InputLeftElement children={<SearchIcon w={5} h={5} />} />
                   <Input
+                    type="search"
+                    onChange={handleChange}
+                    value={searchInput}
                     fontSize={20}
                     size="lg"
                     width="50vw"
-                    placeholder="       Pesquisar"
+                    placeholder="Pesquisar"
                     labelText={''}
                   />
                 </InputGroup>
@@ -110,7 +144,7 @@ function Departamentos() {
               <Table variant="striped" size="lg" background="#DBDBDB">
                 <div className="TableTwo">
                   <Tbody>
-                    {departamentos.map(departamento => (
+                    {departamentosPesquisados.map(departamento => (
                       <Tr key={departamento.dep_id}>
                         <Td className="TBody" fontSize="2xl">
                           {departamento.dep_name}
