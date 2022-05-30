@@ -2,8 +2,11 @@ import { AppDataSource } from "config/database";
 import { contrato } from "models/contrato";
 import { Request, Response, NextFunction } from "express";
 import { IContrato } from "interfaces/IContrato";
+import { IUser } from "interfaces/IUser";
+import { user } from "models/user";
 
 const contratoRepository = AppDataSource.getRepository(contrato)
+const userRepository = AppDataSource.getRepository(user)
 
 // Contrato do Usuario
 export const insertContratoUser = async (req: Request, res: Response, next: NextFunction) => {
@@ -45,6 +48,7 @@ export const insertContratoUser = async (req: Request, res: Response, next: Next
 export const updateContratoUser = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const requestBody: IContrato = req.body
+        const requestUser: IUser = req.body
         const {
             id
         } = req.params
@@ -71,12 +75,24 @@ export const updateContratoUser = async (req: Request, res: Response, next: Next
                 "contrato_auxilio_creche": requestBody.contrato_auxilio_creche,
                 "contrato_tipo": requestBody.contrato_tipo,
                 "cargoCargoId": requestBody.cargoCargoId,
+                "contrato_nivel": requestBody.contrato_nivel
 
             })
             .where(
                 "userUserId = :userUserId", 
                 {
                     userUserId: id
+                }
+            )
+            .createQueryBuilder()
+            .update(user)
+            .set({
+                "user_role": requestUser.user_role 
+            })
+            .where(
+                "user_id = :user_id", 
+                {
+                    user_id: id
                 }
             )
             .execute()

@@ -5,6 +5,8 @@ import * as S from './styles';
 // import { Input, Stack } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { Divider } from '@chakra-ui/react';
+import { useState, useContext } from 'react';
+import { AuthContext } from 'hooks/useAuth';
 import { FaArrowLeft } from 'react-icons/fa';
 
 import Button from 'components/Button';
@@ -12,6 +14,7 @@ import Button from 'components/Button';
 // console.log(theme.colors.primary);
 
 function AdministradorEdit() {
+  const { user } = useContext(AuthContext);
   return (
     <>
       <RespBar_adm />
@@ -19,9 +22,11 @@ function AdministradorEdit() {
         <div className="Wrapper">
           <div className="centerWrapper">
             <div className="leftWrapper">
-              <div className="foto">
-                <MdAccountCircle size="100%" />
-              </div>
+              <img
+                className="foto"
+                src={user?.docsavatar[0].avatar_url}
+                alt="fotoProfile"
+              />
 
               <div className="User">
                 <h1>Administrador</h1>
