@@ -2,17 +2,57 @@ import { theme } from 'theme';
 import * as S from './styles';
 import RespBar from 'components/RespBar';
 import { AspectRatio } from '@chakra-ui/react'
-import {
-    Table,
-    Thead,
-    Tbody,
-    Tr,
-    Th,
-    Td,
-    TableContainer,
-  } from '@chakra-ui/react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
+import { parseCookies } from 'nookies';
+import { AxiosError } from 'axios';
+import { api } from 'services/api';
+import Input from 'components/Input';
+
+
+interface ITrilha {
+    trilha_id: number;
+    trilha_nome: string;
+    juntos: ICurso [];
+    userUserId: number;
+}
+interface ICurso {
+    curso_id: number;
+    curso_nome: string;
+    curso_descricao: string;
+    curso_criacao: string;
+    curso_duracao: number;
+}
+
 
 function Cursos(){
+    const cookies = parseCookies();
+    const { id } = useParams();
+    const [trilha, setCursos] = useState<ITrilha[]>([]);
+
+    const getAllCursos = useCallback(() => {
+        api
+          .get(`/curso/ver-trilha/${id}`, {
+            headers: {
+              Authorization: `Bearer ${cookies['ionicookie.token']}`,
+            },
+          })
+          .then(({ data }) => {
+            /* console.log('Boa noite', data); */
+            setCursos(data);
+          })
+          .catch((error: Error | AxiosError) => {
+            console.log(error);
+          });
+      }, [cookies, id]);
+
+
+      useEffect(() => {
+        getAllCursos();
+      }, [getAllCursos]);
+
+
+
     return(
         <>
         <S.Container>
@@ -26,26 +66,36 @@ function Cursos(){
                     </div>
 
                     <div className="list">
-                        <h1>Metodologias Ageis</h1>
-                        <a href="">Low code</a>
-                        <a href="">JavaScript</a>
-                        <a href="">Canva</a>
-                        <a href="">TypeScript</a>
-                        <a href="">JavaScript</a>
-                        <a href="">Canva</a>
-                        <a href="">TypeScript</a>
-                        <a href="">JavaScript</a>
-                        <a href="">Canva</a>
-                        <a href="">TypeScript</a>
-                        <a href="">JavaScript</a>
-                        <a href="">Canva</a>
-                        <a href="">TypeScript</a>
+                        {trilha.map(trilha => {
+                            return(
+                                <>
+                                <h1>{trilha.trilha_nome}</h1>
+                                {trilha.juntos.map(curso => {
+                                    return(
+                                        <>
+                                        <a href="">{curso.curso_nome}</a>
+                                        </>
+                                    )
+                                })}
+                                </>
+                            )})}
                     </div>
                 </div>
                 <div className='descricao'>
                     <div className='texto'>
                         <h1>Descrição: </h1>
-                        <h2>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h2>
+                        {trilha.map(trilha => {
+                            return(
+                                <>
+                                {trilha.juntos.map(curso => {
+                                    return(
+                                        <>
+                                        <h2>{curso.curso_descricao}</h2>
+                                        </>
+                                    )
+                                })}
+                                </>
+                            )})}
                     </div>
                 </div>
             </main>

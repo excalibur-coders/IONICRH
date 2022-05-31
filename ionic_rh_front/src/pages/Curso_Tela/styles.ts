@@ -9,11 +9,12 @@ export const Container = styled(Flex)`
 
 
   .position{
+      padding: 0;
       display: flex;
       margin-left: 12vw;
       margin-right: 12vw;
       margin-top: 130px;
-      gap: 5px;
+      gap: 6px;
       
     .video{
       border: 2px solid ${theme.colors.primary};
@@ -21,9 +22,23 @@ export const Container = styled(Flex)`
  
     .list{
       width: 238px;
-      border: 2px solid ${theme.colors.primary};
       height: 337px;
       overflow: auto;
+      border: 1px solid ${theme.colors.primary};
+      border-radius: 2%;
+
+      ::-webkit-scrollbar{
+        width: 12px;
+      }
+      ::-webkit-scrollbar-track{
+        background: ${theme.colors.primary};
+        border-radius: 30px;
+      }
+      ::-webkit-scrollbar-thumb{
+        background: gray;
+        border-radius: 30px;
+      }
+
 
       h1{
           display: flex;
@@ -34,8 +49,11 @@ export const Container = styled(Flex)`
       }
       a{
           display: flex;
-          justify-content: center;
+          justify-content: left;
           margin-top: 12px;
+          padding-left: 8px;
+          padding-right: 6px;
+          padding-bottom: 5px;
           font-size: 1.2vw;
           border-bottom: 1px solid ${theme.colors.primary};
           line-height: normal;

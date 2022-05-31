@@ -50,7 +50,7 @@ function Routes() {
       {/* <Route path="/Organograma" element={<Org />} /> */}
       <Route path="/Organograma/:dep" element={<Org />} />
       <Route path="/Adm_home" element={<Adm_Home />} />
-      <Route path="/Curso_Tela" element={<Cursos />} />
+      <Route path="/Curso_Tela/:id" element={<Cursos />} />
     </RoutesWrapper>
     // </BrowserRouter>
   );

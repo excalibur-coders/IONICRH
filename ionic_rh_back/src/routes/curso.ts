@@ -8,11 +8,13 @@ import {
     updateCursoTrilha,
     removeUserTrilha,
     removeCursoTrilha,
-    adicionarConteudo
+    adicionarConteudo,
+    pegarTrilhaCurso,
 } from "controllers/cursos";
 import express from "express";
 import multerConfig from 'config/multercurso'
 import multer from 'multer';
+
 const router = express.Router();
 
 //Curso
@@ -41,5 +43,6 @@ router.post('/adicionar-material/:docsDocsId',
     adicionarConteudo)
 router.post('/vincular-curso', createRelationCursoTrilha)
 router.get('/ver-trilhas/:id', consultaQueryCursoTrilhUser)
+router.get('/pegar-trilha-curso/:id/:curso', pegarTrilhaCurso)
 
 export default router; 

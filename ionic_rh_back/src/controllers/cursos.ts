@@ -152,8 +152,12 @@ export const readOneTrilha = async (req: Request, res: Response) => {
     try {
         const { id } = req.params
         const findTrilhaById = await trilhaRepository
-            .find({
-                relations: ['juntos'],
+            .find(
+                {relations: {
+                    juntos: {
+                        docs_curso: true
+                    }
+                },
                 where: {
                     trilha_id: Number(id)
                 }
@@ -335,6 +339,32 @@ export const adicionarConteudo = async (req: Request, res: Response) => {
             return jubileu
         })
         res.json(req.files)
+    } catch (error) {
+        res.json(error)
+    }
+}
+
+export const pegarTrilhaCurso = async (req: Request, res: Response) => {
+    try {
+        const { id, curso } = req.params
+        req.params.id = id
+        req.params.curso = curso
+        const teste = await trilhaRepository
+            .createQueryBuilder()
+            .select([
+                "t",
+                "c"
+            ])
+            .from(trilha, 't')
+            .leftJoin('t.juntos', 'c')
+            .where('t.trilha_id = :trilha_id', {
+                trilha_id: id
+            })
+            .andWhere('curso_id = :curso_id ', {
+                curso_id: curso
+            })
+            .getOne()
+        res.json(teste)
     } catch (error) {
         res.json(error)
     }

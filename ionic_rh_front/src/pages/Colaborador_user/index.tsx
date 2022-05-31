@@ -250,38 +250,21 @@ function Colab_user() {
                 </div>
                 <h4>Cursos realizados:</h4>
                 <div className="buttons_onboard">
-                  <div>
-                    <Button
+                {user?.junto?.map(Trilha => {
+                  return(
+                    <>
+                    <div>
+                      <Button
                       className="button"
                       as={BsClipboardCheck}
                       color={theme.colors.font}
-                    ></Button>
-                    <small>Curso RDC-16</small>
-                  </div>
-                  <div>
-                    <Button
-                      className="button"
-                      as={BsClipboardCheck}
-                      color={theme.colors.font}
-                    ></Button>
-                    <small>Curso 2</small>
-                  </div>
-                  <div>
-                    <Button
-                      className="button"
-                      as={BsClipboardCheck}
-                      color={theme.colors.font}
-                    ></Button>
-                    <small>Curso 3</small>
-                  </div>
-                  <div>
-                    <Button
-                      className="button"
-                      as={MdArrowForward}
-                      color={theme.colors.font}
-                    ></Button>
-                  </div>
-                </div>
+                      ></Button>
+                      <small key={Trilha.trilha_nome}>{Trilha.trilha_nome}</small>
+                    </div>
+                  </>
+                ) 
+              })}
+            </div>
               </div>
             </div>
           </div>
