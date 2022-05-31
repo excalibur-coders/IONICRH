@@ -99,6 +99,15 @@ export const Container = styled.div`
         .botoes {
           gap: 0px;
           flex-direction: column;
+
+          .left {
+            ul {
+              display: flex;
+              flex-direction: column;
+              gap: 0;
+            }
+          }
+
           a {
             width: 300px;
             font-size: 25px;

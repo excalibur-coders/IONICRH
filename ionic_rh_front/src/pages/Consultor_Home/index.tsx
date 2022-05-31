@@ -2,10 +2,9 @@ import Consultor_nav from 'components/Consultor_nav';
 import * as React from 'react';
 import * as S from './styles';
 import {
-  MdOutlineBusinessCenter,
+  MdVideoLibrary,
   MdOutlinePeopleAlt,
-  MdOutlineApartment,
-  MdSchema,
+  MdOutlinePlaylistAdd,
 } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
@@ -28,7 +27,7 @@ function Consultor_Home() {
                     <a>
                       <Link to={'/Consultor'}>
                         <span className="icon">
-                          <MdOutlineBusinessCenter size="40px" />
+                          <MdVideoLibrary size="40px" />
                         </span>
                         <span className="tittle">Cursos</span>
                       </Link>
@@ -36,9 +35,9 @@ function Consultor_Home() {
                   </li>
                   <li>
                     <a>
-                      <Link to={'/Curso_cadastro'}>
+                      <Link to={'/Cadastrar_curso'}>
                         <span className="icon">
-                          <MdOutlineApartment size="40px" />
+                          <MdOutlinePlaylistAdd size="40px" />
                         </span>
                         <span className="tittle">Cadastrar Cursos</span>
                       </Link>
