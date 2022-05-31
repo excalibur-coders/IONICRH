@@ -51,8 +51,6 @@ function Cursos(){
         getAllCursos();
       }, [getAllCursos]);
 
-
-
     return(
         <>
         <S.Container>
@@ -69,11 +67,15 @@ function Cursos(){
                         {trilha.map(trilha => {
                             return(
                                 <>
-                                <h1>{trilha.trilha_nome}</h1>
+                                <button className="dropdown-btn">
+                                    {trilha.trilha_nome}                                    
+                                </button>
                                 {trilha.juntos.map(curso => {
                                     return(
                                         <>
-                                        <a href="">{curso.curso_nome}</a>
+                                        <div className="dropdown-container">
+                                            <a href="">{curso.curso_nome}</a>
+                                        </div>                                
                                         </>
                                     )
                                 })}
@@ -98,7 +100,7 @@ function Cursos(){
                             )})}
                     </div>
                 </div>
-            </main>
+            </main>            
         </S.Container>
         </>
     )

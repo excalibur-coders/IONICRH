@@ -22,7 +22,7 @@ export const Container = styled(Flex)`
  
     .list{
       width: 238px;
-      height: 337px;
+      height: 337px;   //337px
       overflow: auto;
       border: 1px solid ${theme.colors.primary};
       border-radius: 2%;
@@ -59,15 +59,77 @@ export const Container = styled(Flex)`
           line-height: normal;
           letter-spacing: normal;
       }
-      
+      .dropdown-btn {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+        border: none;
+        background: none;
+        width:100%;
+        cursor: pointer;
+        outline: none;
+      }
+      .dropdown-btn:hover {
+        color: ${theme.colors.primary};
+      }
     } 
+
+    /* .vertical-menu {              //UMA IDEIA PRA UM MENU COM VÁRIOS BOTÕES P/ CADA CURSO, CADA BOTÃO 
+      width: 238px;                  //ABRIRIA E AO ABRIR SERIAM MOSTRADOS OS MODULOS DO CURSO 
+      height: 200px;                 //NESSA IDEIA A CLASS LIST ALI DE CIMA DEIXA DE EXISTIR E A VERTICAL MENU
+      overflow-y: auto;              //ENTRA NO LUGAR
+    
+      ::-webkit-scrollbar{
+        width: 12px;
+      }
+      ::-webkit-scrollbar-track{
+        background: ${theme.colors.primary};
+        border-radius: 30px;
+      }
+      ::-webkit-scrollbar-thumb{
+        background: gray;
+        border-radius: 30px;
+      }
+    }
+    .dropdown-btn {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 20px;
+      color: #818181;
+      display: block;
+      border: none;
+      background: none;
+      width:100%;
+      text-align: left;
+      cursor: pointer;
+      outline: none;
+} 
+    .vertical-menu a {
+      background-color: #eee; 
+      color: black; 
+      display: block; 
+      padding: 12px; 
+      text-decoration: none; 
+    }
+
+    .vertical-menu a:hover {
+      background-color: #ccc;
+    }
+
+    .vertical-menu a.active {
+      background-color: #04AA6D;
+      color: white;
+    }*/
+
+
   }
 
   .descricao{
       margin-left: 12vw;
       margin-right: 12vw;
       margin-top: 20px;
-      border: 2px solid ${theme.colors.primary};
       width: 913px;
 
       .texto{
