@@ -252,7 +252,7 @@ function Colab_user() {
                 <div className="buttons_onboard">
                 {user?.junto?.map(Trilha => {
                   return(
-                    <>
+                  <>
                     <div>
                       <Button
                       className="button"
