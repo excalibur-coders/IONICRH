@@ -21,6 +21,7 @@ import Colab_user from 'pages/Colaborador_user';
 import Consultor from 'pages/Consultor_Tela';
 import Org from 'pages/Organograma';
 import Adm_Home from 'pages/ADM_Home';
+import Consultor_Home from 'pages/Consultor_Home';
 
 function Routes() {
   return (
@@ -46,6 +47,7 @@ function Routes() {
       <Route path="/Administrador" element={<Administrador />} />
       <Route path="/AdministradorEdit" element={<AdministradorEdit />} />
       <Route path="/Consultor" element={<Consultor />} />
+      <Route path="/Consultor_home" element={<Consultor_Home />} />
       {/* <Route path="/Organograma" element={<Org />} /> */}
       <Route path="/Organograma/:dep" element={<Org />} />
       <Route path="/Adm_home" element={<Adm_Home />} />
