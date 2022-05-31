@@ -13,10 +13,10 @@ export const Container = styled(Flex)`
     .linha {
       display: flex;
       flex-direction: row;
-      height: 18vh;
+      justify-content: center;
       width: 90vw;
       gap: 10px;
-
+      
       .porcent_obrigatorio {
         margin: auto;
         border: 1px solid grey;
@@ -32,14 +32,15 @@ export const Container = styled(Flex)`
 
         .test {
           width: 50%;
+          height: 25px;
           margin: 15px auto;
         }
       }
 
       .porcent_geral {
+        margin: auto;
         border: 1px solid grey;
         border-radius: 20px;
-        margin: auto;
         background-color: white;
         width: 90vw;
         padding-top: 10px;
@@ -51,6 +52,7 @@ export const Container = styled(Flex)`
 
         .test {
           width: 50%;
+          height: 25px;
           margin: 15px auto;
         }
       }
