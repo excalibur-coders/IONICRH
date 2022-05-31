@@ -48,6 +48,15 @@ export const Container = styled(Flex)`
           font-weight: bold;
           margin-top: 15px;
         }
+        .radio{
+          margin-top: 10px;
+          margin-bottom: 10px;
+          h1 {
+            font-size: 15px;
+            font-weight: bold;
+            color: #F54A3D;
+          }
+        }
         .form {
           margin-top: 80px;
           flex-direction: column;
