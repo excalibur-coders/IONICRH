@@ -6,11 +6,10 @@ import { BsClipboardCheck } from 'react-icons/bs';
 import { MdArrowForward } from 'react-icons/md';
 
 import * as S from './styles';
-import { Button } from '@chakra-ui/react';
+import { Button, Link } from '@chakra-ui/react';
 import Footer from 'components/Footer';
 
-import { useParams } from 'react-router-dom';
-
+import { useParams, useNavigate } from 'react-router-dom';
 import { parseCookies } from 'nookies';
 import { AuthContext } from 'hooks/useAuth';
 
@@ -113,7 +112,7 @@ function Colab_user() {
   // const [user, setUser] = useState<IUser>();
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
-
+  const navigate = useNavigate();
   // Vereficar [False, False, False, True]
 
   /* for (let index = 0; index < 4; index++) {
@@ -182,11 +181,9 @@ function Colab_user() {
                     alt="profile picture"
                   />
                 </div>
-
                 <div className="User">
                   <h1>{user?.user_nome}</h1>
                 </div>
-
                 <div className="coluna">
                   <div className="coluna1">
                     <span>Cargo: {user?.contrato?.[0].cargo.cargo_area}</span>
@@ -250,21 +247,27 @@ function Colab_user() {
                 </div>
                 <h4>Cursos realizados:</h4>
                 <div className="buttons_onboard">
-                {user?.junto?.map(Trilha => {
-                  return(
-                  <>
-                    <div>
-                      <Button
-                      className="button"
-                      as={BsClipboardCheck}
-                      color={theme.colors.font}
-                      ></Button>
-                      <small key={Trilha.trilha_nome}>{Trilha.trilha_nome}</small>
-                    </div>
-                  </>
-                ) 
-              })}
-            </div>
+                  {user?.junto?.map(Trilha => {
+                    return (
+                      <>
+                        <div>
+                          <Link
+                            onClick={() => {
+                              navigate(`/Curso_Tela/${Trilha.trilha_id}`);
+                            }}
+                          >
+                            <Button
+                              className="button"
+                              as={BsClipboardCheck}
+                              color={theme.colors.font}
+                            ></Button>
+                            <small key={Trilha.trilha_nome}>{Trilha.trilha_nome}</small>
+                          </Link>
+                        </div>
+                      </>
+                    )
+                  })}
+                </div>
               </div>
             </div>
           </div>
