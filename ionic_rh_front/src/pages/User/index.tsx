@@ -13,7 +13,7 @@ import { useParams } from 'react-router-dom';
 
 import Button from 'components/Button';
 import { api } from 'services/api';
-
+import perfil_funcionarioPDF from 'components/Gerar_pdf/perfil_funcionario';
 import { parseCookies } from 'nookies';
 
 // console.log(theme.colors.primary);
@@ -108,6 +108,7 @@ function User() {
   // const {user} = useContext(AuthContext)
   const cookies = parseCookies();
   const [user, setUser] = useState<IUser>();
+  const [usuario-perfil, setUsuario-pdf] = useState([]);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   // const getAllUser = useCallback(() => {
@@ -166,8 +167,8 @@ function User() {
               </div>
 
               <div className="pdf">
-                <h2>Gerar PDF</h2>
-                <MdOutlinePictureAsPdf size="10%" color={theme.colors.red} />
+              <Button onClick={(e) => "Gerar PDF"(usuario-perfil)} color={theme.colors.red} />
+
               </div>
             </div>
 

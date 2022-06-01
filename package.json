@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "pdfmake": "^0.2.5"
+  }
+}
