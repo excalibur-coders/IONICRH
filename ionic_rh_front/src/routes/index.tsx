@@ -24,6 +24,7 @@ import Adm_Home from 'pages/ADM_Home';
 import Consultor_Home from 'pages/Consultor_Home';
 import Cadastrar_Curso from 'pages/Cadastrar_Curso';
 import Cursos from 'pages/Curso_Tela';
+import Consultor_Funcionarios from 'pages/Consultor_Funcionario';
 
 function Routes() {
   return (
@@ -51,6 +52,7 @@ function Routes() {
       <Route path="/Consultor" element={<Consultor />} />
       <Route path="/Consultor_home" element={<Consultor_Home />} />
       <Route path="/Cadastrar_curso" element={<Cadastrar_Curso />} />
+      <Route path="/Consultor_Funcionarios" element={<Consultor_Funcionarios />} />
       {/* <Route path="/Organograma" element={<Org />} /> */}
       <Route path="/Organograma/:dep" element={<Org />} />
       <Route path="/Adm_home" element={<Adm_Home />} />

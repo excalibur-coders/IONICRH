@@ -35,21 +35,7 @@ function Consultor_Home() {
                   </li>
                   <li>
                     <a>
-                      <Link to={'/Cadastrar_curso'}>
-                        <span className="icon">
-                          <MdOutlinePlaylistAdd size="40px" />
-                        </span>
-                        <span className="tittle">Cadastrar Cursos</span>
-                      </Link>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className="right">
-                <ul>
-                  <li>
-                    <a>
-                      <Link to={'/Consultor_funcionarios'}>
+                    <Link to={'/Consultor_funcionarios'}>
                         <span className="icon">
                           <MdOutlinePeopleAlt size="40px" />
                         </span>
