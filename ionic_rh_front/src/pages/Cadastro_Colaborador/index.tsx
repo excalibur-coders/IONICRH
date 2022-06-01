@@ -85,6 +85,7 @@ function Cadastro() {
   const [photo, setPhoto] = useState<File>();
   const [rgOrCpf, setRgOrCpf] = useState<File>();
   const [residency, setResidency] = useState<File>();
+  const [avatar, setAvatar] = useState<File>();
 
   const handleSavePhoto = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) setPhoto(e.target.files[0]);
@@ -100,6 +101,30 @@ function Cadastro() {
     },
     [],
   );
+  const handleAvatar = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) setAvatar(e.target.files[0]);
+  }, []);
+
+  const handleUploadAvatar = useCallback(async () => {
+    const formData = new FormData();
+
+    formData.append('avatar', avatar as string | Blob);
+
+    console.log(formData.getAll('avatar'));
+
+    await api
+      .post('/user/adicionarAvatar', formData, {
+        headers: {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
+        },
+      })
+      .then(({ status }) => {
+        console.log('status: ', status);
+      })
+      .catch(error => {
+        console.log('error: ', error);
+      });
+  }, [avatar, cookies]);
 
   const handleUploadFile = useCallback(async () => {
     const formData = new FormData();
@@ -107,7 +132,6 @@ function Cadastro() {
     formData.append('file', photo as string | Blob);
     formData.append('file', rgOrCpf as string | Blob);
     formData.append('file', residency as string | Blob);
-    formData.append('avatar', residency as string | Blob);
 
     console.log(formData.getAll('file'));
 
@@ -156,6 +180,7 @@ function Cadastro() {
                 endereco_pais: data.nacionalidade,
                 endereco_bairro: data.bairro,
                 endereco_cidade: data.cidade,
+                endereco_compl: data.complemento,
                 endereco_cep: data.cep,
                 endereco_estado: data.estado,
                 endereco_numero: data.numero,
@@ -221,10 +246,11 @@ function Cadastro() {
       });
 
       handleUploadFile();
+      handleUploadAvatar();
 
       autoRegister(data, idiomasfalados);
     },
-    [autoRegister, handleUploadFile],
+    [autoRegister, handleUploadFile, handleUploadAvatar],
   );
 
   const schema = yup
@@ -453,7 +479,7 @@ function Cadastro() {
                   width="22rem"
                   fontSize={20}
                   fontWeight="bold"
-                  labelText="Foto"
+                  labelText="Historico Escolar"
                   type="file"
                   onChange={handleSavePhoto}
                 />
@@ -473,9 +499,18 @@ function Cadastro() {
                   width="22rem"
                   fontSize={20}
                   fontWeight="bold"
-                  labelText="RG/CPF"
+                  labelText="Comprovante Residencial"
                   type="file"
                   onChange={handleSaveResidency}
+                />
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  fontWeight="bold"
+                  labelText="Foto 3x4"
+                  type="file"
+                  onChange={handleAvatar}
                 />
                 {/* <div className="anexoWrapper">
                   <div className="form">

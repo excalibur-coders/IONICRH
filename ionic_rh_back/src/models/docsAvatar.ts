@@ -1,46 +1,39 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { user } from "./user";
 
 @Entity()
-export class documentos {
+export class documentosAvatar {
     @PrimaryGeneratedColumn({ type: "int" })
-    docs_id!: number;
+    avatar_id!: number;
 
     @Column({
         type: "varchar",
         nullable: true
     })
-    docs_nome!: string;
+    avatar_nome!: string;
     @Column({
         type: "longtext",
         nullable: true
     })
-    docs_url!: string;
-    @Column({
-        type: "longtext",
-        nullable: true
-    })
-    docs_key!: string;
+    avatar_url!: string;
     @Column({
         type: "float",
         nullable: true
     })
-    docs_size!: number;
+    avatar_size!: number;
     @Column({
         type: "varchar",
         nullable: true
     })
-    docs_type!: string;
+    avatar_type!: string;
     @Column({
         type: "varchar",
         nullable: true
     })
-    docs_header!: string;
-
-
+    avatar_header!: string;
 
     //Chave estrangeira
-    @ManyToOne(() => user, (user) => user.docs)
+    @ManyToOne(() => user, (user) => user.docsavatar)
     @JoinColumn({
         name: "userUserId"
     })

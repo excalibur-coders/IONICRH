@@ -35,6 +35,14 @@ export class endereco {
         type: "varchar",
     })
     endereco_numero!: string;
+    @Column({
+        type: "varchar",
+    })
+    endereco_rua!: string;
+    @Column({
+        type: "varchar",
+    })
+    endereco_compl!: string;
     // Chave estrangeira
     @ManyToOne(() => user, (user) => user.endereco)
     @JoinColumn({
