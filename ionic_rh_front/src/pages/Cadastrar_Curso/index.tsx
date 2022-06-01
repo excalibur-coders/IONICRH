@@ -55,14 +55,38 @@ function Cadastrar_Curso() {
                   max={10}
                 />
             </div>
+            <h1> Upload dos arquivos </h1>
             <div className="field">
             <Input
                   size="sm"
                   width="22rem"
                   fontSize={20}
                   fontWeight="bold"
-                  labelText="Upload do curso:"
+                  labelText="Modulo 1:"
                   type="file"
+                  multiple
+                />
+            </div>
+            <div className="field">
+            <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  fontWeight="bold"
+                  labelText="Modulo 2:"
+                  type="file"
+                  multiple
+                />
+            </div>
+            <div className="field">
+            <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  fontWeight="bold"
+                  labelText="Modulo 3:"
+                  type="file"
+                  multiple
                 />
             </div>
             <Button

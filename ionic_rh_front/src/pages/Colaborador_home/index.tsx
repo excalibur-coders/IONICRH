@@ -88,7 +88,7 @@ function Colab_home() {
               <section className="others">
                 <h1>Outros Projetos</h1>
                 <h2>Saiba mais</h2>
-                <a href="">
+                <a href="/Consultor_Funcionarios">
                   <MdArrowForward
                     size={70}
                     color={theme.colors.font}
