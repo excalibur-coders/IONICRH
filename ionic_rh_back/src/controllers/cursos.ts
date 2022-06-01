@@ -1,6 +1,6 @@
 import { Response, Request, NextFunction } from "express";
 import { AppDataSource } from "config/database";
-import { curso, trilha } from "models/trilha";
+import { curso, modulosCurso, trilha } from "models/trilha";
 import { docs_curso } from "models/curso_docs";
 import multerConfig from 'config/multercurso'
 import path from "path";
@@ -9,6 +9,98 @@ const cursoRepository = AppDataSource.getRepository(curso)
 const trilhaRepository = AppDataSource.getRepository(trilha)
 const docsRepository = AppDataSource.getRepository(docs_curso)
 
+const moduloRepository = AppDataSource.getRepository(modulosCurso)
+export const createModulo = async (req: Request, res: Response) => {
+    try {
+        const {
+            modulo_nome,
+            cursoCursoId
+        } = req.body
+        await moduloRepository
+            .createQueryBuilder()
+            .insert()
+            .into(modulosCurso)
+            .values(req.body)
+            .execute()
+        res.json(req.body)
+    } catch (error) {
+        res.json(error)
+    }
+}
+export const updateModulo = async (req: Request, res: Response) => {
+    try {
+        const {
+            id
+        } = req.params
+        await moduloRepository
+            .createQueryBuilder()
+            .update()
+            .set({
+                modulo_nome: req.body.modulo_nome,
+                cursoCursoId: req.body.cursoCursoId
+            })
+            .where('modulo_id = :modulo_id', {
+                modulo_id: id
+            })
+            .execute()
+        res.json(req.body)
+    } catch (error) {
+        res.json(error)
+    }
+}
+export const deleteModulo = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+        await moduloRepository
+            .createQueryBuilder()
+            .delete()
+            .where('modulo_id = :modulo_id', {
+                modulo_id: id
+            })
+            .execute()
+        res.json({
+            "message": "Modulo deletado com sucesso"
+        })
+    } catch (error) {
+        res.json(error)
+    }
+}
+export const deleteDocs = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+        await docsRepository
+            .createQueryBuilder()
+            .delete()
+            .where('docs_id = :docs_id', {
+                docs_id: id
+            })
+            .execute()
+        res.json({
+            "message": "Documento do curso deletado com sucesso"
+        })
+    } catch (error) {
+        res.json(error)
+    }
+}
+export const updateDocs = async (req: Request, res: Response) => {
+    try {
+        const { docs_nome } = req.body
+        const { id } = req.params
+        await docsRepository
+            .createQueryBuilder()
+            .update()
+            .set({
+                docs_nome: docs_nome
+            })
+            .where('docs_id = :docs_id', {
+                docs_id: id
+            })
+            .execute()
+        res.json(req.body)
+    } catch (error) {
+        res.json(error)
+    }
+}
 export const createCurso = async (req: Request, res: Response) => {
     try {
         const {

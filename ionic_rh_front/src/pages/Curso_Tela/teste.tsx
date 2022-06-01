@@ -74,57 +74,82 @@ function Teste() {
         <RespBar />
         <main>
           <div className='position'>
-            <div className="video">
-              {trilha.map(curso => {
-                return (
-                  curso.modulosCurso.map(modulo => {
-                    return (
-                      modulo.docs_curso.map(doc => {
-                        if (doc.docs_type == ".jpeg" || doc.docs_type == ".png") {
-                          return (
-                            <>
-                              <img src={doc.docs_url} width={666} />
-                            </>
-                          )
-                        } else if (doc.docs_type == ".mp4") {
-                          return (
-                            <>
-                              <video width="666" controls>
-                                <source src={doc.docs_url} type="video/mp4" />
-                              </video>
-                            </>
-                          )
-                        }
-                      })
-                    )
-                  })
-                )
-              })}
-            </div>
-            <div className="list">
-              {trilha.map(trilha => {
-                return (
-                  trilha.modulosCurso.map(modulo => {
+            {/* Retorno do nome do modulo */}
+            {trilha.map(curso => {
+              return (
+                <>
+                  <h1>{curso.curso_nome}</h1>
+                  {curso.modulosCurso.map(modulo => {
                     return (
                       <>
-                        <h1 key={modulo.modulo_id}>{modulo.modulo_nome}</h1>
-                        {modulo.docs_curso.map(doc => {
-                          return (
-                            <>
-                              <p>{doc.docs_nome}</p>
-                            </>
-                          )
-                        })}
+                        <h1>
+                          {modulo.modulo_nome}
+                        </h1>
                       </>
                     )
-                  })
-                )
-              })}
-            </div>
-          </div>
-          <div className='descricao'>
-            <div className='texto'>
-            </div>
+                  })}
+                </>
+              )
+            })}
+            {trilha.map(curso => {
+              return (
+                curso.modulosCurso.map(modulo => {
+                  return (
+                    modulo.docs_curso.map(doc => {
+                      if (doc.docs_type == '.mp4') {
+                        return (
+                          /* Retorno de video */
+                          <>
+                            <Accordion allowToggle>
+                              <AccordionItem>
+                                <h2>
+                                  <AccordionButton>
+                                    <Box flex='1' textAlign='left'>
+                                      {/* Nome do Modulo */}
+                                      {doc.docs_nome}
+                                    </Box>
+                                    <AccordionIcon />
+                                  </AccordionButton>
+                                </h2>
+                                <AccordionPanel pb={4}>
+                                  {/* Retorno do video */}
+                                  <video width="666" controls>
+                                    <source src={doc.docs_url} type="video/mp4" />
+                                  </video>
+                                </AccordionPanel>
+                              </AccordionItem>
+                            </Accordion>
+                          </>
+                        )
+                      } else if (doc.docs_type == ".jpeg" || doc.docs_type == ".png") {
+                        return (
+                          /* Retorno de imagens */
+                          <>
+                            <Accordion allowToggle>
+                              <AccordionItem>
+                                <h2>
+                                  <AccordionButton>
+                                    <Box flex='1' textAlign='left'>
+                                      {/* Nome do Modulo */}
+                                      {doc.docs_nome}
+                                    </Box>
+                                    <AccordionIcon />
+                                  </AccordionButton>
+                                </h2>
+                                <AccordionPanel pb={4}>
+                                  {/* Retorno da imagem */}
+                                  <img src={doc.docs_url} width={666} />
+                                </AccordionPanel>
+                              </AccordionItem>
+                            </Accordion>
+                          </>
+                        )
+                      }
+                    })
+                  )
+                })
+              )
+            })}
           </div>
           <button onClick={() => navigate(-1)}>Voltar</button>
         </main>
