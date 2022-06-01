@@ -21,6 +21,7 @@ import Colab_user from 'pages/Colaborador_user';
 import Consultor from 'pages/Consultor_Tela';
 import Org from 'pages/Organograma';
 import Adm_Home from 'pages/ADM_Home';
+import Cursos from 'pages/Curso_Tela';
 
 function Routes() {
   return (
@@ -49,6 +50,7 @@ function Routes() {
       {/* <Route path="/Organograma" element={<Org />} /> */}
       <Route path="/Organograma/:dep" element={<Org />} />
       <Route path="/Adm_home" element={<Adm_Home />} />
+      <Route path="/Curso_Tela/:id" element={<Cursos />} />
     </RoutesWrapper>
     // </BrowserRouter>
   );

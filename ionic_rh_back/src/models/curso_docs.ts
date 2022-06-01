@@ -1,8 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
-import { user } from "./user";
+import { curso } from "./trilha";
 
 @Entity()
-export class documentos {
+export class docs_curso {
     @PrimaryGeneratedColumn({ type: "int" })
     docs_id!: number;
 
@@ -40,13 +40,13 @@ export class documentos {
 
 
     //Chave estrangeira
-    @ManyToOne(() => user, (user) => user.docs)
+    @ManyToOne(() => curso, (curso) => curso.docs_curso)
     @JoinColumn({
-        name: "userUserId"
+        name: "docsDocsId"
     })
-    user!: user
+    docs!: curso
     @Column({
         type: "int"
     })
-    userUserId?: number
+    docsDocsId?: number
 }
