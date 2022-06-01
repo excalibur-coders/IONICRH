@@ -43,6 +43,6 @@ router.post('/adicionar-material/:docsDocsId',
     adicionarConteudo)
 router.post('/vincular-curso', createRelationCursoTrilha)
 router.get('/ver-trilhas/:id', consultaQueryCursoTrilhUser)
-router.get('/pegar-trilha-curso/:id/:curso', pegarTrilhaCurso)
+router.get('/pegar-trilha-curso/:id/:curso/:docs', pegarTrilhaCurso)
 
 export default router; 

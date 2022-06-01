@@ -1,4 +1,4 @@
-import { Response, Request } from "express";
+import { Response, Request, NextFunction } from "express";
 import { AppDataSource } from "config/database";
 import { curso, trilha } from "models/trilha";
 import { docs_curso } from "models/curso_docs";
@@ -72,6 +72,9 @@ export const readOneCurso = async (req: Request, res: Response) => {
         const { id } = req.params
         const findCursoById = await cursoRepository
             .find({
+                relations: {
+                    docs_curso: true
+                },
                 where: {
                     curso_id: Number(id)
                 }
@@ -153,15 +156,16 @@ export const readOneTrilha = async (req: Request, res: Response) => {
         const { id } = req.params
         const findTrilhaById = await trilhaRepository
             .find(
-                {relations: {
-                    juntos: {
-                        docs_curso: true
+                {
+                    relations: {
+                        juntos: {
+                            docs_curso: true
+                        }
+                    },
+                    where: {
+                        trilha_id: Number(id)
                     }
-                },
-                where: {
-                    trilha_id: Number(id)
-                }
-            })
+                })
         res.json(findTrilhaById)
     } catch (error) {
         res.json(error)
@@ -332,7 +336,7 @@ export const adicionarConteudo = async (req: Request, res: Response) => {
                     docs_type: ext,
                     docs_header: file.fieldname,
                     docs_size: multerConfig.limits.fileSize,
-                    docs_url: `https://${process.env.BUCKET_NAME}.s3.${process.env.AWS_DEFAULT_REGION}.amazonaws.com/${base}`,
+                    docs_url: `https://${process.env.BUCKET_NAME_EXCALIBUR}.s3.${process.env.AWS_DEFAULT_REGION}.amazonaws.com/${base}`,
                     docsDocsId: Number(docsDocsId)
                 })
                 .execute()
@@ -344,24 +348,29 @@ export const adicionarConteudo = async (req: Request, res: Response) => {
     }
 }
 
-export const pegarTrilhaCurso = async (req: Request, res: Response) => {
+export const pegarTrilhaCurso = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { id, curso } = req.params
+        const { id, curso, docs } = req.params
         req.params.id = id
         req.params.curso = curso
         const teste = await trilhaRepository
             .createQueryBuilder()
             .select([
                 "t",
-                "c"
+                "c",
+                "doc"
             ])
             .from(trilha, 't')
             .leftJoin('t.juntos', 'c')
+            .leftJoin('c.docs_curso', 'doc')
             .where('t.trilha_id = :trilha_id', {
                 trilha_id: id
             })
             .andWhere('curso_id = :curso_id ', {
                 curso_id: curso
+            })
+            .andWhere('docs_id = :docs_id', {
+                docs_id: docs
             })
             .getOne()
         res.json(teste)
