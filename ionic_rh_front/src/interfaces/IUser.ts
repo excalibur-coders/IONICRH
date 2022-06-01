@@ -83,6 +83,7 @@ interface IAvatar {
   avatar_header: string;
 }
 interface ITrilha {
+  trilha_id: number;
   trilha_nome: string;
   juntos: ICurso[];
 }
