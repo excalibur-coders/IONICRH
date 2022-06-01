@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
-import { curso } from "./trilha";
+import { modulosCurso } from "./trilha";
 
 @Entity()
 export class docs_curso {
@@ -40,11 +40,11 @@ export class docs_curso {
 
 
     //Chave estrangeira
-    @ManyToOne(() => curso, (curso) => curso.docs_curso)
+    @ManyToOne(() => modulosCurso, (modulosCurso) => modulosCurso.docs_curso)
     @JoinColumn({
         name: "docsDocsId"
     })
-    docs!: curso
+    docs!: modulosCurso
     @Column({
         type: "int"
     })

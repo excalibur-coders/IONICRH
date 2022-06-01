@@ -71,6 +71,7 @@ interface CadastroProps {
   dependente_nome3: string;
   dependente_nascimento3: string;
   dependente_origin3: string;
+  //
   empresa_nome: string;
   empresa_cnpj: string;
   empresa_natureza: string;
@@ -211,15 +212,6 @@ function Cadastro() {
                 dependente_origin: data.dependente_origin3,
               },
             ],
-            empresas: [
-              {
-                pj_nome: data.empresa_nome,
-                pj_cnjp: data.empresa_cnpj,
-                pj_natureza_juridica: data.empresa_natureza,
-                pj_fundacao: data.empresa_fundacao,
-                pj_conduta_etica: data.empresa_etica,
-              }
-            ]
           },
           {
             headers: {
@@ -237,6 +229,68 @@ function Cadastro() {
     },
     [cookies],
   );
+  const registerPj = useCallback(
+    async (data: CadastroProps) => {
+      await api
+        .put<CadastroProps>(
+          '/user/adicionar-empresa-pj',
+          {
+            user_nome: data.nomecompleto,
+            user_cpf: data.cpf,
+            user_rg: data.rg,
+            user_nacionalidade: data.nacionalidade,
+            user_nascimento: data.nascimento,
+            user_naturalidade: data.naturalidade,
+            user_genero: data.genero,
+            user_raca: data.etnia,
+            user_estado_civil: data.estadocivil,
+            pJuridica: [
+              {
+                pj_nome: data.empresa_nome,
+                pj_cnjp: data.empresa_cnpj,
+                pj_natureza_juridica: data.empresa_natureza,
+                pj_fundacao: data.empresa_fundacao,
+                pj_conduta_etica: data.empresa_etica,
+              }
+            ],
+            enderecos: [
+              {
+                endereco_pais: data.nacionalidade,
+                endereco_bairro: data.bairro,
+                endereco_cidade: data.cidade,
+                endereco_compl: data.complemento,
+                endereco_cep: data.cep,
+                endereco_estado: data.estado,
+                endereco_numero: data.numero,
+                endereco_rua: data.rua,
+              },
+            ],
+            telefones: [
+              {
+                tell_ddd: data.telefone.split(' ')[0].replace(/([()])/g, ''),
+                tell_numero: data.telefone.split(' ')[1].replace('-', ''),
+              },
+            ],
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${cookies['ionicookie.token']}`,
+            },
+          },
+        )
+        .then(({ data }) => {
+          console.log(data);
+          navigate('/Colab_home');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    [cookies],
+  );
+  const [value, setValue] = useState('1')
+
+  const [radioValue, setRadioValue] = useState();
 
   const onSubmit = useCallback(
     async (data: CadastroProps) => {
@@ -245,12 +299,17 @@ function Cadastro() {
         idiomasfalados.push(value);
       });
 
+      if (value == 'clt') {
+        autoRegister(data, idiomasfalados);
+      } else if (value == 'pj') {
+        registerPj(data)
+      }
       handleUploadFile();
       handleUploadAvatar();
 
-      autoRegister(data, idiomasfalados);
+
     },
-    [autoRegister, handleUploadFile, handleUploadAvatar],
+    [value, handleUploadFile, handleUploadAvatar, autoRegister, registerPj],
   );
 
   const schema = yup
@@ -290,11 +349,9 @@ function Cadastro() {
     // resolver: yupResolver(schema),
   });
 
-  const [value, setValue] = useState('1')
 
-  const [radioValue, setRadioValue] = useState();
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(value)
   }, [value])
 
@@ -316,7 +373,7 @@ function Cadastro() {
                   <RadioGroup onChange={setValue} value={value}>
                     <Stack direction='row'>
                       <Radio value='pj' border="#000"><b>Pessoa Jurídica</b></Radio>
-                      <Radio value='clt'border="#000"><b>Pessoa Física</b></Radio>
+                      <Radio value='clt' border="#000"><b>Pessoa Física</b></Radio>
                     </Stack>
                   </RadioGroup>
                 </div>

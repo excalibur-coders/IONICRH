@@ -9,7 +9,8 @@ import {
   adicionarEndereco,
   adicionarIdioma, adicionarTelefone,
   updateUser,
-  adicionarAvatar
+  adicionarAvatar,
+  adicionarEmpresaPj
 } from 'controllers/autoCadastro_Usuario'
 import multer from 'multer';
 import multerConfig from 'config/multer'
@@ -62,6 +63,11 @@ router.put(
   adicionarDependente,
   updateUser
 );
+router.put('/adicionar-empresa-pj',
+  adicionarTelefone,
+  adicionarEmpresaPj,
+  adicionarEndereco,
+  updateUser)
 
 // Home do usario
 router.get(
@@ -92,22 +98,21 @@ router.post(
 
 router.post(
   '/teste',
-  multer(multerConfig).fields([{name: 'file', maxCount: 3}]),
+  multer(multerConfig).fields([{ name: 'file', maxCount: 3 }]),
   adicionarDocumento
 )
 router.post(
   '/adicionarAvatar',
-  multer(multerConfig).fields([{name: 'avatar', maxCount: 1}]),
+  multer(multerConfig).fields([{ name: 'avatar', maxCount: 1 }]),
   adicionarAvatar
 )
 router.get('/docs/:id', getFilesUser)
 
 router.get('/docs/download/:docs_id', downloadFilesUser)
-
 // Fazer alteração no contrato do usuario
 router.put(
   '/update-contrato-user/:id',
   verifyUserRole(["Administrador", "Gestor"]),
-  updateContratoUser,)
+  updateContratoUser)
 
 export default router; 

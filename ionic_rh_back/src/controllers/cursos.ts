@@ -73,7 +73,9 @@ export const readOneCurso = async (req: Request, res: Response) => {
         const findCursoById = await cursoRepository
             .find({
                 relations: {
-                    docs_curso: true
+                    modulosCurso: {
+                        docs_curso: true
+                    }
                 },
                 where: {
                     curso_id: Number(id)
@@ -159,7 +161,9 @@ export const readOneTrilha = async (req: Request, res: Response) => {
                 {
                     relations: {
                         juntos: {
-                            docs_curso: true
+                            modulosCurso: {
+                                docs_curso: true
+                            }
                         }
                     },
                     where: {
@@ -358,7 +362,8 @@ export const pegarTrilhaCurso = async (req: Request, res: Response, next: NextFu
             .select([
                 "t",
                 "c",
-                "doc"
+                "modulo",
+                "docs"
             ])
             .from(trilha, 't')
             .leftJoin('t.juntos', 'c')

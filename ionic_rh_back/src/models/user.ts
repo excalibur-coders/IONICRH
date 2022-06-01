@@ -10,6 +10,7 @@ import { escolaridade } from "./user_escola";
 import { idiomas } from "./user_idioma";
 import { trilha } from "./trilha";
 import { telefone } from "./user_telefone";
+import { empresa_PJ } from "./emp_pj";
 
 
 
@@ -143,4 +144,7 @@ export class user {
 
     @ManyToMany(() => trilha, (trilha) => trilha.junto)
     junto!: trilha
+    
+    @ManyToMany(() => empresa_PJ, (emp_pj) => emp_pj.user)
+    emp_pj!: empresa_PJ
 }
