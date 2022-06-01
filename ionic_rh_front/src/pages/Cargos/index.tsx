@@ -64,7 +64,7 @@ function Cargos() {
     setTimeout(() => {
       setLoading(false);
     }, 5000);
-  }, [setLoading, setCargos, setCargosPesquisados]);
+  }, [setLoading, setCargos/* , setCargosPesquisados */]);
 
   useEffect(() => {
     getAllCargos();
@@ -164,7 +164,7 @@ function Cargos() {
               <Table variant="striped" size="lg" background="#00000029">
                 <div className="TableTwo">
                   <Tbody>
-                    {cargosPesquisados.map(cargos => (
+                     {cargosPesquisados.map(cargos => (
                       <Tr key={cargos.cargo_id}>
                         <Td className="TBody" fontSize="2xl">
                           {cargos.cargo_area}
