@@ -245,7 +245,7 @@ function Cadastro() {
     formState: { errors },
   } = useForm<CadastroProps>({
     mode: 'onBlur',
-    // resolver: yupResolver(schema),
+    resolver: yupResolver(schema),
   });
 
   return (

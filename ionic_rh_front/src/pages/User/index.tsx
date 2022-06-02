@@ -13,10 +13,9 @@ import { useParams } from 'react-router-dom';
 
 import Button from 'components/Button';
 import { api } from 'services/api';
-import perfil_funcionarioPDF from 'components/Gerar_pdf/perfil_funcionario';
+import perfil_funcionarioPDF from 'utils/Gerar_pdf';
 import { parseCookies } from 'nookies';
 
-// console.log(theme.colors.primary);
 
 interface IUser {
   user_id: number;
@@ -108,7 +107,7 @@ function User() {
   // const {user} = useContext(AuthContext)
   const cookies = parseCookies();
   const [user, setUser] = useState<IUser>();
-  const [usuario-perfil, setUsuario-pdf] = useState([]);
+  const [usuario_perfil, setUsuario_pdf] = useState([]);
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   // const getAllUser = useCallback(() => {
@@ -146,7 +145,7 @@ function User() {
       .catch(error => {
         console.log(error);
       });
-  }, [cookies, id]);
+  }, []);
 
   return (
     <>
@@ -167,7 +166,11 @@ function User() {
               </div>
 
               <div className="pdf">
-              <Button onClick={(e) => "Gerar PDF"(usuario-perfil)} color={theme.colors.red} />
+              <Button
+                text='Gerar PDF'
+                onClick={(e) => perfil_funcionarioPDF(user)}
+                color={theme.colors.red}
+              />
 
               </div>
             </div>
