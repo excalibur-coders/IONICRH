@@ -58,10 +58,6 @@
 
 <br>
 
-## Mapa Mental do Produto
-
-![Mapa Mental](./docs/readme/mapa.png)
-
 <br>
 
 ## 💻 Tecnologias Utilizadas
