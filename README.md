@@ -71,16 +71,10 @@
 - **Ferramentas:** Visual Studio Code, Jira, Miro, Canva, Trello, Git e Github;
 - **Metodologia Utilizada:** Metodologia Ágil | SCRUM
 
+
 <br>
 
 ## Backlog do Produto
-
-![produto](https://user-images.githubusercontent.com/80925387/168501137-f4d44159-fa7c-4b6a-acf3-ec78e75dbd48.png)
-
-
-<br>
-
-## Backlog das Sprints
 ![backlog das sprints](https://user-images.githubusercontent.com/80925387/168347328-0af2a14f-f963-4218-b9a9-bb150b5396f3.png)
 
 
