@@ -8,8 +8,8 @@ import path from "path";
 const cursoRepository = AppDataSource.getRepository(curso)
 const trilhaRepository = AppDataSource.getRepository(trilha)
 const docsRepository = AppDataSource.getRepository(docs_curso)
-
 const moduloRepository = AppDataSource.getRepository(modulosCurso)
+
 export const createModulo = async (req: Request, res: Response) => {
     try {
         const {
@@ -431,7 +431,7 @@ export const adicionarConteudo = async (req: Request, res: Response) => {
                     docs_key: file.key,
                     docs_type: ext,
                     docs_header: file.fieldname,
-                    docs_size: multerConfig.limits.fileSize,
+                    docs_size: file.size,
                     docs_url: `https://${process.env.BUCKET_NAME_EXCALIBUR}.s3.${process.env.AWS_DEFAULT_REGION}.amazonaws.com/${base}`,
                     docsDocsId: Number(docsDocsId)
                 })
@@ -443,7 +443,6 @@ export const adicionarConteudo = async (req: Request, res: Response) => {
         res.json(error)
     }
 }
-
 export const pegarTrilhaCurso = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { id, curso, docs } = req.params

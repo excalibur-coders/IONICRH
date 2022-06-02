@@ -1,6 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { user } from "./user";
 import { docs_curso } from './curso_docs'
+import { moduloConclusao } from "./modulos";
 
 @Entity()
 export class trilha {
@@ -49,6 +50,9 @@ export class modulosCurso {
         type: "int"
     })
     cursoCursoId!: number
+
+    @OneToMany(() => moduloConclusao, (concluiu) => concluiu.docs)
+    concluiu!: moduloConclusao
 }
 @Entity()
 export class curso {

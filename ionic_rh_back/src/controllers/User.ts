@@ -3,6 +3,10 @@ import 'config/dotenv';
 import jwtDecode from "jwt-decode";
 import { AppDataSource } from "config/database";
 import { user } from "models/user";
+import { videoConclusao } from "models/video";
+import { docs_curso } from "models/curso_docs";
+import { modulosCurso } from "models/trilha";
+import { moduloConclusao } from "models/modulos";
 
 interface IDecodedParams {
   id: string;
@@ -10,8 +14,10 @@ interface IDecodedParams {
   iat: string
 }
 
-// Repositorios
 const userReposiroty = AppDataSource.getRepository(user);
+const videoRepository = AppDataSource.getRepository(modulosCurso)
+const docsRepository = AppDataSource.getRepository(docs_curso)
+
 export const getLoggedUserData = async (req: Request, res: Response) => {
   try {
     const tokenHeader = req.headers.authorization;
@@ -43,7 +49,7 @@ export const getLoggedUserData = async (req: Request, res: Response) => {
       .leftJoin('u.docs', 'docs')
       .leftJoin('u.contrato', 'c')
       .leftJoin('u.junto', 'ts')
-      .leftJoin('ts.juntos','cs')
+      .leftJoin('ts.juntos', 'cs')
       .leftJoin('c.cargo', 'cont')
       .leftJoin('cont.departamento', 'd')
       .leftJoin('c.emp_contratante', 'en')
@@ -58,7 +64,6 @@ export const getLoggedUserData = async (req: Request, res: Response) => {
     res.json(error);
   }
 };
-
 export const getColaboradorContratoID = async (req: Request, res: Response) => {
   try {
     const { id } = req.params
@@ -88,7 +93,7 @@ export const getColaboradorContratoID = async (req: Request, res: Response) => {
       .leftJoin('u.docsavatar', 'docsavatar')
       .leftJoin('u.contrato', 'c')
       .leftJoin('u.junto', 'ts')
-      .leftJoin('ts.juntos','cs')
+      .leftJoin('ts.juntos', 'cs')
       .leftJoin('c.cargo', 'cont')
       .leftJoin('cont.departamento', 'd')
       .leftJoin('c.emp_contratante', 'en')
@@ -102,7 +107,6 @@ export const getColaboradorContratoID = async (req: Request, res: Response) => {
     res.json(error)
   }
 }
-
 export const getAllColaborador = async (req: Request, res: Response) => {
   try {
     const tokenHeader = req.headers.authorization;
@@ -144,7 +148,6 @@ export const getAllColaborador = async (req: Request, res: Response) => {
     res.json(req.body)
   }
 }
-
 export const getAllColaboradorContrato = async (req: Request, res: Response) => {
   try {
     const dadosContratoUser = await userReposiroty
@@ -173,5 +176,61 @@ export const getAllColaboradorContrato = async (req: Request, res: Response) => 
     res.json(dadosContratoUser)
   } catch (error) {
     res.json(req.body)
+  }
+}
+export const testeDoMilenio = async (req: Request, res: Response) => {
+  try {
+    const tokenHeader = req.headers.authorization;
+    const splitToken = tokenHeader?.split(' ')[1] as string;
+    const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
+    const {
+      id
+    } = req.params
+    await docsRepository
+      .createQueryBuilder()
+      .select('d')
+      .from(docs_curso, 'd')
+      .where('docs_id = :docs_id', {
+        docs_id: id
+      })
+      .insert()
+      .into(videoConclusao)
+      .values({
+        userUserId: Number(decodedJwt.id),
+        concluiu: 1,
+        videoVideoId: Number(id)
+      })
+      .execute()
+    res.json(req.body)
+  } catch (error) {
+    res.json(error)
+  }
+}
+export const testeDoSecundenio = async (req: Request, res: Response) => {
+  try {
+    const tokenHeader = req.headers.authorization;
+    const splitToken = tokenHeader?.split(' ')[1] as string;
+    const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
+    const {
+      id
+    } = req.params
+    await videoRepository
+      .createQueryBuilder()
+      .select('d')
+      .from(modulosCurso, 'd')
+      .where('modulo_id = :modulo_id', {
+        modulo_id: id
+      })
+      .insert()
+      .into(moduloConclusao)
+      .values({
+        userUserId: Number(decodedJwt.id),
+        concluiu: 1,
+        moduloModuloId: Number(id)
+      })
+      .execute()
+    res.json(req.body)
+  } catch (error) {
+    res.json(error)
   }
 }

@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { modulosCurso } from "./trilha";
+import { videoConclusao } from "./video";
 
 @Entity()
 export class docs_curso {
@@ -49,4 +50,7 @@ export class docs_curso {
         type: "int"
     })
     docsDocsId?: number
+
+    @OneToMany(() => videoConclusao, (concluiu) => concluiu.docs)
+    concluiu!: videoConclusao
 }
