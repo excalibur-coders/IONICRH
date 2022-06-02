@@ -2,12 +2,13 @@ import { theme } from 'theme';
 import * as S from './styles';
 import React, { useContext } from 'react';
 import RespBar from 'components/RespBar';
-import { AspectRatio, Box, Button, Checkbox } from '@chakra-ui/react'
+import { AspectRatio, Box, Button, Checkbox, Select } from '@chakra-ui/react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
 import { api } from 'services/api';
+import ReactPlayer from 'react-player'
 import {
   Link,
   Accordion,
@@ -18,6 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from 'hooks/useAuth';
+import { userInfo } from 'os';
 
 interface ITrilha {
   trilha_id: number;
@@ -44,22 +46,43 @@ interface IModulo {
   modulo_nome: string;
   docs_curso: IDocs[];
 }
-
-interface IForm {
+interface IUser {
+  user_id: number;
+  concluiu: IConcluiu[];
+}
+interface IConcluiu {
+  concluiu: boolean;
   userUserId: number;
   videoVideoId: number;
-  concluiu: boolean;
+  docs: IDocs;
 }
 
 function Teste() {
-  const { user } = useContext(AuthContext);
   const cookies = parseCookies();
   const { id } = useParams();
   const [trilha, setCursos] = useState<ICurso[]>([]);
+  const [concluiu, setConcluiu] = useState<IConcluiu>();
 
+  const [currentUrlIndex, setCurrentUrlIndex] = React.useState(0)
+  const [showNextButton, setShowNextButton] = React.useState(false)
   const navigate = useNavigate();
 
-  const getAllCursos = useCallback(() => {
+  const getConcluiu = useCallback(() => {
+    api
+      .get(`/user/pegar-concluiu`, {
+        headers: {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
+        },
+      })
+      .then(({ data }) => {
+        setConcluiu(data);
+      })
+      .catch((error: Error | AxiosError) => {
+        console.log(error);
+      });
+  }, [cookies]);
+
+  /* const getAllCursos = useCallback(() => {
     api
       .get(`/curso/ver-curso/${id}`, {
         headers: {
@@ -67,70 +90,14 @@ function Teste() {
         },
       })
       .then(({ data }) => {
-        /* console.log('Boa noite', data); */
         setCursos(data);
       })
       .catch((error: Error | AxiosError) => {
         console.log(error);
       });
-  }, [cookies, id]);
-  /*
-  const media = document.getElementById('myVideo');
-  const output = document.getElementById('output');
-    media?.addEventListener("playing", () => {
-    output?.innerHTML;
-    });
+  }, [cookies, id]); */
 
-    media?.addEventListener("pause", () => {
-      output?.innerHTML;
-    });
 
-    media?.addEventListener("seeking", () => {
-      output?.innerHTML;
-    });
-
-    media?.addEventListener("volumechange", () => {
-      output?.innerHTML;
-    }); */
-  /* const video = document.querySelector('video');
-  let timeStarted = -1;
-  let timePlayed = 0;
-  const duration = 0; */
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  /* function videoStoppedPlaying(event: any) {
-    if (timeStarted > 0) {
-      const playedFor = new Date().getTime() / 1000 - timeStarted;
-      timeStarted = -1;
-      timePlayed += playedFor;
-    }
-    const determinacao: any = document.getElementById("played")?.innerHTML
-    determinacao + Math.round(timePlayed) + " ";
-    if (timePlayed >= duration && event.type == "ended") {
-      testando()
-    }
-  } */
-  useEffect(() => {
-    getAllCursos();
-
-  }, [getAllCursos]);
-
-  /* const onSubmit = useCallback(
-    async () => {
-      testando(Number(id))
-    },
-    [testando],
-  ); */
-  /*   const {
-      handleSubmit,
-      setValue
-    } = useForm()
-    const setUserValues = useCallback(
-      (data: ICurso) => {
-        setValue('videoVideoId',data.curso_id)
-      },
-      [setValue]
-    ) */
   const testando = useCallback(async (docs_id: number) => {
     await api
       .post(`/departamentos/teste/${docs_id}`, {
@@ -158,15 +125,24 @@ function Teste() {
       });
   }, [cookies]);
 
+  /*const video = document.querySelector('#ytplayer')
+    const btn = document.querySelector('#validaaula')*/
+
+    useEffect(() => {
+      getAllCursos();
+      /* getConcluiu() */
+    }, [getAllCursos]);
 
   return (
     <>
       <S.Container>
         <RespBar />
         <main>
+
           <div className='position'>
+
             {/* Retorno do nome do modulo */}
-            {trilha.map(curso => {
+            {/* {trilha.map(curso => {
               return (
                 <>
                   <h1>{curso.curso_nome}</h1>
@@ -192,82 +168,71 @@ function Teste() {
                   })}
                 </>
               )
-            })}
+            })} */}
+
             {trilha.map(curso => {
               return (
                 curso.modulosCurso.map(modulo => {
                   return (
                     <>
-                      {modulo.docs_curso.map(doc => {
-                        if (doc.docs_type == '.mp4') {
-                          return (
-                            /* Retorno de video */
-                            <>
-                              <Accordion allowToggle>
-                                <AccordionItem>
-                                  <h2>
-                                    <AccordionButton>
-                                      <Box flex='1' textAlign='left'>
-                                        {/* Nome do Modulo */}
-                                        <form method='post'>
-                                          <button type="reset"
-                                            onClick={() =>
-                                              testando(
-                                                doc.docs_id
+                      {modulo.docs_curso.map((m, i) => {
+                        return (
+                          <>
+                            <h1 key={m.docs_id}>
+                              <Link onClick={() => {
+                                setCurrentUrlIndex(
+                                  () => i
+                                )
+                              }
+                              }>{m.docs_nome}</Link>
+                              {modulo.docs_curso.filter(doc => {
+                                return modulo.docs_curso[currentUrlIndex].docs_url == doc.docs_url
+                              }).map(i => {
+                                if (i.docs_nome == m.docs_nome) {
+                                  return (
+                                    <>
+                                      <ReactPlayer id="myVideo" url={i.docs_url} controls onEnded={() => setShowNextButton(true)} />
+                                      {showNextButton && (
+                                        <>
+                                          <button
+                                            onClick={() => {
+                                              setCurrentUrlIndex(
+                                                prevUrlIndex => (prevUrlIndex + 1) % modulo.docs_curso.length
                                               )
-                                            }
+                                              setShowNextButton(false)
+                                            }}
                                           >
-                                            Assistido
+                                            Proximo Video
                                           </button>
-                                        </form>
-                                        {doc.docs_nome}
-                                      </Box>
-                                      <AccordionIcon />
-                                    </AccordionButton>
-                                  </h2>
+                                          <button
+                                            onClick={() => {
+                                              setCurrentUrlIndex(
+                                                prevUrlIndex => (prevUrlIndex - 1) % modulo.docs_curso.length
+                                              )
+                                              setShowNextButton(false)
+                                            }}
+                                          >
+                                            {" "}Voltar Video
+                                          </button>
+                                        </>
+                                      )}
 
-                                  <AccordionPanel pb={4}>
-                                    {/* Retorno do video */}
-                                    <div id="output"></div>
-                                    <video id="myVideo" width="666" height="176" controls>
-                                      <source src={doc.docs_url} type="video/mp4" />
-                                    </video>
-                                  </AccordionPanel>
-                                </AccordionItem>
-                              </Accordion>
-                            </>
-                          )
-                        } else if (doc.docs_type == ".jpeg" || doc.docs_type == ".png") {
-                          return (
-                            /* Retorno de imagens */
-                            <>
-                              <Accordion allowToggle>
-                                <AccordionItem>
-                                  <h2>
-                                    <AccordionButton>
-                                      <Box flex='1' textAlign='left'>
-                                        {/* Nome do Modulo */}
-                                        {doc.docs_nome}
-                                      </Box>
-                                      <AccordionIcon />
-                                    </AccordionButton>
-                                  </h2>
-                                  <AccordionPanel pb={4}>
-                                    {/* Retorno da imagem */}
-                                    <img src={doc.docs_url} width={666} />
-                                  </AccordionPanel>
-                                </AccordionItem>
-                              </Accordion>
-                            </>
-                          )
-                        }
+                                    </>
+                                  )
+                                }
+                              })}
+                            </h1>
+                          </>
+                        )
                       })}
+
                     </>
                   )
                 })
               )
             })}
           </div>
+          <h1>Oi</h1>
           <button onClick={() => navigate(-1)}>Voltar</button>
         </main>
       </S.Container>

@@ -30,7 +30,7 @@ import {
   verifyUpdateRequestValues,
   verifyUsedCpf
 } from "middlewares/user";
-import { getLoggedUserData, getAllColaborador, getColaboradorContratoID } from "controllers/User";
+import { getLoggedUserData, getAllColaborador, getColaboradorContratoID, pegarUserConcluiuVideo } from "controllers/User";
 import { downloadFilesUser, getFilesUser } from "controllers/filesSet";
 
 
@@ -107,6 +107,7 @@ router.post(
   adicionarAvatar
 )
 router.get('/docs/:id', getFilesUser)
+router.get('/pegar-concluiu', pegarUserConcluiuVideo)
 
 router.get('/docs/download/:docs_id', downloadFilesUser)
 // Fazer alteração no contrato do usuario

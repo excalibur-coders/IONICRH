@@ -17,6 +17,7 @@ interface IDecodedParams {
 const userReposiroty = AppDataSource.getRepository(user);
 const videoRepository = AppDataSource.getRepository(modulosCurso)
 const docsRepository = AppDataSource.getRepository(docs_curso)
+const concluiuRepository = AppDataSource.getRepository(videoConclusao)
 
 export const getLoggedUserData = async (req: Request, res: Response) => {
   try {
@@ -230,6 +231,27 @@ export const testeDoSecundenio = async (req: Request, res: Response) => {
       })
       .execute()
     res.json(req.body)
+  } catch (error) {
+    res.json(error)
+  }
+}
+export const pegarUserConcluiuVideo = async (req: Request, res: Response) => {
+  try {
+    const tokenHeader = req.headers.authorization;
+    const splitToken = tokenHeader?.split(' ')[1] as string;
+    const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
+    const find = await userReposiroty
+      .createQueryBuilder()
+      .select(["u.user_id", "c", "d"])
+      .from(user, 'u')
+      .leftJoin('u.concluiu', 'c')
+      .leftJoin('c.docs', 'd')
+      .where(
+        "u.user_id =:user_id", {
+        user_id: Number(decodedJwt.id)
+      })
+      .getOne()
+    res.json(find)
   } catch (error) {
     res.json(error)
   }
