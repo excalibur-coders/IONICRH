@@ -20,31 +20,6 @@ import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
-/* interface IDepartamento {
-  cargo: ICargo;
-  dep_id: number;
-  dep_name: string;
-}
-
-interface ICargo {
-  cargo_area: string;
-  contrato: IContrato;
-}
-interface IContrato {
-  contrato_faixa_salarial: number;
-  user: IFuncionarios;
-}
-interface IFuncionarios {
-  user_nome: string;
-}
- */
-
-/* interface IFuncionarios {
-  cargo: Array<{
-    user_nome: string;
-    contrato: IContrato;
-  }>;
-} */
 
 interface IContrato {
   contrato_faixa_salarial: number;
@@ -70,6 +45,9 @@ function DeptoTI() {
   const { id } = useParams();
   const [departamentos, setDepartamentos] = useState<IFuncionarios>();
   const [loading, setLoading] = useState(false);
+
+  //const [funcionariosPesquisados, setFuncionariosPesquisados] = useState<IContrato[]>([]);
+  //const [searchInput, setSearchInput] = useState("");
 
   const getAllDepartamentos = useCallback(() => {
     setLoading(false);
@@ -99,6 +77,33 @@ function DeptoTI() {
       });
     });
   }, []);
+
+/*         // Barra de Pesquisa //
+
+        const handleChange = (e: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
+          e.preventDefault();
+          setSearchInput(e.target.value);
+        };
+
+        const sanitizeText = useCallback(
+          text =>
+            text
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '')
+              .toLowerCase(),
+          [],
+        );
+
+        useEffect(() => {
+          if (searchInput.length > 0) {
+            const funcionarioFiltrado = departamentos.filter((departamento) => (
+              sanitizeText(user.user_nome)?.includes(sanitizeText(searchInput))
+            ));
+            setFuncionariosPesquisados(funcionarioFiltrado);
+          } else {
+            setFuncionariosPesquisados(funcioarios);
+          }
+        }, [departamentos, sanitizeText, searchInput]); */
 
   return (
     <>

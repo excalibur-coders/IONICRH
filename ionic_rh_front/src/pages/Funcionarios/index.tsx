@@ -56,8 +56,8 @@ function Funcionarios() {
 
   const [funcionarios, setFuncionarios] = useState<IFuncionarios[]>([]);
   const [loading, setLoading] = useState(false);
-  //const [funcionariosPesquisados, setFuncionariosPesquisados] = useState<IFuncionarios[]>([]);
-  //const [searchInput, setSearchInput] = useState("");
+  const [funcionariosPesquisados, setFuncionariosPesquisados] = useState<IFuncionarios[]>([]);
+  const [searchInput, setSearchInput] = useState("");
 
   const getAllFuncionarios = useCallback(() => {
     setLoading(true);
@@ -85,7 +85,7 @@ function Funcionarios() {
 
     // Barra de Pesquisa //
 
-  /*   const handleChange = (e: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
+    const handleChange = (e: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
       e.preventDefault();
       setSearchInput(e.target.value);
     };
@@ -110,8 +110,8 @@ function Funcionarios() {
       } else {
         setFuncionariosPesquisados(funcionarios);
       }
-    }, [searchInput]);
- */
+    }, [funcionarios, sanitizeText, searchInput]);
+
   return (
     <>
       <div>
@@ -140,11 +140,11 @@ function Funcionarios() {
               <Box>
                 <InputGroup>
                   {/* eslint-disable-next-line react/no-children-prop */}
-                  <InputLeftElement children={<SearchIcon w={5} h={5} />} />
-                  <Input
+                  <InputLeftElement className="marginTop" children={<SearchIcon w={5} h={5} />} />
+                  <Input className="padding-left40"
                     type="search"
-                    //onChange={handleChange}
-                    //value={searchInput}
+                    onChange={handleChange}
+                    value={searchInput}
                     fontSize={20}
                     size="lg"
                     width="50vw"
@@ -185,7 +185,7 @@ function Funcionarios() {
               <Table variant="striped" size="lg" background="#DBDBDB">
                 <div className="TableTwo">
                   <Tbody>
-                    {/* {funcionariosPesquisados.map(funcionario => {
+                     {funcionariosPesquisados.map(funcionario => {
                       //console.log('bom dia', funcionario);
                       return (
                         <>
@@ -227,7 +227,7 @@ function Funcionarios() {
                           </Tr>
                         </>
                       );
-                    })} */}
+                    })}
                   </Tbody>
                 </div>
               </Table>

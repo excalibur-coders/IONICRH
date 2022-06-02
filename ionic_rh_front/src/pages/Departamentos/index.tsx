@@ -82,7 +82,7 @@ function Departamentos() {
         } else {
           setDepartamentosPesquisados(departamentos);
         }
-      }, [searchInput]);
+      }, [departamentos, sanitizeText, searchInput]);
 
   return (
     <>
@@ -112,8 +112,8 @@ function Departamentos() {
               <Box>
                 <InputGroup>
                   {/* eslint-disable-next-line react/no-children-prop */}
-                  <InputLeftElement children={<SearchIcon w={5} h={5} />} />
-                  <Input
+                  <InputLeftElement  className="marginTop" children={<SearchIcon w={5} h={5} />} />
+                  <Input className="padding-left40"
                     type="search"
                     onChange={handleChange}
                     value={searchInput}
