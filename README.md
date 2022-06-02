@@ -24,8 +24,8 @@
 
 - ![feito](./docs/readme/check.jpeg) Cadastro de Colaboradores;
 - ![feito](./docs/readme/check.jpeg) Repositório para documentos dos Colaboradores;
-- ![em andamento](./docs/readme/a_fazer.jpeg) Cadastros de Trilha de Aprendizado e Status de Realização;
-- ![em andamento](./docs/readme/a_fazer.jpeg) Usuários devem ter perfis diferentes (administrador, gestor, consultor, colaborador);
+- ![feito](./docs/readme/check.jpeg) Cadastros de Trilha de Aprendizado e Status de Realização;
+- ![feito](./docs/readme/check.jpeg) Usuários devem ter perfis diferentes (administrador, gestor, consultor, colaborador);
 - ![feito](./docs/readme/check.jpeg) Organograma da Empresa;
 - ![feito](./docs/readme/check.jpeg) Repositório de documentos da empresa (políticas, normas, regras, etc);
 - ![feito](./docs/readme/check.jpeg) Upload e Download de documentos para consulta do Administrador e Gestor.
@@ -43,8 +43,8 @@
 
 - ![feito](./docs/readme/check.jpeg) [SPRINT 0 (Kick Off)](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint0) - 18/03/2022 a 24/03/2022
 - ![feito](./docs/readme/check.jpeg) [SPRINT 1](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint1) - 25/03/2022 a 14/04/2022
-- ![em andamento](./docs/readme/check.jpeg) [SPRINT 2](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint2) - 25/04/2022 a 15/05/2022
-- ![em andamento](./docs/readme/a_fazer.jpeg) [SPRINT 3](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint3) - 16/05/2022 a 05/06/2022
+- ![feito](./docs/readme/check.jpeg) [SPRINT 2](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint2) - 25/04/2022 a 15/05/2022
+- ![feito](./docs/readme/check.jpeg) [SPRINT 3](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint3) - 16/05/2022 a 05/06/2022
 
 
 > Status do Projeto: Em andamento
