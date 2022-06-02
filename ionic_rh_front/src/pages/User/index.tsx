@@ -37,6 +37,7 @@ interface IUser {
   contrato: IContrato[];
   user_raca: string;
   user_rg: string;
+  user_role: string;
 }
 
 interface IIdioma {
@@ -387,6 +388,8 @@ function User() {
                   {user?.contrato?.[0]?.cargo.departamento?.dep_name}{' '}
                 </span>
                 <span>Cargo: {user?.contrato?.[0]?.cargo.cargo_area}</span>
+                <span>Trilha de Aprendizado: {user?.contrato?.[0]?.cargo.cargo_area}</span>
+                <span>Tipo de perfil: {user?.user_role}</span>
                 <span>Turno: </span>
                 <span>Status: </span>
                 <span>Base: {user?.contrato?.[0]?.contrato_base} </span>
@@ -466,7 +469,7 @@ function User() {
         <div className="Wrapper3">
           <div className="DadosFuncionais">
             <span>
-              <Link to="/">Código de Conduto e Ética</Link>
+              <Link to="/">Código de Conduta e Ética</Link>
             </span>
             <div className="docsMother">
               {user?.docs?.map(element => (

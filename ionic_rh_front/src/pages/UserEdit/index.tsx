@@ -5,7 +5,7 @@ import * as S from './styles';
 import { useState, useCallback, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Input from 'components/Input';
-import { Divider, Select } from '@chakra-ui/react';
+import { Checkbox, Divider, Select, Stack } from '@chakra-ui/react';
 import Button from 'components/Button';
 import { useForm } from 'react-hook-form';
 
@@ -807,6 +807,16 @@ function UserEdit() {
                         </option>
                       ))}
                     </Select>
+                  </div>
+
+                  <div className="coluna1">
+                    <span>Trilha de Aprendizado:</span>
+                    <Stack spacing={5} direction='row'>
+                      <Checkbox colorScheme="gray">Trilha 1</Checkbox>
+                      <Checkbox colorScheme="gray">
+                        Trilha 2
+                      </Checkbox>
+                    </Stack>
                   </div>
 
                   <div className="coluna1">
