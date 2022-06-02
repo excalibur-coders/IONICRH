@@ -14,61 +14,21 @@ export const Container = styled(Flex)`
     margin-top: 100px;
     align-items: center;
     color: ${theme.colors.font};
+    text-align: center;
+    gap: 30px;
 
-    h1 {
-      font-size: 90px;
-    }
-
-    h2 {
-      font-size: 30px;
-      margin-left: 32px;
-    }
-  }
-
-  .blocs {
-    margin: auto;
-    width: 90vw;
-  }
-  .course {
-    margin: auto;
-    margin-top: 90px;
-    width: 100%;
-    height: 15rem;
-    display: flex;
-    align-items: center;
-    border-radius: 30px;
-    background: ${theme.colors.secundary};
-    color: ${theme.colors.font};
-    justify-content: space-between;
-
-    .leftcourse {
-      margin-left: 25px;
+    .text{
 
       h1 {
-        font-size: 95px;
+
+        font-size: 90px;
       }
 
       h2 {
-        font-size: 40px;
+        font-size: 30px;
+        margin-left: 32px;
       }
     }
-
-    .rightcourse {
-      margin-right: 15px;
-      display: flex;
-      align-items: center;
-
-      h1 {
-        font-size: 50px;
-      }
-    }
-  }
-
-  .inferior {
-    display: flex;
-    margin-top: 90px;
-    justify-content: space-between;
-    align-items: center;
 
     .perfil {
       width: 20rem;
@@ -105,6 +65,55 @@ export const Container = styled(Flex)`
         }
       }
     }
+  }
+
+  .blocs {
+    margin: auto;
+    width: 90vw;
+  }
+  .course {
+    margin: auto;
+    margin-top: 90px;
+    width: 100%;
+    height: 15rem;
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+    background: ${theme.colors.secundary};
+    color: ${theme.colors.font};
+    justify-content: space-between;
+
+    .leftcourse {
+      margin-left: 25px;
+
+      h1 {
+        text-align: center;
+        font-size: 95px;
+      }
+
+      h2 {
+        font-size: 40px;
+      }
+    }
+
+    .rightcourse {
+      margin-right: 15px;
+      display: flex;
+      align-items: center;
+
+      h1 {
+        font-size: 50px;
+      }
+    }
+  }
+
+  .inferior {
+    display: flex;
+    margin-top: 90px;
+    justify-content: space-between;
+    align-items: center;
+
+
 
     .projeto {
       width: 20rem;
@@ -163,6 +172,12 @@ export const Container = styled(Flex)`
         margin-top: 50px;
       }
     }
+  }
+
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   @media (max-width: 1075px) {

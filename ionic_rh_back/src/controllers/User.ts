@@ -23,6 +23,8 @@ export const getLoggedUserData = async (req: Request, res: Response) => {
         'u',
         'i',
         'e',
+        'ts',
+        'cs',
         't',
         'c',
         'avatar',
@@ -40,6 +42,8 @@ export const getLoggedUserData = async (req: Request, res: Response) => {
       .leftJoin('u.docsavatar', 'avatar')
       .leftJoin('u.docs', 'docs')
       .leftJoin('u.contrato', 'c')
+      .leftJoin('u.junto', 'ts')
+      .leftJoin('ts.juntos','cs')
       .leftJoin('c.cargo', 'cont')
       .leftJoin('cont.departamento', 'd')
       .leftJoin('c.emp_contratante', 'en')
@@ -67,6 +71,8 @@ export const getColaboradorContratoID = async (req: Request, res: Response) => {
         't',
         'c',
         'docs',
+        'ts',
+        'cs',
         'docsavatar',
         'end',
         'cont',
@@ -81,6 +87,8 @@ export const getColaboradorContratoID = async (req: Request, res: Response) => {
       .leftJoin('u.docs', 'docs')
       .leftJoin('u.docsavatar', 'docsavatar')
       .leftJoin('u.contrato', 'c')
+      .leftJoin('u.junto', 'ts')
+      .leftJoin('ts.juntos','cs')
       .leftJoin('c.cargo', 'cont')
       .leftJoin('cont.departamento', 'd')
       .leftJoin('c.emp_contratante', 'en')

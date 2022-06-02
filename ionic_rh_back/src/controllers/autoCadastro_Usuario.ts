@@ -12,12 +12,7 @@ import { telefone } from "models/user_telefone";
 import { documentos} from "models/user_docs";
 import { dependente } from "models/userDependente";
 import path from "path";
-import returnEncryptedFileName from 'functions/encryptedFileName';
-import multer from 'multer';
 import multerConfig from 'config/multer'
-import crypto from 'crypto';
-import multerS3 from 'multer-s3'
-import aws from 'aws-sdk';
 import { documentosAvatar } from "models/docsAvatar";
 
 interface IDecodedParams {

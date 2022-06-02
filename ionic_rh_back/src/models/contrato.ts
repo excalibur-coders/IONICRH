@@ -2,7 +2,7 @@ import {
     Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany
 } from "typeorm";
 import { cargo } from "./cargo";
-import { empresa_contratante } from "./emp_contratante";
+import { empresacontratante } from "./emp_contratante";
 import { empresa_PJ } from "./emp_pj";
 
 import { user } from "./user";
@@ -137,11 +137,11 @@ export class contrato {
     userUserId!: number
 
 
-    @ManyToOne(() => empresa_contratante, (emp_contratante) => emp_contratante.contrato)
+    @ManyToOne(() => empresacontratante, (emp_contratante) => emp_contratante.contrato)
     @JoinColumn({
         name: "empContratanteContratanteId"
     })
-    emp_contratante!: empresa_contratante
+    emp_contratante!: empresacontratante
     @Column({
         type: "int"
     })

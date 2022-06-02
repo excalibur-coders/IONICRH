@@ -82,7 +82,19 @@ interface IAvatar {
   avatar_type: string;
   avatar_header: string;
 }
+interface ITrilha {
+  trilha_id: number;
+  trilha_nome: string;
+  juntos: ICurso[];
+}
+interface ICurso {
+ curso_nome: string;
+ curso_descricao: string;
+ curso_criacao: string;
+ curso_duracao: string;
+}
 export interface IUser {
+  junto?: ITrilha[];
   user_id?: number;
   user_email?: string;
   user_nome?: string;

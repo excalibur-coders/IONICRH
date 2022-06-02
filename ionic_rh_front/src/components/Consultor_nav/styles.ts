@@ -11,7 +11,7 @@ export const Navbar = styled.nav`
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   position: fixed;
   display: flex;
-  margin-top: 0;
+  top: 0px;
   justify-content: space-around;
 
   *::before {

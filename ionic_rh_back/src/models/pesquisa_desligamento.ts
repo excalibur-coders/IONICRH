@@ -1,8 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm"
-import { empresa_contratante } from "./emp_contratante"
+import { empresacontratante } from "./emp_contratante"
 
 @Entity()
-export class pesquisa_desligamento {
+export class pesquisadesligamento {
     @PrimaryGeneratedColumn({ type: "int" })
     pesq_id!: number
 
@@ -12,11 +12,11 @@ export class pesquisa_desligamento {
     pesq_desligamento!: string
 
     // Chave estrangeira
-    @ManyToOne(() => empresa_contratante, (emp_contrato) => emp_contrato.pesq_desligamento)
+    @ManyToOne(() => empresacontratante, (emp_contrato) => emp_contrato.pesq_desligamento)
     @JoinColumn({
         name: "empContratanteContratanteId"
     })
-    emp_contratante!: empresa_contratante
+    emp_contratante!: empresacontratante
     @Column({
         type: "int"
     })

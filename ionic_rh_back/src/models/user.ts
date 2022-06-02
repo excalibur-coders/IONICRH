@@ -1,5 +1,5 @@
 import {
-    Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne
+    Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, ManyToMany, JoinTable
 } from "typeorm";
 import { contrato } from "./contrato";
 import { documentosAvatar } from "./docsAvatar";
@@ -8,6 +8,7 @@ import { documentos } from "./user_docs";
 import { endereco } from "./user_endereco";
 import { escolaridade } from "./user_escola";
 import { idiomas } from "./user_idioma";
+import { trilha } from "./trilha";
 import { telefone } from "./user_telefone";
 
 
@@ -136,4 +137,10 @@ export class user {
 
     @OneToMany(() => contrato, (contrato) => contrato.user)
     contrato!: contrato
+
+    @OneToMany(() => trilha, (trilha) => trilha.user)
+    trilhas!: trilha
+
+    @ManyToMany(() => trilha, (trilha) => trilha.junto)
+    junto!: trilha
 }
