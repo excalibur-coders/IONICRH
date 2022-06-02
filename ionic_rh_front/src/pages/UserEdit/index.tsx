@@ -131,6 +131,7 @@ interface IFormProps {
   user_nascimento?: string;
   user_genero?: string;
   user_cpf?: string;
+  user_role?: [];
   user_estado_civil?: string;
   telefone?: string;
   idioma_falados: string;
@@ -352,6 +353,7 @@ function UserEdit() {
             contrato_adimissao: data?.contrato_data_admissao,
             contrato_matricula: data?.contrato_matricula,
             contrato_turno: data.contrato_turno,
+            user_role: data.user_role,
           },
           {
             headers: {
@@ -413,8 +415,11 @@ function UserEdit() {
 
   const onSubmit = useCallback(
     async data => {
-      if (user?.contrato?.[0]?.contrato_matricula == null)
-        cadastroContrato(data);
+       navigate('/ContaAtualizada')
+      if (user?.contrato?.[0]?.contrato_matricula == null) {
+        /* await cadastroContrato(data); */
+        //navigate('/ContaAtualizada')
+      }
       else updateContrato(data);
     },
     [cadastroContrato, updateContrato, user?.contrato],
@@ -445,7 +450,7 @@ function UserEdit() {
                     type="submit"
                     text="Salvar"
                     color={theme.colors.primary}
-                    onClick={() => navigate('/ContaAtualizada')}
+                    //onClick={() => navigate('/ContaAtualizada')}
                   />
                   {/*</Link>/*/}
                   <Link to="User/:id">
@@ -725,7 +730,7 @@ function UserEdit() {
                           : 'Selecione uma opção'
                       }
                       size="xs"
-                      {...register('dep_name')}
+                      {...register('user_role')}
                       defaultValue={
                         user?.user_role
                       }
