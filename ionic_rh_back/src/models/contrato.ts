@@ -162,8 +162,4 @@ export class contrato {
     @OneToMany(() => cargo, (cargoHead) => cargoHead.cargoID)
     cargoHead?: cargo
     
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> c37a5a89d8a347aeb24ce44f0a7c46eff98140f0

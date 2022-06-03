@@ -99,11 +99,8 @@ export const getColaboradorContratoID = async (req: Request, res: Response) => {
       .leftJoin('u.emp_pj', 'pj')
       .leftJoin('u.desligamento', 'desl')
       .leftJoin('u.contrato', 'c')
-<<<<<<< HEAD
-=======
       .leftJoin('u.junto', 'ts')
       .leftJoin('ts.juntos', 'cs')
->>>>>>> c37a5a89d8a347aeb24ce44f0a7c46eff98140f0
       .leftJoin('c.cargo', 'cont')
       .leftJoin('cont.departamento', 'd')
       .leftJoin('c.emp_contratante', 'en')
