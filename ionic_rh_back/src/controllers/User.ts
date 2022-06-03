@@ -75,7 +75,6 @@ export const getColaboradorContratoID = async (req: Request, res: Response) => {
         'e',
         'i',
         'end',
-        'tri',
         'docs',
         'docss',
         'dep',
@@ -95,7 +94,6 @@ export const getColaboradorContratoID = async (req: Request, res: Response) => {
       .leftJoin('u.idioma', 'i')
       .leftJoin('u.telefone', 't')
       .leftJoin('u.endereco', 'end')
-      .leftJoin('u.trilhas', 'tri')
       .leftJoin('u.emp_pj', 'pj')
       .leftJoin('u.desligamento', 'desl')
       .leftJoin('u.contrato', 'c')
@@ -129,10 +127,8 @@ export const getAllColaborador = async (req: Request, res: Response) => {
         'e',
         'i',
         'end',
-        'tri',
         'docs',
         'docss',
-        't',
         'dep',
         'pj',
         'c',
@@ -149,7 +145,6 @@ export const getAllColaborador = async (req: Request, res: Response) => {
       .leftJoin('u.idioma', 'i')
       .leftJoin('u.telefone', 't')
       .leftJoin('u.endereco', 'end')
-      .leftJoin('u.trilhas', 'tri')
       .leftJoin('u.desligamento', 'desl')
       .leftJoin('u.emp_pj', 'pj')
       .leftJoin('u.contrato', 'c')
