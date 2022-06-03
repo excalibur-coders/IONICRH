@@ -417,8 +417,8 @@ function UserEdit() {
     async data => {
        navigate('/ContaAtualizada')
       if (user?.contrato?.[0]?.contrato_matricula == null) {
-        /* await cadastroContrato(data); */
-        //navigate('/ContaAtualizada')
+        await cadastroContrato(data);
+        navigate('/ContaAtualizada')
       }
       else updateContrato(data);
     },

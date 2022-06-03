@@ -20,7 +20,7 @@ function ContaAtualizada() {
         <div className="text">
           <h1>Conta atualizada com Sucesso !</h1>
           <span>
-            <button onClick={() => navigate(-1)}>Voltar</button>
+            <button onClick={() => navigate(-2)}>Voltar</button>
           </span>
         </div>
       </div>
