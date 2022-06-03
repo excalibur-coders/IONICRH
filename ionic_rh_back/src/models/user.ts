@@ -11,7 +11,12 @@ import { idiomas } from "./user_idioma";
 import { trilha } from "./trilha";
 import { telefone } from "./user_telefone";
 import { empresa_PJ } from "./emp_pj";
+<<<<<<< HEAD
 import { pesquisadesligamento } from "./pesquisa_desligamento";
+=======
+import { videoConclusao } from "./video";
+import { moduloConclusao } from "./modulos";
+>>>>>>> c37a5a89d8a347aeb24ce44f0a7c46eff98140f0
 
 
 
@@ -147,9 +152,21 @@ export class user {
     @OneToMany(() => trilha, (trilha) => trilha.user)
     trilhas!: trilha
 
+    @OneToMany(() => videoConclusao, (concluiu) => concluiu.user)
+    concluiu!: videoConclusao
+
+    @OneToMany(() => moduloConclusao, (concluiuModulo) => concluiuModulo.user)
+    concluiuModulo!: moduloConclusao
+
     @ManyToMany(() => trilha, (trilha) => trilha.junto)
     junto!: trilha
 
+<<<<<<< HEAD
     @OneToMany(() => empresa_PJ, (emp_pj) => emp_pj.user)
     emp_pj!: empresa_PJ
 }
+=======
+    @ManyToMany(() => empresa_PJ, (emp_pj) => emp_pj.user)
+    emp_pj!: empresa_PJ
+}
+>>>>>>> c37a5a89d8a347aeb24ce44f0a7c46eff98140f0

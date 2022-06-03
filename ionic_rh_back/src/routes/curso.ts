@@ -10,6 +10,8 @@ import {
     removeCursoTrilha,
     adicionarConteudo,
     pegarTrilhaCurso,
+    createModulo,updateModulo,deleteModulo,
+    deleteDocs, updateDocs
 } from "controllers/cursos";
 import express from "express";
 import multerConfig from 'config/multercurso'
@@ -29,6 +31,13 @@ router.put('/atualizar-trilha/:id', updateTrilha)
 router.delete('/deletar-trilha/:id', deleteTrilha)
 router.get('/ver-trilha/:id', readOneTrilha)
 router.get('/ver-trilhas', readManyTrilha)
+//Modulo
+router.post('/criar-modulo', createModulo)
+router.delete('/deletar-modulo/:id', deleteModulo)
+router.put('/update-modulo/:id', updateModulo)
+//Docs
+router.delete('/deletar-documento/:id', deleteDocs)
+router.put('/alterar-documento/:id', updateDocs)
 //
 router.put('/alterar-curso-trilha/:trilhaTrilhaId/:cursoCursoId', updateCursoTrilha)
 router.delete('/remover-curso-trilha/:trilhaTrilhaId/:cursoCursoId', removeCursoTrilha)

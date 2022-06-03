@@ -9,6 +9,7 @@ import IonicLogo from 'assets/svg/ionicrh_logo_gray.svg';
 import LogoGray from 'assets/svg/logo-gray.svg';
 import { theme } from 'theme';
 import { Checkbox, CheckboxGroup, Stack } from '@chakra-ui/react';
+import { Radio, RadioGroup } from '@chakra-ui/react'
 
 import { parseCookies } from 'nookies';
 
@@ -24,6 +25,7 @@ import { api } from 'services/api';
 import { IUser } from 'interfaces/IUser';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 interface CadastroProps {
   contrato: any;
@@ -69,6 +71,12 @@ interface CadastroProps {
   dependente_nome3: string;
   dependente_nascimento3: string;
   dependente_origin3: string;
+  //
+  empresa_nome: string;
+  empresa_cnpj: string;
+  empresa_natureza: string;
+  empresa_fundacao: string;
+  empresa_etica: string;
 }
 
 function Cadastro() {
@@ -157,7 +165,7 @@ function Cadastro() {
             user_genero: data.genero,
             user_raca: data.etnia,
             user_estado_civil: data.estadocivil,
-            user_tipo_contrato: data.contrato,
+            /* user_tipo_contrato: data.contrato, */
             escolaridades: [
               {
                 school_instituicao: data.school_instituicao,
@@ -221,6 +229,68 @@ function Cadastro() {
     },
     [cookies],
   );
+  const registerPj = useCallback(
+    async (data: CadastroProps) => {
+      await api
+        .put<CadastroProps>(
+          '/user/adicionar-empresa-pj',
+          {
+            user_nome: data.nomecompleto,
+            user_cpf: data.cpf,
+            user_rg: data.rg,
+            user_nacionalidade: data.nacionalidade,
+            user_nascimento: data.nascimento,
+            user_naturalidade: data.naturalidade,
+            user_genero: data.genero,
+            user_raca: data.etnia,
+            user_estado_civil: data.estadocivil,
+            pJuridica: [
+              {
+                pj_nome: data.empresa_nome,
+                pj_cnjp: data.empresa_cnpj,
+                pj_natureza_juridica: data.empresa_natureza,
+                pj_fundacao: data.empresa_fundacao,
+                pj_conduta_etica: data.empresa_etica,
+              }
+            ],
+            enderecos: [
+              {
+                endereco_pais: data.nacionalidade,
+                endereco_bairro: data.bairro,
+                endereco_cidade: data.cidade,
+                endereco_compl: data.complemento,
+                endereco_cep: data.cep,
+                endereco_estado: data.estado,
+                endereco_numero: data.numero,
+                endereco_rua: data.rua,
+              },
+            ],
+            telefones: [
+              {
+                tell_ddd: data.telefone.split(' ')[0].replace(/([()])/g, ''),
+                tell_numero: data.telefone.split(' ')[1].replace('-', ''),
+              },
+            ],
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${cookies['ionicookie.token']}`,
+            },
+          },
+        )
+        .then(({ data }) => {
+          console.log(data);
+          navigate('/Colab_home');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    [cookies],
+  );
+  const [value, setValue] = useState('1')
+
+  const [radioValue, setRadioValue] = useState();
 
   const onSubmit = useCallback(
     async (data: CadastroProps) => {
@@ -229,12 +299,17 @@ function Cadastro() {
         idiomasfalados.push(value);
       });
 
+      if (value == 'clt') {
+        autoRegister(data, idiomasfalados);
+      } else if (value == 'pj') {
+        registerPj(data)
+      }
       handleUploadFile();
       handleUploadAvatar();
 
-      autoRegister(data, idiomasfalados);
+
     },
-    [autoRegister, handleUploadFile, handleUploadAvatar],
+    [value, handleUploadFile, handleUploadAvatar, autoRegister, registerPj],
   );
 
   const schema = yup
@@ -274,6 +349,12 @@ function Cadastro() {
     // resolver: yupResolver(schema),
   });
 
+
+
+  useEffect(() => {
+    console.log(value)
+  }, [value])
+
   return (
     <S.Container>
       <div className="header">
@@ -286,6 +367,16 @@ function Cadastro() {
             <div className="leftWrapper">
               <div className="form">
                 <h3>Informações Pessoais</h3>
+
+                <div className='radio'>
+                  <h1>Primeiramente, selecione o seu tipo contratual</h1>
+                  <RadioGroup onChange={setValue} value={value}>
+                    <Stack direction='row'>
+                      <Radio value='pj' border="#000"><b>Pessoa Jurídica</b></Radio>
+                      <Radio value='clt' border="#000"><b>Pessoa Física</b></Radio>
+                    </Stack>
+                  </RadioGroup>
+                </div>
 
                 <Input
                   size="sm"
@@ -352,9 +443,22 @@ function Cadastro() {
                       {...register('genero')}
                     >
                       <option>Selecione seu Gênero</option>
-                      <option value="masculino">Masculino</option>
-                      <option value="feminino">Feminino</option>
+                      <option value="homem(cis)">
+                        Homem / Homem cisgênero
+                      </option>
+                      <option value="mulher(cis)">
+                        Mulher / Mulher cisgênero
+                      </option>
+                      <option value="homem(trans)">Homem transgênero</option>
+                      <option value="mulher(trans)">Mulher trangênero</option>
+                      <option value="travesti">Travesti</option>
+                      <option value="nao-binario">Não binário</option>
+                      <option value="agenero">Agênero</option>
+                      <option value="genero-fluido">Gender-fluid</option>
                       <option value="outro">Outro</option>
+                      <option value="prefiro-nao-responder">
+                        Prefiro não responder
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -493,6 +597,7 @@ function Cadastro() {
                   type="text"
                   error={errors.school_instituicao?.message}
                   {...register('school_instituicao')}
+                  disabled={value === 'pj' ? true : false}
                 />
 
                 <Input
@@ -503,28 +608,32 @@ function Cadastro() {
                   type="text"
                   error={errors.school_formacao?.message}
                   {...register('school_formacao')}
+                  disabled={value === 'pj' ? true : false}
                 />
 
-                <Input
-                  size="sm"
-                  width="22rem"
-                  fontSize={20}
-                  labelText="Início"
-                  type="date"
-                  error={errors.school_inicio?.message}
-                  {...register('school_inicio')}
-                />
+                <div className="form-row">
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="Início"
+                    type="date"
+                    error={errors.school_inicio?.message}
+                    {...register('school_inicio')}
+                    disabled={value === 'pj' ? true : false}
+                  />
 
-                <Input
-                  size="sm"
-                  width="22rem"
-                  fontSize={20}
-                  labelText="Termino"
-                  type="date"
-                  error={errors.school_termino?.message}
-                  {...register('school_termino')}
-                />
-
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="Termino"
+                    type="date"
+                    error={errors.school_termino?.message}
+                    {...register('school_termino')}
+                    disabled={value === 'pj' ? true : false}
+                  />
+                </div>
                 <div className="dropdown">
                   <label htmlFor="lang" className="dropdowntext">
                     Status
@@ -533,6 +642,7 @@ function Cadastro() {
                     className="status"
                     id="lang"
                     {...register('school_status')}
+                    disabled={value === 'pj' ? true : false}
                   >
                     <option>Selecione o status</option>
                     <option value="completo">Completo</option>
@@ -547,6 +657,7 @@ function Cadastro() {
                   fontSize={20}
                   labelText="Cursos Complementares"
                   {...register('school_curso')}
+                  disabled={value === 'pj' ? true : false}
                 />
 
                 {/* <Input
@@ -566,6 +677,7 @@ function Cadastro() {
                       value="ingles"
                       {...register('idiomas.0.ingles')}
                       border="#000"
+                      disabled={value === 'pj' ? true : false}
                     >
                       Inglês
                     </Checkbox>
@@ -573,6 +685,7 @@ function Cadastro() {
                       value="espanhol"
                       {...register('idiomas.0.espanhol')}
                       border="#000"
+                      disabled={value === 'pj' ? true : false}
                     >
                       Espanhol
                     </Checkbox>
@@ -582,9 +695,60 @@ function Cadastro() {
                       fontSize={15}
                       labelText="Digite outro idioma:"
                       {...register('idiomas.0.outros')}
+                      disabled={value === 'pj' ? true : false}
                     />
                   </Stack>
                 </CheckboxGroup>
+
+                <h6>Dados Contratuais</h6>
+
+                <div className='form-row'>
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="Empresa"
+                    {...register('empresa_nome')}
+                    disabled={value === 'clt' ? true : false}
+                  />
+
+                  <Input
+                    size="sm"
+                    width="10rem"
+                    fontSize={20}
+                    labelText="CNPJ"
+                    mask='99.999.999/9999-99'
+                    {...register('empresa_cnpj')}
+                    disabled={value === 'clt' ? true : false}
+                  />
+                </div>
+
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  labelText="Natureza Jurídica"
+                  {...register('empresa_natureza')}
+                  disabled={value === 'clt' ? true : false}
+                />
+
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  labelText="Fundação"
+                  {...register('empresa_fundacao')}
+                  disabled={value === 'clt' ? true : false}
+                />
+
+                <Input
+                  size="sm"
+                  width="22rem"
+                  fontSize={20}
+                  labelText="Conduta Ética"
+                  {...register('empresa_etica')}
+                  disabled={value === 'clt' ? true : false}
+                />
               </div>
             </div>
 
@@ -680,6 +844,7 @@ function Cadastro() {
                   labelText="Nome"
                   type="text"
                   {...register('dependente_nome')}
+                  disabled={value === 'pj' ? true : false}
                 />
 
                 <div className="form-row">
@@ -690,6 +855,7 @@ function Cadastro() {
                     labelText="Nascimento"
                     type="date"
                     {...register('dependente_nascimento')}
+                    disabled={value === 'pj' ? true : false}
                   />
 
                   <div className="dropdown">
@@ -700,6 +866,7 @@ function Cadastro() {
                       className="parentesco"
                       id="lang"
                       {...register('dependente_origin')}
+                      disabled={value === 'pj' ? true : false}
                     >
                       <option>Selecione o Parentesco</option>
                       <option value="irmao">Irmão(ã)</option>
@@ -719,6 +886,7 @@ function Cadastro() {
                   labelText="Nome"
                   type="text"
                   {...register('dependente_nome2')}
+                  disabled={value === 'pj' ? true : false}
                 />
 
                 <div className="form-row">
@@ -729,6 +897,7 @@ function Cadastro() {
                     labelText="Nascimento"
                     type="date"
                     {...register('dependente_nascimento2')}
+                    disabled={value === 'pj' ? true : false}
                   />
 
                   <div className="dropdown">
@@ -739,6 +908,7 @@ function Cadastro() {
                       className="parentesco"
                       id="lang"
                       {...register('dependente_origin2')}
+                      disabled={value === 'pj' ? true : false}
                     >
                       <option>Selecione o Parentesco</option>
                       <option value="irmao">Irmão(ã)</option>
@@ -758,6 +928,7 @@ function Cadastro() {
                   labelText="Nome"
                   type="text"
                   {...register('dependente_nome3')}
+                  disabled={value === 'pj' ? true : false}
                 />
 
                 <div className="form-row">
@@ -768,6 +939,7 @@ function Cadastro() {
                     labelText="Nascimento"
                     type="date"
                     {...register('dependente_nascimento3')}
+                    disabled={value === 'pj' ? true : false}
                   />
 
                   <div className="dropdown">
@@ -778,6 +950,7 @@ function Cadastro() {
                       className="parentesco"
                       id="lang"
                       {...register('dependente_origin3')}
+                      disabled={value === 'pj' ? true : false}
                     >
                       <option>Selecione o Parentesco</option>
                       <option value="irmao">Irmão(ã)</option>

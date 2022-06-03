@@ -44,4 +44,8 @@ export class empresa_PJ {
         type: "int"
     })
     userUserId?: number
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c37a5a89d8a347aeb24ce44f0a7c46eff98140f0
