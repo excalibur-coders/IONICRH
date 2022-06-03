@@ -3,7 +3,7 @@ import * as S from './styles';
 import RespBar from 'components/RespBar';
 import { AspectRatio, Box } from '@chakra-ui/react'
 import { useNavigate, useParams } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
 import { api } from 'services/api';
@@ -15,6 +15,7 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from '@chakra-ui/react';
+import { AuthContext } from 'hooks/useAuth';
 
 interface ITrilha {
   trilha_id: number;
@@ -45,6 +46,7 @@ interface IModulo {
 
 function Cursos() {
   const cookies = parseCookies();
+  const { user } = useContext(AuthContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -67,7 +69,7 @@ function Cursos() {
 
   useEffect(() => {
     getAllCursos();
-  }, [getAllCursos]);
+  }, []);
   return (
     <>
       <S.Container>
@@ -77,6 +79,21 @@ function Cursos() {
             {trilha.map(trilha => {
               return (
                 trilha.juntos.map(curso => {
+                  {
+                    if (user?.user_role == "Administrador") {
+                      return (
+                        <>
+                          <Link key={curso.curso_id} onClick={() => {
+                            navigate(`/curso_modulos/${curso.curso_id}`);
+                          }}>{curso.curso_nome}
+                          </Link>
+                          <Link onClick={() => {
+                            navigate(`/modulo_docs/${curso.curso_id}`);
+                          }} >Editar</Link>
+                        </>
+                      )
+                    }
+                  }
                   return (
                     <>
                       <Link key={curso.curso_id} onClick={() => {

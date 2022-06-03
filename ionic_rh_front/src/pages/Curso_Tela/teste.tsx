@@ -67,22 +67,22 @@ function Teste() {
   const [showNextButton, setShowNextButton] = React.useState(false)
   const navigate = useNavigate();
 
-  const getConcluiu = useCallback(() => {
-    api
-      .get(`/user/pegar-concluiu`, {
-        headers: {
-          Authorization: `Bearer ${cookies['ionicookie.token']}`,
-        },
-      })
-      .then(({ data }) => {
-        setConcluiu(data);
-      })
-      .catch((error: Error | AxiosError) => {
-        console.log(error);
-      });
-  }, [cookies]);
+  /*   const getConcluiu = useCallback(() => {
+      api
+        .get(`/user/pegar-concluiu`, {
+          headers: {
+            Authorization: `Bearer ${cookies['ionicookie.token']}`,
+          },
+        })
+        .then(({ data }) => {
+          setConcluiu(data);
+        })
+        .catch((error: Error | AxiosError) => {
+          console.log(error);
+        });
+    }, [cookies]); */
 
-  /* const getAllCursos = useCallback(() => {
+  const getAllCursos = useCallback(() => {
     api
       .get(`/curso/ver-curso/${id}`, {
         headers: {
@@ -95,7 +95,7 @@ function Teste() {
       .catch((error: Error | AxiosError) => {
         console.log(error);
       });
-  }, [cookies, id]); */
+  }, [cookies, id]);
 
 
   const testando = useCallback(async (docs_id: number) => {
@@ -128,10 +128,10 @@ function Teste() {
   /*const video = document.querySelector('#ytplayer')
     const btn = document.querySelector('#validaaula')*/
 
-    useEffect(() => {
-      getAllCursos();
-      /* getConcluiu() */
-    }, [getAllCursos]);
+  useEffect(() => {
+    getAllCursos();
+    /* getConcluiu() */
+  }, [getAllCursos]);
 
   return (
     <>
