@@ -146,8 +146,8 @@ export class user {
     @OneToMany(() => contrato, (contrato) => contrato.user)
     contrato!: contrato
 
-    @OneToMany(() => trilha, (trilha) => trilha.user)
-    trilhas!: trilha
+    /* @OneToMany(() => trilha, (trilha) => trilha.user)
+    trilhas!: trilha */
 
     @OneToMany(() => videoConclusao, (concluiu) => concluiu.user)
     concluiu!: videoConclusao
