@@ -43,7 +43,7 @@ export const getLoggedUserData = async (req: Request, res: Response) => {
       .leftJoin('u.docs', 'docs')
       .leftJoin('u.contrato', 'c')
       .leftJoin('u.junto', 'ts')
-      .leftJoin('ts.juntos','cs')
+      .leftJoin('ts.juntos', 'cs')
       .leftJoin('c.cargo', 'cont')
       .leftJoin('cont.departamento', 'd')
       .leftJoin('c.emp_contratante', 'en')
@@ -66,29 +66,33 @@ export const getColaboradorContratoID = async (req: Request, res: Response) => {
       .createQueryBuilder()
       .select([
         'u',
-        'i',
         'e',
+        'i',
+        'end',
+        'tri',
+        'docs',
+        'docss',
+        'dep',
+        'pj',
         't',
         'c',
-        'docs',
-        'ts',
-        'cs',
-        'docsavatar',
-        'end',
         'cont',
         'd',
-        'en'
+        'en',
+        'desl'
       ])
       .from(user, 'u')
-      .leftJoin('u.idioma', 'i')
       .leftJoin('u.escolaridade', 'e')
+      .leftJoin('u.dependente', 'dep')
+      .leftJoin('u.docsavatar', 'docs')
+      .leftJoin('u.docs', 'docss')
+      .leftJoin('u.idioma', 'i')
       .leftJoin('u.telefone', 't')
       .leftJoin('u.endereco', 'end')
-      .leftJoin('u.docs', 'docs')
-      .leftJoin('u.docsavatar', 'docsavatar')
+      .leftJoin('u.trilhas', 'tri')
+      .leftJoin('u.emp_pj', 'pj')
+      .leftJoin('u.desligamento', 'desl')
       .leftJoin('u.contrato', 'c')
-      .leftJoin('u.junto', 'ts')
-      .leftJoin('ts.juntos','cs')
       .leftJoin('c.cargo', 'cont')
       .leftJoin('cont.departamento', 'd')
       .leftJoin('c.emp_contratante', 'en')
@@ -115,24 +119,32 @@ export const getAllColaborador = async (req: Request, res: Response) => {
       .createQueryBuilder()
       .select([
         'u',
-        'i',
         'e',
-        't',
-        'c',
+        'i',
         'end',
+        'tri',
+        'docs',
+        'docss',
+        't',
+        'dep',
+        'pj',
+        'c',
         'cont',
         'd',
-        'avatar',
-        'en',
-        'docs'
+        'desl',
+        'en'
       ])
       .from(user, 'u')
-      .leftJoin('u.idioma', 'i')
       .leftJoin('u.escolaridade', 'e')
+      .leftJoin('u.dependente', 'dep')
+      .leftJoin('u.docsavatar', 'docs')
+      .leftJoin('u.docs', 'docss')
+      .leftJoin('u.idioma', 'i')
       .leftJoin('u.telefone', 't')
-      .leftJoin('u.docs', 'docs')
-      .leftJoin('u.docsavatar', 'avatar')
       .leftJoin('u.endereco', 'end')
+      .leftJoin('u.trilhas', 'tri')
+      .leftJoin('u.desligamento', 'desl')
+      .leftJoin('u.emp_pj', 'pj')
       .leftJoin('u.contrato', 'c')
       .leftJoin('c.cargo', 'cont')
       .leftJoin('cont.departamento', 'd')

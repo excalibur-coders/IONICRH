@@ -24,6 +24,7 @@ export const insertContratoUser = async (req: Request, res: Response, next: Next
             contrato_faixa_salarial,
             contrato_plano_saude,
             contrato_vale_transporte,
+            contrato_nivel,
             contrato_vale_refeicao,
             contrato_vale_alimentacao,
             contrato_auxilio_creche,
