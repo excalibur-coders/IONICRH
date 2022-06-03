@@ -8,6 +8,8 @@ import { AxiosError } from 'axios';
 import OrgChart from '@balkangraph/orgchart.js';
 /* http://localhost:5000/departamentos/organograma */
 
+
+console.log(exportPDF);
 interface IDep {
   dep_id: number;
   dep_name: string;
@@ -117,23 +119,23 @@ function Card({ depName }: ICardProps) {
       },
       {
         id: 4,
-        pid: 2,
-        name: 'Rivaldo',
-      },
-      {
-        id: 5,
         pid: 1,
         name: 'Bebeto',
       },
       {
+        id: 5,
+        pid: 3,
+        name: 'Romario',
+      },
+      {
         id: 6,
-        pid: 2,
-        name: 'Roberto Carlos',
+        pid: 4,
+        name: 'Romario',
       },
       {
         id: 7,
-        pid: 7,
-        name: 'Jailson Mendes',
+        pid: 2,
+        name: 'Romario0000',
       },
     ];
 
