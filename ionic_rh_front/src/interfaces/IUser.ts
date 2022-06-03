@@ -114,5 +114,5 @@ export interface IUser {
   user_raca?: string;
   user_rg?: string;
   token?: string;
-  user_role?: 'Admnistrador' | 'Gestor' | 'Colaborador'[];
+  user_role?: 'Administrador' | 'Gestor' | 'Colaborador'[];
 }
