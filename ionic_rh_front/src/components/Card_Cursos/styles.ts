@@ -4,9 +4,9 @@ import { theme } from 'theme';
 
 export const Container = styled.div`
   padding: 18px;
-  background-color: ${theme.colors.primary};
-  width: 50vw;
-  height: 18vh;
+  background-color: ${theme.colors.secundary};
+  width: 60vw;
+  height: 20vh;
   border-radius: 20px;
   margin: auto;
   align-items: center;

@@ -8,7 +8,8 @@ import {
   adicionarDocumento,
   adicionarEndereco,
   adicionarIdioma, adicionarTelefone,
-  updateUser
+  updateUser,
+  adicionarAvatar
 } from 'controllers/autoCadastro_Usuario'
 import multer from 'multer';
 import multerConfig from 'config/multer'
@@ -54,13 +55,11 @@ router.use(auth);
 // Auto Cadastro do usario
 router.put(
   '/auto-cadastro',
-  multer(multerConfig).single('file'),  
   adicionarEscolaridade,
   adicionarIdioma,
   adicionarTelefone,
   adicionarEndereco,
   adicionarDependente,
-  adicionarDocumento,
   updateUser
 );
 
@@ -69,22 +68,11 @@ router.get(
   '/usuario-perfil',
   getLoggedUserData);
 
-/* router.get(
-  '/user-info',
-  getLoggedUserData); */
-
-
 // Pegar TODOS usarios
 router.get(
   '/allUser',
   verifyUserRole(["Administrador"]),
   getAllColaborador);
-
-
-/* router.get(
-  '/allUser',
-  getAllUser); */
-
 
 router.get(
   '/listagen-user',
@@ -104,23 +92,22 @@ router.post(
 
 router.post(
   '/teste',
-  multer(multerConfig).fields([{name: 'file', maxCount: 3}, {name: 'avatar', maxCount: 1}]),
+  multer(multerConfig).fields([{name: 'file', maxCount: 3}]),
   adicionarDocumento
-  // adicionarDependente
+)
+router.post(
+  '/adicionarAvatar',
+  multer(multerConfig).fields([{name: 'avatar', maxCount: 1}]),
+  adicionarAvatar
 )
 router.get('/docs/:id', getFilesUser)
-/* 
-router.get(
-  '/Contrato-user',
-  verifyUserRole(["Administrador", "Gestor"]),
-  getLoggedUserData)
- */
-router.get('/docs/download/:id', downloadFilesUser)
+
+router.get('/docs/download/:docs_id', downloadFilesUser)
+
 // Fazer alteração no contrato do usuario
 router.put(
   '/update-contrato-user/:id',
   verifyUserRole(["Administrador", "Gestor"]),
-  updateContratoUser,
-  getColaboradorContratoID)
+  updateContratoUser,)
 
 export default router; 

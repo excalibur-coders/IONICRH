@@ -24,16 +24,6 @@ function Sidemenu() {
           <ul>
             <li>
               <a>
-                <Link to={'/Cadastrar'}>
-                  <span className="icon">
-                    <MdOutlinePlaylistAdd size="35px" />
-                  </span>
-                  <span className="tittle">Cadastrar</span>
-                </Link>
-              </a>
-            </li>
-            <li>
-              <a>
                 <span className="icon">
                   <MdFormatListBulleted size="35px" />
                 </span>

@@ -25,6 +25,7 @@
     "faker": "^6.6.6",
     "framer-motion": "^3.6.7",
     "js-cookie": "^3.0.1",
+    "js-file-download": "^0.4.12",
     "json-server": "^0.17.0",
     "nookies": "^2.5.2",
     "randomcolor": "^0.6.2",
