@@ -205,7 +205,13 @@ export const readOneCurso = async (req: Request, res: Response) => {
 export const readManyCurso = async (req: Request, res: Response) => {
     try {
         const findCursoById = await cursoRepository
-            .find()
+            .find({
+                relations: {
+                    modulosCurso: {
+                        docs_curso: true
+                    }
+                }
+            })
         res.json(findCursoById)
     } catch (error) {
         res.json(error)

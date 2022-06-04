@@ -9,16 +9,20 @@ import {
     removeUserTrilha,
     removeCursoTrilha,
     adicionarConteudo,
-    pegarTrilhaCurso,findModulos, findModulosId,
+    pegarTrilhaCurso, findModulos, findModulosId,
     createModulo, updateModulo, deleteModulo,
     deleteDocs, updateDocs, readManyOnlyTrilhas
 } from "controllers/cursos";
 import express from "express";
 import multerConfig from 'config/multercurso'
 import multer from 'multer';
+import { countPorcentagem, countPorcentagemModulo } from "controllers/User";
 
 const router = express.Router();
 
+
+router.get('/countModulo', countPorcentagemModulo)
+router.get('/count', countPorcentagem)
 //Curso
 router.post('/criar-curso', createCurso)
 router.put('/atualizar-curso/:id', updateCurso)

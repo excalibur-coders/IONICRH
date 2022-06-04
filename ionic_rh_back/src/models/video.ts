@@ -28,7 +28,7 @@ export class videoConclusao {
     @JoinColumn({
         name: "videoVideoId"
     })
-    docs!: user
+    docs!: docs_curso
     @Column({
         type: "int"
     })

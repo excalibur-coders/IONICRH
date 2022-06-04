@@ -26,6 +26,12 @@ import Consultor_Home from 'pages/Consultor_Home';
 import Cadastrar_Curso from 'pages/Cadastrar_Curso';
 import Cursos from 'pages/Curso_Tela';
 import Consultor_Funcionarios from 'pages/Consultor_Funcionario';
+import CadastrarCursoModulo from 'pages/Cadastrar_Modulo'
+import CadastrarCursoTrilha from 'pages/Cadastrar_CursoTrilha'
+import CadastrarUserTrilha from 'pages/Cadastrar_UserTrilha'
+import CadastrarDocumentosModulo from 'pages/Cadastrar_DocsModulo'
+import CadastrarTrilha from 'pages/Cadastrar_Trilha'
+import EditarModulo from 'pages/Editar_modulo'
 import Teste from 'pages/Curso_Tela/teste';
 
 function Routes() {
@@ -61,6 +67,12 @@ function Routes() {
       <Route path="/Adm_home" element={<Adm_Home />} />
       <Route path="/Curso_Tela/:id" element={<Cursos />} />
       <Route path="/curso_modulos/:id" element={<Teste />} />
+      <Route path="/modulo_docs/:id" element={<CadastrarDocumentosModulo />} />
+      <Route path="/editar_modulo/:id" element={<EditarModulo />} />
+      <Route path="/criar_modulos/" element={<CadastrarCursoModulo />} />
+      <Route path="/criar_trilha/" element={<CadastrarTrilha />} />
+      <Route path="/curso_trilha/" element={<CadastrarCursoTrilha />} />
+      <Route path="/user_trilha/" element={<CadastrarUserTrilha />} />
     </RoutesWrapper>
     // </BrowserRouter>
   );

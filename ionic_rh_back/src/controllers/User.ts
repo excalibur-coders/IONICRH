@@ -1,4 +1,4 @@
-import { Response, Request } from "express";
+import { Response, Request, query } from "express";
 import 'config/dotenv';
 import jwtDecode from "jwt-decode";
 import { AppDataSource } from "config/database";
@@ -261,6 +261,50 @@ export const pegarUserConcluiuVideo = async (req: Request, res: Response) => {
       })
       .getOne()
     res.json(find)
+  } catch (error) {
+    res.json(error)
+  }
+}
+
+export const countPorcentagem = async (req: Request, res: Response) => {
+  try {
+    const countVideo =
+      await userReposiroty
+        .query(
+          `
+          SELECT u.user_nome, count(mc.modulo_nome) as porcentagem FROM 
+          user u
+          LEFT JOIN trilha_junto_user tju ON tju.userUserId = u.user_id
+          LEFT JOIN trilha t ON tju.trilhaTrilhaId = t.trilha_id
+          LEFT JOIN trilha_juntos_curso tjc ON tjc.trilhaTrilhaId = t.trilha_id
+          LEFT JOIN curso c ON c.curso_id = tjc.cursoCursoId
+          LEFT JOIN modulos_curso mc ON mc.cursoCursoId = c.curso_id
+          GROUP BY u.user_nome
+      `)
+    res.json(countVideo)
+  } catch (error) {
+    res.json(error)
+  }
+}
+
+export const countPorcentagemModulo = async (req: Request, res: Response) => {
+  try {
+    const countVideo =
+      await videoRepository.query(
+        `
+      SELECT 
+            u.user_nome,
+            COUNT(concluiu) as PORCENTAGEM
+      FROM
+            user u,
+            video_conclusao v 
+      WHERE 
+            v.userUserId = u.user_id  
+      GROUP BY 
+            u.user_nome;
+      `)
+
+    res.json(countVideo)
   } catch (error) {
     res.json(error)
   }
