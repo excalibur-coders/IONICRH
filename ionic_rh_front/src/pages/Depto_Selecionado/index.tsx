@@ -11,7 +11,7 @@ import { theme } from 'theme';
 import Sidemenu from 'components/sideMenu';
 import RespBar_adm from 'components/Respbar_adm';
 import Input from 'components/Input';
-import { Table, Tbody, Tr, Td } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Td, Th } from '@chakra-ui/react';
 import { HStack } from '@chakra-ui/react';
 import * as S from './styles';
 import { api } from 'services/api';
@@ -152,31 +152,19 @@ function DeptoTI() {
             </HStack>
           </div>
           <br></br>
-          <div className="container">
-            <HStack className="TBody_2" spacing="80px">
-              <Box fontSize="2xl" fontWeight="bold">
-                Nome
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Salario
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Cargo
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Perfil
-              </Box>
-            </HStack>
-            <Divider
-              orientation="horizontal"
-              borderColor={theme.colors.font}
-              variant="solid"
-              size="10rem"
-            />
+          <div>
             <br></br>
 
             <div>
               <Table variant="striped" size="lg" background="#DBDBDB">
+              <Thead>
+                      <Tr>
+                        <Th fontSize="2xl" fontWeight="bold">Nome</Th>
+                        <Th fontSize="2xl" fontWeight="bold">Salário</Th>
+                        <Th fontSize="2xl" fontWeight="bold">Cargo</Th>
+                        <Th fontSize="2xl" fontWeight="bold">Perfil</Th>
+                      </Tr>
+                    </Thead>
                 <Tbody>
                   {departamentos?.cargo?.map((carg, index) =>
                     carg.contrato.map(ctr => (
@@ -187,15 +175,12 @@ function DeptoTI() {
                         <Td className="TBody" fontSize="lg">
                           {ctr.contrato_faixa_salarial}
                         </Td>
-                        <Td className="TBody" fontSize="lg">
+                        <Td className="TBody" fontSize="xl">
                           {carg.cargo_area}
-                        </Td>
-                        <Td className="TBody" fontSize="lg">
-                          {}
                         </Td>
                         <Td>
                           <Link
-                            fontSize="x1"
+                            fontSize="xl"
                             color={theme.colors.primary}
                             onClick={() => {
                               navigate(`/user/${ctr.user.user_id}`);

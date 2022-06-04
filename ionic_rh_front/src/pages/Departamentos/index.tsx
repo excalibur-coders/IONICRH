@@ -5,6 +5,8 @@ import {
   Divider,
   InputGroup,
   InputLeftElement,
+  Thead,
+  Th,
 } from '@chakra-ui/react';
 import { SearchIcon, ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { theme } from 'theme';
@@ -130,23 +132,18 @@ function Departamentos() {
           <br></br>
           <div className="container">
             <br></br>
-            <Box fontSize="2xl" fontWeight="bold">
-              Nome
-            </Box>
-            <Divider
-              orientation="horizontal"
-              borderColor={theme.colors.font}
-              variant="solid"
-              size="10rem"
-            />
-            <br></br>
             <TableContainer>
               <Table variant="striped" size="lg" background="#DBDBDB">
                 <div className="TableTwo">
                   <Tbody>
+                  <Thead>
+                      <Tr>
+                        <Th fontSize="2xl" fontWeight="bold">Nome</Th>
+                      </Tr>
+                    </Thead>
                     {departamentosPesquisados.map(departamento => (
                       <Tr key={departamento.dep_id}>
-                        <Td className="TBody" fontSize="2xl">
+                        <Td className="TBody" fontSize="xl">
                           {departamento.dep_name}
                         </Td>
                         <Td>
