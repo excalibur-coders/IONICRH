@@ -112,7 +112,7 @@ function CadastrarCursoTrilha() {
           <Consultor_nav />
         </header>
         <main>
-          <h1>Juntar Trilha e Curso</h1>
+          <h1>Adicione um curso a uma trilha existente:</h1>
           <form onSubmit={handleSubmit(adicionarCurso)}>
             <Select
               placeholder={
@@ -149,6 +149,22 @@ function CadastrarCursoTrilha() {
               type="submit"
             />
           </form>
+          <Button
+              text="Voltar"
+              color="red"
+              onClick={() => {
+                navigate('/cadastro_curso_adm');
+              }}
+            />
+            <br />
+            <h4>Se preferir, crie uma nova trilha:</h4>
+            <Button
+              text="Criar trilha"
+              color={theme.colors.primary}
+              onClick={() => {
+                navigate('/criar_trilha');
+              }}
+            />
         </main>
       </S.Container>
     </>
