@@ -254,13 +254,13 @@ export const Container = styled(Flex)`
 
           .docsImgDiv {
             display: flex;
-            width: 150px;
+            width: 100px;
             height: 100px;
             align-items: center;
             justify-content: center;
 
             img{
-              width: 100px;
+              width: 70px;
             }
           }
 
@@ -268,6 +268,8 @@ export const Container = styled(Flex)`
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            margin: auto;
             text-align: center;
             color: blue;
 

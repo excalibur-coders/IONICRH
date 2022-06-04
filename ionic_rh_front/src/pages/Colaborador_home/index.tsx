@@ -34,6 +34,9 @@ function Colab_home() {
               Continue/Comece sua trilha de aprendizado na empresa
             </h2>
             </div>
+          </div>
+          <div className="blocs">
+
             <section className="perfil">
                 <div className="perfil_s">
                   <div className="foto">
@@ -48,39 +51,24 @@ function Colab_home() {
                 </div>
                 <div className="perfil_i">
                   <h1>Trilha de aprendizado:</h1>
-                  <RangeSlider
-                    aria-label={['min', 'max']}
-                    colorScheme={theme.colors.secundary}
-                    defaultValue={[0, 10]}
-                  >
-                    <RangeSliderTrack>
-                      <RangeSliderFilledTrack />
-                    </RangeSliderTrack>
-                    <RangeSliderThumb index={0} />
-                    <RangeSliderThumb index={1} />
-                  </RangeSlider>
                 </div>
               </section>
-          </div>
 
-          <div className="blocs">
-            <div className="course">
-              <div className="leftcourse">
-                <h1>Nome curso</h1>
-                <h2>Descrição curso</h2>
-              </div>
-              <div className="rightcourse">
-                <h1>
-                  Assistir <br/> curso
-                </h1>
-                <MdOutlinePlayCircleOutline size="70" />
-              </div>
-            </div>
-            <div className="inferior">
-
+              <div className="course">
+                <div className="leftcourse">
+                  <h1>Nome curso</h1>
+                  <h2>Descrição curso</h2>
+                </div>
+                <div className="rightcourse">
+                  <h1>
+                    Assistir <br/> curso
+                  </h1>
+                  <MdOutlinePlayCircleOutline size="70" />
+                </div>
             </div>
           </div>
         </main>
+
         <footer>
           <Footer />
         </footer>
