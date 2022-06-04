@@ -108,9 +108,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
         data?.user_genero,
         data?.user_raca,
         data?.user_estado_civil)
-      ) {
+       && data?.user_role?.[0] != 'Consultor') {
         navigate('/Colab_home');
-      } else navigate('/Cadastro_colaborador');
+      } else if (data?.user_role?.[0] === 'Consultor') {
+        navigate('/Consultor_home');
+      }
+       else navigate('/Cadastro_colaborador');
     } catch (error) {
       alert('Parece que o usuário ou senha está incorreta.');
       console.log(error);
