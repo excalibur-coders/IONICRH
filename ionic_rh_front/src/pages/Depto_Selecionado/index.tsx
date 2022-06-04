@@ -46,6 +46,7 @@ interface IFuncionarios {
   }>;
 } */
 
+
 interface IContrato {
   contrato_faixa_salarial: number;
   user: {
