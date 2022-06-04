@@ -1,7 +1,7 @@
 import { theme } from 'theme';
 import * as S from './styles';
 import RespBar from 'components/RespBar';
-import { AspectRatio, Box } from '@chakra-ui/react'
+import { AspectRatio, Box, Button } from '@chakra-ui/react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import { parseCookies } from 'nookies';
@@ -15,6 +15,9 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from '@chakra-ui/react';
+import Footer from 'components/Footer';
+import { BsClipboardCheck } from 'react-icons/bs';
+import { MdMenuBook } from 'react-icons/md';
 
 interface ITrilha {
   trilha_id: number;
@@ -73,16 +76,25 @@ function Cursos() {
       <S.Container>
         <RespBar />
         <main>
-          <div className='position'>
+          <h1>Cursos</h1>
+          <div className='buttons_onboard'>
             {trilha.map(trilha => {
               return (
                 trilha.juntos.map(curso => {
                   return (
                     <>
+                      <div>
                       <Link key={curso.curso_id} onClick={() => {
                         navigate(`/curso_modulos/${curso.curso_id}`);
-                      }}>{curso.curso_nome}
+                      }}>
+                      <Button
+                        className="button"
+                        as={MdMenuBook}
+                        color={theme.colors.font}
+                      ></Button>
+                      <small key={curso.curso_nome}>{curso.curso_nome}</small>
                       </Link>
+                      </div>
                     </>
                   )
                 })
@@ -92,6 +104,9 @@ function Cursos() {
           </div>
         </main>
       </S.Container>
+      <footer>
+        <Footer />
+      </footer>
     </>
   )
 }
