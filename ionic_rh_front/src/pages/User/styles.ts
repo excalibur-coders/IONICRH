@@ -241,14 +241,59 @@ export const Container = styled(Flex)`
       .docsMother {
         display: flex;
         flex-direction: row;
-        width: 50%;
+        width: 100vw;
+        justify-content: center;
+        margin-bottom: 15px;
+        gap: 10px;
+
         .docsConfig {
-          background: black;
+          width: 30vw;
+          display: flex;
+          align-items: center;
+          border: 1px solid #787878;
+
           .docsImgDiv {
-            background: blue;
+            display: flex;
+            width: 150px;
+            height: 100px;
+            align-items: center;
+            justify-content: center;
+
+            img{
+              width: 100px;
+            }
           }
+
           .docsLink {
-            color: red;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: blue;
+
+            span {
+              text-align: center;
+              font-size: 15px;
+              color: black;
+            }
+
+            a{
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 120px;
+              border-radius: 20px;
+              border: 1px solid ${theme.colors.primary};
+              font-size: 20px;
+              color: ${theme.colors.primary}
+            }
+
+            a:hover{
+              cursor: pointer;
+              border: 1px solid #0055ff;
+              color: #0055ff;
+              transition: 0.50s ease-in-out;
+            }
           }
         }
       }
@@ -305,5 +350,34 @@ export const Container = styled(Flex)`
         }
       }
     }
+
+    .Wrapper3 {
+
+      .DadosFuncionais{
+
+        .docsMother {
+          align-items: center;
+          flex-direction: column;
+
+          .docsConfig{
+            width: 80vw;
+
+            .docsImgDiv{
+              justify-content: center;
+              width: 150px;
+            }
+
+            .docsLink{
+              width: 80%;
+              justify-content: center;
+              margin: auto;
+            }
+          }
+        }
+      }
+    }
   }
+
+
+
 `;
