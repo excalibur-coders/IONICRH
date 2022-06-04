@@ -278,7 +278,7 @@ function Administrador() {
         <div className="Wrapper3">
           <div className="DadosFuncionais">
             <span>
-              <Link to="/">Código de Conduto e Ética</Link>
+              <Link to="https://drive.google.com/drive/folders/1uCtcnSF6MzcH3uf1snDYsbrWUKH-Iz_j">Código de Conduta e Ética</Link>
             </span>
           </div>
         </div>
