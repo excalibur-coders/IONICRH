@@ -94,7 +94,7 @@ function Cadastrar_Curso() {
                 width="22rem"
                 fontSize={20}
                 fontWeight="bold"
-                labelText="Duração do curso"
+                labelText="Duração do curso:"
                 type="number"
                 {...register('duracaocurso')}
               />
@@ -134,11 +134,20 @@ function Cadastrar_Curso() {
               />
             </div> */}
             <Button
-              text="Cadastrar"
+              text="Cadastrar*"
               color={theme.colors.primary}
               type="submit"
             />
           </form>
+          <Button
+              text="Voltar"
+              color="red"
+              onClick={() => {
+                navigate('/cadastro_curso_adm');
+              }}
+            />
+            <br />
+            <p>* Após cadastro do curso, volte ao menu principal, para adicinoar módulos a este, se assim desejar.</p>
         </main>
       </S.Container>
     </>

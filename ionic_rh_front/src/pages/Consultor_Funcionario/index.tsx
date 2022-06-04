@@ -33,11 +33,13 @@ interface IFuncionarios {
   contrato: IContrato[];
   dep_name: IDepartamento;
   cargo_area: ICargo;
+  user_email: string;
 }
 
 interface IContrato {
   contrato_faixa_salarial: number;
   cargo: ICargo;
+  contrato_matricula: string;
 }
 
 interface IDepartamento {
@@ -112,31 +114,19 @@ function Consultor_Funcionarios() {
           </div>
           <br></br>
           <div className="container">
-            <HStack className="TBody_2">
-              <Box fontSize="2xl" fontWeight="bold">
-                Nome
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Departamento
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Cargo
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Trilha
-              </Box>
-            </HStack>
-            <Divider
-              orientation="horizontal"
-              borderColor={theme.colors.font}
-              variant="solid"
-              size="10rem"
-            />
             <br></br>
             <TableContainer>
               <Table variant="striped" size="lg" background="#DBDBDB">
                 <div className="TableTwo">
                   <Tbody>
+                  <Thead>
+                      <Tr>
+                        <Th fontSize="2xl" fontWeight="bold">Nome</Th>
+                        <Th fontSize="2xl" fontWeight="bold">Matricula</Th>
+                        <Th fontSize="2xl" fontWeight="bold">Email</Th>
+                        <Th fontSize="2xl" fontWeight="bold">Trilha</Th>
+                      </Tr>
+                    </Thead>
                     {funcionarios.map(funcionario => {
                       //console.log('bom dia', funcionario);
                       return (
@@ -146,15 +136,13 @@ function Consultor_Funcionarios() {
                               {funcionario.user_nome}
                             </Td>
                             <Td className="TBody_2">
-                              {funcionario.contrato?.[0]?.cargo.departamento
-                                .dep_name
-                                ? funcionario.contrato?.[0]?.cargo.departamento
-                                    .dep_name
+                              {funcionario.contrato?.[0]?.contrato_matricula
+                                ? funcionario.contrato?.[0]?.contrato_matricula
                                 : '-'}
                             </Td>
                             <Td className="TBody_2">
-                              {funcionario.contrato?.[0]?.cargo.cargo_area
-                                ? funcionario.contrato?.[0]?.cargo.cargo_area
+                              {funcionario.user_email
+                                ? funcionario.user_email
                                 : '-'}
                             </Td>
                             <Td className="TBody_2">

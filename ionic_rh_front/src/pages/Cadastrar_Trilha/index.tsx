@@ -58,7 +58,7 @@ function Cadastrar_Trilha() {
           <Consultor_nav />
         </header>
         <main>
-          <h1>Cadastrar novo curso</h1>
+          <h1>Cadastre nova Trilha</h1>
           <form onSubmit={handleSubmit(adicionarCurso)}>
             <div className="field">
               <Input
@@ -72,11 +72,27 @@ function Cadastrar_Trilha() {
               />
             </div>
             <Button
-              text="Cadastrar"
+              text="Salvar"
               color={theme.colors.primary}
               type="submit"
             />
           </form>
+          <Button
+              text="Voltar"
+              color="red"
+              onClick={() => {
+                navigate('/cadastro_curso_adm');
+              }}
+            />
+              <Button
+              text="Avançar"
+              color={theme.colors.primary}
+              onClick={() => {
+                navigate('/Cadastrar_curso');
+              }}
+            />
+            <br />
+            <p>Somente clique em `avançar` após salvar sua nova trilha</p>
         </main>
       </S.Container>
     </>

@@ -86,7 +86,7 @@ function CadastrarCursoModulo() {
           <Consultor_nav />
         </header>
         <main>
-          <h1>Cadastrar de modulo</h1>
+          <h1>Cadastre um novo módulo</h1>
           <form onSubmit={handleSubmit(adicionarCurso)}>
             <div className="field">
               <Input
@@ -94,7 +94,7 @@ function CadastrarCursoModulo() {
                 width="22rem"
                 fontSize={20}
                 fontWeight="bold"
-                labelText="Nome do modulo:"
+                labelText="Nome do módulo:"
                 type="string"
                 {...register('nomemodulo')}
               />
@@ -121,6 +121,13 @@ function CadastrarCursoModulo() {
               type="submit"
             />
           </form>
+          <Button
+              text="Voltar"
+              color="red"
+              onClick={() => {
+                navigate('/cadastro_curso_adm');
+              }}
+            />
         </main>
       </S.Container>
     </>

@@ -33,6 +33,7 @@ import CadastrarDocumentosModulo from 'pages/Cadastrar_DocsModulo'
 import CadastrarTrilha from 'pages/Cadastrar_Trilha'
 import EditarModulo from 'pages/Editar_modulo'
 import Teste from 'pages/Curso_Tela/teste';
+import Cadastro_Curso_adm from 'pages/Cadastro_Curso_adm';
 
 function Routes() {
   return (
@@ -73,6 +74,7 @@ function Routes() {
       <Route path="/criar_trilha/" element={<CadastrarTrilha />} />
       <Route path="/curso_trilha/" element={<CadastrarCursoTrilha />} />
       <Route path="/user_trilha/" element={<CadastrarUserTrilha />} />
+      <Route path="/cadastro_curso_adm/" element={<Cadastro_Curso_adm />} />
     </RoutesWrapper>
     // </BrowserRouter>
   );
