@@ -9,11 +9,12 @@ import { endereco } from "models/user_endereco";
 import { escolaridade } from "models/user_escola";
 import { idiomas } from "models/user_idioma";
 import { telefone } from "models/user_telefone";
-import { documentos} from "models/user_docs";
+import { documentos } from "models/user_docs";
 import { dependente } from "models/userDependente";
 import path from "path";
 import multerConfig from 'config/multer'
 import { documentosAvatar } from "models/docsAvatar";
+import { empresa_PJ } from "models/emp_pj";
 
 interface IDecodedParams {
     id: string;
@@ -29,6 +30,7 @@ const endRepository = AppDataSource.getRepository(endereco)
 const docsRepository = AppDataSource.getRepository(documentos)
 const avatarRepository = AppDataSource.getRepository(documentosAvatar)
 const dependenteRepository = AppDataSource.getRepository(dependente)
+const empresaPjRepository = AppDataSource.getRepository(empresa_PJ)
 
 export const updateUser = async (req: Request, res: Response) => {
     try {
@@ -59,8 +61,6 @@ export const updateUser = async (req: Request, res: Response) => {
         res.json(error);
     }
 };
-
-
 export const adicionarIdioma = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const tokenHeader = req.headers.authorization;
@@ -84,7 +84,6 @@ export const adicionarIdioma = async (req: Request, res: Response, next: NextFun
         res.json(error)
     }
 }
-
 export const adicionarTelefone = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const tokenHeader = req.headers.authorization;
@@ -110,7 +109,6 @@ export const adicionarTelefone = async (req: Request, res: Response, next: NextF
         res.json(error)
     }
 }
-
 export const adicionarEscolaridade = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const tokenHeader = req.headers.authorization;
@@ -136,7 +134,6 @@ export const adicionarEscolaridade = async (req: Request, res: Response, next: N
         res.json(error)
     }
 }
-
 export const adicionarEndereco = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const tokenHeader = req.headers.authorization;
@@ -206,7 +203,7 @@ export const adicionarDocumento = async (req: Request, res: Response, next: Next
                     docs_key: file.key,
                     docs_type: ext,
                     docs_header: file.fieldname,
-                    docs_size: multerConfig.limits.fileSize,
+                    docs_size: file.size,
                     docs_url: `https://${process.env.BUCKET_NAME}.s3.${process.env.AWS_DEFAULT_REGION}.amazonaws.com/${base}`,
                     userUserId: Number(decodedJwt.id),
                 })
@@ -236,7 +233,7 @@ export const adicionarAvatar = async (req: Request, res: Response, next: NextFun
                     avatar_nome: name,
                     avatar_type: ext,
                     avatar_header: file.fieldname,
-                    avatar_size: multerConfig.limits.fileSize,
+                    avatar_size: file.size,
                     avatar_url: `https://${process.env.BUCKET_NAME}.s3.${process.env.AWS_DEFAULT_REGION}.amazonaws.com/${base}`,
                     userUserId: Number(decodedJwt.id),
                 })
@@ -244,6 +241,31 @@ export const adicionarAvatar = async (req: Request, res: Response, next: NextFun
             return jubileu
         })
         res.json(req.files)
+    } catch (error) {
+        res.json(error)
+    }
+}
+export const adicionarEmpresaPj = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const tokenHeader = req.headers.authorization;
+        const splitToken = tokenHeader?.split(' ')[1] as string;
+        const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
+        const {
+            pJuridica
+        } = req.body
+        const adiconarEMPPJ = pJuridica.map((pJuridicas: any) => {
+            return {
+                ...pJuridicas,
+                userUserId: Number(decodedJwt.id)
+            }
+        })
+        await empresaPjRepository
+            .createQueryBuilder()
+            .insert()
+            .into(empresa_PJ)
+            .values(adiconarEMPPJ)
+            .execute()
+        next()
     } catch (error) {
         res.json(error)
     }

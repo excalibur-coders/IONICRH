@@ -1,6 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { user } from "./user";
 import { docs_curso } from './curso_docs'
+import { moduloConclusao } from "./modulos";
 
 @Entity()
 export class trilha {
@@ -29,7 +30,30 @@ export class trilha {
     /* juntos!: Promise<curso[]> */
     juntos!: curso[]
 }
+@Entity()
+export class modulosCurso {
+    @PrimaryGeneratedColumn({ type: "int" })
+    modulo_id!: number;
+    @Column({
+        type: "varchar"
+    })
+    modulo_nome!: string;
+    @OneToMany(() => docs_curso, (docs_curso) => docs_curso.docs)
+    docs_curso!: docs_curso
+    //
+    @ManyToOne(() => curso, (curso) => curso.modulosCurso)
+    @JoinTable({
+        name: "cursoCursoId"
+    })
+    curso!: curso
+    @Column({
+        type: "int"
+    })
+    cursoCursoId!: number
 
+    @OneToMany(() => moduloConclusao, (concluiu) => concluiu.docs)
+    concluiu!: moduloConclusao
+}
 @Entity()
 export class curso {
     @PrimaryGeneratedColumn({ type: "int" })
@@ -49,6 +73,6 @@ export class curso {
     @ManyToMany(() => trilha, (trilha) => trilha.juntos)
     juntos!: trilha
 
-    @OneToMany(() => docs_curso, (docs_curso) => docs_curso.docs)
-    docs_curso!: docs_curso
+    @OneToMany(() => modulosCurso, (modulosCurso) => modulosCurso.curso)
+    modulosCurso!: modulosCurso
 }
