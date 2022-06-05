@@ -58,6 +58,10 @@
 
 <br>
 
+## Desenho da Arquitetura da Solução
+![Arquitetura da Solução](https://user-images.githubusercontent.com/80925387/172069548-02a4951d-824e-4601-b615-7a8d0d779b23.png)
+
+
 <br>
 
 ## 💻 Tecnologias Utilizadas
