@@ -360,6 +360,11 @@ function Cadastro() {
       <div className="header">
         <img src={IonicLogo} />
         <h1>Cadastro</h1>
+        <Button
+              text="Voltar"
+              color='#ff0000'
+              onClick={() => navigate(-1)}
+            />
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="main">

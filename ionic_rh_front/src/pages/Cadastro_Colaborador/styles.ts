@@ -22,6 +22,10 @@ export const Container = styled(Flex)`
       margin-left: 50px;
       width: 10rem;
     }
+    Button {
+      margin-top: 7px;
+      margin-left: 1000px;
+    }
   }
   .main {
     .ButtonW {
