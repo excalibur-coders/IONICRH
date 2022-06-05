@@ -68,7 +68,7 @@
 
 - **Banco de Dados:** MySQL;
 - **Back-end:** NodeJS, JWT Jason Web Token, AWS;
-- **Front-end:** HTML, CSS, JavaScript, ChackaUi, React, Typescript;
+- **Front-end:** HTML, CSS, JavaScript, ChackaUi, React, Typescript, Vercel;
 - **Deploy:** Heroku;
 - **Ferramentas:** Visual Studio Code, Jira, Miro, Canva, Trello, Git e Github;
 - **Metodologia Utilizada:** Metodologia Ágil | SCRUM
