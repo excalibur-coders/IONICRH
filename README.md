@@ -33,6 +33,7 @@
 > **Requisitos não Funcionais**
 - ![feito](./docs/readme/check.jpeg) Linguagens NodeJS, TypeScript, Javascript;
 - ![feito](./docs/readme/check.jpeg) Banco de Dados Relacional;
+- ![feito](./docs/readme/check.jpeg) Desenho da arquitetura da solução;
 - ![feito](./docs/readme/check.jpeg) Manual do usuário para navegação.
 
 <br>
