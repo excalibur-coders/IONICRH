@@ -428,11 +428,14 @@ function UserEdit() {
           <div className="Wrapper">
             <div className="centerWrapper">
               <div className="leftWrapper">
+              {user?.docsavatar[0]?.avatar_url ?
                 <img
                   className="foto"
                   src={user?.docsavatar[0].avatar_url}
                   alt="profile picture"
                 />
+                : <div className="foto" />
+              }
 
                 <div className="User">
                   <h1>{user?.user_nome}</h1>
@@ -944,7 +947,7 @@ function UserEdit() {
                         user?.contrato?.[0]?.emp_contratante.contratante_id
                       }
                     >
-                      {empresas.map(empresa => (
+                      {empresas?.map(empresa => (
                         <option
                           key={empresa.contratante_id}
                           value={empresa.contratante_id}

@@ -10,7 +10,6 @@ import LogoGray from 'assets/svg/logo-gray.svg'
 
 export default function App() {
   const { dep } = useParams();
-  console.log(dep);
 
   return (
     <>

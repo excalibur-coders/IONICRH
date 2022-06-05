@@ -145,4 +145,3 @@ export const organograma = async (req: Request, res: Response) => {
       res.json(error)
   }
 }
-

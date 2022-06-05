@@ -8,8 +8,6 @@ import { AxiosError } from 'axios';
 import OrgChart from '@balkangraph/orgchart.js';
 /* http://localhost:5000/departamentos/organograma */
 
-
-console.log(exportPDF);
 interface IDep {
   dep_id: number;
   dep_name: string;
@@ -63,6 +61,7 @@ function Card({ depName }: ICardProps) {
   const cookies = parseCookies();
   const navigate = useNavigate();
   const [organograma, setOrganograma] = useState<IDep[]>();
+  const [head, setHead] = useState<IUser>();
   const divRef = createRef<string | HTMLElement | any>()
 
   const getOrganograma = useCallback(() => {
@@ -73,88 +72,54 @@ function Card({ depName }: ICardProps) {
         },
       })
       .then(({ data }) => {
-        /* console.log(data); */
         setOrganograma(data);
       })
       .catch((error: Error | AxiosError) => {
         console.log(error);
       });
-  }, [cookies]);
+  }, []);
+
+  const getHeadInfo = useCallback(() => {
+    api
+      .get(`/user/usuario-perfil/${organograma?.[2].cargo[0].headID}`, {
+        headers: {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
+        },
+      })
+      .then(({ data }) => {
+        setHead(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, [organograma?.[0]?.dep_id]);
 
   useEffect(() => {
-    // getOrganograma();
-    api
-    .get('/Organograma/', {
-      headers: {
-        Authorization: `Bearer ${cookies['ionicookie.token']}`,
-      },
-    })
-    .then(({ data }) => {
-      /* console.log(data); */
-      setOrganograma(data);
-    })
-    .catch((error: Error | AxiosError) => {
-      console.log(error);
-    });
+    getOrganograma();
+    getHeadInfo();
 
-    // console.log("departamento: ", organograma?.[1].dep_name);
+  }, [organograma?.[0]?.dep_id]);
 
-
-
+  useEffect(() => {
     // eslint-disable-next-line no-var
-    var nodeChart: INodeChart[] = [
-      {
+    var nodeChart: INodeChart[] = [];
+
+    if (head)
+      nodeChart = [{
         id: 1,
-        name: 'kleber',
-      },
-      {
-        id: 2,
-        pid: 1,
-        name: 'Romario',
-      },
-      {
-        id: 3,
-        pid: 1,
-        name: 'Pelé',
-      },
-      {
-        id: 4,
-        pid: 1,
-        name: 'Bebeto',
-      },
-      {
-        id: 5,
-        pid: 3,
-        name: 'Romario',
-      },
-      {
-        id: 6,
-        pid: 4,
-        name: 'Romario',
-      },
-      {
-        id: 7,
-        pid: 2,
-        name: 'Romario0000',
-      },
-    ];
+        name: head.user_nome
+      }]
 
-    console.log(organograma?.[2]);
-
-    // organograma?.[2].cargo.forEach(element => {
-    //   element.contrato.forEach((element2) => {
-    //     nodeChart.push({
-    //       id: element2.user.user_id,
-    //       pid: element.cargo_valor,
-    //       name: element2.user.user_nome,
-    //       // cargo: element.cargo_area
-    //     })
-    //   })
-      // console.log("cargo area: ", element.cargo_area);
-      // console.log("cargo valor: ", element.cargo_valor);
-      // console.log("cargo head: ", element.headID);
-      // console.log("contrato: ", element.contrato);
-    // });
+    organograma?.[2].cargo.forEach((element, index) => {
+      element.contrato.forEach((element2) => {
+        nodeChart.push({
+          id: index + 2,
+          pid: element.cargo_valor,
+          name: element2.user.user_nome,
+          // cargo: element.cargo_area
+        })
+      })
+    });
 
     console.log("node: ", nodeChart);
 
@@ -164,8 +129,7 @@ function Card({ depName }: ICardProps) {
         field_0: "name",
       }
     })
-
-  }, [organograma?.[0]?.dep_id]);
+  }, [divRef, head, organograma]);
 
 
   return (
