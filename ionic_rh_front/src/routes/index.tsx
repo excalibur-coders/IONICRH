@@ -32,7 +32,7 @@ import CadastrarUserTrilha from 'pages/Cadastrar_UserTrilha'
 import CadastrarDocumentosModulo from 'pages/Cadastrar_DocsModulo'
 import CadastrarTrilha from 'pages/Cadastrar_Trilha'
 import EditarModulo from 'pages/Editar_modulo'
-import ModuloTela from 'pages/Curso_Tela/teste';
+import ModuloTela from 'pages/Curso_Tela';
 import Cadastro_Curso_adm from 'pages/Cadastro_Curso_adm';
 import Todos_Cursos from 'pages/Todos_Cursos';
 
