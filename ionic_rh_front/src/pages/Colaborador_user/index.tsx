@@ -245,7 +245,7 @@ function Colab_user() {
                     de trabalhos e outros.
                   </h3>
                 </div>
-                <h4>Cursos realizados:</h4>
+                <h4>Minhas Trilhas:</h4>
                 <div className="buttons_onboard">
                   {user?.junto?.map(Trilha => {
                     return (

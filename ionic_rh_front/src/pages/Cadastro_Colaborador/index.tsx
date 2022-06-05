@@ -349,12 +349,6 @@ function Cadastro() {
     // resolver: yupResolver(schema),
   });
 
-
-
-  useEffect(() => {
-    console.log(value)
-  }, [value])
-
   return (
     <S.Container>
       <div className="header">

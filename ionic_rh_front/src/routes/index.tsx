@@ -32,7 +32,7 @@ import CadastrarUserTrilha from 'pages/Cadastrar_UserTrilha'
 import CadastrarDocumentosModulo from 'pages/Cadastrar_DocsModulo'
 import CadastrarTrilha from 'pages/Cadastrar_Trilha'
 import EditarModulo from 'pages/Editar_modulo'
-import Teste from 'pages/Curso_Tela/teste';
+import ModuloTela from 'pages/Curso_Tela/teste';
 import Cadastro_Curso_adm from 'pages/Cadastro_Curso_adm';
 import Todos_Cursos from 'pages/Todos_Cursos';
 
@@ -68,7 +68,7 @@ function Routes() {
       <Route path="/Organograma/:dep" element={<Org />} />
       <Route path="/Adm_home" element={<Adm_Home />} />
       <Route path="/Curso_Tela/:id" element={<Cursos />} />
-      <Route path="/curso_modulos/:id" element={<Teste />} />
+      <Route path="/curso_modulos/:id" element={<ModuloTela />} />
       <Route path="/modulo_docs/:id" element={<CadastrarDocumentosModulo />} />
       <Route path="/editar_modulo/:id" element={<EditarModulo />} />
       <Route path="/criar_modulos/" element={<CadastrarCursoModulo />} />
