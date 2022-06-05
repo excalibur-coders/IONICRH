@@ -16,8 +16,16 @@ export const Container = styled(Flex)`
     height: 100px;
   }
 
+  footer{
+    display: flex;
+    margin: auto ;
+    .css-1mkr8mv h1{
+      font-size: 20px;
+    }
+  }
+
   .buttons_onboard {
-    margin-top: 5rem;
+    margin-top: 4rem;
     display: flex;
     z-index: -10;
 
@@ -36,6 +44,7 @@ export const Container = styled(Flex)`
       display: flex;
       flex-direction: column;
     }
+    
   }
 
   @media (max-width: 768px) {

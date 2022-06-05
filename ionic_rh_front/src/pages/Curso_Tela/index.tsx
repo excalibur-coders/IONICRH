@@ -102,11 +102,11 @@ function Cursos() {
             }
             )}
           </div>
-        </main>
-      </S.Container>
-      <footer>
-        <Footer />
-      </footer>
+        </main>        
+        <footer>
+          <Footer />
+        </footer>
+      </S.Container>      
     </>
   )
 }
