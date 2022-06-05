@@ -29,8 +29,6 @@ function Login() {
 
   const { signIn, user } = useContext(AuthContext);
 
-  console.log(user);
-
   const authRoute = () => {
     api
       .get('/departamentos', {

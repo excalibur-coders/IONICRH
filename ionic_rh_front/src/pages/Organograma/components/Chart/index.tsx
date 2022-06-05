@@ -70,7 +70,7 @@ function Card({ depName }: ICardProps) {
       .catch((error: Error | AxiosError) => {
         console.log(error);
       });
-  }, [cookies]);
+  }, []);
 
   useEffect(() => {
     getOrganograma();

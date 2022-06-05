@@ -47,7 +47,7 @@ function Departamentos() {
     setTimeout(() => {
       setLoading(false);
     }, 5000);
-  }, [cookies]);
+  }, []);
 
   useEffect(() => {
     getAllDepartamentos();
