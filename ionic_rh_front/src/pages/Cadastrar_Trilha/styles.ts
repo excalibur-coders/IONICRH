@@ -5,6 +5,7 @@ export const Container = styled.div`
 height: 100vh;
 display: flex;
 align-items: center;
+
 main{
   margin: 3rem auto;
   display: flex;
@@ -13,7 +14,6 @@ main{
 
   h1{
     font-size: 35px;
-    text-align: center;
     font-weight: bold;
   }
 
@@ -26,12 +26,9 @@ main{
   }
 
   .buttons{
+    margin-top: 20px;
     display: flex;
     gap: 10px;
-  }
-
-  p{
-    text-align: center;
   }
 }
 `

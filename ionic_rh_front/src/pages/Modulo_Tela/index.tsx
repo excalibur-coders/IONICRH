@@ -58,7 +58,7 @@ interface IConcluiu {
   docs: IDocs;
 }
 
-function Teste() {
+function ModuloTela() {
   const cookies = parseCookies();
   const { id } = useParams();
   const [trilha, setCursos] = useState<ICurso[]>([]);
@@ -152,7 +152,7 @@ function Teste() {
             <div className="position">
               {/* Retorno do nome do modulo */}
               <h1>{trilha.map(i => (i.curso_nome))}</h1>
-              
+
               {trilha.map(curso => {
                 return (
                   <>
@@ -166,7 +166,7 @@ function Teste() {
                       )
                     })}
                   </>
-                )              
+                )
               })}
               <div className="list">
               {trilha.map(curso => {
@@ -210,7 +210,7 @@ function Teste() {
                                       </div>
                                       {showNextButton && (
                                         <>
-                                        <div className='BotoesVideo'>                                          
+                                        <div className='BotoesVideo'>
                                           <button
                                             className="button button1"
                                             onClick={() => {
@@ -223,7 +223,7 @@ function Teste() {
                                             }}
                                           >
                                             {' '}
-                                            Vídeo Anterior 
+                                            Vídeo Anterior
                                           </button>
                                           <button
                                             className="button button1"
@@ -261,16 +261,16 @@ function Teste() {
                       <div className='texto'>
                         <h1><b>Descrição:</b></h1>
                         <h2>{trilhas.curso_descricao}</h2>
-                      </div>                      
-                    </div>                    
+                      </div>
+                    </div>
                     </>
-            )})}</div> 
+            )})}</div>
             <Button className='positionButton' onClick={() => navigate(-1)}>Voltar</Button>
-            </div> 
+            </div>
           </main>
         </S.Container>
       </>
   );
 }
 
-export default Teste;
+export default ModuloTela;

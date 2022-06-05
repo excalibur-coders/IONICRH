@@ -6,7 +6,7 @@ import {
   InputGroup,
   InputLeftElement,
 } from '@chakra-ui/react';
-import { SearchIcon, ArrowBackIcon } from '@chakra-ui/icons';
+import { SearchIcon, ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
 import { theme } from 'theme';
 import Input from 'components/Input';
 import RespBar_adm from 'components/Respbar_adm';
@@ -20,42 +20,42 @@ import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-interface ICargo {
-  departamento: IDepartamento;
-  cargo_id: number;
-  headID?: string;
-  cargo_nivel?: string;
-  cargo_area?: string;
+interface ICurso {
+  curso_nome: string;
+  curso_id: number;
 }
 
-interface IDepartamento {
-  dep_name?: string;
+interface ITrilha {
+  curso: ICurso;
+  trilha_id: number;
+  trilha_nome: string;
+  juntos: ICurso[];
+  userUserId: number;
 }
 
 
-
-function Cargos() {
+function Todos_Cursos() {
 
   const cookies = parseCookies();
   const navigate = useNavigate();
 
-  const [cargos, setCargos] = useState<ICargo[]>([]);
+  const [cursos, setCursos] = useState<ICurso[]>([]);
   const [loading, setLoading] = useState(false);
-  const [cargosPesquisados, setCargosPesquisados] = useState<ICargo[]>([]);
-  const [searchInput, setSearchInput] = useState("");
+  //const [cargosPesquisados, setCargosPesquisados] = useState<ICurso[]>([]);
+  //const [searchInput, setSearchInput] = useState("");
 
 
-  const getAllCargos = useCallback(() => {
+  const getAllCursos = useCallback(() => {
     setLoading(true);
     api
-      .get('/cargo/cargos', {
+      .get('/curso/ver-cursos', {
         headers: {
           Authorization: `Bearer ${cookies['ionicookie.token']}`,
         },
       })
       .then(({ data }) => {
-        setCargos(data);
-        setCargosPesquisados(data);
+        setCursos(data);
+        //setCargosPesquisados(data);
         console.log(data);
       })
       .catch((error: Error | AxiosError) => {
@@ -64,15 +64,17 @@ function Cargos() {
     setTimeout(() => {
       setLoading(false);
     }, 5000);
-  }, [setLoading, setCargos/* , setCargosPesquisados */]);
+  }, [setLoading, setCursos/* , setCargosPesquisados */]);
 
   useEffect(() => {
-    getAllCargos();
+    getAllCursos();
   }, []);
+
+  console.log(cursos?.[0]?.curso_nome);
 
   // Barra de Pesquisa //
 
-  const handleChange = (e: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
+/*   const handleChange = (e: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
     e.preventDefault();
     setSearchInput(e.target.value);
   };
@@ -97,7 +99,7 @@ function Cargos() {
     } else {
       setCargosPesquisados(cargos);
     }
-  }, [searchInput]);
+  }, [searchInput]); */
 
   return (
     <>
@@ -122,7 +124,7 @@ function Cargos() {
             <br></br>
             <HStack className="search">
               <Box fontSize="4xl" fontWeight="bold">
-                Cargos
+                Cursos
               </Box>
               <Box>
                 <InputGroup>
@@ -130,8 +132,8 @@ function Cargos() {
                   <InputLeftElement className="marginTop" pointerEvents="none" children={<SearchIcon/>} />
                   <Input className="padding-left40"
                     type="search"
-                    onChange={handleChange}
-                    value={searchInput}
+                    //onChange={handleChange}
+                    //value={searchInput}
                     fontSize={20}
                     size="lg"
                     width="50vw"
@@ -151,17 +153,25 @@ function Cargos() {
                   <Tbody>
                     <Thead>
                       <Tr>
-                        <Th fontSize="2xl" fontWeight="bold">Cargo</Th>
-                        <Th fontSize="2xl" fontWeight="bold">Departamento</Th>
+                        <Th fontSize="2xl" fontWeight="bold">Nome</Th>
                       </Tr>
                     </Thead>
-                     {cargosPesquisados.map(cargos => (
-                      <Tr key={cargos.cargo_id}>
+                     {cursos.map(cursos => (
+                      <Tr key={cursos.curso_nome}>
                         <Td className="TBody" fontSize="xl">
-                          {cargos.cargo_area}
+                          {cursos.curso_nome}
                         </Td>
-                        <Td className="TBody" fontSize="xl">
-                          {cargos.departamento.dep_name}
+                        <Td>
+                          <Link
+                            fontSize="xl"
+                            color={theme.colors.primary}
+                            onClick={() => {
+                              navigate(`/Consultor_Funcionarios/${cursos.curso_id}`);
+                            }}
+                          >
+                            Ver
+                            <ArrowForwardIcon color={theme.colors.primary} />
+                          </Link>
                         </Td>
                       </Tr>
                     ))}
@@ -176,4 +186,4 @@ function Cargos() {
   );
 }
 
-export default Cargos;
+export default Todos_Cursos;

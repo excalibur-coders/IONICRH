@@ -29,7 +29,7 @@ export class moduloConclusao {
     @JoinColumn({
         name: "moduloModuloId"
     })
-    docs!: user
+    docs!: modulosCurso
     @Column({
         type: "int"
     })
