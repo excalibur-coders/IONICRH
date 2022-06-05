@@ -67,7 +67,7 @@ function DeptoTI() {
     setTimeout(() => {
       setLoading(false);
     }, 5000);
-  }, [cookies, id]);
+  }, [id]);
 
   useEffect(() => {
     getAllDepartamentos();
