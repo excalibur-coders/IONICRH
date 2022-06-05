@@ -35,11 +35,11 @@ function Consultor_Home() {
                   </li>
                   <li>
                     <a>
-                    <Link to={'/Consultor_funcionarios'}>
+                    <Link to={'/Colab_user'}>
                         <span className="icon">
                           <MdOutlinePeopleAlt size="40px" />
                         </span>
-                        <span className="tittle">Funcionarios</span>
+                        <span className="tittle">Meu Perfil</span>
                       </Link>
                     </a>
                   </li>
