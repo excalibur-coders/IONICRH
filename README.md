@@ -62,7 +62,8 @@
 
 ## 💻 Tecnologias Utilizadas
 
-![Tecnologias](https://user-images.githubusercontent.com/80925387/172054236-a2a75ae8-f660-460d-8b26-84e7989122b7.png)
+![Tecnologias](https://user-images.githubusercontent.com/80925387/172054656-36119ea5-cb9b-4042-8564-0765f594ee79.png)
+
 
 
 
