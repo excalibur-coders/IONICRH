@@ -70,7 +70,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           console.log(error);
         });
     }
-  }, [user]);
+  }, []);
 
   interface ISession {
     token: string;
