@@ -120,49 +120,30 @@ function Consultor_Funcionarios() {
                       </Tr>
                     </Thead>
                     {funcionarios.map((funcionario) => {
-                      funcionario.junto.map((user) => {
+                      return funcionario.junto.map((user) => {
                         return (
                           <Tr key={user.user_nome} className="TBody_2">
                             <Td className="TBody_2" fontSize="md">
                               {user.user_nome}
                             </Td>
-                          </Tr>)
-                      })
-                    })}
-{/*                     {funcionarios.map(funcionario => {
-                      return (
-                        <>
-                          <Tr className="TBody_2">
                             <Td className="TBody_2" fontSize="md">
-                              {funcionario.junto.map(user =>
-                                user.user_nome)}
-                            </Td>
-                            <Td className="TBody_2">
-                              {funcionario.contrato?.[0]?.contrato_matricula
-                                ? funcionario.contrato?.[0]?.contrato_matricula
-                                : '-'}
-                            </Td>
-                            <Td className="TBody_2">
-                              {funcionario.user_email
-                                ? funcionario.user_email
-                                : '-'}
+                              {user.user_email}
                             </Td>
                             <Td className="TBody_2">
                               <Link
-                                href={`CURSOTELA/${funcionario.userUserId}`}
+                                href={`CURSOTELA/${funcionario.trilha_id}`}
                                 fontSize="xl"
                                 color={theme.colors.primary}
                               >
-                                Ver
+                               Loading
                                 <ArrowForwardIcon
                                   color={theme.colors.primary}
                                 />
                               </Link>
                             </Td>
-                          </Tr>
-                        </>
-                      );
-                    })} */}
+                          </Tr>)
+                      })
+                    })}
                   </Tbody>
                 </div>
               </Table>
