@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm";
-import { curso } from "./trilha";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, OneToMany } from "typeorm";
+import { modulosCurso } from "./trilha";
+import { videoConclusao } from "./video";
 
 @Entity()
 export class docs_curso {
@@ -40,13 +41,16 @@ export class docs_curso {
 
 
     //Chave estrangeira
-    @ManyToOne(() => curso, (curso) => curso.docs_curso)
+    @ManyToOne(() => modulosCurso, (modulosCurso) => modulosCurso.docs_curso)
     @JoinColumn({
         name: "docsDocsId"
     })
-    docs!: curso
+    docs!: modulosCurso
     @Column({
         type: "int"
     })
     docsDocsId?: number
+
+    @OneToMany(() => videoConclusao, (concluiu) => concluiu.docs)
+    concluiu!: videoConclusao
 }

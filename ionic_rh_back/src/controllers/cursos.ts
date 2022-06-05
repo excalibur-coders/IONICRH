@@ -1,6 +1,6 @@
 import { Response, Request, NextFunction } from "express";
 import { AppDataSource } from "config/database";
-import { curso, trilha } from "models/trilha";
+import { curso, modulosCurso, trilha } from "models/trilha";
 import { docs_curso } from "models/curso_docs";
 import multerConfig from 'config/multercurso'
 import path from "path";
@@ -8,7 +8,99 @@ import path from "path";
 const cursoRepository = AppDataSource.getRepository(curso)
 const trilhaRepository = AppDataSource.getRepository(trilha)
 const docsRepository = AppDataSource.getRepository(docs_curso)
+const moduloRepository = AppDataSource.getRepository(modulosCurso)
 
+export const createModulo = async (req: Request, res: Response) => {
+    try {
+        const {
+            modulo_nome,
+            cursoCursoId
+        } = req.body
+        await moduloRepository
+            .createQueryBuilder()
+            .insert()
+            .into(modulosCurso)
+            .values(req.body)
+            .execute()
+        res.json(req.body)
+    } catch (error) {
+        res.json(error)
+    }
+}
+export const updateModulo = async (req: Request, res: Response) => {
+    try {
+        const {
+            id
+        } = req.params
+        await moduloRepository
+            .createQueryBuilder()
+            .update()
+            .set({
+                modulo_nome: req.body.modulo_nome,
+                cursoCursoId: req.body.cursoCursoId
+            })
+            .where('modulo_id = :modulo_id', {
+                modulo_id: id
+            })
+            .execute()
+        res.json(req.body)
+    } catch (error) {
+        res.json(error)
+    }
+}
+export const deleteModulo = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+        await moduloRepository
+            .createQueryBuilder()
+            .delete()
+            .where('modulo_id = :modulo_id', {
+                modulo_id: id
+            })
+            .execute()
+        res.json({
+            "message": "Modulo deletado com sucesso"
+        })
+    } catch (error) {
+        res.json(error)
+    }
+}
+export const deleteDocs = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+        await docsRepository
+            .createQueryBuilder()
+            .delete()
+            .where('docs_id = :docs_id', {
+                docs_id: id
+            })
+            .execute()
+        res.json({
+            "message": "Documento do curso deletado com sucesso"
+        })
+    } catch (error) {
+        res.json(error)
+    }
+}
+export const updateDocs = async (req: Request, res: Response) => {
+    try {
+        const { docs_nome } = req.body
+        const { id } = req.params
+        await docsRepository
+            .createQueryBuilder()
+            .update()
+            .set({
+                docs_nome: docs_nome
+            })
+            .where('docs_id = :docs_id', {
+                docs_id: id
+            })
+            .execute()
+        res.json(req.body)
+    } catch (error) {
+        res.json(error)
+    }
+}
 export const createCurso = async (req: Request, res: Response) => {
     try {
         const {
@@ -73,7 +165,9 @@ export const readOneCurso = async (req: Request, res: Response) => {
         const findCursoById = await cursoRepository
             .find({
                 relations: {
-                    docs_curso: true
+                    modulosCurso: {
+                        docs_curso: true
+                    }
                 },
                 where: {
                     curso_id: Number(id)
@@ -159,7 +253,9 @@ export const readOneTrilha = async (req: Request, res: Response) => {
                 {
                     relations: {
                         juntos: {
-                            docs_curso: true
+                            modulosCurso: {
+                                docs_curso: true
+                            }
                         }
                     },
                     where: {
@@ -335,7 +431,7 @@ export const adicionarConteudo = async (req: Request, res: Response) => {
                     docs_key: file.key,
                     docs_type: ext,
                     docs_header: file.fieldname,
-                    docs_size: multerConfig.limits.fileSize,
+                    docs_size: file.size,
                     docs_url: `https://${process.env.BUCKET_NAME_EXCALIBUR}.s3.${process.env.AWS_DEFAULT_REGION}.amazonaws.com/${base}`,
                     docsDocsId: Number(docsDocsId)
                 })
@@ -347,7 +443,6 @@ export const adicionarConteudo = async (req: Request, res: Response) => {
         res.json(error)
     }
 }
-
 export const pegarTrilhaCurso = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { id, curso, docs } = req.params
@@ -358,7 +453,8 @@ export const pegarTrilhaCurso = async (req: Request, res: Response, next: NextFu
             .select([
                 "t",
                 "c",
-                "doc"
+                "modulo",
+                "docs"
             ])
             .from(trilha, 't')
             .leftJoin('t.juntos', 'c')

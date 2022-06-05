@@ -1,7 +1,7 @@
 import { theme } from 'theme';
 import * as S from './styles';
 import RespBar from 'components/RespBar';
-import { AspectRatio, Box } from '@chakra-ui/react'
+import { AspectRatio, Box, Button } from '@chakra-ui/react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
 import { parseCookies } from 'nookies';
@@ -15,6 +15,9 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from '@chakra-ui/react';
+import Footer from 'components/Footer';
+import { BsClipboardCheck } from 'react-icons/bs';
+import { MdMenuBook } from 'react-icons/md';
 
 interface ITrilha {
   trilha_id: number;
@@ -28,7 +31,7 @@ interface ICurso {
   curso_descricao: string;
   curso_criacao: string;
   curso_duracao: number;
-  docs_curso: IDocs[];
+  modulosCurso: IModulo[];
 }
 interface IDocs {
   docs_id: number;
@@ -36,11 +39,18 @@ interface IDocs {
   docs_url: string;
   docs_type: string;
 }
+interface IModulo {
+  modulo_id: number;
+  modulo_nome: string;
+  docs_curso: IDocs[];
+}
 
 
 function Cursos() {
   const cookies = parseCookies();
   const { id } = useParams();
+  const navigate = useNavigate();
+
   const [trilha, setCursos] = useState<ITrilha[]>([]);
   const getAllCursos = useCallback(() => {
     api
@@ -66,70 +76,37 @@ function Cursos() {
       <S.Container>
         <RespBar />
         <main>
-          <div className='position'>
+          <h1>Cursos</h1>
+          <div className='buttons_onboard'>
             {trilha.map(trilha => {
               return (
-                <>
-                  <h1>{trilha.trilha_nome}</h1>
-                  <div className="list">
-                    {trilha.juntos.map(curso => {
-                      return (
-                        <>
-                          <Accordion allowToggle>
-                            <h2>
-
-                              {curso.curso_nome}
-
-                            </h2>
-                            <div className="video">
-                              {curso.docs_curso.map(doc => {
-                                if (doc.docs_type == ".mp4") {
-                                  return (
-                                    <>
-                                      <AccordionItem>
-                                        <AccordionButton>
-                                          <Box flex='1' textAlign='left'>
-                                            {doc.docs_nome}
-                                          </Box>
-                                        </AccordionButton>
-                                        <AccordionPanel pb={1}>
-                                          <video width="666" controls>
-                                            <source src={doc.docs_url} type="video/mp4" />
-                                          </video>
-                                        </AccordionPanel>
-                                      </AccordionItem>
-                                    </>
-                                  )
-                                } else if (doc.docs_type == ".jpeg" || doc.docs_type == ".png") {
-                                  return (
-                                    <>
-                                      <AccordionItem>
-                                        <AccordionButton>
-                                          <Box flex='1' textAlign='left'>
-                                            {doc.docs_nome}
-                                          </Box>
-                                        </AccordionButton>
-                                        <AccordionPanel pb={1}>
-                                          <img src={doc.docs_url} alt="" width={500} />
-                                        </AccordionPanel>
-                                      </AccordionItem>
-                                    </>
-                                  )
-                                }
-                              })}
-                            </div>
-                          </Accordion>
-                        </>
-                      )
-
-                    })}
-                  </div>
-                </>
+                trilha.juntos.map(curso => {
+                  return (
+                    <>
+                      <div>
+                      <Link key={curso.curso_id} onClick={() => {
+                        navigate(`/curso_modulos/${curso.curso_id}`);
+                      }}>
+                      <Button
+                        className="button"
+                        as={MdMenuBook}
+                        color={theme.colors.font}
+                      ></Button>
+                      <small key={curso.curso_nome}>{curso.curso_nome}</small>
+                      </Link>
+                      </div>
+                    </>
+                  )
+                })
               )
-            })}
+            }
+            )}
           </div>
         </main>
       </S.Container>
+      <footer>
+        <Footer />
+      </footer>
     </>
   )
 }

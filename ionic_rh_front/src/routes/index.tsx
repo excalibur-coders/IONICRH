@@ -24,6 +24,7 @@ import Adm_Home from 'pages/ADM_Home';
 import Consultor_Home from 'pages/Consultor_Home';
 import Cadastrar_Curso from 'pages/Cadastrar_Curso';
 import Cursos from 'pages/Curso_Tela';
+import ModuloTela from 'pages/Modulo_Tela';
 import Consultor_Funcionarios from 'pages/Consultor_Funcionario';
 
 function Routes() {
@@ -57,6 +58,7 @@ function Routes() {
       <Route path="/Organograma/:dep" element={<Org />} />
       <Route path="/Adm_home" element={<Adm_Home />} />
       <Route path="/Curso_Tela/:id" element={<Cursos />} />
+      <Route path="/curso_modulos/:id" element={<ModuloTela />} />
     </RoutesWrapper>
     // </BrowserRouter>
   );

@@ -147,9 +147,8 @@ export class contrato {
     })
     empContratanteContratanteId?: number
 
-    @ManyToOne(() => empresa_PJ, (emp_pj) => emp_pj.contrato)
-    emp_pj!: empresa_PJ
-
+    /* @ManyToOne(() => empresa_PJ, (emp_pj) => emp_pj.contrato)
+    emp_pj!: empresa_PJ */
     @ManyToOne(() => cargo, (cargo) => cargo.contrato)
     @JoinColumn({
         name: "cargoCargoId"
@@ -162,4 +161,5 @@ export class contrato {
 
     @OneToMany(() => cargo, (cargoHead) => cargoHead.cargoID)
     cargoHead?: cargo
+    
 }

@@ -34,7 +34,7 @@ function Colab_onboard() {
       <S.Container>
         <RespBar />
         <main>
-          <h1>Cursos</h1>
+          <h1>Trilhas</h1>
           <div className="buttons_onboard">
             {user?.junto?.map(Trilha => {
               return (
