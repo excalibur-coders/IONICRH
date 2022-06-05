@@ -77,7 +77,8 @@
 <br>
 
 ## Backlog do Produto
-![Backlog do Produto](https://user-images.githubusercontent.com/80925387/172054288-56c4f86d-9110-48c4-a05e-37581a15916e.png)
+![Backlog do Produto](https://user-images.githubusercontent.com/80925387/172054810-1a668f26-35cc-4353-ab1d-3aece45fc4ea.png)
+
 
 
 
