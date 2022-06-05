@@ -19,7 +19,7 @@ function Card_Curso({ desc, title, value }: featureProps) {
         </div>
       </div>
       <div className="test">
-        <CircularProgress value={value} color="green.400" size="80px">
+        <CircularProgress value={value} color="blue.400" size="80px">
           <CircularProgressLabel>{`${value}%`}</CircularProgressLabel>
         </CircularProgress>
       </div>
