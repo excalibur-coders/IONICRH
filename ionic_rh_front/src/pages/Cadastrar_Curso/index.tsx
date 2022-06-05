@@ -65,6 +65,7 @@ function Cadastrar_Curso() {
         </header>
         <main>
           <h1>Cadastrar novo curso</h1>
+
           <form onSubmit={handleSubmit(adicionarCurso)}>
             <div className="field">
               <Input
@@ -133,20 +134,22 @@ function Cadastrar_Curso() {
                 multiple
               />
             </div> */}
-            <Button
-              text="Cadastrar*"
-              color={theme.colors.primary}
-              type="submit"
-            />
+            <div className="buttons">
+
+              <Button
+                text="Voltar"
+                color="red"
+                onClick={() => {
+                  navigate('/cadastro_curso_adm');
+                }}
+              />
+              <Button
+                text="Cadastrar*"
+                color={theme.colors.primary}
+                type="submit"
+              />
+            </div>
           </form>
-          <Button
-              text="Voltar"
-              color="red"
-              onClick={() => {
-                navigate('/cadastro_curso_adm');
-              }}
-            />
-            <br />
             <p>* Após cadastro do curso, volte ao menu principal, para adicinoar módulos a este, se assim desejar.</p>
         </main>
       </S.Container>

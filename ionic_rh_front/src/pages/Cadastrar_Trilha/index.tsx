@@ -77,7 +77,8 @@ function Cadastrar_Trilha() {
               type="submit"
             />
           </form>
-          <Button
+          <div className="buttons">
+            <Button
               text="Voltar"
               color="red"
               onClick={() => {
@@ -91,6 +92,7 @@ function Cadastrar_Trilha() {
                 navigate('/Cadastrar_curso');
               }}
             />
+          </div>
             <br />
             <p>Somente clique em `avançar` após salvar sua nova trilha</p>
         </main>

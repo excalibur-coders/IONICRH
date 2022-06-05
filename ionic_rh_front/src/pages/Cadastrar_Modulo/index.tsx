@@ -115,19 +115,21 @@ function CadastrarCursoModulo() {
               </Select>
             </div>
             {/*  */}
-            <Button
-              text="Cadastrar"
-              color={theme.colors.primary}
-              type="submit"
-            />
+            <div className="buttons">
+              <Button
+                text="Voltar"
+                color="red"
+                onClick={() => {
+                  navigate('/cadastro_curso_adm');
+                }}
+              />
+              <Button
+                text="Cadastrar"
+                color={theme.colors.primary}
+                type="submit"
+              />
+            </div>
           </form>
-          <Button
-              text="Voltar"
-              color="red"
-              onClick={() => {
-                navigate('/cadastro_curso_adm');
-              }}
-            />
         </main>
       </S.Container>
     </>

@@ -2,9 +2,12 @@ import styled from "@emotion/styled";
 import { theme } from "theme";
 
 export const Container = styled.div`
+height: 100vh;
+display: flex;
+align-items: center;
+
 main{
-  margin-top: 3rem;
-  height: 100vh;
+  margin: 3rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
