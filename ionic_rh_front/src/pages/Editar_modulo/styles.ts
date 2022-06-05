@@ -3,17 +3,15 @@ import { theme } from "theme";
 
 export const Container = styled.div`
 height: 100vh;
-display: flex;
-align-items: center;
+
 main{
-  margin: 3rem auto;
+  margin-top: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   h1{
     font-size: 35px;
-    text-align: center;
     font-weight: bold;
   }
 
@@ -23,15 +21,6 @@ main{
     flex-direction: column;
     align-items: center;
     gap: 10px;
-  }
-
-  .buttons{
-    display: flex;
-    gap: 10px;
-  }
-
-  p{
-    text-align: center;
   }
 }
 `

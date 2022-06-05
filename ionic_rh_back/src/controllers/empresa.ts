@@ -96,7 +96,8 @@ export const createPesqDesl = async (req: Request, res: Response, next: NextFunc
 
         const {
             pesq_desligamento,
-            empContratanteContratanteId
+            userUserId,
+            pesq_userDesligado
         } = req.body
 
         await pesqdesRepository

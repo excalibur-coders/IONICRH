@@ -11,15 +11,6 @@ export class trilha {
         type: "varchar"
     })
     trilha_nome!: string;
-    @ManyToOne(() => user, (user) => user.trilhas)
-    @JoinColumn({
-        name: "userUserId"
-    })
-    user!: user
-    @Column({
-        type: "int"
-    })
-    userUserId?: number
 
     @ManyToMany(() => user, (user) => user.junto)
     @JoinTable()

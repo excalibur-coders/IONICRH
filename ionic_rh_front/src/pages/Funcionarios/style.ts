@@ -19,6 +19,14 @@ export const Container = styled(Flex)`
     flex-wrap: wrap;
   }
 
+  .marginTop{
+    margin-top: 3px;
+  }
+
+  .padding-left40{
+    padding-left: 40px;
+  }
+
   .TableTwo {
     display: flex;
     justify-content: space-between;

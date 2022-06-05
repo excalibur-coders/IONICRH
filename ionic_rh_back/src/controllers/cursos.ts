@@ -27,6 +27,30 @@ export const createModulo = async (req: Request, res: Response) => {
         res.json(error)
     }
 }
+export const findModulos = async (req: Request, res: Response) => {
+    try {
+        const find = await moduloRepository.find()
+        res.json(find)
+    } catch (error) {
+        res.json(error)
+    }
+}
+export const findModulosId = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+        const find = await moduloRepository.find({
+            relations: {
+                docs_curso: true
+            },
+            where: {
+                modulo_id: Number(id)
+            }
+        })
+        res.json(find)
+    } catch (error) {
+        res.json(error)
+    }
+}
 export const updateModulo = async (req: Request, res: Response) => {
     try {
         const {
@@ -181,7 +205,13 @@ export const readOneCurso = async (req: Request, res: Response) => {
 export const readManyCurso = async (req: Request, res: Response) => {
     try {
         const findCursoById = await cursoRepository
-            .find()
+            .find({
+                relations: {
+                    modulosCurso: {
+                        docs_curso: true
+                    }
+                }
+            })
         res.json(findCursoById)
     } catch (error) {
         res.json(error)
@@ -191,7 +221,6 @@ export const createTrilha = async (req: Request, res: Response) => {
     try {
         const {
             trilha_nome,
-            consultor,
         } = req.body
         await trilhaRepository
             .createQueryBuilder()
@@ -208,7 +237,6 @@ export const updateTrilha = async (req: Request, res: Response) => {
     try {
         const {
             trilha_nome,
-            consultor,
         } = req.body
         const {
             id
@@ -273,6 +301,15 @@ export const readManyTrilha = async (req: Request, res: Response) => {
             .find({
                 relations: ['juntos']
             })
+        res.json(findTrilhaById)
+    } catch (error) {
+        res.json(error)
+    }
+}
+export const readManyOnlyTrilhas = async (req: Request, res: Response) => {
+    try {
+        const findTrilhaById = await trilhaRepository
+            .find()
         res.json(findTrilhaById)
     } catch (error) {
         res.json(error)

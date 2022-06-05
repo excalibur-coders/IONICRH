@@ -9,16 +9,20 @@ import {
     removeUserTrilha,
     removeCursoTrilha,
     adicionarConteudo,
-    pegarTrilhaCurso,
-    createModulo,updateModulo,deleteModulo,
-    deleteDocs, updateDocs
+    pegarTrilhaCurso, findModulos, findModulosId,
+    createModulo, updateModulo, deleteModulo,
+    deleteDocs, updateDocs, readManyOnlyTrilhas
 } from "controllers/cursos";
 import express from "express";
 import multerConfig from 'config/multercurso'
 import multer from 'multer';
+import { countPorcentagem, countPorcentagemModulo } from "controllers/User";
 
 const router = express.Router();
 
+
+router.get('/countModulo', countPorcentagemModulo)
+router.get('/count', countPorcentagem)
 //Curso
 router.post('/criar-curso', createCurso)
 router.put('/atualizar-curso/:id', updateCurso)
@@ -31,10 +35,13 @@ router.put('/atualizar-trilha/:id', updateTrilha)
 router.delete('/deletar-trilha/:id', deleteTrilha)
 router.get('/ver-trilha/:id', readOneTrilha)
 router.get('/ver-trilhas', readManyTrilha)
+router.get('/ver-todas-trilhas', readManyOnlyTrilhas)
 //Modulo
 router.post('/criar-modulo', createModulo)
 router.delete('/deletar-modulo/:id', deleteModulo)
 router.put('/update-modulo/:id', updateModulo)
+router.get('/find-modulo/', findModulos)
+router.get('/find-modulo-id/:id', findModulosId)
 //Docs
 router.delete('/deletar-documento/:id', deleteDocs)
 router.put('/alterar-documento/:id', updateDocs)
@@ -48,7 +55,7 @@ router.delete('/remover-user-trilha/:trilhaTrilhaId/:userUserId', removeUserTril
 router.post('/vincular-user', criarRelacao)
 router.post('/adicionar-material/:docsDocsId',
     multer(multerConfig)
-        .fields([{ name: 'file', maxCount: 3 }]),
+        .fields([{ name: 'file', maxCount: 50 }]),
     adicionarConteudo)
 router.post('/vincular-curso', createRelationCursoTrilha)
 router.get('/ver-trilhas/:id', consultaQueryCursoTrilhUser)

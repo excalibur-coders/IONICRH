@@ -2,15 +2,16 @@ import RespBar_adm from 'components/Respbar_adm';
 import * as React from 'react';
 import * as S from './styles';
 import {
-  MdOutlineBusinessCenter,
+  MdMenuBook,
   MdOutlinePeopleAlt,
   MdOutlineApartment,
-  MdSchema,
   MdVideoLibrary,
+  MdDesignServices,
+  MdOutlineVideoSettings,
 } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
-function Adm_Home() {
+function Cadastro_Curso_adm() {
   return (
     <>
       <S.Container>
@@ -19,7 +20,7 @@ function Adm_Home() {
         </header>
         <main>
           <div className="welcome">
-            <h1>Bem Vindo, Administrador!</h1>
+            <h2>Cadastre ou edite os cursos</h2>
           </div>
           <div className="listar">
             <div className="botoes">
@@ -27,7 +28,7 @@ function Adm_Home() {
                 <ul>
                   <li>
                     <a>
-                      <Link to={'/cadastro_curso_adm'}>
+                      <Link to={'/Cadastrar_curso'}>
                         <span className="icon">
                           <MdVideoLibrary size="40px" />
                         </span>
@@ -37,11 +38,11 @@ function Adm_Home() {
                   </li>
                   <li>
                     <a>
-                      <Link to={'/Departamentos'}>
+                      <Link to={'/curso_trilha'}>
                         <span className="icon">
-                          <MdOutlineApartment size="40px" />
+                          <MdDesignServices size="40px" />
                         </span>
-                        <span className="tittle">Departamentos</span>
+                        <span className="tittle">Trilhas</span>
                       </Link>
                     </a>
                   </li>
@@ -51,21 +52,21 @@ function Adm_Home() {
                 <ul>
                   <li>
                     <a>
-                      <Link to={'/Funcionarios'}>
+                      <Link to={'/criar_modulos'}>
                         <span className="icon">
-                          <MdOutlinePeopleAlt size="40px" />
+                          <MdMenuBook size="40px" />
                         </span>
-                        <span className="tittle">Funcionarios</span>
+                        <span className="tittle">Módulos</span>
                       </Link>
                     </a>
                   </li>
                   <li>
                     <a>
-                      <Link to={'/Organograma/ti'}>
+                      <Link to={'/modulo_docs'}>
                         <span className="icon">
-                          <MdSchema size="40px" />
+                          <MdOutlineVideoSettings size="40px" />
                         </span>
-                        <span className="tittle">Organograma</span>
+                        <span className="tittle">Contéudo cursos</span>
                       </Link>
                     </a>
                   </li>
@@ -79,4 +80,4 @@ function Adm_Home() {
   );
 }
 
-export default Adm_Home;
+export default Cadastro_Curso_adm;
