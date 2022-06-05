@@ -34,7 +34,6 @@ import CadastrarTrilha from 'pages/Cadastrar_Trilha'
 import EditarModulo from 'pages/Editar_modulo'
 import Cadastro_Curso_adm from 'pages/Cadastro_Curso_adm';
 import Todos_Cursos from 'pages/Todos_Cursos';
-import Teste from 'pages/Modulo_Tela';
 import ModuloTela from 'pages/Modulo_Tela';
 
 function Routes() {
