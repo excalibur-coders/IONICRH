@@ -5,7 +5,6 @@
 <p align="center">
   <a href ="#o-projeto"> Projeto </a>  • 
   <a href ="#dart-proposta"> Proposta </a>  • 
-  <a href ="#mapa-mental-do-produto"> Mapa Mental do Produto </a>  • 
   <a href ="#calendar-cronograma-das-entregas"> Cronograma das Entregas </a>  • 
   <a href ="#-tecnologias-utilizadas"> Tecnologias Utilizadas </a>  • 
   <a href ="#backlog-do-produto">Backlog do Produto </a>  •
