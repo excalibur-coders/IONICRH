@@ -24,44 +24,37 @@ import * as S from './style';
 import { api } from 'services/api';
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Consultor_nav from 'components/Consultor_nav';
 
-interface IFuncionarios {
-  user_id: string;
+interface ITrilha {
+  trilha_id: number;
+  trilha_nome: string;
+  junto: IUser[];
+  juntos: ICurso[];
+}
+interface ICurso {
+  curso_id: number;
+  curso_nome: string;
+}
+
+interface IUser {
   user_nome: string;
-  contrato: IContrato[];
-  dep_name: IDepartamento;
-  cargo_area: ICargo;
   user_email: string;
-}
-
-interface IContrato {
-  contrato_faixa_salarial: number;
-  cargo: ICargo;
-  contrato_matricula: string;
-}
-
-interface IDepartamento {
-  dep_name: string;
-}
-
-interface ICargo {
-  cargo_area: string;
-  departamento: IDepartamento;
 }
 
 function Consultor_Funcionarios() {
   const cookies = parseCookies();
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  const [funcionarios, setFuncionarios] = useState<IFuncionarios[]>([]);
+  const [funcionarios, setFuncionarios] = useState<ITrilha[]>([]);
   const [loading, setLoading] = useState(false);
 
   const getAllFuncionarios = useCallback(() => {
     setLoading(true);
     api
-      .get('/user/listagen-user', {
+      .get(`/curso/ver-trilhas/${id}`, {
         headers: {
           Authorization: `Bearer ${cookies['ionicookie.token']}`,
         },
@@ -122,18 +115,27 @@ function Consultor_Funcionarios() {
                   <Thead>
                       <Tr>
                         <Th fontSize="2xl" fontWeight="bold">Nome</Th>
-                        <Th fontSize="2xl" fontWeight="bold">Matricula</Th>
-                        <Th fontSize="2xl" fontWeight="bold">Email</Th>
-                        <Th fontSize="2xl" fontWeight="bold">Trilha</Th>
+                        <Th fontSize="2xl" fontWeight="bold">E-mail</Th>
+                        <Th fontSize="2xl" fontWeight="bold">Progresso</Th>
                       </Tr>
                     </Thead>
-                    {funcionarios.map(funcionario => {
-                      //console.log('bom dia', funcionario);
+                    {funcionarios.map((funcionario) => {
+                      funcionario.junto.map((user) => {
+                        return (
+                          <Tr key={user.user_nome} className="TBody_2">
+                            <Td className="TBody_2" fontSize="md">
+                              {user.user_nome}
+                            </Td>
+                          </Tr>)
+                      })
+                    })}
+{/*                     {funcionarios.map(funcionario => {
                       return (
                         <>
                           <Tr className="TBody_2">
                             <Td className="TBody_2" fontSize="md">
-                              {funcionario.user_nome}
+                              {funcionario.junto.map(user =>
+                                user.user_nome)}
                             </Td>
                             <Td className="TBody_2">
                               {funcionario.contrato?.[0]?.contrato_matricula
@@ -147,7 +149,7 @@ function Consultor_Funcionarios() {
                             </Td>
                             <Td className="TBody_2">
                               <Link
-                                href={`CURSOTELA/${funcionario.user_id}`}
+                                href={`CURSOTELA/${funcionario.userUserId}`}
                                 fontSize="xl"
                                 color={theme.colors.primary}
                               >
@@ -160,7 +162,7 @@ function Consultor_Funcionarios() {
                           </Tr>
                         </>
                       );
-                    })}
+                    })} */}
                   </Tbody>
                 </div>
               </Table>

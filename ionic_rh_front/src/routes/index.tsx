@@ -34,6 +34,7 @@ import CadastrarTrilha from 'pages/Cadastrar_Trilha'
 import EditarModulo from 'pages/Editar_modulo'
 import Teste from 'pages/Curso_Tela/teste';
 import Cadastro_Curso_adm from 'pages/Cadastro_Curso_adm';
+import Todos_Cursos from 'pages/Todos_Cursos';
 
 function Routes() {
   return (
@@ -62,7 +63,7 @@ function Routes() {
       <Route path="/Consultor" element={<Consultor />} />
       <Route path="/Consultor_home" element={<Consultor_Home />} />
       <Route path="/Cadastrar_curso" element={<Cadastrar_Curso />} />
-      <Route path="/Consultor_Funcionarios" element={<Consultor_Funcionarios />} />
+      <Route path="/Consultor_Funcionarios/:id" element={<Consultor_Funcionarios />} />
       {/* <Route path="/Organograma" element={<Org />} /> */}
       <Route path="/Organograma/:dep" element={<Org />} />
       <Route path="/Adm_home" element={<Adm_Home />} />
@@ -75,6 +76,7 @@ function Routes() {
       <Route path="/curso_trilha/" element={<CadastrarCursoTrilha />} />
       <Route path="/user_trilha/" element={<CadastrarUserTrilha />} />
       <Route path="/cadastro_curso_adm/" element={<Cadastro_Curso_adm />} />
+      <Route path="/cursos/" element={<Todos_Cursos />} />
     </RoutesWrapper>
     // </BrowserRouter>
   );

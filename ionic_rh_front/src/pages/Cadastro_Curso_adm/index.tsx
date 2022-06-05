@@ -6,6 +6,8 @@ import {
   MdOutlinePeopleAlt,
   MdOutlineApartment,
   MdVideoLibrary,
+  MdDesignServices,
+  MdOutlineVideoSettings,
 } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
@@ -38,7 +40,7 @@ function Cadastro_Curso_adm() {
                     <a>
                       <Link to={'/curso_trilha'}>
                         <span className="icon">
-                          <MdOutlineApartment size="40px" />
+                          <MdDesignServices size="40px" />
                         </span>
                         <span className="tittle">Trilhas</span>
                       </Link>
@@ -52,7 +54,7 @@ function Cadastro_Curso_adm() {
                     <a>
                       <Link to={'/criar_modulos'}>
                         <span className="icon">
-                          <MdOutlinePeopleAlt size="40px" />
+                          <MdMenuBook size="40px" />
                         </span>
                         <span className="tittle">Módulos</span>
                       </Link>
@@ -62,7 +64,7 @@ function Cadastro_Curso_adm() {
                     <a>
                       <Link to={'/modulo_docs'}>
                         <span className="icon">
-                          <MdMenuBook size="40px" />
+                          <MdOutlineVideoSettings size="40px" />
                         </span>
                         <span className="tittle">Contéudo cursos</span>
                       </Link>
