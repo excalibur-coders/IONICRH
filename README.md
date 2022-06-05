@@ -5,7 +5,6 @@
 <p align="center">
   <a href ="#o-projeto"> Projeto </a>  • 
   <a href ="#dart-proposta"> Proposta </a>  • 
-  <a href ="#mapa-mental-do-produto"> Mapa Mental do Produto </a>  • 
   <a href ="#calendar-cronograma-das-entregas"> Cronograma das Entregas </a>  • 
   <a href ="#-tecnologias-utilizadas"> Tecnologias Utilizadas </a>  • 
   <a href ="#backlog-do-produto">Backlog do Produto </a>  •
@@ -34,6 +33,7 @@
 > **Requisitos não Funcionais**
 - ![feito](./docs/readme/check.jpeg) Linguagens NodeJS, TypeScript, Javascript;
 - ![feito](./docs/readme/check.jpeg) Banco de Dados Relacional;
+- ![feito](./docs/readme/check.jpeg) Desenho da arquitetura da solução;
 - ![feito](./docs/readme/check.jpeg) Manual do usuário para navegação.
 
 <br>
@@ -47,7 +47,7 @@
 - ![feito](./docs/readme/check.jpeg) [SPRINT 3](https://github.com/excalibur-coders/IONICRH/releases/tag/sprint3) - 16/05/2022 a 05/06/2022
 
 
-> Status do Projeto: Em andamento
+> Status do Projeto: Concluído
 
 <br>
 
@@ -62,12 +62,15 @@
 
 ## 💻 Tecnologias Utilizadas
 
-![Tecnologias](https://user-images.githubusercontent.com/80925387/167985230-3fe735ad-4843-4adb-84a7-a62d84da1939.png)
+![Tecnologias](https://user-images.githubusercontent.com/80925387/172054656-36119ea5-cb9b-4042-8564-0765f594ee79.png)
+
+
 
 
 - **Banco de Dados:** MySQL;
 - **Back-end:** NodeJS, JWT Jason Web Token, AWS;
 - **Front-end:** HTML, CSS, JavaScript, ChackaUi, React, Typescript;
+- **Deploy:** Heroku, Vercel;
 - **Ferramentas:** Visual Studio Code, Jira, Miro, Canva, Trello, Git e Github;
 - **Metodologia Utilizada:** Metodologia Ágil | SCRUM
 
@@ -75,7 +78,9 @@
 <br>
 
 ## Backlog do Produto
-![backlog das sprints](https://user-images.githubusercontent.com/80925387/168347328-0af2a14f-f963-4218-b9a9-bb150b5396f3.png)
+![Backlog do Produto](https://user-images.githubusercontent.com/80925387/172054810-1a668f26-35cc-4353-ab1d-3aece45fc4ea.png)
+
+
 
 
 <br>
@@ -154,7 +159,6 @@ npm start / yarn dev
 | **Priscila Silva**   | Product Owner  | [@LinkedIn](https://www.linkedin.com/in/priscilasilva1801/)                   | [@GitHub](https://github.com/prsilva)         | ![Priscila](./docs/readme/equipe/priscila.jpg) |
 | **Taís Salomão**     | Desenvolvedora | [@LinkedIn](https://www.linkedin.com/in/tais-salomao/)                        | [@GitHub](https://github.com/taissalomao)     | ![Tais](./docs/readme/equipe/tais.jpg)         |
 | **Kevin Mirenda**    | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/kevin-mirenda-a54a64220)              | [@GitHub](https://github.com/KevinFMfatec)    | ![Kevin](./docs/readme/equipe/kevin.jpg)       |
-| **Rafael Lopes**     | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/rafael-leonardo-lopes/)               | [@GitHub](https://github.com/Rafael-leonardo) | ![Rafael](./docs/readme/equipe/rafael.jpg)     |
 | **Lucas Costa**      | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/lucas-costa-a49a01219/)               | [@GitHub](https://github.com/ddaiwon)         | ![Lucasc](./docs/readme/equipe/lucasc.jpg)     |
 | **Gabriel Souza**    | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/gabriel-souza-bicho-nunes-429191185/) | [@GitHub](https://github.com/ZeroPirata)      | ![Gabriel](./docs/readme/equipe/gabriel.jpg)   |
 | **Vinicius Andrade** | Desenvolvedor  | [@LinkedIn](https://www.linkedin.com/in/vin%C3%ADcius-barbosa-78111a206/)     | [@GitHub](https://github.com/ViniciusAndBar)  | ![Vinicius](./docs/readme/equipe/vinicius.jpg) |
