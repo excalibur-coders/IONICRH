@@ -23,6 +23,6 @@ const s3 = {
 export default {
     storage: s3["s3"],
     limits: {
-        fileSize: 10 * 1024 * 1024,
+        fileSize: 100 * 1024 * 1024,
     },
 }

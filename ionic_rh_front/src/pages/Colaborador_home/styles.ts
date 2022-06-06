@@ -39,17 +39,21 @@ export const Container = styled(Flex)`
 
     .course {
       margin: auto;
-      width: 60vw;
+      width: 50vw;
       height: 15rem;
       display: flex;
       align-items: center;
       border-radius: 30px;
       background: ${theme.colors.secundary};
       color: ${theme.colors.font};
-      justify-content: space-between;
+      justify-content: center;
 
       .leftcourse {
         margin-left: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
 
         height: 100%;
         top: 0px;
@@ -59,19 +63,18 @@ export const Container = styled(Flex)`
           font-size: 50px;
         }
 
-        h2 {
+        a {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           margin-top: 10px;
           font-size: 25px;
         }
-      }
 
-      .rightcourse {
-        margin-right: 15px;
-        display: flex;
-        align-items: center;
-
-        h1 {
-          font-size:35px;
+        a:hover{
+          cursor: pointer;
+          color: #000000;
+          transition: 0.3s ease-in-out;
         }
       }
     }
@@ -86,10 +89,12 @@ export const Container = styled(Flex)`
 
       .perfil_s {
         width: 100%;
-        height: 50%;
+        height: 100%;
         border-radius: 30px 30px 0px 0px;
         display: flex;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
 
         h1 {
           margin: auto;
@@ -97,19 +102,10 @@ export const Container = styled(Flex)`
           font-size: 45px;
           color: ${theme.colors.font};
         }
-      }
 
-      .perfil_i {
-        width: 100%;
-        height: 50%;
-        border-radius: 0px 0px 30px 30px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        h1 {
-          font-size: 25px;
-          color: ${theme.colors.font};
+        a Button{
+          display: flex;
+          margin: auto;
         }
       }
     }
@@ -168,14 +164,6 @@ export const Container = styled(Flex)`
           h2 {
             font-size: 20px;
             text-align: center;
-          }
-        }
-
-        .rightcourse {
-          margin: auto;
-
-          h1 {
-            font-size: 30px;
           }
         }
       }

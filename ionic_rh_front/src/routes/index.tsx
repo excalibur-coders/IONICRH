@@ -36,6 +36,7 @@ import EditarModulo from 'pages/Editar_modulo'
 import ModuloCurso from 'pages/Modulo_Tela';
 import Cadastro_Curso_adm from 'pages/Cadastro_Curso_adm';
 import Todos_Cursos from 'pages/Todos_Cursos';
+import ModuloTela from 'pages/Modulo_Tela';
 
 function Routes() {
   return (
@@ -79,6 +80,8 @@ function Routes() {
       <Route path="/user_trilha/" element={<CadastrarUserTrilha />} />
       <Route path="/cadastro_curso_adm/" element={<Cadastro_Curso_adm />} />
       <Route path="/cursos/" element={<Todos_Cursos />} />
+      <Route path="/curso_modulos/:id" element={<ModuloTela />} />
+
     </RoutesWrapper>
     // </BrowserRouter>
   );

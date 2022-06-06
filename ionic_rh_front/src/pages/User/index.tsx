@@ -13,10 +13,9 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import { api } from 'services/api';
-
+import perfil_funcionarioPDF from 'utils/Gerar_pdf';
 import { parseCookies } from 'nookies';
 
-// console.log(theme.colors.primary);
 
 interface IUser {
   user_id: number;
@@ -139,6 +138,7 @@ function User() {
   // const {user} = useContext(AuthContext)
   const cookies = parseCookies();
   const [user, setUser] = useState<IUser>();
+  const [usuario_perfil, setUsuario_pdf] = useState([]);
   const [loading, setLoading] = useState(false);
   const { id, docs_id } = useParams();
   const navigate = useNavigate();
@@ -224,13 +224,14 @@ function User() {
         <div className="Wrapper">
           <div className="centerWrapper">
             <div className="leftWrapper">
-              {/* <div className="foto"> */}
-              <img
-                className="foto"
-                src={user?.docsavatar[0].avatar_url}
-                alt="profile picture"
-              />
-              {/* </div> */}
+              {user?.docsavatar[0]?.avatar_url ?
+                <img
+                  className="foto"
+                  src={user?.docsavatar[0].avatar_url}
+                  alt="profile picture"
+                />
+                : <div className="foto" />
+              }
 
               <div className="User">
                 <h1>{user?.user_nome}</h1>
@@ -240,8 +241,12 @@ function User() {
               </div>
 
               <div className="pdf">
-                <h2>Gerar PDF</h2>
-                <MdOutlinePictureAsPdf size="10%" color={theme.colors.red} />
+              <Button
+                text='Gerar PDF'
+                onClick={(e) => perfil_funcionarioPDF(user)}
+                color={theme.colors.red}
+              />
+
               </div>
             </div>
 
