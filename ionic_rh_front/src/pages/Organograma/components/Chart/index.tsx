@@ -37,7 +37,7 @@ interface INodeChart {
   id: number;
   pid?: number;
   name: string;
-  // cargo: string;
+  cargo?: string;
 }
 
 function Card({ depName }: ICardProps) {
@@ -79,9 +79,11 @@ function Card({ depName }: ICardProps) {
       });
   }, []);
 
+  const indexDep = depName === 'ti' ? 3 : depName === 'marketing' ? 2 : 1;
+
   const getHeadInfo = useCallback(() => {
     api
-      .get(`/user/usuario-perfil/${organograma?.[2].cargo[0].headID}`, {
+      .get(`/user/usuario-perfil/${organograma?.[indexDep].cargo[0].headID}`, {
         headers: {
           Authorization: `Bearer ${cookies['ionicookie.token']}`,
         },
@@ -92,13 +94,13 @@ function Card({ depName }: ICardProps) {
       .catch(error => {
         console.log(error);
       });
-  }, [organograma?.[0]?.dep_id]);
+  }, [organograma?.[0].dep_id]);
 
   useEffect(() => {
     getOrganograma();
     getHeadInfo();
 
-  }, [organograma?.[0]?.dep_id]);
+  }, [getHeadInfo, getOrganograma]);
 
   useEffect(() => {
     // eslint-disable-next-line no-var
@@ -107,19 +109,26 @@ function Card({ depName }: ICardProps) {
     if (head)
       nodeChart = [{
         id: 1,
-        name: head.user_nome
+        name: head.user_nome,
+        cargo: 'Head'
       }]
 
-    organograma?.[2].cargo.forEach((element, index) => {
-      element.contrato.forEach((element2) => {
+    organograma?.[indexDep].cargo.forEach((element, index) => {
+      element.contrato.forEach((element2, index2) => {
         nodeChart.push({
           id: index + 2,
           pid: element.cargo_valor,
           name: element2.user.user_nome,
-          // cargo: element.cargo_area
+          cargo: element?.cargo_area
         })
       })
     });
+
+    nodeChart.forEach((item, index) => {
+        item.id = index + 1;
+    });
+
+    console.log(organograma)
 
     console.log("node: ", nodeChart);
 
@@ -127,9 +136,10 @@ function Card({ depName }: ICardProps) {
       nodes: nodeChart,
       nodeBinding: {
         field_0: "name",
+        field_1: "cargo",
       }
     })
-  }, [divRef, head, organograma]);
+  }, [head, organograma]);
 
 
   return (
