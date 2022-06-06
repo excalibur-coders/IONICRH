@@ -26,6 +26,7 @@
     "js-cookie": "^3.0.1",
     "json-server": "^0.17.0",
     "nookies": "^2.5.2",
+    "pdfmake": "^0.2.5",
     "randomcolor": "^0.6.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
