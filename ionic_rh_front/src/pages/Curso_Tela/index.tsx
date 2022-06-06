@@ -15,10 +15,10 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from '@chakra-ui/react';
+import { AuthContext } from 'hooks/useAuth';
 import Footer from 'components/Footer';
 import { BsClipboardCheck } from 'react-icons/bs';
 import { MdMenuBook } from 'react-icons/md';
-import { AuthContext } from 'hooks/useAuth';
 
 interface ITrilha {
   trilha_id: number;

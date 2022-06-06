@@ -26,6 +26,7 @@ import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import Consultor_nav from 'components/Consultor_nav';
+import RespBar_adm from 'components/Respbar_adm';
 
 interface ITrilha {
   trilha_id: number;
@@ -78,7 +79,7 @@ function Consultor_Funcionarios() {
   return (
     <>
       <div>
-        <Consultor_nav/>
+        <Consultor_nav />
       </div>
 
       <S.Container>
@@ -88,20 +89,11 @@ function Consultor_Funcionarios() {
           <div className="container1">
             <HStack className="search">
               <Box fontSize="4xl" fontWeight="bold">
-                Funcionários
+                Participantes
               </Box>
-              <Box>
-                <InputGroup>
-                  {/* eslint-disable-next-line react/no-children-prop */}
-                  <InputLeftElement children={<SearchIcon w={5} h={5} />} />
-                  <Input
-                    fontSize={20}
-                    size="lg"
-                    width="50vw"
-                    placeholder="       Pesquisar"
-                    labelText={''}
-                  />
-                </InputGroup>
+              <Box w="100px" fontSize={20}>
+                <ArrowBackIcon w={7} h={7} />
+                <button onClick={() => navigate('/Consultor_home')}>Voltar</button>
               </Box>
             </HStack>
           </div>

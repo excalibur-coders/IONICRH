@@ -108,9 +108,6 @@ function Todos_Cursos() {
       </div>
 
       <S.Container>
-        <div className="sidebar">
-          <Sidemenu />
-        </div>
 
         <div className="input">
           <br></br>
@@ -126,22 +123,6 @@ function Todos_Cursos() {
               <Box fontSize="4xl" fontWeight="bold">
                 Cursos
               </Box>
-              <Box>
-                <InputGroup>
-                  {/* eslint-disable-next-line react/no-children-prop */}
-                  <InputLeftElement className="marginTop" pointerEvents="none" children={<SearchIcon/>} />
-                  <Input className="padding-left40"
-                    type="search"
-                    //onChange={handleChange}
-                    //value={searchInput}
-                    fontSize={20}
-                    size="lg"
-                    width="50vw"
-                    placeholder="Pesquisar"
-                    labelText={''}
-                  />
-                </InputGroup>
-              </Box>
             </HStack>
           </div>
           <br></br>
@@ -154,6 +135,7 @@ function Todos_Cursos() {
                     <Thead>
                       <Tr>
                         <Th fontSize="2xl" fontWeight="bold">Nome</Th>
+                        <Th fontSize="2xl" fontWeight="bold">Participantes</Th>
                       </Tr>
                     </Thead>
                      {cursos.map(cursos => (
