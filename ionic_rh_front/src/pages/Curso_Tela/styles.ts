@@ -16,13 +16,13 @@ export const Container = styled(Flex)`
     height: 100px;
   }
 
-  footer{
+  /* footer{
     display: flex;
     margin: auto ;
     .css-1mkr8mv h1{
-      font-size: 20px;
+      font-size: 10px;
     }
-  }
+  } */
 
   .buttons_onboard {
     margin-top: 4rem;

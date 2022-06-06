@@ -120,9 +120,9 @@ function Cursos() {
             )}
           </div>
         </main>        
-        <footer>
+       {/*  <footer>
           <Footer />
-        </footer>
+        </footer> */}
       </S.Container>      
     </>
   )
