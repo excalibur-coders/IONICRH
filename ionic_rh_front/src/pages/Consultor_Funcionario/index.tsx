@@ -129,17 +129,14 @@ function Consultor_Funcionarios() {
                             <Td className="TBody_2" fontSize="md">
                               {user.user_email}
                             </Td>
-                            <Td className="TBody_2">
-                              <Link
+                            <Td className="TBody_2 status">
+                              {/* <Link
                                 href={`CURSOTELA/${funcionario.trilha_id}`}
                                 fontSize="xl"
                                 color={theme.colors.primary}
-                              >
-                               Loading
-                                <ArrowForwardIcon
-                                  color={theme.colors.primary}
-                                />
-                              </Link>
+                              > */}
+                               Não iniciado
+                              {/* </Link> */}
                             </Td>
                           </Tr>)
                       })

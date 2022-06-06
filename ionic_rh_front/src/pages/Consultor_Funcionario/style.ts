@@ -36,6 +36,10 @@ export const Container = styled(Flex)`
     justify-content: space-around;
   }
 
+  .status {
+    font-weight: bold;
+  }
+
   @media (max-width: 700px) {
     overflow-x: hidden;
     .container {
