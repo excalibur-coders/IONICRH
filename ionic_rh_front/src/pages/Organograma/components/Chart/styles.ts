@@ -4,6 +4,7 @@ import { Flex, Box } from '@chakra-ui/react';
 import { theme } from 'theme';
 
 export const Container = styled(Flex)`
+  flex: 1;
 
   color: #303030;
 

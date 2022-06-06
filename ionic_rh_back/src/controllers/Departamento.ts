@@ -136,6 +136,7 @@ export const organograma = async (req: Request, res: Response) => {
           .leftJoin('c.contrato','cont')
           .leftJoin('cont.user','u')
           .andWhere("d.dep_id = departamentoDepId", {
+            // dep_id: id
           })
           .andWhere("c.cargo_id = cargoCargoId")
           .andWhere("cont.userUserId = user_id")
@@ -145,4 +146,3 @@ export const organograma = async (req: Request, res: Response) => {
       res.json(error)
   }
 }
-

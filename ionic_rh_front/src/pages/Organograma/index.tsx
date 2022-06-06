@@ -10,7 +10,6 @@ import LogoGray from 'assets/svg/logo-gray.svg'
 
 export default function App() {
   const { dep } = useParams();
-  console.log(dep);
 
   return (
     <>
@@ -22,9 +21,11 @@ export default function App() {
         <S.CenterContainer>
           <img src={LogoGray} />
           <h3>
-            {dep === 'ti' && (
+            {dep === 'ti' ? (
               'IT Infrastructure Ops'
-            )}
+            ) : dep === 'marketing' ? (
+              'Marketing Institucional'
+            ) : 'Administrative & Financial'}
           </h3>
           <Chart depName={dep} />
         </S.CenterContainer>

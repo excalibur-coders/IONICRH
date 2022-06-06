@@ -224,13 +224,14 @@ function User() {
         <div className="Wrapper">
           <div className="centerWrapper">
             <div className="leftWrapper">
-              {/* <div className="foto"> */}
-              <img
-                className="foto"
-                src={user?.docsavatar[0].avatar_url}
-                alt="profile picture"
-              />
-              {/* </div> */}
+              {user?.docsavatar[0]?.avatar_url ?
+                <img
+                  className="foto"
+                  src={user?.docsavatar[0].avatar_url}
+                  alt="profile picture"
+                />
+                : <div className="foto" />
+              }
 
               <div className="User">
                 <h1>{user?.user_nome}</h1>

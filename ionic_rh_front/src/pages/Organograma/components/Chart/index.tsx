@@ -1,12 +1,11 @@
-import { Tree, TreeNode } from 'react-organizational-chart';
 import styled from '@emotion/styled';
-
 import * as S from './styles';
 import { parseCookies } from 'nookies';
 import { useNavigate } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, createRef, useRef } from 'react';
 import { api } from 'services/api';
 import { AxiosError } from 'axios';
+import OrgChart from '@balkangraph/orgchart.js';
 /* http://localhost:5000/departamentos/organograma */
 
 interface IDep {
@@ -34,6 +33,13 @@ interface ICardProps {
   depName?: string;
 }
 
+interface INodeChart {
+  id: number;
+  pid?: number;
+  name: string;
+  cargo?: string;
+}
+
 function Card({ depName }: ICardProps) {
   const StyledNode = styled.div`
     padding: 5px;
@@ -55,6 +61,8 @@ function Card({ depName }: ICardProps) {
   const cookies = parseCookies();
   const navigate = useNavigate();
   const [organograma, setOrganograma] = useState<IDep[]>();
+  const [head, setHead] = useState<IUser>();
+  const divRef = createRef<string | HTMLElement | any>()
 
   const getOrganograma = useCallback(() => {
     api
@@ -64,7 +72,6 @@ function Card({ depName }: ICardProps) {
         },
       })
       .then(({ data }) => {
-        /* console.log(data); */
         setOrganograma(data);
       })
       .catch((error: Error | AxiosError) => {
@@ -72,12 +79,73 @@ function Card({ depName }: ICardProps) {
       });
   }, []);
 
+  const indexDep = depName === 'ti' ? 3 : depName === 'marketing' ? 2 : 1;
+
+  const getHeadInfo = useCallback(() => {
+    api
+      .get(`/user/usuario-perfil/${organograma?.[indexDep].cargo[0].headID}`, {
+        headers: {
+          Authorization: `Bearer ${cookies['ionicookie.token']}`,
+        },
+      })
+      .then(({ data }) => {
+        setHead(data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, [organograma?.[0].dep_id]);
+
   useEffect(() => {
     getOrganograma();
-  }, [getOrganograma]);
+    getHeadInfo();
+
+  }, [getHeadInfo, getOrganograma]);
+
+  useEffect(() => {
+    // eslint-disable-next-line no-var
+    var nodeChart: INodeChart[] = [];
+
+    if (head)
+      nodeChart = [{
+        id: 1,
+        name: head.user_nome,
+        cargo: 'Head'
+      }]
+
+    organograma?.[indexDep].cargo.forEach((element, index) => {
+      element.contrato.forEach((element2, index2) => {
+        nodeChart.push({
+          id: index + 2,
+          pid: element.cargo_valor,
+          name: element2.user.user_nome,
+          cargo: element?.cargo_area
+        })
+      })
+    });
+
+    nodeChart.forEach((item, index) => {
+        item.id = index + 1;
+    });
+
+    console.log(organograma)
+
+    console.log("node: ", nodeChart);
+
+    new OrgChart(divRef.current, {
+      nodes: nodeChart,
+      nodeBinding: {
+        field_0: "name",
+        field_1: "cargo",
+      }
+    })
+  }, [head, organograma]);
+
+
   return (
     <S.Container>
-      {organograma?.map((org, i) => (
+      <div ref={divRef}></div>
+      {/* {organograma?.map((org, i) => (
         <>
           {depName === 'ti'
           && org.dep_name === 'IT Infrastructure Ops'
@@ -184,7 +252,7 @@ function Card({ depName }: ICardProps) {
         </Tree >
         </> : <></> }
         </>
-      ))}
+      ))} */}
     </S.Container >
   );
 }

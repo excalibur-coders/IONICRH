@@ -34,7 +34,6 @@ function CriarConta() {
   const [errorMessage, setErrorMessage] = useState('');
 
   const onSubmit = useCallback(async (data: InputsProps) => {
-    console.log(data);
     if (data.password === data.passwordConfirmation) {
       await api
         .post<InputsProps>('/user/cadastro', {
@@ -51,7 +50,7 @@ function CriarConta() {
     } else {
       setErrorMessage('Senhas Divergentes');
     }
-  }, []);
+  }, [navigate]);
 
   const schema = yup
     .object({
