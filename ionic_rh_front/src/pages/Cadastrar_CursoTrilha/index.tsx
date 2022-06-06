@@ -79,6 +79,7 @@ function CadastrarCursoTrilha() {
         },
       })
       .then(({ data }) => {
+        alert("Curso adicionado a trilha com sucesso!");
         /*  */
       })
       .catch((error: Error | AxiosError) => {

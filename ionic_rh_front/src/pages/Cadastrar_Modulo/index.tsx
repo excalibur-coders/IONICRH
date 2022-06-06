@@ -38,6 +38,7 @@ function CadastrarCursoModulo() {
         },
       })
       .then(({ data }) => {
+        alert("Módulo cadastrado com sucesso!");
         /*  */
       })
       .catch((error: Error | AxiosError) => {

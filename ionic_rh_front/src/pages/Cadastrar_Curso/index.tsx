@@ -35,6 +35,7 @@ function Cadastrar_Curso() {
         },
       })
       .then(({ data }) => {
+        alert("Curso cadastrado com sucesso!")
         /*  */
       })
       .catch((error: Error | AxiosError) => {

@@ -115,7 +115,7 @@ function CadastrarUserTrilha() {
           <Consultor_nav />
         </header>
         <main>
-          <h1>Colaborador🤝Trilha</h1>
+          <h1>Colaborador Trilha</h1>
           <form onSubmit={handleSubmit(adicionarTrilhaUser)}>
             <Select
               placeholder={

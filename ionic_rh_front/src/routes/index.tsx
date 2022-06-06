@@ -29,9 +29,11 @@ import Consultor_Funcionarios from 'pages/Consultor_Funcionario';
 import CadastrarCursoModulo from 'pages/Cadastrar_Modulo'
 import CadastrarCursoTrilha from 'pages/Cadastrar_CursoTrilha'
 import CadastrarUserTrilha from 'pages/Cadastrar_UserTrilha'
-import CadastrarDocumentosModulo from 'pages/Cadastrar_DocsModulo'
+// import CadastrarDocumentosModulo from 'pages/Cadastrar_DocsModulo'
+import InserirDocsModulos from 'pages/InserirDocsModulos'
 import CadastrarTrilha from 'pages/Cadastrar_Trilha'
 import EditarModulo from 'pages/Editar_modulo'
+import ModuloCurso from 'pages/Modulo_Tela';
 import Cadastro_Curso_adm from 'pages/Cadastro_Curso_adm';
 import Todos_Cursos from 'pages/Todos_Cursos';
 import ModuloTela from 'pages/Modulo_Tela';
@@ -68,7 +70,9 @@ function Routes() {
       <Route path="/Organograma/:dep" element={<Org />} />
       <Route path="/Adm_home" element={<Adm_Home />} />
       <Route path="/Curso_Tela/:id" element={<Cursos />} />
-      <Route path="/modulo_docs/:id" element={<CadastrarDocumentosModulo />} />
+      <Route path="/curso_modulos/:id" element={<ModuloCurso />} />
+      {/* <Route path="/modulo_docs/:id" element={<CadastrarDocumentosModulo />} /> */}
+      <Route path="/modulo_docs" element={<InserirDocsModulos />} />
       <Route path="/editar_modulo/:id" element={<EditarModulo />} />
       <Route path="/criar_modulos/" element={<CadastrarCursoModulo />} />
       <Route path="/criar_trilha/" element={<CadastrarTrilha />} />

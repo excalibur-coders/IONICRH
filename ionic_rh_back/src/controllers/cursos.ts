@@ -43,7 +43,7 @@ export const findModulosId = async (req: Request, res: Response) => {
                 docs_curso: true
             },
             where: {
-                modulo_id: Number(id)
+                cursoCursoId: Number(id)
             }
         })
         res.json(find)
