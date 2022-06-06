@@ -186,7 +186,7 @@ function Colab_user() {
                 </div>
                 <div className="coluna">
                   <div className="coluna1">
-                    <span>Cargo: {user?.contrato?.[0].cargo.cargo_area}</span>
+                    <span>Cargo: {user?.contrato?.[0]?.cargo.cargo_area}</span>
                     <span>RG:{user?.user_rg}</span>
                     <span>CPF:{user?.user_cpf} </span>
                     <span>
@@ -196,7 +196,7 @@ function Colab_user() {
                     user?.documentos?.map(docs => docs.docs_header*/}
                     <span>
                       Departamento:{' '}
-                      {user?.contrato?.[0]?.cargo.departamento?.dep_name}
+                      {user?.contrato?.[0]?.cargo?.departamento?.dep_name}
                     </span>
                   </div>
                 </div>
@@ -245,7 +245,7 @@ function Colab_user() {
                     de trabalhos e outros.
                   </h3>
                 </div>
-                <h4>Cursos realizados:</h4>
+                <h4>Minhas Trilhas:</h4>
                 <div className="buttons_onboard">
                   {user?.junto?.map(Trilha => {
                     return (

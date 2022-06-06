@@ -6,6 +6,7 @@ import {
   MdOutlinePeopleAlt,
   MdOutlineApartment,
   MdSchema,
+  MdVideoLibrary,
 } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
@@ -26,11 +27,11 @@ function Adm_Home() {
                 <ul>
                   <li>
                     <a>
-                      <Link to={'/Cargos'}>
+                      <Link to={'/cadastro_curso_adm'}>
                         <span className="icon">
-                          <MdOutlineBusinessCenter size="40px" />
+                          <MdVideoLibrary size="40px" />
                         </span>
-                        <span className="tittle">Cargos</span>
+                        <span className="tittle">Cursos</span>
                       </Link>
                     </a>
                   </li>
@@ -60,7 +61,7 @@ function Adm_Home() {
                   </li>
                   <li>
                     <a>
-                      <Link to={'/Organograma/ti'}>
+                      <Link to={'/Organograma/marketing'}>
                         <span className="icon">
                           <MdSchema size="40px" />
                         </span>

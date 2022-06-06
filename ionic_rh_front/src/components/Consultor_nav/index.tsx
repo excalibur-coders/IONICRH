@@ -14,16 +14,16 @@ function Consultor_nav() {
   const { signOut } = useContext(AuthContext);
   return (
     <S.Navbar>
-      <a href="/Colab_home">
+      <a href="/Consultor_home">
         <img src={logo} />
       </a>
       <S.Navlist>
         <ul className={`nav_menu ${isOpen && 'open'}`}>
           <li className="nav_item">
-            <a href="/Colab_home">Home</a>
+            <a href="/Consultor_home">Home</a>
           </li>
           <li className="nav_item0">
-            <a href="/Colab_user">Perfil</a>
+            <a href="/Consultor_user">Perfil</a>
           </li>
           <li className="nav_item0">
             <a href="">Sair</a>
@@ -44,7 +44,7 @@ function Consultor_nav() {
             as={MdAccountCircle}
             color={theme.colors.font}
             onClick={() => {
-              navigate('/Colab_user');
+              navigate('/Consultor_user');
             }}
           />
           <Button

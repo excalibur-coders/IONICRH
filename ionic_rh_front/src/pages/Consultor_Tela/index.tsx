@@ -37,7 +37,7 @@ function Consultor({
               </h1>{' '}
               {/*passar esse valor pra baixo com {valueGeralObrigatorio} ou do jeito que escolherem posteriormente (na hr de integrar)*/}
               <div className="test">
-                <Progress value={80} colorScheme="green" size="lg" />
+                <Progress value={80} colorScheme="blue" size="lg" />
               </div>
             </div>
 
@@ -45,7 +45,7 @@ function Consultor({
               <h1>Trilha de aprendizado geral: {`${valueGeral}%`}</h1>{' '}
               {/*passar esse valor pra baixo com {valueGeral}*/}
               <div className="test">
-                <Progress value={80} colorScheme="green" size="lg" />
+                <Progress value={80} colorScheme="blue" size="lg" />
               </div>
             </div>
           </div>

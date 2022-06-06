@@ -11,6 +11,9 @@ import { idiomas } from "./user_idioma";
 import { trilha } from "./trilha";
 import { telefone } from "./user_telefone";
 import { empresa_PJ } from "./emp_pj";
+import { pesquisadesligamento } from "./pesquisa_desligamento";
+import { videoConclusao } from "./video";
+import { moduloConclusao } from "./modulos";
 
 
 
@@ -124,6 +127,10 @@ export class user {
 
     @OneToMany(() => documentos, (docs) => docs.user)
     docs!: documentos
+
+    @OneToMany(() => pesquisadesligamento, (desligamento) => desligamento.user)
+    desligamento!: documentos
+    
     @OneToMany(() => documentosAvatar, (docsavatar) => docsavatar.user)
     docsavatar!: documentosAvatar
 
@@ -139,12 +146,18 @@ export class user {
     @OneToMany(() => contrato, (contrato) => contrato.user)
     contrato!: contrato
 
-    @OneToMany(() => trilha, (trilha) => trilha.user)
-    trilhas!: trilha
+    /* @OneToMany(() => trilha, (trilha) => trilha.user)
+    trilhas!: trilha */
+
+    @OneToMany(() => videoConclusao, (concluiu) => concluiu.user)
+    concluiu!: videoConclusao
+
+    @OneToMany(() => moduloConclusao, (concluiuModulo) => concluiuModulo.user)
+    concluiuModulo!: moduloConclusao
 
     @ManyToMany(() => trilha, (trilha) => trilha.junto)
     junto!: trilha
-    
-    @ManyToMany(() => empresa_PJ, (emp_pj) => emp_pj.user)
+
+    @OneToMany(() => empresa_PJ, (emp_pj) => emp_pj.user)
     emp_pj!: empresa_PJ
 }

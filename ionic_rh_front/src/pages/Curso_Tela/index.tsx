@@ -1,9 +1,9 @@
 import { theme } from 'theme';
 import * as S from './styles';
 import RespBar from 'components/RespBar';
-import { AspectRatio, Box } from '@chakra-ui/react'
+import { AspectRatio, Box, Button } from '@chakra-ui/react'
 import { useNavigate, useParams } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
 import { api } from 'services/api';
@@ -15,6 +15,10 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from '@chakra-ui/react';
+import { AuthContext } from 'hooks/useAuth';
+import Footer from 'components/Footer';
+import { BsClipboardCheck } from 'react-icons/bs';
+import { MdMenuBook } from 'react-icons/md';
 
 interface ITrilha {
   trilha_id: number;
@@ -45,6 +49,7 @@ interface IModulo {
 
 function Cursos() {
   const cookies = parseCookies();
+  const { user } = useContext(AuthContext);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -67,22 +72,46 @@ function Cursos() {
 
   useEffect(() => {
     getAllCursos();
-  }, [getAllCursos]);
+  }, []);
   return (
     <>
       <S.Container>
         <RespBar />
         <main>
-          <div className='position'>
+          <h1>Cursos</h1>
+          <div className='buttons_onboard'>
             {trilha.map(trilha => {
               return (
                 trilha.juntos.map(curso => {
+                  {
+                    if (user?.user_role == "Administrador") {
+                      return (
+                        <>
+                          <Link key={curso.curso_id} onClick={() => {
+                            navigate(`/curso_modulos/${curso.curso_id}`);
+                          }}>{curso.curso_nome}
+                          </Link>
+                          <Link onClick={() => {
+                            navigate(`/modulo_docs/${curso.curso_id}`);
+                          }} >Editar</Link>
+                        </>
+                      )
+                    }
+                  }
                   return (
                     <>
+                      <div>
                       <Link key={curso.curso_id} onClick={() => {
                         navigate(`/curso_modulos/${curso.curso_id}`);
-                      }}>{curso.curso_nome}
+                      }}>
+                      <Button
+                        className="button"
+                        as={MdMenuBook}
+                        color={theme.colors.font}
+                      ></Button>
+                      <small key={curso.curso_nome}>{curso.curso_nome}</small>
                       </Link>
+                      </div>
                     </>
                   )
                 })
@@ -90,8 +119,11 @@ function Cursos() {
             }
             )}
           </div>
-        </main>
-      </S.Container>
+        </main>        
+       {/*  <footer>
+          <Footer />
+        </footer> */}
+      </S.Container>      
     </>
   )
 }

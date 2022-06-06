@@ -34,7 +34,6 @@ function CriarConta() {
   const [errorMessage, setErrorMessage] = useState('');
 
   const onSubmit = useCallback(async (data: InputsProps) => {
-    console.log(data);
     if (data.password === data.passwordConfirmation) {
       await api
         .post<InputsProps>('/user/cadastro', {
@@ -51,7 +50,7 @@ function CriarConta() {
     } else {
       setErrorMessage('Senhas Divergentes');
     }
-  }, []);
+  }, [navigate]);
 
   const schema = yup
     .object({
@@ -125,7 +124,7 @@ function CriarConta() {
                   </Checkbox>
                   <span>
                     <a
-                      href="https://drive.google.com/file/d/1O0X_nWpQNx6Ka04z5zO-e996vMypEFMI/view"
+                      href="https://drive.google.com/file/d/1exIBPJ14q5krtrKdl-pAauA728TNph2Q/view?usp=sharing"
                       target="_blank"
                       rel="noreferrer"
                     >

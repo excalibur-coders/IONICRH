@@ -2,54 +2,34 @@ import RespBar from 'components/RespBar';
 import { useContext } from 'react';
 import {
   MdAccountCircle,
-  MdOutlinePlayCircleOutline,
-  MdArrowForward,
 } from 'react-icons/md';
+import { BsClipboardCheck } from 'react-icons/bs'
 import { theme } from 'theme';
 import * as S from './styles';
-import {
-  RangeSlider,
-  RangeSliderTrack,
-  RangeSliderFilledTrack,
-  RangeSliderThumb,
-} from '@chakra-ui/react';
 import Button from 'components/Button';
 import Footer from 'components/Footer';
-
 import { AuthContext } from 'hooks/useAuth';
+import { Link } from 'react-router-dom';
 
 function Colab_home() {
   const { user } = useContext(AuthContext);
-
   return (
     <>
       <S.Container>
         <RespBar />
         <main>
           <div className="welcome">
+            <div className="text">
             <h1>Olá, {user?.user_nome}</h1>
             <h2>
               É um prazer tê-lo em nossa plataforma <br />
-              Continue sua trilha de aprendizado na empresa
+              Continue/Comece sua trilha de aprendizado na empresa
             </h2>
-          </div>
-
-          <div className="blocs">
-            <div className="course">
-              <div className="leftcourse">
-                <h1>Low Code</h1>
-                <h2>Boas práticas de programação</h2>
-              </div>
-              <div className="rightcourse">
-                <h1>
-                  Continuar <br />
-                  Assistindo
-                </h1>
-                <MdOutlinePlayCircleOutline size="70" />
-              </div>
             </div>
-            <div className="inferior">
-              <section className="perfil">
+          </div>
+          <div className="blocs">
+
+            <section className="perfil">
                 <div className="perfil_s">
                   <div className="foto">
                     <MdAccountCircle size={100} color={theme.colors.font} />
@@ -61,44 +41,19 @@ function Colab_home() {
                     </a>
                   </div>
                 </div>
-                <div className="perfil_i">
-                  <h1>Trilha de aprendizado:</h1>
-                  <RangeSlider
-                    aria-label={['min', 'max']}
-                    colorScheme={theme.colors.secundary}
-                    defaultValue={[0, 10]}
-                  >
-                    <RangeSliderTrack>
-                      <RangeSliderFilledTrack />
-                    </RangeSliderTrack>
-                    <RangeSliderThumb index={0} />
-                    <RangeSliderThumb index={1} />
-                  </RangeSlider>
+              </section>
+
+              <div className="course">
+                <div className="leftcourse">
+                  <h1>Trilha: {user?.junto?.[0].trilha_nome}</h1>
+                  <a>
+                  <Link to={`/Curso_Tela/${user?.junto?.[0].trilha_id}`}><BsClipboardCheck size="70" /><h2>Ver Trilha</h2></Link>
+                  </a>
                 </div>
-              </section>
-              <section className="projeto">
-                <h1> Projetos Recentes</h1>
-                <h2>&quot;Nome projeto&quot;</h2>
-                <h3>&quot;Descrição projeto&quot;</h3>
-                <Button
-                  text="Acessar Projeto"
-                  color={theme.colors.font}
-                ></Button>
-              </section>
-              <section className="others">
-                <h1>Outros Projetos</h1>
-                <h2>Saiba mais</h2>
-                <a href="">
-                  <MdArrowForward
-                    size={70}
-                    color={theme.colors.font}
-                    margin-top={50}
-                  />
-                </a>
-              </section>
             </div>
           </div>
         </main>
+
         <footer>
           <Footer />
         </footer>

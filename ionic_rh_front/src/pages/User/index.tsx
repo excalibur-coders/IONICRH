@@ -10,13 +10,12 @@ import { Divider } from '@chakra-ui/react';
 import fileDownload from 'js-file-download';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 import Button from 'components/Button';
 import { api } from 'services/api';
-
+import perfil_funcionarioPDF from 'utils/Gerar_pdf';
 import { parseCookies } from 'nookies';
 
-// console.log(theme.colors.primary);
 
 interface IUser {
   user_id: number;
@@ -35,10 +34,25 @@ interface IUser {
   escolaridade: IEscolaridade[];
   endereco: IEndereco[];
   contrato: IContrato[];
+  emp_pj: IPj[];
+  desligamento: IDesligamento[];
   user_raca: string;
   user_rg: string;
+  user_role: string;
 }
-
+interface IDesligamento {
+  pesq_id: number;
+  pesq_desligamento: string;
+  pesq_userDesligado: boolean;
+}
+interface IPj {
+  pj_id: number;
+  pj_nome: string;
+  pj_cnjp: string;
+  pj_natureza_juridica: string;
+  pj_fundacao: string;
+  pj_conduta_etica: string;
+}
 interface IIdioma {
   idioma_falados: string;
 }
@@ -74,6 +88,8 @@ interface IEndereco {
 
 interface IContrato {
   cargo: ICargo;
+  contrato_turno: string;
+  contrato_nivel: string;
   contrato_matricula?: string;
   contrato_auxilio_creche?: number;
   contrato_base?: string;
@@ -89,8 +105,8 @@ interface IContrato {
   contrato_vale_alimentacao?: number;
   contrato_vale_refeicao?: number;
   contrato_vale_transporte?: number;
-  contrato_type?: string;
-  contrato_data_adicao?: string;
+  contrato_tipo?: string;
+  contrato_adimissao?: string;
   emp_contratante: IEmpContratante;
 }
 
@@ -110,6 +126,7 @@ interface IDepartamento {
 }
 
 interface IEscolaridade {
+  school_curso: string;
   school_formacao?: string;
   school_status?: string;
   school_instituicao?: string;
@@ -121,9 +138,10 @@ function User() {
   // const {user} = useContext(AuthContext)
   const cookies = parseCookies();
   const [user, setUser] = useState<IUser>();
+  const [usuario_perfil, setUsuario_pdf] = useState([]);
   const [loading, setLoading] = useState(false);
   const { id, docs_id } = useParams();
-
+  const navigate = useNavigate();
   // const getAllUser = useCallback(() => {
   //   setLoading(true);
 
@@ -181,7 +199,7 @@ function User() {
       .catch(error => {
         console.log(error);
       });
-  }, [cookies, id]);
+  }, []);
   /* useEffect(() => {
     // getUserInfo()
     api
@@ -206,13 +224,14 @@ function User() {
         <div className="Wrapper">
           <div className="centerWrapper">
             <div className="leftWrapper">
-              {/* <div className="foto"> */}
-              <img
-                className="foto"
-                src={user?.docsavatar[0].avatar_url}
-                alt="profile picture"
-              />
-              {/* </div> */}
+              {user?.docsavatar[0]?.avatar_url ?
+                <img
+                  className="foto"
+                  src={user?.docsavatar[0].avatar_url}
+                  alt="profile picture"
+                />
+                : <div className="foto" />
+              }
 
               <div className="User">
                 <h1>{user?.user_nome}</h1>
@@ -222,8 +241,12 @@ function User() {
               </div>
 
               <div className="pdf">
-                <h2>Gerar PDF</h2>
-                <MdOutlinePictureAsPdf size="10%" color={theme.colors.red} />
+              <Button
+                text='Gerar PDF'
+                onClick={(e) => perfil_funcionarioPDF(user)}
+                color={theme.colors.red}
+              />
+
               </div>
             </div>
 
@@ -236,7 +259,7 @@ function User() {
 
                   <div className="dadosVoltar">
                     <FaArrowLeft className="seta" size="100%" />
-                    <h2>Voltar</h2>
+                    <h2 onClick={() => navigate(-1)}>Voltar</h2>
                   </div>
                 </div>
 
@@ -286,14 +309,21 @@ function User() {
                   <div className="centerDados">
                     <div className="colunaDados2">
                       <div className="coluna1">
-                        <span>Escolaridade: </span>
+                        <span>Escolaridade: {user?.escolaridade[0].school_formacao} </span>
+                        <span>Instituição: {user?.escolaridade[0].school_instituicao} </span>
+                        <span>Status: {user?.escolaridade[0].school_status} </span>
+                        <span>Curso: {user?.escolaridade[0].school_curso} </span>
                       </div>
                     </div>
 
                     <div className="colunaDados2">
                       <div className="coluna2">
                         <span>
-                          Idiomas: {user?.idioma?.[0]?.idioma_falados}{' '}
+                          Idiomas: {user?.idioma.map(idioma => {
+                            return (
+                              <span key={idioma.idioma_falados}><br />{idioma.idioma_falados}{' '}</span>
+                            )
+                          })}
                         </span>
                       </div>
                     </div>
@@ -370,138 +400,165 @@ function User() {
             />
           </div>
         </div>
+        {user && user.contrato.map(x => {
+          return (
+            <>
+              <div className="Wrapper2">
+                <div className="centerWrapper2">
+                  <div className="DadosFuncionais">
+                    <h1>Dados Funcionais:</h1>
+                  </div>
 
-        <div className="Wrapper2">
-          <div className="centerWrapper2">
-            <div className="DadosFuncionais">
-              <h1>Dados Funcionais:</h1>
-            </div>
-
-            <div className="coluna">
-              <div className="coluna1">
-                <span>
-                  Matricula: {user?.contrato?.[0]?.contrato_matricula}{' '}
-                </span>
-                <span>
-                  Departamento:{' '}
-                  {user?.contrato?.[0]?.cargo.departamento?.dep_name}{' '}
-                </span>
-                <span>Cargo: {user?.contrato?.[0]?.cargo.cargo_area}</span>
-                <span>Turno: </span>
-                <span>Status: </span>
-                <span>Base: {user?.contrato?.[0]?.contrato_base} </span>
-                <span>Head: {user?.contrato?.[0]?.cargo.cargo_head} </span>
-                <span>Domínio: </span>
-                <span>Nível: {user?.contrato?.[0]?.cargo.cargo_nivel} </span>
-                <span>Curso: </span>
-              </div>
-            </div>
-
-            <div className="coluna">
-              <div className="coluna2">
-                <span>
-                  Tipo de Contrato: {user?.contrato?.[0]?.contrato_type}{' '}
-                </span>
-                <span>Natureza de contrato(PJ): </span>
-                <span>Data de fundação(PJ): </span>
-                <span>E-mail: {user?.user_email}</span>
-                <span>
-                  Data de admissão: {user?.contrato?.[0]?.contrato_data_adicao}{' '}
-                </span>
-                <span>
-                  Empresa contratada:{' '}
-                  {user?.contrato?.[0]?.emp_contratante.contratante_nome}
-                </span>
-                <span>Tempo de formalização </span>
-                <span>
-                  Tempo de casa: {user?.contrato?.[0]?.contrato_tempo_de_casa}{' '}
-                  anos{' '}
-                </span>
-                <span>
-                  Faixa salarial: R${' '}
-                  {user?.contrato?.[0]?.contrato_faixa_salarial?.toLocaleString(
-                    'pt-BR',
-                  )}
-                  ,00
-                </span>
-              </div>
-            </div>
-
-            <div className="coluna">
-              <div className="coluna3">
-                <span>Termo de PJ: </span>
-                <span>Data de desligamento: </span>
-                <span>Tipo de desligamento: </span>
-                <span>Pesquisa de desligamento: </span>
-                <span>Distrato: </span>
-                <h1>Benefícios</h1>
-                <span>
-                  Plano de saúde: R${' '}
-                  {user?.contrato?.[0]?.contrato_plano_saude?.toLocaleString(
-                    'pt-BR',
-                  )}
-                  ,00
-                </span>
-                <span>
-                  Auxilio creche: R${' '}
-                  {user?.contrato?.[0]?.contrato_auxilio_creche},00
-                </span>
-                <span>
-                  Vale Transporte: R${' '}
-                  {user?.contrato?.[0]?.contrato_vale_transporte},00{' '}
-                </span>
-                <span>
-                  Vale alimentação: R${' '}
-                  {user?.contrato?.[0]?.contrato_vale_alimentacao},00
-                </span>
-                <span>
-                  Vale refeição: R${' '}
-                  {user?.contrato?.[0]?.contrato_vale_refeicao},00{' '}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="Wrapper3">
-          <div className="DadosFuncionais">
-            <span>
-              <Link to="/">Código de Conduto e Ética</Link>
-            </span>
-            <div className="docsMother">
-              {user?.docs?.map(element => (
-                <>
-                  <div className="docsConfig">
-                    <div className="docsImgDiv">
-                      <img
-                        width={250}
-                        key={element.docs_header}
-                        src={element.docs_url}
-                      />
-                    </div>
-                    <div className="docsLink">
-                      <span>{element.docs_nome + element.docs_type}</span>
-                      <a
-                        href={element.docs_url}
-                        onClick={() =>
-                          downloadFile(
-                            element.docs_id,
-                            element.docs_nome,
-                            element.docs_type,
-                          )
-                        }
-                        rel="noreferrer"
-                        target="_blank"
-                      >
-                        Download
-                      </a>
+                  <div className="coluna">
+                    <div className="coluna1">
+                      <span>
+                        Matricula: {user?.contrato?.[0]?.contrato_matricula}{' '}
+                      </span>
+                      <span>
+                        Departamento:{' '}
+                        {user?.contrato?.[0]?.cargo.departamento?.dep_name}{' '}
+                      </span>
+                      <span>Cargo: {user?.contrato?.[0]?.cargo.cargo_area}</span>
+                      <span>Trilha de Aprendizado: {user?.contrato?.[0]?.cargo.cargo_area}</span>
+                      <span>Tipo de perfil: {user?.user_role}</span>
+                      <span>Turno: {user?.contrato[0].contrato_turno}</span>
+                      <span>Base: {user?.contrato?.[0]?.contrato_base} </span>
+                      {/* <span>Head: {user?.contrato?.[0]?.cargo.cargo_head} </span> */}
+                      <span>Domínio: {user?.contrato[0].contrato_dominio} </span>
+                      <span>Nível: {user?.contrato?.[0]?.contrato_nivel} </span>
+                      <span>Curso: {user?.escolaridade[0].school_curso} </span>
                     </div>
                   </div>
-                </>
-              ))}
-            </div>
-          </div>
-        </div>
+
+                  <div className="coluna">
+                    <div className="coluna2">
+                      <span>
+                        Tipo de Contrato: {user?.contrato?.[0]?.contrato_tipo}{' '}
+                      </span>
+                      {user && user.emp_pj.map(i => {
+                        return (
+                          <>
+                            <span key={i.pj_id}>Natureza de contrato(PJ): {i.pj_conduta_etica} </span>
+                            <span key={i.pj_id}>Data de fundação(PJ): {i.pj_fundacao} </span>
+                            <span>Termo de PJ: {i.pj_natureza_juridica}</span>
+                          </>
+                        )
+                      })}
+
+
+                      <span>E-mail: {user?.user_email}</span>
+                      <span>
+                        Data de admissão: {user?.contrato?.[0]?.contrato_adimissao}{' '}
+                      </span>
+                      <span>
+                        Empresa contratada:{' '}
+                        {user?.contrato?.[0]?.emp_contratante.contratante_nome}
+                      </span>
+                      <span>Tempo de formalização </span>
+                      <span>
+                        Tempo de casa: {user?.contrato?.[0]?.contrato_tempo_de_casa}{' '}
+                        anos{' '}
+                      </span>
+                      <span>
+                        Faixa salarial: R${' '}
+                        {user?.contrato?.[0]?.contrato_faixa_salarial?.toLocaleString(
+                          'pt-BR',
+                        )}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="coluna">
+                    <div className="coluna3">
+                      {user && user.desligamento.map(i => {
+                        return (
+                          <>
+                            <span key={user?.user_id}>Data de desligamento:  {user.contrato[0].contrato_data_desligamento} </span>
+                            <span key={user?.user_id}>Pesquisa de desligamento: {i.pesq_desligamento} </span>
+                            <span key={user?.user_id}>Distrato: {user.contrato[0].contrato_distrato} </span>
+                          </>
+                        )
+                      })}
+
+                      <h1>Benefícios</h1>
+                      <span>
+                        Plano de saúde: R${' '}
+                        {user?.contrato?.[0]?.contrato_plano_saude?.toLocaleString(
+                          'pt-BR',
+                        )}
+                      </span>
+                      <span>
+                        Auxilio creche: R${' '}
+                        {user?.contrato?.[0]?.contrato_auxilio_creche?.toLocaleString(
+                          'pt-BR',
+                        )}
+                      </span>
+                      <span>
+                        Vale Transporte: R${' '}
+                        {user?.contrato?.[0]?.contrato_vale_transporte?.toLocaleString(
+                          'pt-BR',
+                        )}{' '}
+                      </span>
+                      <span>
+                        Vale alimentação: R${' '}
+                        {user?.contrato?.[0]?.contrato_vale_alimentacao?.toLocaleString(
+                          'pt-BR',
+                        )}
+                      </span>
+                      <span>
+                        Vale refeição: R${' '}
+                        {user?.contrato?.[0]?.contrato_vale_refeicao?.toLocaleString(
+                          'pt-BR',
+                        )}{' '}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="Wrapper3">
+                <div className="DadosFuncionais">
+                  <span>
+                    <Link to="/">Código de Conduta e Ética</Link>
+                  </span>
+                  <div className="docsMother">
+                    {user?.docs?.map(element => (
+                      <>
+                        <div className="docsConfig">
+                          <div className="docsImgDiv">
+                            <img
+                              width={250}
+                              key={element.docs_header}
+                              src={element.docs_url}
+                            />
+                          </div>
+                          <div className="docsLink">
+                            <span>{element.docs_nome + element.docs_type}</span>
+                            <a
+                              href={element.docs_url}
+                              onClick={() =>
+                                downloadFile(
+                                  element.docs_id,
+                                  element.docs_nome,
+                                  element.docs_type,
+                                )
+                              }
+                              rel="noreferrer"
+                              target="_blank"
+                            >
+                              Download
+                            </a>
+                          </div>
+                        </div>
+                      </>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </>
+          )
+        })}
+
       </S.Container>
     </>
   );

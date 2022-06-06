@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 import { useCallback, useContext } from 'react';
 import { useForm } from 'react-hook-form';
@@ -346,14 +346,8 @@ function Cadastro() {
     formState: { errors },
   } = useForm<CadastroProps>({
     mode: 'onBlur',
-    // resolver: yupResolver(schema),
+    resolver: yupResolver(schema),
   });
-
-
-
-  useEffect(() => {
-    console.log(value)
-  }, [value])
 
   return (
     <S.Container>
