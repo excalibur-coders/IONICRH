@@ -23,7 +23,7 @@
 
 - ![feito](./docs/readme/check.jpeg) Cadastro de Colaboradores;
 - ![feito](./docs/readme/check.jpeg) Repositório para documentos dos Colaboradores;
-- ![feito](./docs/readme/check.jpeg) Cadastros de Trilha de Aprendizado e Status de Realização;
+- ![feito](./docs/readme/check.jpeg) Cadastros de Trilha de Aprendizado;
 - ![feito](./docs/readme/check.jpeg) Usuários devem ter perfis diferentes (administrador, gestor, consultor, colaborador);
 - ![feito](./docs/readme/check.jpeg) Organograma da Empresa;
 - ![feito](./docs/readme/check.jpeg) Repositório de documentos da empresa (políticas, normas, regras, etc);
