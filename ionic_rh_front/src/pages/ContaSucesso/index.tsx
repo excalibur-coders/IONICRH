@@ -20,7 +20,7 @@ function ContaSucesso() {
         <div className="text">
           <h1>Conta criada com Sucesso !</h1>
           <span>
-            <button onClick={() => navigate(-1)}>Voltar</button>
+            <button onClick={() => navigate(-2)}>Voltar</button>
           </span>
         </div>
       </div>
