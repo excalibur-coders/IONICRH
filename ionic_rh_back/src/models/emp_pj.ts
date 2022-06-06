@@ -1,5 +1,6 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { contrato } from "./contrato";
+import { user } from "./user";
 
 @Entity()
 export class empresa_PJ {
@@ -22,7 +23,7 @@ export class empresa_PJ {
     pj_natureza_juridica!: string;
 
     @Column({
-        type: "date"
+        type: "varchar"
     })
     pj_fundacao!: string;
 
@@ -32,6 +33,15 @@ export class empresa_PJ {
     pj_conduta_etica!: string;
 
     //Chave estrangeiras
-    @OneToMany(() => contrato, (contrato) => contrato.emp_pj)
-    contrato!: contrato
+    /* @OneToMany(() => contrato, (contrato) => contrato.emp_pj)
+    contrato!: contrato */
+    @ManyToOne(() => user, (user) => user.emp_pj)
+    @JoinColumn({
+        name: "userUserId"
+    })
+    user!: user
+    @Column({
+        type: "int"
+    })
+    userUserId?: number
 }

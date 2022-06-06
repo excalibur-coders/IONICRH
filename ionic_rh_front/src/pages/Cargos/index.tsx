@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, SetStateAction } from 'react';
 import {
   Box,
   Link,
@@ -11,7 +11,7 @@ import { theme } from 'theme';
 import Input from 'components/Input';
 import RespBar_adm from 'components/Respbar_adm';
 import Sidemenu from 'components/sideMenu';
-import { Table, Tbody, Tr, Td, TableContainer } from '@chakra-ui/react';
+import { Table, Thead, Th, Tbody, Tr, Td, TableContainer } from '@chakra-ui/react';
 import { HStack } from '@chakra-ui/react';
 import * as S from './styles';
 import { api } from 'services/api';
@@ -32,12 +32,18 @@ interface IDepartamento {
   dep_name?: string;
 }
 
+
+
 function Cargos() {
+
   const cookies = parseCookies();
   const navigate = useNavigate();
 
   const [cargos, setCargos] = useState<ICargo[]>([]);
   const [loading, setLoading] = useState(false);
+  const [cargosPesquisados, setCargosPesquisados] = useState<ICargo[]>([]);
+  const [searchInput, setSearchInput] = useState("");
+
 
   const getAllCargos = useCallback(() => {
     setLoading(true);
@@ -49,6 +55,7 @@ function Cargos() {
       })
       .then(({ data }) => {
         setCargos(data);
+        setCargosPesquisados(data);
         console.log(data);
       })
       .catch((error: Error | AxiosError) => {
@@ -57,11 +64,40 @@ function Cargos() {
     setTimeout(() => {
       setLoading(false);
     }, 5000);
-  }, [setLoading, setCargos]);
+  }, [setLoading, setCargos/* , setCargosPesquisados */]);
 
   useEffect(() => {
     getAllCargos();
   }, []);
+
+  // Barra de Pesquisa //
+
+  const handleChange = (e: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
+    e.preventDefault();
+    setSearchInput(e.target.value);
+  };
+
+  const sanitizeText = useCallback(
+    text =>
+      text
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase(),
+    [],
+  );
+
+  useEffect(() => {
+    if (searchInput.length > 0) {
+      const cargosFiltrado = cargos.filter((cargo) => (
+        sanitizeText(cargo.cargo_area)?.includes(sanitizeText(searchInput))
+        // console.log(cargo.cargo_area?.match(searchInput));
+        //setCargosPesquisados(cargo?.cargo_area?.match(searchInput));
+      ));
+      setCargosPesquisados(cargosFiltrado);
+    } else {
+      setCargosPesquisados(cargos);
+    }
+  }, [searchInput]);
 
   return (
     <>
@@ -91,12 +127,15 @@ function Cargos() {
               <Box>
                 <InputGroup>
                   {/* eslint-disable-next-line react/no-children-prop */}
-                  <InputLeftElement children={<SearchIcon w={5} h={5} />} />
-                  <Input
+                  <InputLeftElement className="marginTop" pointerEvents="none" children={<SearchIcon/>} />
+                  <Input className="padding-left40"
+                    type="search"
+                    onChange={handleChange}
+                    value={searchInput}
                     fontSize={20}
                     size="lg"
                     width="50vw"
-                    placeholder="       Pesquisar"
+                    placeholder="Pesquisar"
                     labelText={''}
                   />
                 </InputGroup>
@@ -106,31 +145,22 @@ function Cargos() {
           <br></br>
           <div className="container">
             <br></br>
-            <HStack spacing="32vw">
-              <Box fontSize="2xl" fontWeight="bold">
-                Cargo
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Departamento
-              </Box>
-            </HStack>
-            <Divider
-              orientation="horizontal"
-              borderColor={theme.colors.font}
-              variant="solid"
-              size="10rem"
-            />
-            <br></br>
             <TableContainer>
               <Table variant="striped" size="lg" background="#00000029">
                 <div className="TableTwo">
                   <Tbody>
-                    {cargos.map(cargos => (
+                    <Thead>
+                      <Tr>
+                        <Th fontSize="2xl" fontWeight="bold">Cargo</Th>
+                        <Th fontSize="2xl" fontWeight="bold">Departamento</Th>
+                      </Tr>
+                    </Thead>
+                     {cargosPesquisados.map(cargos => (
                       <Tr key={cargos.cargo_id}>
-                        <Td className="TBody" fontSize="2xl">
+                        <Td className="TBody" fontSize="xl">
                           {cargos.cargo_area}
                         </Td>
-                        <Td className="TBody" fontSize="2xl">
+                        <Td className="TBody" fontSize="xl">
                           {cargos.departamento.dep_name}
                         </Td>
                       </Tr>

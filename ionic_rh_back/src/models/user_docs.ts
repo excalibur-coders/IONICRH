@@ -12,10 +12,15 @@ export class documentos {
     })
     docs_nome!: string;
     @Column({
-        type: "varchar",
+        type: "longtext",
         nullable: true
     })
     docs_url!: string;
+    @Column({
+        type: "longtext",
+        nullable: true
+    })
+    docs_key!: string;
     @Column({
         type: "float",
         nullable: true
@@ -26,6 +31,11 @@ export class documentos {
         nullable: true
     })
     docs_type!: string;
+    @Column({
+        type: "varchar",
+        nullable: true
+    })
+    docs_header!: string;
 
 
 

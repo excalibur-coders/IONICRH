@@ -22,6 +22,10 @@ export const Container = styled(Flex)`
       margin-left: 50px;
       width: 10rem;
     }
+    Button {
+      margin-top: 7px;
+      margin-left: 1000px;
+    }
   }
   .main {
     .ButtonW {
@@ -36,23 +40,28 @@ export const Container = styled(Flex)`
       display: flex;
       justify-content: space-around;
       position: relative;
-      z-index: 1;
-
       .leftWrapper {
         width: 22rem;
         h3 {
           font-size: 30px;
           font-weight: bold;
+          
         }
         h6 {
           font-size: 28px;
           font-weight: bold;
           margin-top: 15px;
         }
+        .radio{
+          margin-top: 10px;
+          margin-bottom: 10px;
+          h1 {
+            font-size: 15px;
+            font-weight: bold;
+            color: #F54A3D;
+          }
+        }
         .form {
-          display: flex;
-          align-items: center;
-          justify-content: center;
           margin-top: 80px;
           flex-direction: column;
           .dropdown {
@@ -71,7 +80,6 @@ export const Container = styled(Flex)`
               border-radius: 10px;
               background-color: #f4f4f5;
             }
-
             .etnia {
               height: 33px;
               width: 22rem;
@@ -79,7 +87,6 @@ export const Container = styled(Flex)`
               border-radius: 10px;
               background-color: #f4f4f5;
             }
-
             .estadocivil {
               height: 33px;
               width: 22rem;
@@ -87,7 +94,6 @@ export const Container = styled(Flex)`
               border-radius: 10px;
               background-color: #f4f4f5;
             }
-
             .parentesco {
               height: 33px;
               width: 10rem;
@@ -106,7 +112,6 @@ export const Container = styled(Flex)`
       }
       .anexoWrapper {
         display: flex;
-
         .form {
           width: 22rem;
           align-items: start;
@@ -129,16 +134,14 @@ export const Container = styled(Flex)`
       }
       .centerWrapper {
         width: 22rem;
-        display: flex;
-        align-items: center;
-        justify-content: top;
-        flex-direction: column;
-        input {
-          background-color: #f4f4f5;
-        }
         h5 {
           font-size: 30px;
           font-weight: bold;
+        }
+        h6 {
+          font-size: 30px;
+          font-weight: bold;
+          margin-top: 15px;
         }
         .form {
           margin-top: 80px;
@@ -163,6 +166,7 @@ export const Container = styled(Flex)`
         }
         .form-row {
           flex-direction: row;
+          gap: 30px;
           display: flex;
           justify-content: space-between;
         }
@@ -221,13 +225,10 @@ export const Container = styled(Flex)`
       }
     }
   }
-
   @media (max-width: 1080px) {
     height: 100%;
-
     .main {
       height: 100%;
-
       .mainWrapper {
         align-items: center;
         justify-content: center;
@@ -236,19 +237,15 @@ export const Container = styled(Flex)`
         height: 100%;
         .leftwrapper {
         }
-
         .rightWrapper {
         }
       }
     }
   }
-
   @media (max-width: 768px) {
     height: 100%;
-
     .main {
       height: 100%;
-
       .mainWrapper {
         align-items: center;
         justify-content: center;
@@ -257,7 +254,6 @@ export const Container = styled(Flex)`
         height: 100%;
         .leftwrapper {
         }
-
         .rightWrapper {
         }
       }

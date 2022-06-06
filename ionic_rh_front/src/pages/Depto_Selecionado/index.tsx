@@ -11,7 +11,7 @@ import { theme } from 'theme';
 import Sidemenu from 'components/sideMenu';
 import RespBar_adm from 'components/Respbar_adm';
 import Input from 'components/Input';
-import { Table, Tbody, Tr, Td } from '@chakra-ui/react';
+import { Table, Thead, Tbody, Tr, Td, Th } from '@chakra-ui/react';
 import { HStack } from '@chakra-ui/react';
 import * as S from './styles';
 import { api } from 'services/api';
@@ -20,31 +20,6 @@ import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
-/* interface IDepartamento {
-  cargo: ICargo;
-  dep_id: number;
-  dep_name: string;
-}
-
-interface ICargo {
-  cargo_area: string;
-  contrato: IContrato;
-}
-interface IContrato {
-  contrato_faixa_salarial: number;
-  user: IFuncionarios;
-}
-interface IFuncionarios {
-  user_nome: string;
-}
- */
-
-/* interface IFuncionarios {
-  cargo: Array<{
-    user_nome: string;
-    contrato: IContrato;
-  }>;
-} */
 
 interface IContrato {
   contrato_faixa_salarial: number;
@@ -71,6 +46,9 @@ function DeptoTI() {
   const [departamentos, setDepartamentos] = useState<IFuncionarios>();
   const [loading, setLoading] = useState(false);
 
+  //const [funcionariosPesquisados, setFuncionariosPesquisados] = useState<IContrato[]>([]);
+  //const [searchInput, setSearchInput] = useState("");
+
   const getAllDepartamentos = useCallback(() => {
     setLoading(false);
     api
@@ -89,7 +67,7 @@ function DeptoTI() {
     setTimeout(() => {
       setLoading(false);
     }, 5000);
-  }, [cookies, id]);
+  }, [id]);
 
   useEffect(() => {
     getAllDepartamentos();
@@ -99,6 +77,33 @@ function DeptoTI() {
       });
     });
   }, []);
+
+/*         // Barra de Pesquisa //
+
+        const handleChange = (e: { preventDefault: () => void; target: { value: SetStateAction<string>; }; }) => {
+          e.preventDefault();
+          setSearchInput(e.target.value);
+        };
+
+        const sanitizeText = useCallback(
+          text =>
+            text
+              .normalize('NFD')
+              .replace(/[\u0300-\u036f]/g, '')
+              .toLowerCase(),
+          [],
+        );
+
+        useEffect(() => {
+          if (searchInput.length > 0) {
+            const funcionarioFiltrado = departamentos.filter((departamento) => (
+              sanitizeText(user.user_nome)?.includes(sanitizeText(searchInput))
+            ));
+            setFuncionariosPesquisados(funcionarioFiltrado);
+          } else {
+            setFuncionariosPesquisados(funcioarios);
+          }
+        }, [departamentos, sanitizeText, searchInput]); */
 
   return (
     <>
@@ -147,31 +152,19 @@ function DeptoTI() {
             </HStack>
           </div>
           <br></br>
-          <div className="container">
-            <HStack className="TBody_2" spacing="80px">
-              <Box fontSize="2xl" fontWeight="bold">
-                Nome
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Salario
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Cargo
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Perfil
-              </Box>
-            </HStack>
-            <Divider
-              orientation="horizontal"
-              borderColor={theme.colors.font}
-              variant="solid"
-              size="10rem"
-            />
+          <div>
             <br></br>
 
             <div>
               <Table variant="striped" size="lg" background="#DBDBDB">
+              <Thead>
+                      <Tr>
+                        <Th fontSize="2xl" fontWeight="bold">Nome</Th>
+                        <Th fontSize="2xl" fontWeight="bold">Salário</Th>
+                        <Th fontSize="2xl" fontWeight="bold">Cargo</Th>
+                        <Th fontSize="2xl" fontWeight="bold">Perfil</Th>
+                      </Tr>
+                    </Thead>
                 <Tbody>
                   {departamentos?.cargo?.map((carg, index) =>
                     carg.contrato.map(ctr => (
@@ -182,15 +175,12 @@ function DeptoTI() {
                         <Td className="TBody" fontSize="lg">
                           {ctr.contrato_faixa_salarial}
                         </Td>
-                        <Td className="TBody" fontSize="lg">
+                        <Td className="TBody" fontSize="xl">
                           {carg.cargo_area}
-                        </Td>
-                        <Td className="TBody" fontSize="lg">
-                          {}
                         </Td>
                         <Td>
                           <Link
-                            fontSize="x1"
+                            fontSize="xl"
                             color={theme.colors.primary}
                             onClick={() => {
                               navigate(`/user/${ctr.user.user_id}`);

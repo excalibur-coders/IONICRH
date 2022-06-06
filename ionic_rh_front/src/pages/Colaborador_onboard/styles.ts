@@ -15,6 +15,10 @@ export const Container = styled(Flex)`
     font-size: 70px;
     height: 100px;
   }
+  footer{
+    margin-top: 80px;
+    bottom: 0;
+  }
 
   .buttons_onboard {
     margin-top: 5rem;

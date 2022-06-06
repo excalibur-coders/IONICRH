@@ -22,6 +22,14 @@ export const Container = styled(Flex)`
     justify-content: left;
   }
 
+  .marginTop{
+    margin-top: 3px;
+  }
+
+  .padding-left40{
+    padding-left: 40px;
+  }
+
   .search {
     display: flex;
     justify-content: space-between;

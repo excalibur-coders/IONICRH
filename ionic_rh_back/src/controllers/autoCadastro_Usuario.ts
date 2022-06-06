@@ -12,11 +12,9 @@ import { telefone } from "models/user_telefone";
 import { documentos } from "models/user_docs";
 import { dependente } from "models/userDependente";
 import path from "path";
-import multer from 'multer';
 import multerConfig from 'config/multer'
-import crypto from 'crypto';
-import multerS3 from 'multer-s3'
-import aws from 'aws-sdk';
+import { documentosAvatar } from "models/docsAvatar";
+import { empresa_PJ } from "models/emp_pj";
 
 interface IDecodedParams {
     id: string;
@@ -30,7 +28,9 @@ const escolaridadeRepository = AppDataSource.getRepository(escolaridade);
 const telefoneRepository = AppDataSource.getRepository(telefone);
 const endRepository = AppDataSource.getRepository(endereco)
 const docsRepository = AppDataSource.getRepository(documentos)
+const avatarRepository = AppDataSource.getRepository(documentosAvatar)
 const dependenteRepository = AppDataSource.getRepository(dependente)
+const empresaPjRepository = AppDataSource.getRepository(empresa_PJ)
 
 export const updateUser = async (req: Request, res: Response) => {
     try {
@@ -61,8 +61,6 @@ export const updateUser = async (req: Request, res: Response) => {
         res.json(error);
     }
 };
-
-
 export const adicionarIdioma = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const tokenHeader = req.headers.authorization;
@@ -86,7 +84,6 @@ export const adicionarIdioma = async (req: Request, res: Response, next: NextFun
         res.json(error)
     }
 }
-
 export const adicionarTelefone = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const tokenHeader = req.headers.authorization;
@@ -112,7 +109,6 @@ export const adicionarTelefone = async (req: Request, res: Response, next: NextF
         res.json(error)
     }
 }
-
 export const adicionarEscolaridade = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const tokenHeader = req.headers.authorization;
@@ -138,7 +134,6 @@ export const adicionarEscolaridade = async (req: Request, res: Response, next: N
         res.json(error)
     }
 }
-
 export const adicionarEndereco = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const tokenHeader = req.headers.authorization;
@@ -194,55 +189,83 @@ export const adicionarDocumento = async (req: Request, res: Response, next: Next
         const tokenHeader = req.headers.authorization;
         const splitToken = tokenHeader?.split(' ')[1] as string;
         const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
-        const { file, avatar } = req.files;
-
-        // var fileName: string;
-
-        // const s3 = {
-        //     s3: multerS3({
-        //         s3: new aws.S3(),
-        //         bucket: String(process.env.BUCKET_NAME),
-        //         contentType: multerS3.AUTO_CONTENT_TYPE,
-        //         acl: 'public-read',
-        //         key: (req, file, cb) => {
-        //             crypto.randomBytes(16, (err, hash) => {
-        //                 if (err) cb(err);
-            
-        //                 fileName = `${hash.toString("hex")}-${file.originalname}`;
-        //                 const { name , ext  } = path.parse(fileName);
-        //                 cb(null, fileName);
-        //             });
-        //         }
-        //     })
-        // }
-
-        // const multerConfig = {
-        //     storage: s3["s3"],
-        //     limits: {
-        //         fileSize: 5 * 1024 * 1024,
-        //     }
-        // }
-
-        // multer(multerConfig).fields([{name: 'file', maxCount: 3}, {name: 'avatar', maxCount: 1}]);
-        
-        const dados = [...file, ...avatar]
+        const { file } = req.files;
+        const dados = [...file]
         const salvos = dados.forEach(async (file) => {
             const { name, ext } = path.parse(file.originalname)
+            const { base } = path.parse(file.location)
             const jubileu = await docsRepository
                 .createQueryBuilder()
                 .insert()
                 .into(documentos)
                 .values({
                     docs_nome: name,
+                    docs_key: file.key,
                     docs_type: ext,
-                    docs_size: multerConfig.limits.fileSize,
-                    docs_url: `https://${process.env.BUCKET_NAME}.s3.${process.env.AWS_DEFAULT_REGION}.amazonaws.com/${name}${ext}`,
+                    docs_header: file.fieldname,
+                    docs_size: file.size,
+                    docs_url: `https://${process.env.BUCKET_NAME}.s3.${process.env.AWS_DEFAULT_REGION}.amazonaws.com/${base}`,
                     userUserId: Number(decodedJwt.id),
                 })
                 .execute()
-                return res.json(jubileu);
-            })
-        // next()
+            return jubileu
+        })
+        res.json(req.files)
+    } catch (error) {
+        res.json(error)
+    }
+}
+export const adicionarAvatar = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const tokenHeader = req.headers.authorization;
+        const splitToken = tokenHeader?.split(' ')[1] as string;
+        const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
+        const { avatar } = req.files;
+        const dados = [...avatar]
+        const salvos = dados.forEach(async (file) => {
+            const { name, ext } = path.parse(file.originalname)
+            const { base } = path.parse(file.location)
+            const jubileu = await avatarRepository
+                .createQueryBuilder()
+                .insert()
+                .into(documentosAvatar)
+                .values({
+                    avatar_nome: name,
+                    avatar_type: ext,
+                    avatar_header: file.fieldname,
+                    avatar_size: file.size,
+                    avatar_url: `https://${process.env.BUCKET_NAME}.s3.${process.env.AWS_DEFAULT_REGION}.amazonaws.com/${base}`,
+                    userUserId: Number(decodedJwt.id),
+                })
+                .execute()
+            return jubileu
+        })
+        res.json(req.files)
+    } catch (error) {
+        res.json(error)
+    }
+}
+export const adicionarEmpresaPj = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const tokenHeader = req.headers.authorization;
+        const splitToken = tokenHeader?.split(' ')[1] as string;
+        const decodedJwt = jwtDecode<IDecodedParams>(splitToken);
+        const {
+            pJuridica
+        } = req.body
+        const adiconarEMPPJ = pJuridica.map((pJuridicas: any) => {
+            return {
+                ...pJuridicas,
+                userUserId: Number(decodedJwt.id)
+            }
+        })
+        await empresaPjRepository
+            .createQueryBuilder()
+            .insert()
+            .into(empresa_PJ)
+            .values(adiconarEMPPJ)
+            .execute()
+        next()
     } catch (error) {
         res.json(error)
     }

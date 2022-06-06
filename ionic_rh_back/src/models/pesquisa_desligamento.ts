@@ -1,8 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from "typeorm"
-import { empresa_contratante } from "./emp_contratante"
+import { empresacontratante } from "./emp_contratante"
+import { user } from "./user"
 
 @Entity()
-export class pesquisa_desligamento {
+export class pesquisadesligamento {
     @PrimaryGeneratedColumn({ type: "int" })
     pesq_id!: number
 
@@ -11,14 +12,19 @@ export class pesquisa_desligamento {
     })
     pesq_desligamento!: string
 
-    // Chave estrangeira
-    @ManyToOne(() => empresa_contratante, (emp_contrato) => emp_contrato.pesq_desligamento)
-    @JoinColumn({
-        name: "empContratanteContratanteId"
+    @Column({
+        type: "boolean",
     })
-    emp_contratante!: empresa_contratante
+    pesq_userDesligado!: Boolean
+
+    // Chave estrangeira
+    @ManyToOne(() => user, (user) => user.desligamento)
+    @JoinColumn({
+        name: "userUserId"
+    })
+    user!: user
     @Column({
         type: "int"
     })
-    empContratanteContratanteId?: number
+    userUserId?: number
 }

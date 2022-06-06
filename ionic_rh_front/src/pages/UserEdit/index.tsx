@@ -5,7 +5,7 @@ import * as S from './styles';
 import { useState, useCallback, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Input from 'components/Input';
-import { Divider, Select } from '@chakra-ui/react';
+import { Checkbox, Divider, Select, Stack } from '@chakra-ui/react';
 import Button from 'components/Button';
 import { useForm } from 'react-hook-form';
 
@@ -28,14 +28,22 @@ interface IUser {
   user_estado_civil?: string;
   telefone: ITelefone[];
   idioma: IIdioma[];
+  docs: IDocs;
+  docsavatar: IAvatar[];
   documentos?: number;
   escolaridade: IEscolaridade;
   endereco: IEndereco[];
   contrato: IContrato[];
   user_raca: string;
   user_rg?: string;
+  user_role?: string;
 }
-
+interface IDocs {
+  docs_nome: string;
+  docs_url: string;
+  docs_type: string;
+  docs_header: string;
+}
 interface IContrato {
   cargo: ICargo;
   contrato_matricula?: string;
@@ -79,7 +87,12 @@ interface IDepartamentos {
   dep_id?: number;
   dep_name?: string;
 }
-
+interface IAvatar {
+  avatar_nome: string;
+  avatar_url: string;
+  avatar_type: string;
+  avatar_header: string;
+}
 interface IEscolaridade {
   school_formacao?: string;
   school_status?: string;
@@ -118,6 +131,7 @@ interface IFormProps {
   user_nascimento?: string;
   user_genero?: string;
   user_cpf?: string;
+  user_role?: [];
   user_estado_civil?: string;
   telefone?: string;
   idioma_falados: string;
@@ -339,6 +353,7 @@ function UserEdit() {
             contrato_adimissao: data?.contrato_data_admissao,
             contrato_matricula: data?.contrato_matricula,
             contrato_turno: data.contrato_turno,
+            user_role: data.user_role,
           },
           {
             headers: {
@@ -400,8 +415,11 @@ function UserEdit() {
 
   const onSubmit = useCallback(
     async data => {
-      if (user?.contrato?.[0]?.contrato_matricula == null)
-        cadastroContrato(data);
+       navigate('/ContaAtualizada')
+      if (user?.contrato?.[0]?.contrato_matricula == null) {
+        await cadastroContrato(data);
+        navigate('/ContaAtualizada')
+      }
       else updateContrato(data);
     },
     [cadastroContrato, updateContrato, user?.contrato],
@@ -416,9 +434,14 @@ function UserEdit() {
           <div className="Wrapper">
             <div className="centerWrapper">
               <div className="leftWrapper">
-                <div className="foto">
-                  <MdAccountCircle size="100%" />
-                </div>
+              {user?.docsavatar[0]?.avatar_url ?
+                <img
+                  className="foto"
+                  src={user?.docsavatar[0].avatar_url}
+                  alt="profile picture"
+                />
+                : <div className="foto" />
+              }
 
                 <div className="User">
                   <h1>{user?.user_nome}</h1>
@@ -430,6 +453,7 @@ function UserEdit() {
                     type="submit"
                     text="Salvar"
                     color={theme.colors.primary}
+                    //onClick={() => navigate('/ContaAtualizada')}
                   />
                   {/*</Link>/*/}
                   <Link to="User/:id">
@@ -699,6 +723,32 @@ function UserEdit() {
 
               <div className="coluna">
                 <div className="colunaFuncionais">
+
+                <div className="coluna1">
+                    <span>Perfil de Usuário:</span>
+                    <Select
+                      placeholder={
+                        user?.user_role
+                          ? user?.user_role
+                          : 'Selecione uma opção'
+                      }
+                      size="xs"
+                      {...register('user_role')}
+                      defaultValue={
+                        user?.user_role
+                      }
+                    >
+                        <option value='Gestor'>Gestor</option>
+                        <option value='Consultor'>Consultor</option>
+                        <option value='Colaborador'>Colaborador</option>
+{/*                       {profile.map((profile, index) => (
+                        <option key={index} value={user?.user_role}>
+                          {user?.user_role}
+                        </option>
+                      ))} */}
+                    </Select>
+                  </div>
+
                   <div className="coluna1">
                     <span>Matricula:</span>
                     <Input
@@ -760,6 +810,16 @@ function UserEdit() {
                         </option>
                       ))}
                     </Select>
+                  </div>
+
+                  <div className="coluna1">
+                    <span>Trilha de Aprendizado:</span>
+                    <Stack spacing={5} direction='row'>
+                      <Checkbox colorScheme="gray">Trilha 1</Checkbox>
+                      <Checkbox colorScheme="gray">
+                        Trilha 2
+                      </Checkbox>
+                    </Stack>
                   </div>
 
                   <div className="coluna1">
@@ -930,7 +990,7 @@ function UserEdit() {
                         user?.contrato?.[0]?.emp_contratante.contratante_id
                       }
                     >
-                      {empresas.map(empresa => (
+                      {empresas?.map(empresa => (
                         <option
                           key={empresa.contratante_id}
                           value={empresa.contratante_id}
@@ -1119,7 +1179,7 @@ function UserEdit() {
           <div className="Wrapper3">
             <div className="DadosFuncionais">
               <span>
-                <Link to="/">Código de Conduto e Ética</Link>
+                <Link to="https://drive.google.com/drive/folders/1uCtcnSF6MzcH3uf1snDYsbrWUKH-Iz_j">Código de Conduto e Ética</Link>
               </span>
             </div>
           </div>

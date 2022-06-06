@@ -9,7 +9,7 @@ export const Container = styled(Flex)`
 
   .input {
     margin-left: 50px;
-    width: 70vw;
+    width: 60vw;
     margin: 0 auto;
     height: 100vh;
   }

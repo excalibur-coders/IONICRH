@@ -6,11 +6,10 @@ import { BsClipboardCheck } from 'react-icons/bs';
 import { MdArrowForward } from 'react-icons/md';
 
 import * as S from './styles';
-import { Button } from '@chakra-ui/react';
+import { Button, Link } from '@chakra-ui/react';
 import Footer from 'components/Footer';
 
-import { useParams } from 'react-router-dom';
-
+import { useParams, useNavigate } from 'react-router-dom';
 import { parseCookies } from 'nookies';
 import { AuthContext } from 'hooks/useAuth';
 
@@ -26,14 +25,19 @@ interface IUser {
   user_estado_civil?: string;
   telefone: ITelefone[];
   idioma: IIdioma[];
-  documentos?: number;
+  documentos: IDocs[];
   escolaridade: IEscolaridade;
   endereco: IEndereco[];
   contrato: IContrato[];
   user_raca: string;
   user_rg?: string;
 }
-
+interface IDocs {
+  docs_nome: string;
+  docs_url: string;
+  docs_type: string;
+  docs_header: string;
+}
 interface IContrato {
   cargo: ICargo;
   contrato_matricula?: string;
@@ -108,6 +112,36 @@ function Colab_user() {
   // const [user, setUser] = useState<IUser>();
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
+  const navigate = useNavigate();
+  // Vereficar [False, False, False, True]
+
+  /* for (let index = 0; index < 4; index++) {
+    const tester = user?.docs?.[index]?.docs_header.includes('avatar');
+    if (tester === true) {
+      user?.docs?.[index]?.docs_url;
+    }
+  } */
+
+  /* console.log(teste); */
+  /* for (let index = 0; index < 4; index++) {
+      if (teste?.includes('file')) {
+        const avatar = console.log(user?.docs?.[index].docs_url)
+      } */
+  /* function avatar(header: any) {
+    const teste = user?.docs?.map(i => i.docs_header);
+    for (let index = 0; index < 4; index++) {
+      if (teste) {
+        const avatares = user?.docs?.[index].docs_url;
+        return avatares;
+      }
+      return avatar;
+    }
+  } */
+  /*
+  } */
+
+  /* console.log(teste); */
+
   // const getAllUser = useCallback(() => {
   //   setLoading(true);
 
@@ -141,13 +175,15 @@ function Colab_user() {
             <div className="centerWrapper">
               <div className="leftWrapper">
                 <div className="foto">
-                  <MdAccountCircle size="100%" />
+                  <img
+                    className="foto"
+                    src={user?.docsavatar[0].avatar_url}
+                    alt="profile picture"
+                  />
                 </div>
-
                 <div className="User">
                   <h1>{user?.user_nome}</h1>
                 </div>
-
                 <div className="coluna">
                   <div className="coluna1">
                     <span>Cargo: {user?.contrato?.[0]?.cargo.cargo_area}</span>
@@ -156,8 +192,11 @@ function Colab_user() {
                     <span>
                       Matrícula: {user?.contrato?.[0]?.contrato_matricula}
                     </span>
+                    {/* user?.documentos?.[0].docs_type
+                    user?.documentos?.map(docs => docs.docs_header*/}
                     <span>
-                      Departamento:{user?.contrato?.[0]?.cargo.departamento}
+                      Departamento:{' '}
+                      {user?.contrato?.[0]?.cargo?.departamento?.dep_name}
                     </span>
                   </div>
                 </div>
@@ -165,9 +204,9 @@ function Colab_user() {
                 <div className="coluna">
                   <div className="coluna2">
                     <h2>Endereço</h2>
-                    <span>Rua/Av:{user?.endereco?.[0]?.endereco_rua}</span>
-                    <span>N:{user?.endereco?.[0]?.endereco_rua}</span>
-                    <span>Compl: {user?.endereco?.[0]?.endereco_rua}</span>
+                    <span>Rua/Av: {user?.endereco?.[0]?.endereco_rua}</span>
+                    <span>N: {user?.endereco?.[0]?.endereco_numero}</span>
+                    <span>Compl: {user?.endereco?.[0]?.endereco_compl}</span>
                     <span>CEP: {user?.endereco?.[0]?.endereco_cep}</span>
                     <span>Bairro: {user?.endereco?.[0]?.endereco_bairro}</span>
                     <span>Estado: {user?.endereco?.[0]?.endereco_estado}</span>
@@ -180,18 +219,21 @@ function Colab_user() {
                   <div className="dadosUser1">
                     <span>E-mail: {user?.user_email}</span>
                     <span>Data de nascimento: {user?.user_nascimento}</span>
-                    <span>Telefone: 12 98813-6322</span>
                     <span>
-                      Tipo de contrato:{user?.contrato?.[0]?.contrato_type}
+                      Telefone: ({user?.telefone?.[0].tell_ddd}){'   '}
+                      {user?.telefone?.[0].tell_numero}{' '}
+                    </span>
+                    <span>
+                      Tipo de contrato: {user?.contrato?.[0]?.contrato_tipo}
                     </span>
                   </div>
                   <div className="dadosUser2">
                     <span>Estado civil: {user?.user_estado_civil}</span>
                     <span>Sexo: {user?.user_genero}</span>
                     <span>
-                      Escolaridade: {user?.escolaridade?.school_status}
+                      Escolaridade: {user?.escolaridade?.[0].school_instituicao}
                     </span>
-                    <span>Turno:{user?.contrato?.[0].contrato_turno}</span>
+                    <span>Turno: {user?.contrato?.[0]?.contrato_turno}</span>
                   </div>
                 </div>
                 <div className="cargo">
@@ -203,39 +245,28 @@ function Colab_user() {
                     de trabalhos e outros.
                   </h3>
                 </div>
-                <h4>Cursos realizados:</h4>
+                <h4>Minhas Trilhas:</h4>
                 <div className="buttons_onboard">
-                  <div>
-                    <Button
-                      className="button"
-                      as={BsClipboardCheck}
-                      color={theme.colors.font}
-                    ></Button>
-                    <small>Curso RDC-16</small>
-                  </div>
-                  <div>
-                    <Button
-                      className="button"
-                      as={BsClipboardCheck}
-                      color={theme.colors.font}
-                    ></Button>
-                    <small>Curso 2</small>
-                  </div>
-                  <div>
-                    <Button
-                      className="button"
-                      as={BsClipboardCheck}
-                      color={theme.colors.font}
-                    ></Button>
-                    <small>Curso 3</small>
-                  </div>
-                  <div>
-                    <Button
-                      className="button"
-                      as={MdArrowForward}
-                      color={theme.colors.font}
-                    ></Button>
-                  </div>
+                  {user?.junto?.map(Trilha => {
+                    return (
+                      <>
+                        <div>
+                          <Link
+                            onClick={() => {
+                              navigate(`/Curso_Tela/${Trilha.trilha_id}`);
+                            }}
+                          >
+                            <Button
+                              className="button"
+                              as={BsClipboardCheck}
+                              color={theme.colors.font}
+                            ></Button>
+                            <small key={Trilha.trilha_nome}>{Trilha.trilha_nome}</small>
+                          </Link>
+                        </div>
+                      </>
+                    )
+                  })}
                 </div>
               </div>
             </div>

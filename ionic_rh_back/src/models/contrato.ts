@@ -2,7 +2,7 @@ import {
     Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, OneToMany
 } from "typeorm";
 import { cargo } from "./cargo";
-import { empresa_contratante } from "./emp_contratante";
+import { empresacontratante } from "./emp_contratante";
 import { empresa_PJ } from "./emp_pj";
 
 import { user } from "./user";
@@ -31,6 +31,11 @@ export class contrato {
         nullable: true
     })
     contrato_matricula!: string;
+    @Column({
+        type: "varchar",
+        nullable: true
+    })
+    contrato_nivel!: string;
     
     @Column({
         type: "varchar",
@@ -132,19 +137,18 @@ export class contrato {
     userUserId!: number
 
 
-    @ManyToOne(() => empresa_contratante, (emp_contratante) => emp_contratante.contrato)
+    @ManyToOne(() => empresacontratante, (emp_contratante) => emp_contratante.contrato)
     @JoinColumn({
         name: "empContratanteContratanteId"
     })
-    emp_contratante!: empresa_contratante
+    emp_contratante!: empresacontratante
     @Column({
         type: "int"
     })
     empContratanteContratanteId?: number
 
-    @ManyToOne(() => empresa_PJ, (emp_pj) => emp_pj.contrato)
-    emp_pj!: empresa_PJ
-
+    /* @ManyToOne(() => empresa_PJ, (emp_pj) => emp_pj.contrato)
+    emp_pj!: empresa_PJ */
     @ManyToOne(() => cargo, (cargo) => cargo.contrato)
     @JoinColumn({
         name: "cargoCargoId"
@@ -157,4 +161,5 @@ export class contrato {
 
     @OneToMany(() => cargo, (cargoHead) => cargoHead.cargoID)
     cargoHead?: cargo
+    
 }
