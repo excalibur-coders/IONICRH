@@ -24,42 +24,37 @@ import * as S from './style';
 import { api } from 'services/api';
 import { parseCookies } from 'nookies';
 import { AxiosError } from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Consultor_nav from 'components/Consultor_nav';
 
-interface IFuncionarios {
-  user_id: string;
+interface ITrilha {
+  trilha_id: number;
+  trilha_nome: string;
+  junto: IUser[];
+  juntos: ICurso[];
+}
+interface ICurso {
+  curso_id: number;
+  curso_nome: string;
+}
+
+interface IUser {
   user_nome: string;
-  contrato: IContrato[];
-  dep_name: IDepartamento;
-  cargo_area: ICargo;
-}
-
-interface IContrato {
-  contrato_faixa_salarial: number;
-  cargo: ICargo;
-}
-
-interface IDepartamento {
-  dep_name: string;
-}
-
-interface ICargo {
-  cargo_area: string;
-  departamento: IDepartamento;
+  user_email: string;
 }
 
 function Consultor_Funcionarios() {
   const cookies = parseCookies();
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  const [funcionarios, setFuncionarios] = useState<IFuncionarios[]>([]);
+  const [funcionarios, setFuncionarios] = useState<ITrilha[]>([]);
   const [loading, setLoading] = useState(false);
 
   const getAllFuncionarios = useCallback(() => {
     setLoading(true);
     api
-      .get('/user/listagen-user', {
+      .get(`/curso/ver-trilhas/${id}`, {
         headers: {
           Authorization: `Bearer ${cookies['ionicookie.token']}`,
         },
@@ -112,66 +107,42 @@ function Consultor_Funcionarios() {
           </div>
           <br></br>
           <div className="container">
-            <HStack className="TBody_2">
-              <Box fontSize="2xl" fontWeight="bold">
-                Nome
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Departamento
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Cargo
-              </Box>
-              <Box fontSize="2xl" fontWeight="bold">
-                Trilha
-              </Box>
-            </HStack>
-            <Divider
-              orientation="horizontal"
-              borderColor={theme.colors.font}
-              variant="solid"
-              size="10rem"
-            />
             <br></br>
             <TableContainer>
               <Table variant="striped" size="lg" background="#DBDBDB">
                 <div className="TableTwo">
                   <Tbody>
-                    {funcionarios.map(funcionario => {
-                      //console.log('bom dia', funcionario);
-                      return (
-                        <>
-                          <Tr className="TBody_2">
+                  <Thead>
+                      <Tr>
+                        <Th fontSize="2xl" fontWeight="bold">Nome</Th>
+                        <Th fontSize="2xl" fontWeight="bold">E-mail</Th>
+                        <Th fontSize="2xl" fontWeight="bold">Progresso</Th>
+                      </Tr>
+                    </Thead>
+                    {funcionarios.map((funcionario) => {
+                      return funcionario.junto.map((user) => {
+                        return (
+                          <Tr key={user.user_nome} className="TBody_2">
                             <Td className="TBody_2" fontSize="md">
-                              {funcionario.user_nome}
+                              {user.user_nome}
                             </Td>
-                            <Td className="TBody_2">
-                              {funcionario.contrato?.[0]?.cargo.departamento
-                                .dep_name
-                                ? funcionario.contrato?.[0]?.cargo.departamento
-                                    .dep_name
-                                : '-'}
-                            </Td>
-                            <Td className="TBody_2">
-                              {funcionario.contrato?.[0]?.cargo.cargo_area
-                                ? funcionario.contrato?.[0]?.cargo.cargo_area
-                                : '-'}
+                            <Td className="TBody_2" fontSize="md">
+                              {user.user_email}
                             </Td>
                             <Td className="TBody_2">
                               <Link
-                                href={`CURSOTELA/${funcionario.user_id}`}
+                                href={`CURSOTELA/${funcionario.trilha_id}`}
                                 fontSize="xl"
                                 color={theme.colors.primary}
                               >
-                                Ver
+                               Loading
                                 <ArrowForwardIcon
                                   color={theme.colors.primary}
                                 />
                               </Link>
                             </Td>
-                          </Tr>
-                        </>
-                      );
+                          </Tr>)
+                      })
                     })}
                   </Tbody>
                 </div>

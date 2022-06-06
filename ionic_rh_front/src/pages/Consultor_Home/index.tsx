@@ -25,7 +25,7 @@ function Consultor_Home() {
                 <ul>
                   <li>
                     <a>
-                      <Link to={'/Consultor'}>
+                      <Link to={'/cursos'}>
                         <span className="icon">
                           <MdVideoLibrary size="40px" />
                         </span>

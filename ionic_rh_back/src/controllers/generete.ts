@@ -632,10 +632,10 @@ export const generate = async () => {
             .insert()
             .into(trilha)
             .values([
-                { trilha_nome: "Introdução Ionic", userUserId: 1 },
-                { trilha_nome: "Trilha de Tecnologia", userUserId: 5 },
-                { trilha_nome: "Trilha de Administração", userUserId: 4 },
-                { trilha_nome: "Trilha de Marketing", userUserId: 5 },
+                { trilha_nome: "Introdução Ionic" },
+                { trilha_nome: "Trilha de Tecnologia" },
+                { trilha_nome: "Trilha de Administração" },
+                { trilha_nome: "Trilha de Marketing" },
             ])
             .execute()
         enderecoRepository

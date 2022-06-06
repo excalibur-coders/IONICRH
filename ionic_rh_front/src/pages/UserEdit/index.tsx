@@ -5,7 +5,7 @@ import * as S from './styles';
 import { useState, useCallback, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Input from 'components/Input';
-import { Divider, Select } from '@chakra-ui/react';
+import { Checkbox, Divider, Select, Stack } from '@chakra-ui/react';
 import Button from 'components/Button';
 import { useForm } from 'react-hook-form';
 
@@ -36,6 +36,7 @@ interface IUser {
   contrato: IContrato[];
   user_raca: string;
   user_rg?: string;
+  user_role?: string;
 }
 interface IDocs {
   docs_nome: string;
@@ -130,6 +131,7 @@ interface IFormProps {
   user_nascimento?: string;
   user_genero?: string;
   user_cpf?: string;
+  user_role?: [];
   user_estado_civil?: string;
   telefone?: string;
   idioma_falados: string;
@@ -351,6 +353,7 @@ function UserEdit() {
             contrato_adimissao: data?.contrato_data_admissao,
             contrato_matricula: data?.contrato_matricula,
             contrato_turno: data.contrato_turno,
+            user_role: data.user_role,
           },
           {
             headers: {
@@ -412,8 +415,11 @@ function UserEdit() {
 
   const onSubmit = useCallback(
     async data => {
-      if (user?.contrato?.[0]?.contrato_matricula == null)
-        cadastroContrato(data);
+       navigate('/ContaAtualizada')
+      if (user?.contrato?.[0]?.contrato_matricula == null) {
+        await cadastroContrato(data);
+        navigate('/ContaAtualizada')
+      }
       else updateContrato(data);
     },
     [cadastroContrato, updateContrato, user?.contrato],
@@ -447,6 +453,7 @@ function UserEdit() {
                     type="submit"
                     text="Salvar"
                     color={theme.colors.primary}
+                    //onClick={() => navigate('/ContaAtualizada')}
                   />
                   {/*</Link>/*/}
                   <Link to="User/:id">
@@ -716,6 +723,32 @@ function UserEdit() {
 
               <div className="coluna">
                 <div className="colunaFuncionais">
+
+                <div className="coluna1">
+                    <span>Perfil de Usuário:</span>
+                    <Select
+                      placeholder={
+                        user?.user_role
+                          ? user?.user_role
+                          : 'Selecione uma opção'
+                      }
+                      size="xs"
+                      {...register('user_role')}
+                      defaultValue={
+                        user?.user_role
+                      }
+                    >
+                        <option value='Gestor'>Gestor</option>
+                        <option value='Consultor'>Consultor</option>
+                        <option value='Colaborador'>Colaborador</option>
+{/*                       {profile.map((profile, index) => (
+                        <option key={index} value={user?.user_role}>
+                          {user?.user_role}
+                        </option>
+                      ))} */}
+                    </Select>
+                  </div>
+
                   <div className="coluna1">
                     <span>Matricula:</span>
                     <Input
@@ -777,6 +810,16 @@ function UserEdit() {
                         </option>
                       ))}
                     </Select>
+                  </div>
+
+                  <div className="coluna1">
+                    <span>Trilha de Aprendizado:</span>
+                    <Stack spacing={5} direction='row'>
+                      <Checkbox colorScheme="gray">Trilha 1</Checkbox>
+                      <Checkbox colorScheme="gray">
+                        Trilha 2
+                      </Checkbox>
+                    </Stack>
                   </div>
 
                   <div className="coluna1">
