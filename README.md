@@ -8,7 +8,6 @@
   <a href ="#calendar-cronograma-das-entregas"> Cronograma das Entregas </a>  • 
   <a href ="#-tecnologias-utilizadas"> Tecnologias Utilizadas </a>  • 
   <a href ="#backlog-do-produto">Backlog do Produto </a>  •
-  <a href ="#backlog-das-sprints">Backlog das Sprints </a>  •
   <a href ="#passo-a-passo-da-instalação-do-sistema">Passo a Passo da Instalação do Sistema </a>  •
   <a href ="#equipe"> Equipe </a> 
 </p>
