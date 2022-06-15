@@ -153,7 +153,7 @@ function InserirDocsModulos() {
                   width="22rem"
                   fontSize={20}
                   fontWeight="bold"
-                  labelText="Historico Escolar"
+                  labelText="Arquivo"
                   type="file"
                   onChange={handleSaveFile}
                 />

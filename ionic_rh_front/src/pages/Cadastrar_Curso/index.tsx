@@ -39,6 +39,7 @@ function Cadastrar_Curso() {
         /*  */
       })
       .catch((error: Error | AxiosError) => {
+        console.log('aaaaaaaaaaaaaa')
         console.log(error);
       });
   }, [cookies]);

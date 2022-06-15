@@ -813,16 +813,6 @@ function UserEdit() {
                   </div>
 
                   <div className="coluna1">
-                    <span>Trilha de Aprendizado:</span>
-                    <Stack spacing={5} direction='row'>
-                      <Checkbox colorScheme="gray">Trilha 1</Checkbox>
-                      <Checkbox colorScheme="gray">
-                        Trilha 2
-                      </Checkbox>
-                    </Stack>
-                  </div>
-
-                  <div className="coluna1">
                     <span>Turno:</span>
                     <Input
                       size="xs"

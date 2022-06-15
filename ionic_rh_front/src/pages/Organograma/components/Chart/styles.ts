@@ -8,6 +8,10 @@ export const Container = styled(Flex)`
 
   color: #303030;
 
+  div {
+    background: #F4F4F5;
+  }
+
   .fotosPerfil {
     max-width: 58px;
     img {

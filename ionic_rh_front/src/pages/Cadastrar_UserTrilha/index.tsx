@@ -82,6 +82,7 @@ function CadastrarUserTrilha() {
         },
       })
       .then(({ data }) => {
+        alert("Colaborador adicionado com sucesso!");
         /*  */
       })
       .catch((error: Error | AxiosError) => {
@@ -146,11 +147,20 @@ function CadastrarUserTrilha() {
               </Select>
             </div>
             {/*  */}
-            <Button
-              text="Cadastrar"
-              color={theme.colors.primary}
-              type="submit"
-            />
+            <div className="buttons">
+              <Button
+                text="Cadastrar"
+                color={theme.colors.primary}
+                type="submit"
+              />
+              <Button
+                text="Voltar"
+                color="red"
+                onClick={() => {
+                  navigate(-1);
+                }}
+              />
+            </div>
           </form>
         </main>
       </S.Container>

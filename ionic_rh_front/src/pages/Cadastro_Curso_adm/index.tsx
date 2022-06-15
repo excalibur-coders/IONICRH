@@ -66,7 +66,7 @@ function Cadastro_Curso_adm() {
                         <span className="icon">
                           <MdOutlineVideoSettings size="40px" />
                         </span>
-                        <span className="tittle">Contéudo cursos</span>
+                        <span className="tittle">Conteúdo cursos</span>
                       </Link>
                     </a>
                   </li>

@@ -145,29 +145,37 @@ function CadastrarCursoTrilha() {
             </div>
             {/*  */}
             <div className="buttons">
-            <Button
-                  text="Voltar"
-                  color="red"
-                  onClick={() => {
-                    navigate('/cadastro_curso_adm');
-                  }}
-                />
-            <Button
-              text="Cadastrar"
-              color={theme.colors.primary}
-              type="submit"
-            />
+              <Button
+                text="Voltar"
+                color="red"
+                onClick={() => {
+                  navigate('/cadastro_curso_adm');
+                }}
+              />
+              <Button
+                text="Cadastrar"
+                color={theme.colors.primary}
+                type="submit"
+              />
             </div>
           </form>
-              <br />
-              <h4>Se preferir, crie uma nova trilha:</h4>
-              <Button
-                  text="Criar trilha"
-                  color={theme.colors.primary}
-                  onClick={() => {
-                    navigate('/criar_trilha');
-                  }}
-                />
+          <br />
+          <h4>Se preferir, crie uma nova trilha:</h4>
+          <Button
+            text="Criar trilha"
+            color={theme.colors.primary}
+            onClick={() => {
+              navigate('/criar_trilha');
+            }}
+          />
+          <h4>Adicione um colaborador a uma trilha existente:</h4>
+          <Button
+            text="Adicionar"
+            color={theme.colors.primary}
+            onClick={() => {
+              navigate('/user_trilha');
+            }}
+          />
         </main>
       </S.Container>
     </>

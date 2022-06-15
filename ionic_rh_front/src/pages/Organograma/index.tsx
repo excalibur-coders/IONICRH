@@ -19,7 +19,7 @@ export default function App() {
           <Sidemenu />
         </div>
         <S.CenterContainer>
-          <img src={LogoGray} />
+          {/* <img src={LogoGray} /> */}
           <h3>
             {dep === 'ti' ? (
               'IT Infrastructure Ops'

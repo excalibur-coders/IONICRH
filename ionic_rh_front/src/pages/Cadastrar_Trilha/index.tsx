@@ -31,7 +31,7 @@ function Cadastrar_Trilha() {
         },
       })
       .then(({ data }) => {
-        /*  */
+        alert('Trilha cadastrada com sucesso!');
       })
       .catch((error: Error | AxiosError) => {
         console.log(error);

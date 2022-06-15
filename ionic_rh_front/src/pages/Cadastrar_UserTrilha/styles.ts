@@ -24,5 +24,11 @@ main{
     align-items: center;
     gap: 10px;
   }
+
+  .buttons{
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+  }
 }
 `
