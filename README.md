@@ -1,6 +1,7 @@
 # Projeto IonicRH
 
-![Equipe ExcaliburCoders](./docs/readme/feira de soluções.mp4)
+![Equipe ExcaliburCoders])(https://user-images.githubusercontent.com/80925387/173955492-a2e4f040-d08d-4ff2-a287-11daec27ee3f.png)
+
 
 <p align="center">
   <a href ="#o-projeto"> Projeto </a>  • 
